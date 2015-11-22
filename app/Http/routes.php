@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Allows to external tool to ping your instalation and know if the site is up.
+Route::get('/status', function() {
+	return "ALIVE";
+});
