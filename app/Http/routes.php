@@ -26,6 +26,7 @@ $controllers = [
     'GitHub'
 ];
 foreach ($controllers as $controller) {
-    Route::get( '/gate/' . $controller, "Gate\\${controller}GateController@onGet");
-    Route::post('/gate/' . $controller, "Gate\\${controller}GateController@onPost");
+    $controllerRoute = '/gate/' . $controller . '/';
+    Route::get($controllerRoute . '{door?}', "Gate\\${controller}GateController@onGet");
+    Route::post($controllerRoute . '{door}', "Gate\\${controller}GateController@onPost");
 }

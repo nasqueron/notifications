@@ -35,4 +35,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'gate' => [
+        'credentials' => storage_path(env('CREDENTIALS')),
+    ]
+
 ];
