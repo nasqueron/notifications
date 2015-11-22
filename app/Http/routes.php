@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/status', function() {
 	return "ALIVE";
 });
+
+// Gate controllers
+Route::post('/gate/GitHub', 'GitHubGateController@onPost');
