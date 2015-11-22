@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace Nasqueron\Notifications\Jobs;
 
 use Illuminate\Bus\Queueable;
 

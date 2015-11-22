@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Nasqueron\Notifications\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

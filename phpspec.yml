@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: App
-        psr4_prefix: App
+        namespace: Nasqueron\Notifications
+        psr4_prefix: Nasqueron\Notifications
         src_path: app

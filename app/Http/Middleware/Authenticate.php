@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Nasqueron\Notifications\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
