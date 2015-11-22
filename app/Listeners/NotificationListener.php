@@ -4,7 +4,9 @@ namespace Nasqueron\Notifications\Listeners;
 
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 use Nasqueron\Notifications\Events\NotificationEvent;
+use Nasqueron\Notifications\Events\PhabricatorPayloadEvent;
 use Nasqueron\Notifications\Jobs\FireGitHubNotification;
+use Nasqueron\Notifications\Jobs\FirePhabricatorNotification;
 use Nasqueron\Notifications\Notifications\GitHubNotification;
 
 use Event;
@@ -12,7 +14,7 @@ use Event;
 class NotificationListener {
 
     ///
-    /// Distill GitHub payloads into notifications
+    /// Distill services' payloads into notifications
     ///
 
     /**
@@ -23,6 +25,17 @@ class NotificationListener {
      */
     public function onGitHubPayload(GitHubPayloadEvent $event) {
         $job = new FireGitHubNotification($event);
+        $job->handle();
+    }
+
+    /**
+     * Handles a Phabricator payload event.
+     *
+     * @param PhabricatorPayloadEvent $event
+     * @return void
+     */
+    public function onPhabricatorPayload(PhabricatorPayloadEvent $event) {
+        $job = new FirePhabricatorNotification($event);
         $job->handle();
     }
 
@@ -40,6 +53,10 @@ class NotificationListener {
         $events->listen(
             'Nasqueron\Notifications\Events\GitHubPayloadEvent',
             "$class@onGitHubPayload"
+        );
+        $events->listen(
+            'Nasqueron\Notifications\Events\PhabricatorPayloadEvent',
+            "$class@onPhabricatorPayload"
         );
     }
 

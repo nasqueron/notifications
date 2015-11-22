@@ -3,6 +3,11 @@
 namespace Nasqueron\Notifications\Phabricator;
 
 class PhabricatorAPI {
+
+    ///
+    /// Private members
+    ///
+
     /**
      * The Phabricator main URL
      *
@@ -17,6 +22,10 @@ class PhabricatorAPI {
      */
     private $apiToken;
 
+    ///
+    /// Constructors
+    ///
+
     /**
      * Initializes a new instance of the Phabricator API class
      *
@@ -26,6 +35,27 @@ class PhabricatorAPI {
     public function __construct ($instance, $apiToken) {
         $this->instance = $instance;
         $this->apiToken = $apiToken;
+    }
+
+    private static function getServiceForInstance ($instance) {
+        $path = config('services.gate.credentials');
+        $data = json_decode(file_get_contents($path));
+        foreach ($data->services as $service) {
+            if ($service->gate === "Phabricator" && $service->instance = $instance) {
+                return $service;
+            }
+        }
+
+        return null;
+    }
+
+    public static function forInstance ($instance) {
+        $service = self::getServiceForInstance($instance);
+        if ($service === null) {
+            throw new \RuntimeException("No credentials for Phabricator instance $instance.");
+        }
+
+        return new self($service->instance, $service->secret);
     }
 
     /**

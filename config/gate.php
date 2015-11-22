@@ -14,6 +14,7 @@ return [
 
     'controllers' => [
         'GitHub',
+        'Phabricator',
     ],
 
 ];

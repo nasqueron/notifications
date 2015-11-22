@@ -41,6 +41,12 @@ return [
         ]
     ],
 
+    'phabricator' => [
+        'analyzer' => [
+            'configDir' => storage_path(env('PHABRICATOR_ANALYZER_CONFIG_DIR', 'app/PhabricatorPayloadAnalyzer'))
+        ]
+    ],
+
     'gate' => [
         'credentials' => storage_path(env('CREDENTIALS', 'app/credentials.json')),
     ]

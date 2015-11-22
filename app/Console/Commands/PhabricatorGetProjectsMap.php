@@ -39,11 +39,8 @@ class PhabricatorGetProjectsMap extends Command {
         foreach ($this->getServicesCredentials() as $service) {
             if ($service->gate == "Phabricator") {
                 $this->info("Querying projects map for " . $service->instance);
-                $map = ProjectsMap::fetch(
-                    $service->instance,
-                    $service->secret
-                );
-                $map->save();
+                $map = ProjectsMap::fetch($service->instance);
+                $map->saveToCache();
                 $this->table(
                     ['PHID', 'Project name'],
                     $map->toArray()

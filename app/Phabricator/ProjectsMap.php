@@ -24,9 +24,16 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     /**
      * The Phabricator instance for this projects map
      *
-     * @var map
+     * @var string
      */
     private $instance;
+
+    /**
+     * The source of the map
+     *
+     * @var string
+     */
+    private $source = 'unloaded';
 
     ///
     /// Constructor
@@ -64,7 +71,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @param mixed $offset The offset
      */
     public function offsetExists ($offset) {
-        return array_key_exists($this->map[$offset]);
+        return array_key_exists($offset, $this->map);
     }
 
     /**
@@ -101,34 +108,58 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
+     * Gets a new ProjectsMap instance from cache or API when not cached
+     *
+     * @param string $phabricatorURL The Phabricator URL (e.g. http://secure.phabricator.com)
+     * @return ProjectsMap
+     */
+    public static function load ($phabricatorURL) {
+       $instance = new self($phabricatorURL);
+
+       if ($instance->isCached()) {
+           $instance->loadFromCache();
+       } else {
+           $instance->fetchFromAPI();
+       }
+
+       return $instance;
+    }
+
+    /**
      * Gets a new ProjectsMap instance and queries Phabricator API to fill it.
      *
      * @param string $phabricatorURL The Phabricator URL (e.g. http://secure.phabricator.com)
-     * @param string $apiToken The API token from .../settings/panel/apitokens/
      * @return ProjectsMap
      */
-    public static function fetch ($phabricatorURL, $apiToken) {
+    public static function fetch ($phabricatorURL) {
        $instance = new self($phabricatorURL);
+       $instance->fetchFromAPI();
+       return $instance;
+    }
 
-       $api = new PhabricatorAPI($phabricatorURL, $apiToken);
-       $reply = $api->call(
+    ///
+    /// API
+    ///
+
+    public function fetchFromAPI () {
+       $reply = PhabricatorAPI::forInstance($this->instance)->call(
            'project.query',
            [ 'limit' => self::LIMIT ]
         );
 
        if (!$reply) {
-           throw new \Exception("Empty reply calling project.query at $phabricatorURL API.");
+           throw new \Exception("Empty reply calling project.query at $this->instance API.");
        }
 
        if (!property_exists($reply, 'data')) {
-           throw new \Exception("Invalid reply calling project.query at $phabricatorURL API.");
+           throw new \Exception("Invalid reply calling project.query at $this->instance API.");
        }
 
        foreach ($reply->data as $phid => $projectInfo) {
-           $instance[$phid] = $projectInfo->name;
+           $this->offsetSet($phid, $projectInfo->name);
        }
 
-       return $instance;
+       $this->source = 'api';
     }
 
     ///
@@ -148,17 +179,37 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
         return Cache::has($this->getCacheKey());
     }
 
-    public function save () {
+    public function saveToCache () {
         Cache::forever($this->getCacheKey(), $this->map);
     }
 
-    public function load () {
+    public function loadFromCache () {
         $this->map = Cache::get($this->getCacheKey());
+        $this->source = 'cache';
     }
 
     ///
     /// Output
     ///
+
+    /**
+     * Gets project name, refreshing the cache if needed
+     *
+     * @param string $projectPHID the PHID of the project to query the name
+     * @return string
+     */
+    public function getProjectName ($projectPHID) {
+        if ($this->offsetExists($projectPHID)) {
+            return $this->offsetGet($projectPHID);
+        }
+
+        if ($this->source !== 'api') {
+            $this->fetchFromAPI();
+            return $this->getProjectName($projectPHID);
+        }
+
+        return "";
+    }
 
     /**
      * Returns the projects map as an array, each row ['PHID', 'project name']
