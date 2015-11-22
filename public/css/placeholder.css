@@ -1,0 +1,76 @@
+@charset "utf-8";
+
+/*  -------------------------------------------------------------
+    Notifications center placeholder
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    Author:         Sébastien Santoro aka Dereckson
+    Tags:           nasqueron minimalist grey green
+    Filename:       placeholder.css
+    Created:        2015-11-22
+    Licence:        Creative Commons BY 4.0
+    -------------------------------------------------------------    */
+
+/*  -------------------------------------------------------------
+    General style
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: table;
+    background-color: #343434;
+
+    font-weight: 100;
+    font-family: 'Lato';
+    color: #40C1AC;
+}
+
+.container {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.content {
+    text-align: center;
+    display: inline-block;
+}
+
+/*  -------------------------------------------------------------
+    Titles
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    */
+
+@media screen and (max-width: 210px) {
+    .title {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 211px) and (max-width: 286px) {
+    .title {
+        font-size: 36px;
+    }
+}
+
+@media screen and (min-width: 287px) and (max-width: 386px) {
+    .title {
+        font-size: 48px;
+    }
+}
+
+@media screen and (min-width: 387px) and (max-width: 500px) {
+    .title {
+        font-size: 72px;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    .title {
+        font-size: 96px;
+    }
+}
