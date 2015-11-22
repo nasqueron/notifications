@@ -4,16 +4,16 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class PlaceholderTest extends TestCase
 {
     /**
-     * A basic functional test example.
+     * Placeholder homepage works.
      *
      * @return void
      */
-    public function testBasicExample()
+    public function testPlaceholder()
     {
         $this->visit('/')
-             ->see('Laravel 5');
+             ->see('Notifications center');
     }
 }
