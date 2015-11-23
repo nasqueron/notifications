@@ -37,6 +37,12 @@ class GitHubGateController extends GateController {
      */
     private $payload;
 
+    /**
+     * The request content
+     * @var string
+     */
+    private $rawRequestContent;
+
     ///
     /// Constants
     ///
@@ -90,7 +96,8 @@ class GitHubGateController extends GateController {
      */
     protected function extractPayload () {
         $request = Request::instance();
-        $this->payload = $request->getContent();
+        $this->rawRequestContent = $request->getContent();
+        $this->payload = json_decode($this->rawRequestContent);
     }
 
     /**
@@ -108,7 +115,7 @@ class GitHubGateController extends GateController {
 
         return XHubSignature::validatePayload(
             $secret,
-            $this->payload,
+            $this->rawRequestContent,
             $this->signature
         );
     }
