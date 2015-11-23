@@ -13,9 +13,28 @@ class GitHubGateController extends GateController {
     /// Private members
     ///
 
+    /**
+     * The request signature, allowing to determine if the payload is legit
+     * @var string
+     */
     private $signature;
+
+    /**
+     * The GitHub event triggering this request
+     * @var string
+     */
     private $event;
+
+    /**
+     * The request delivery GUID
+     * @var string
+     */
     private $delivery;
+
+    /**
+     * The request content, as a structured data
+     * @var stdClass
+     */
     private $payload;
 
     ///
