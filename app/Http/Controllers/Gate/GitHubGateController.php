@@ -17,30 +17,35 @@ class GitHubGateController extends GateController {
 
     /**
      * The request signature, allowing to determine if the payload is legit
+     *
      * @var string
      */
     private $signature;
 
     /**
      * The GitHub event triggering this request
+     *
      * @var string
      */
     private $event;
 
     /**
      * The request delivery GUID
+     *
      * @var string
      */
     private $delivery;
 
     /**
      * The request content, as a structured data
+     *
      * @var stdClass
      */
     private $payload;
 
     /**
      * The request content
+     *
      * @var string
      */
     private $rawRequestContent;
@@ -52,7 +57,7 @@ class GitHubGateController extends GateController {
     const SERVICE_NAME = 'GitHub';
 
     ///
-    /// Requests processing
+    /// Request processing
     ///
 
     /**
@@ -61,6 +66,8 @@ class GitHubGateController extends GateController {
      * @param Request $request the HTTP request
      */
     public function onPost ($door) {
+        // Parses the request and check if it's legit
+
         $this->door = $door;
         $this->extractHeaders();
         $this->extractPayload();
@@ -69,6 +76,8 @@ class GitHubGateController extends GateController {
             abort(403, 'Unauthorized action.');
             return;
         }
+
+        // Process the request
 
         $this->logRequest();
         $this->onPayload();

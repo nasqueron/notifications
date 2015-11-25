@@ -13,6 +13,9 @@ class GateController extends Controller {
     /// Private members
     ///
 
+    /**
+     * @var string
+     */
     protected $door;
 
     ///
@@ -22,11 +25,21 @@ class GateController extends Controller {
     /**
      * Handles GET requests
      */
-    function onGet ($door = null) {
+    public function onGet ($door = null) {
         // Virtually all the push APIs will send they payloads
         // using a POST request, so we can provide a sensible
         // default GET error message.
         return view('gate/ispostonly');
+    }
+
+    /**
+     * Logs the request
+     */
+    protected function logRequest () {
+        Log::info('[Gate] New payload.', [
+            'service' => static::SERVICE_NAME,
+            'door' => $this->door,
+        ]);
     }
 
     ///
@@ -35,8 +48,10 @@ class GateController extends Controller {
 
     /**
      * Gets service credentials
+     *
+     * @return stdClass the services credentials
      */
-    function getServicesCredentials () {
+    protected function getServicesCredentials () {
         $path = config('services.gate.credentials');
         $data = json_decode(file_get_contents($path));
         return $data->services;
@@ -67,13 +82,4 @@ class GateController extends Controller {
         return "";
     }
 
-    /**
-     * Logs the request
-     */
-    protected function logRequest () {
-        Log::info('[Gate] New payload.', [
-            'service' => static::SERVICE_NAME,
-            'door' => $this->door,
-        ]);
-    }
 }
