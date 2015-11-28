@@ -4,7 +4,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class GitHubGateControllerTest extends TestCase {
     /**
-     * Status works.
+     * GitHub gate works.
      *
      * @return void
      */
