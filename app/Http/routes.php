@@ -20,12 +20,8 @@ Route::get('/status', function() {
 	return "ALIVE";
 });
 
-
 // Gate controllers
-$controllers = [
-    'GitHub'
-];
-foreach ($controllers as $controller) {
+foreach (Config::get('gate.controllers') as $controller) {
     $controllerRoute = '/gate/' . $controller . '/';
     Route::get($controllerRoute . '{door?}', "Gate\\${controller}GateController@onGet");
     Route::post($controllerRoute . '{door}', "Gate\\${controller}GateController@onPost");
