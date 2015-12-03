@@ -13,9 +13,15 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Nasqueron\Notifications\Events\SomeEvent' => [
-            'Nasqueron\Notifications\Listeners\EventListener',
-        ],
+    ];
+
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        'Nasqueron\Notifications\Listeners\LastPayloadSaver',
     ];
 
     /**
