@@ -3,8 +3,9 @@
 namespace Nasqueron\Notifications\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
-use Keruald\Brokers\AMQPBroker;
 use Nasqueron\Notifications\Jobs\Job;
+
+use Broker;
 
 class SendMessageToBroker extends Job implements SelfHandling {
 
@@ -41,28 +42,8 @@ class SendMessageToBroker extends Job implements SelfHandling {
      * @return void
      */
     public function handle() {
-        $this->getBroker()
-            ->setExchangeTarget("github_events")
+        Broker::setExchangeTarget("github_events")
             ->routeTo($this->routingKey)
             ->sendMessage($this->message);
     }
-
-    /**
-     * Gets broker
-     *
-     * @return Broker
-     * @todo Transform into a service provider, a singleton pattern and a facade
-     */
-    public function getBroker() {
-        $broker = new AMQPBroker();
-        $broker->connect(
-            Config::get('broker.connections.amqp.host'),
-            Config::get('broker.connections.amqp.port'),
-            Config::get('broker.connections.amqp.username'),
-            Config::get('broker.connections.amqp.password'),
-            Config::get('broker.connections.amqp.vhost')
-        );
-        return $broker;
-    }
 }
-

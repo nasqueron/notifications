@@ -142,6 +142,7 @@ return [
          */
         Nasqueron\Notifications\Providers\AppServiceProvider::class,
         Nasqueron\Notifications\Providers\AuthServiceProvider::class,
+        Nasqueron\Notifications\Providers\BrokerServiceProvider::class,
         Nasqueron\Notifications\Providers\EventServiceProvider::class,
         Nasqueron\Notifications\Providers\RouteServiceProvider::class,
 
@@ -164,6 +165,7 @@ return [
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
         'Auth'      => Illuminate\Support\Facades\Auth::class,
         'Blade'     => Illuminate\Support\Facades\Blade::class,
+        'Broker'    => Nasqueron\Notifications\Facades\Broker::class,
         'Bus'       => Illuminate\Support\Facades\Bus::class,
         'Cache'     => Illuminate\Support\Facades\Cache::class,
         'Config'    => Illuminate\Support\Facades\Config::class,
