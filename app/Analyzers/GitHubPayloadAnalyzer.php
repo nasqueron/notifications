@@ -128,7 +128,7 @@ class GitHubPayloadAnalyzer {
 
         // By default, fallback group is the project name or a specified value.
         if (empty($this->configuration->defaultGroup)) {
-            return $this->project;
+            return strtolower($this->project);
         }
         return $this->configuration->defaultGroup;
     }
