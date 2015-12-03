@@ -22,6 +22,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $subscribe = [
         'Nasqueron\Notifications\Listeners\LastPayloadSaver',
+        'Nasqueron\Notifications\Listeners\AMQPEventListener',
     ];
 
     /**

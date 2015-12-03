@@ -35,6 +35,12 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'github' => [
+        'analyzer' => [
+            'configDir' => storage_path(env('GITHUB_ANALYZER_CONFIG_DIR', 'app/GitHubPayloadAnalyzer'))
+        ]
+    ],
+
     'gate' => [
         'credentials' => storage_path(env('CREDENTIALS')),
     ]
