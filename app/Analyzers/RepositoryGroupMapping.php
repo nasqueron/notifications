@@ -34,7 +34,7 @@ class RepositoryGroupMapping {
      * @return bool
      */
     public static function doesRepositoryMatch ($pattern, $repository) {
-        return ($pattern == $repository) || fnmatch($pattern, $repository);
+        return ($pattern === $repository) || fnmatch($pattern, $repository);
     }
 
     /**
