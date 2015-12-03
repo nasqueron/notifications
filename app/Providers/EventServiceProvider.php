@@ -2,28 +2,25 @@
 
 namespace Nasqueron\Notifications\Providers;
 
+use Illuminate\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-class EventServiceProvider extends ServiceProvider
-{
-    /**
-     * The event listener mappings for the application.
-     *
-     * @var array
-     */
-    protected $listen = [
-    ];
+use File;
+
+class EventServiceProvider extends ServiceProvider {
 
     /**
-     * The subscriber classes to register.
-     *
-     * @var array
+     * Registers all our listeners as subscriber classes
      */
-    protected $subscribe = [
-        'Nasqueron\Notifications\Listeners\LastPayloadSaver',
-        'Nasqueron\Notifications\Listeners\AMQPEventListener',
-    ];
+    private function subscribeListeners () {
+        $namespace = Container::getInstance()->getNamespace() . 'Listeners\\';
+        $files = File::allFiles(app_path('Listeners'));
+        foreach ($files as $file) {
+            $class = $namespace . $file->getBasename('.php');
+            $this->subscribe[] = $class;
+        }
+    }
 
     /**
      * Register any other events for your application.
@@ -31,10 +28,8 @@ class EventServiceProvider extends ServiceProvider
      * @param  \Illuminate\Contracts\Events\Dispatcher  $events
      * @return void
      */
-    public function boot(DispatcherContract $events)
-    {
+    public function boot(DispatcherContract $events) {
+        $this->subscribeListeners();
         parent::boot($events);
-
-        //
     }
 }
