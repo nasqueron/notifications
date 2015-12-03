@@ -42,7 +42,7 @@ return [
     ],
 
     'gate' => [
-        'credentials' => storage_path(env('CREDENTIALS')),
+        'credentials' => storage_path(env('CREDENTIALS', 'app/credentials.json')),
     ]
 
 ];
