@@ -2,9 +2,11 @@
 
 namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
+use Event;
 use Log;
 use Request;
 
+use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 use Keruald\GitHub\XHubSignature;
 
 class GitHubGateController extends GateController {
@@ -138,5 +140,10 @@ class GitHubGateController extends GateController {
 
     protected function onPayload () {
         // Here the logic to process the event.
+        Event::fire(new GitHubPayloadEvent(
+            $this->door,
+            $this->event,
+            $this->payload
+        ));
     }
 }
