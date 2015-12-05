@@ -99,6 +99,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Features
+    |--------------------------------------------------------------------------
+    |
+    | This array contains the features provided by the notifications center.
+    |
+    | It allows to toggle a feature on the fly, with a boolean to enable it.
+    |
+    */
+
+    'features' => [
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
     |
