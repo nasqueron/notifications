@@ -3,9 +3,12 @@
 namespace Nasqueron\Notifications\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
+use Nasqueron\Notifications\Actions\AMQPAction;
+use Nasqueron\Notifications\Events\ReportEvent;
 use Nasqueron\Notifications\Jobs\Job;
 
 use Broker;
+use Event;
 
 class SendMessageToBroker extends Job implements SelfHandling {
 
@@ -62,6 +65,7 @@ class SendMessageToBroker extends Job implements SelfHandling {
      */
     public function handle() {
         $this->sendMessage();
+        $this->report();
     }
 
     /**
@@ -71,5 +75,17 @@ class SendMessageToBroker extends Job implements SelfHandling {
         Broker::setExchangeTarget($this->target)
             ->routeTo($this->routingKey)
             ->sendMessage($this->message);
+    }
+
+    /**
+     * Prepares a report and fires a report event
+     */
+    protected function report () {
+        $actionToReport = new AMQPAction(
+            "publish",
+            $this->target,
+            $this->routingKey
+        );
+        Event::fire(new ReportEvent($actionToReport));
     }
 }

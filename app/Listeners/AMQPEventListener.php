@@ -2,7 +2,10 @@
 
 namespace Nasqueron\Notifications\Listeners;
 
+use Nasqueron\Notifications\Actions\Action;
+use Nasqueron\Notifications\Actions\AMQPAction;
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
+use Nasqueron\Notifications\Events\ReportEvent;
 use Nasqueron\Notifications\Analyzers\GitHubPayloadAnalyzer;
 use Nasqueron\Notifications\Jobs\SendMessageToBroker;
 
@@ -55,8 +58,6 @@ class AMQPEventListener {
     public function onGitHubPayload(GitHubPayloadEvent $event) {
         $message = json_encode($event->payload);
         $routingKey = static::getRoutingKey($event);
-
-        echo "Event $event->event has been fired to GitHub $event->door door.\nRouting key is $routingKey.";
 
         $job = new SendMessageToBroker($routingKey, $message);
         $job->handle();
