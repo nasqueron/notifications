@@ -9,6 +9,10 @@ use Broker;
 
 class SendMessageToBroker extends Job implements SelfHandling {
 
+    ///
+    /// Private members
+    ///
+
     /**
      * The routing key, for topic exchange
      *
@@ -24,6 +28,17 @@ class SendMessageToBroker extends Job implements SelfHandling {
     private $message = '';
 
     /**
+     * The target exchange
+     *
+     * @var string
+     */
+    private $target = 'github_events';
+
+    ///
+    /// Constructor
+    ///
+
+    /**
      * Create a new job instance.
      *
      * @param $routingKey the routing key, for topic exchange
@@ -36,13 +51,24 @@ class SendMessageToBroker extends Job implements SelfHandling {
         $this->message = $message;
     }
 
+    ///
+    /// Task
+    ///
+
     /**
      * Executes the job.
      *
      * @return void
      */
     public function handle() {
-        Broker::setExchangeTarget("github_events")
+        $this->sendMessage();
+    }
+
+    /**
+     * Sends the message to the broker
+     */
+    protected function sendMessage () {
+        Broker::setExchangeTarget($this->target)
             ->routeTo($this->routingKey)
             ->sendMessage($this->message);
     }
