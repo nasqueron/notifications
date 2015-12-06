@@ -58,6 +58,13 @@ class AMQPEventListener {
      * @return void
      */
     public function onGitHubPayload(GitHubPayloadEvent $event) {
+        $this->sendRawPayload($event);
+    }
+
+    /**
+     * This is our gateway GitHub Webhooks -> Broker
+     */
+    protected function sendRawPayload(GitHubPayloadEvent $event) {
         $target = Config::get('broker.targets.github_events');
         $routingKey = static::getRoutingKey($event);
         $message = json_encode($event->payload);
