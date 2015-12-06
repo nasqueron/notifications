@@ -109,6 +109,9 @@ return [
     */
 
     'features' => [
+        // Send a response to inform the caller of the different actions done.
+        // If disabled, send an empty 200 response instead.
+        'ActionsReport' => true,
     ],
 
     /*

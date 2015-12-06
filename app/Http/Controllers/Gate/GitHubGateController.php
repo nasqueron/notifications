@@ -64,6 +64,7 @@ class GitHubGateController extends GateController {
      * Handles POST requests
      *
      * @param Request $request the HTTP request
+     * @return Illuminate\Http\Response
      */
     public function onPost ($door) {
         // Parses the request and check if it's legit
@@ -81,6 +82,10 @@ class GitHubGateController extends GateController {
 
         $this->logRequest();
         $this->onPayload();
+
+        // Output
+
+        return parent::renderReport();
     }
 
     /**
@@ -148,7 +153,8 @@ class GitHubGateController extends GateController {
     ///
 
     protected function onPayload () {
-        // Here the logic to process the event.
+        $this->initializeReport();
+
         Event::fire(new GitHubPayloadEvent(
             $this->door,
             $this->event,

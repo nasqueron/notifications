@@ -2,7 +2,10 @@
 
 namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
+use Nasqueron\Notifications\Features;
 use Nasqueron\Notifications\Http\Controllers\Controller;
+
+use Report;
 
 /**
  * Represents a controller handling an entry-point for API payloads
@@ -40,6 +43,30 @@ class GateController extends Controller {
             'service' => static::SERVICE_NAME,
             'door' => $this->door,
         ]);
+    }
+
+    ///
+    /// Reports
+    ///
+
+    /**
+     * Initializes the report and registers it
+     */
+    protected function initializeReport () {
+        if (Features::isEnabled('ActionsReport')) {
+            Report::attachToGate(static::SERVICE_NAME, $this->door);
+        }
+    }
+
+    /**
+     * Renders the report
+     *
+     * @return Illuminate\Http\Response|null
+     */
+    protected function renderReport () {
+        if (Features::isEnabled('ActionsReport')) {
+            return Report::render();
+        }
     }
 
     ///
