@@ -158,6 +158,7 @@ return [
         Nasqueron\Notifications\Providers\AuthServiceProvider::class,
         Nasqueron\Notifications\Providers\BrokerServiceProvider::class,
         Nasqueron\Notifications\Providers\EventServiceProvider::class,
+        Nasqueron\Notifications\Providers\ReportServiceProvider::class,
         Nasqueron\Notifications\Providers\RouteServiceProvider::class,
 
     ],
@@ -200,6 +201,7 @@ return [
         'Queue'     => Illuminate\Support\Facades\Queue::class,
         'Redirect'  => Illuminate\Support\Facades\Redirect::class,
         'Redis'     => Illuminate\Support\Facades\Redis::class,
+        'Report'    => Nasqueron\Notifications\Facades\Report::class,
         'Request'   => Illuminate\Support\Facades\Request::class,
         'Response'  => Illuminate\Support\Facades\Response::class,
         'Route'     => Illuminate\Support\Facades\Route::class,
