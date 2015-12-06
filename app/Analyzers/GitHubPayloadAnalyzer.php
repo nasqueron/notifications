@@ -2,7 +2,6 @@
 
 namespace Nasqueron\Notifications\Analyzers;
 
-
 use Config;
 
 class GitHubPayloadAnalyzer {
