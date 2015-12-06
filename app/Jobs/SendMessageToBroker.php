@@ -44,8 +44,8 @@ class SendMessageToBroker extends Job implements SelfHandling {
     /**
      * Create a new job instance.
      *
-     * @param $routingKey the routing key, for topic exchange
-     * @param $message the message to send
+     * @param string $routingKey the routing key, for topic exchange
+     * @param string $message the message to send
      *
      * @return void
      */
