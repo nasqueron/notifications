@@ -1,5 +1,7 @@
 <?php
 
+use Nasqueron\Notifications\Features;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -21,8 +23,10 @@ Route::get('/status', function() {
 });
 
 // Gate controllers
-foreach (Config::get('gate.controllers') as $controller) {
-    $controllerRoute = '/gate/' . $controller . '/';
-    Route::get($controllerRoute . '{door?}', "Gate\\${controller}GateController@onGet");
-    Route::post($controllerRoute . '{door}', "Gate\\${controller}GateController@onPost");
+if (Features::isEnabled('Gate')) {
+    foreach (Config::get('gate.controllers') as $controller) {
+        $controllerRoute = '/gate/' . $controller . '/';
+        Route::get($controllerRoute . '{door?}', "Gate\\${controller}GateController@onGet");
+        Route::post($controllerRoute . '{door}', "Gate\\${controller}GateController@onPost");
+    }
 }

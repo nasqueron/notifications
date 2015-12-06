@@ -109,6 +109,9 @@ return [
     */
 
     'features' => [
+        // Enable the API entry point at the /gate URL
+        'Gate' => true,
+
         // Send a response to inform the caller of the different actions done.
         // If disabled, send an empty 200 response instead.
         'ActionsReport' => true,
