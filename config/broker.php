@@ -38,4 +38,21 @@ return [
 
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Message broker targets
+    |--------------------------------------------------------------------------
+    |
+    | For AMQP, there are exchange points. For other brokers, they could be
+    | queues if exchanges are not implemented.
+    |
+    */
+
+    'targets' => [
+        // A stream of all payloads sent by GitHub, to provide a gateway
+        // GitHub Webhooks API => broker. They are sorted by topics under
+        // the pattern <gate door>.<group>.<event type>.
+        'github_events' => 'github_events'
+    ]
+
 ];

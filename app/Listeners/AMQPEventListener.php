@@ -12,6 +12,8 @@ use Nasqueron\Notifications\Jobs\SendMessageToBroker;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+use Config;
+
 class AMQPEventListener {
     ///
     /// GitHub events
@@ -56,10 +58,11 @@ class AMQPEventListener {
      * @return void
      */
     public function onGitHubPayload(GitHubPayloadEvent $event) {
-        $message = json_encode($event->payload);
+        $target = Config::get('broker.targets.github_events');
         $routingKey = static::getRoutingKey($event);
+        $message = json_encode($event->payload);
 
-        $job = new SendMessageToBroker($routingKey, $message);
+        $job = new SendMessageToBroker($target, $routingKey, $message);
         $job->handle();
     }
 

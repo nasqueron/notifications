@@ -35,7 +35,7 @@ class SendMessageToBroker extends Job implements SelfHandling {
      *
      * @var string
      */
-    private $target = 'github_events';
+    private $target = '';
 
     ///
     /// Constructor
@@ -49,7 +49,8 @@ class SendMessageToBroker extends Job implements SelfHandling {
      *
      * @return void
      */
-    public function __construct ($routingKey, $message) {
+    public function __construct ($target, $routingKey, $message) {
+        $this->target = $target;
         $this->routingKey = $routingKey;
         $this->message = $message;
     }
