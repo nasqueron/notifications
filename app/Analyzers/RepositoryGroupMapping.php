@@ -29,12 +29,12 @@ class RepositoryGroupMapping {
     /**
      * Determines if the specified repository matches a pattern
      *
-     * @param string the pattern, with * and ? allowed
-     * @param string the repository name to compare with the pattern
+     * @param string $pattern The pattern, with * allowed as wildcard character
+     * @param string $repository The repository name to compare with the pattern
      * @return bool
      */
     public static function doesRepositoryMatch ($pattern, $repository) {
-        return ($pattern === $repository) || fnmatch($pattern, $repository);
+        return str_is($pattern, $repository);
     }
 
     /**
