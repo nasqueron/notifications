@@ -37,6 +37,13 @@ class SendMessageToBroker extends Job implements SelfHandling {
      */
     private $target = '';
 
+    /**
+     * If not null, an exception thrown during the task
+     *
+     * @var \Exception
+     */
+    private $exception;
+
     ///
     /// Constructor
     ///
@@ -73,9 +80,13 @@ class SendMessageToBroker extends Job implements SelfHandling {
      * Sends the message to the broker
      */
     protected function sendMessage () {
-        Broker::setExchangeTarget($this->target)
-            ->routeTo($this->routingKey)
-            ->sendMessage($this->message);
+        try {
+            Broker::setExchangeTarget($this->target)
+                ->routeTo($this->routingKey)
+                ->sendMessage($this->message);
+        } catch (\Exception $ex) {
+            $this->exception = $ex;
+        }
     }
 
     /**
@@ -87,6 +98,9 @@ class SendMessageToBroker extends Job implements SelfHandling {
             $this->target,
             $this->routingKey
         );
+        if ($this->exception !== null) {
+            $actionToReport->attachException($this->exception);
+        }
         Event::fire(new ReportEvent($actionToReport));
     }
 }

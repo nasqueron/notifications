@@ -54,6 +54,21 @@ class ActionsReport {
         $this->door = $door;
     }
 
+    /**
+     * Determines if one of the action has failed.
+     *
+     * @return bool
+     */
+    public function containsError () {
+        foreach ($this->actions as $action) {
+            if ($action->error !== null) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     ///
     /// Output
     ///
@@ -71,8 +86,18 @@ class ActionsReport {
      * @return Illuminate\Http\Response
      */
     public function render () {
-        return Response::json($this);
+        return Response::json($this)
+            ->setStatusCode($this->getResponseStatusCode());
     }
+
+    /**
+     * Determines the HTTP status code of the response
+     *
+     * @return int 200 if all is fine, 503 if an error is present
+     */
+     public function getResponseStatusCode () {
+         return $this->containsError() ? 503 : 200;
+     }
 
     ///
     /// Events
