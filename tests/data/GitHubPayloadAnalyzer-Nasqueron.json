@@ -1,0 +1,30 @@
+{
+    "administrativeGroup": "orgz",
+    "defaultGroup": "nasqueron",
+    "repositoryMapping": [
+        {
+            "group": "docker",
+            "repositories": [
+                "docker-*"
+            ]
+        },
+        {
+            "group": "tasacora",
+            "repositories": [
+                "tasacora-*"
+            ]
+        },
+        {
+            "group": "ops",
+            "repositories": [
+                "decommission",
+                "discourse-config",
+                "ftp",
+                "notifications",
+                "operations",
+                "servers-*",
+                "zemke-rhyne"
+            ]
+        }
+    ]
+}
