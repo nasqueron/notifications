@@ -52,7 +52,12 @@ return [
         // A stream of all payloads sent by GitHub, to provide a gateway
         // GitHub Webhooks API => broker. They are sorted by topics under
         // the pattern <gate door>.<group>.<event type>.
-        'github_events' => 'github_events'
+        'github_events' => 'github_events',
+
+        // A stream of selected events, to display a textual notification.
+        // They are sorted by topics under the following pattern:
+        // <service>.<project>.<group>.<type>
+        'notifications' => 'notifications',
     ]
 
 ];

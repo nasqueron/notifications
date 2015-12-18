@@ -5,9 +5,11 @@ namespace Nasqueron\Notifications\Listeners;
 use Nasqueron\Notifications\Actions\Action;
 use Nasqueron\Notifications\Actions\AMQPAction;
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
+use Nasqueron\Notifications\Events\NotificationEvent;
 use Nasqueron\Notifications\Events\ReportEvent;
 use Nasqueron\Notifications\Analyzers\GitHubPayloadAnalyzer;
 use Nasqueron\Notifications\Jobs\SendMessageToBroker;
+use Nasqueron\Notifications\Notification;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -24,7 +26,7 @@ class AMQPEventListener {
      *
      * @param GitHubPayloadEvent $event the payload event
      */
-    protected static function getRoutingKey (GitHubPayloadEvent $event) {
+    protected static function getGitHubEventRoutingKey (GitHubPayloadEvent $event) {
        $key = [
            strtolower($event->door),
            self::getGroup($event),
@@ -63,11 +65,59 @@ class AMQPEventListener {
 
     /**
      * This is our gateway GitHub Webhooks -> Broker
+     *
+     * @param GitHubPayloadEvent $event
      */
     protected function sendRawPayload(GitHubPayloadEvent $event) {
         $target = Config::get('broker.targets.github_events');
-        $routingKey = static::getRoutingKey($event);
+        $routingKey = static::getGitHubEventRoutingKey($event);
         $message = json_encode($event->payload);
+
+        $job = new SendMessageToBroker($target, $routingKey, $message);
+        $job->handle();
+    }
+
+    ///
+    /// Notifications
+    ///
+
+    /**
+     * Handles a notification event.
+     *
+     * @param NotificationEvent $event
+     * @return void
+     */
+    public function onNotification(NotificationEvent $event) {
+        $this->sendNotification($event);
+    }
+
+    /**
+     * Gets routing key, to allow consumers to select the topic they subscribe to.
+     *
+     * @param NotificationEvent $event
+     */
+    protected static function getNotificationRoutingKey (Notification $notification) {
+        $key = [
+            $notification->project,
+            $notification->group,
+            $notification->service,
+            $notification->type
+        ];
+
+        return strtolower(implode('.', $key));
+    }
+
+    /**
+     * This is our gateway specialized for distilled notifications
+     *
+     * @param NotificationEvent $event
+     */
+    protected function sendNotification(NotificationEvent $event) {
+        $notification = $event->notification;
+
+        $target = Config::get('broker.targets.notifications');
+        $routingKey = static::getNotificationRoutingKey($notification);
+        $message = json_encode($notification);
 
         $job = new SendMessageToBroker($target, $routingKey, $message);
         $job->handle();
@@ -87,6 +137,10 @@ class AMQPEventListener {
         $events->listen(
             'Nasqueron\Notifications\Events\GitHubPayloadEvent',
             "$class@onGitHubPayload"
+        );
+        $events->listen(
+            'Nasqueron\Notifications\Events\NotificationEvent',
+            "$class@onNotification"
         );
     }
 }
