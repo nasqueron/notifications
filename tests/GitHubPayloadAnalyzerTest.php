@@ -44,10 +44,18 @@ class GitHubPayloadAnalyzerConfigurationTest extends TestCase {
     public function testGetCommitTitle () {
         $this->assertEquals("", GitHubPayloadAnalyzer::getCommitTitle(""));
         $this->assertEquals("Lorem ipsum dolor", GitHubPayloadAnalyzer::getCommitTitle("Lorem ipsum dolor"));
-        
+
         $longCommitMessages = [
-            "I was born in a water moon. Some people, especially its inhabitants, called it a planet, but as it was only a little over two hundred kilometres in diameter, 'moon' seems the more accurate term. The moon was made entirely of water, by which I mean it was a globe that not only had no land, but no rock either, a sphere with no solid core at all, just liquid water, all the way down to the very centre of the globe."
+            "I was born in a water moon. Some people, especially its inhabitants, called it a planet, but as it was only a little over two hundred kilometres in diameter, 'moon' seems the more accurate term. The moon was made entirely of water, by which I mean it was a globe that not only had no land, but no rock either, a sphere with no solid core at all, just liquid water, all the way down to the very centre of the globe.",
+            "I was born in a water moon. Some people, especially its inhabitants, called it a planet, but as it was only a little over two hundred kilometres in diameter, 'moon' seems the more accurate term. The moon was made entirely of water, by which I mean it was a globe that not only had no land, but no rock either, a sphere with no solid core at all, just liquid water, all the way down to the very centre of the globe.\n\nIf it had been much bigger the moon would have had a core of ice, for water, though supposedly incompressible, is not entirely so, and will change under extremes of pressure to become ice. (If you are used to living on a planet where ice floats on the surface of water, this seems odd and even wrong, but nevertheless it is the case.) The moon was not quite of a size for an ice core to form, and therefore one could, if one was sufficiently hardy, and adequately proof against the water pressure, make one's way down, through the increasing weight of water above, to the very centre of the moon.",
         ];
+        $shortCommitTitle = "I was born in a water moon. Some people, especially its inhabitants, ca…";
+        foreach ($longCommitMessages as $longCommitMessage) {
+            $this->assertEquals(
+                $shortCommitTitle,
+                GitHubPayloadAnalyzer::getCommitTitle($longCommitMessage)
+            );
+        }
     }
 
     public function testGetRepositoryAndBranch () {
