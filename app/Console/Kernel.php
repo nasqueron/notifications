@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \Nasqueron\Notifications\Console\Commands\Inspire::class,
+        \Nasqueron\Notifications\Console\Commands\PhabricatorGetProjectsMap::class,
     ];
 
     /**
