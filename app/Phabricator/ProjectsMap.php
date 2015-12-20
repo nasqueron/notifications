@@ -10,7 +10,7 @@ class ProjectMap implements \IteratorAggregate, \ArrayAccess {
     /// Private properties and constants
 
     /**
-     * The maximum number of project to fetch
+     * The maximum number of projects to fetch
      */
     const LIMIT = 1000;
 
@@ -137,7 +137,7 @@ class ProjectMap implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets cache key
      *
-     * @return string The cache key for the current project map
+     * @return string The cache key for the current projects map
      */
     private function getCacheKey () {
         return class_basename(get_class($this)) . '-' . md5($this->instance);
@@ -160,7 +160,7 @@ class ProjectMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
-     * Returns the project map as an array, each row ['PHID', 'project name']
+     * Returns the projects map as an array, each row ['PHID', 'project name']
      *
      * @return Array
      */

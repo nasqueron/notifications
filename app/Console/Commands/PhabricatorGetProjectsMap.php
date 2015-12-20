@@ -4,7 +4,7 @@ namespace Nasqueron\Notifications\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use Nasqueron\Notifications\Phabricator\ProjectMap;
+use Nasqueron\Notifications\Phabricator\ProjectsMap;
 
 class PhabricatorGetProjectsMap extends Command {
     /**
@@ -38,8 +38,8 @@ class PhabricatorGetProjectsMap extends Command {
     public function handle() {
         foreach ($this->getServicesCredentials() as $service) {
             if ($service->gate == "Phabricator") {
-                $this->info("Querying project map for " . $service->instance);
-                $map = ProjectMap::fetch(
+                $this->info("Querying projects map for " . $service->instance);
+                $map = ProjectsMap::fetch(
                     $service->instance,
                     $service->secret
                 );
