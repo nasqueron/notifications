@@ -4,7 +4,7 @@ namespace Nasqueron\Notifications\Phabricator;
 
 use Cache;
 
-class ProjectMap implements \IteratorAggregate, \ArrayAccess {
+class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
 
     ///
     /// Private properties and constants
@@ -33,7 +33,7 @@ class ProjectMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
-     * Initializes a new instance of ProjectMap
+     * Initializes a new instance of ProjectsMap
      *
      * @param string $instance The Phabricator root URL without trailing slash
      */
@@ -101,10 +101,11 @@ class ProjectMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
-     * Gets a new ProjectMap instance and queries Phabricator API to fill it.
+     * Gets a new ProjectsMap instance and queries Phabricator API to fill it.
      *
      * @param string $phabricatorURL The Phabricator URL (e.g. http://secure.phabricator.com)
      * @param string $apiToken The API token from .../settings/panel/apitokens/
+     * @return ProjectsMap
      */
     public static function fetch ($phabricatorURL, $apiToken) {
        $instance = new self($phabricatorURL);
