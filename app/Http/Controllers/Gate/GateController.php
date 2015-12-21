@@ -74,7 +74,7 @@ class GateController extends Controller {
     ///
 
     /**
-     * Gets service credentials
+     * Gets services credentials
      *
      * @return stdClass the services credentials
      */
@@ -88,10 +88,26 @@ class GateController extends Controller {
      * Determines if a service definition matches this current gate and door.
      *
      * @param stdClass $service the service to check
+     * @return true if the service matches our gate and door; otherwise, false.
      */
     protected function doesServiceMatch ($service) {
         return $service->gate == static::SERVICE_NAME
             && $service->door == $this->door;
+    }
+
+    /**
+     * Gets service credentials for this gate and door
+     *
+     * @return stdClass the service credentials
+     */
+    public function getService () {
+        foreach ($this->getServicesCredentials() as $service) {
+            if ($this->doesServiceMatch($service)) {
+                return $service;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -100,10 +116,10 @@ class GateController extends Controller {
      * @return string the secret, or if unknown, an empty string
      */
     protected function getSecret () {
-        foreach ($this->getServicesCredentials() as $service) {
-            if ($this->doesServiceMatch($service)) {
-                return $service->secret;
-            }
+        $service= $this->getService();
+
+        if ($service !== null) {
+            return $service->secret;
         }
 
         return "";
