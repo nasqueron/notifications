@@ -264,6 +264,11 @@ class GitHubPayloadAnalyzer {
                 }
                 return $message;
 
+            case "status":
+                 return $this->payload->description
+                    . " — "
+                    . $this->payload->context;
+
             default:
                 return "Some $this->event happened";
         }
@@ -298,6 +303,9 @@ class GitHubPayloadAnalyzer {
 
             case "repository":
                 return $this->payload->repository->html_url;
+
+            case "status":
+                return $this->payload->target_url;
 
             default:
                 return "";
