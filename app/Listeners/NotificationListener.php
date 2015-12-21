@@ -11,7 +11,7 @@ use Event;
 class NotificationListener {
 
     ///
-    /// Distill GitHub paylaods into notifications
+    /// Distill GitHub payloads into notifications
     ///
 
     /**
