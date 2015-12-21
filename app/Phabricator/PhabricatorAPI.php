@@ -133,7 +133,7 @@ class PhabricatorAPI {
     /// CURL session
     ///
 
-    public static function getPostFields ($arguments) {
+    protected static function getPostFields ($arguments) {
         $items = [];
         foreach ($arguments as $key => $value) {
             $items[] = urlencode($key) . '=' . urlencode($value);
@@ -141,7 +141,7 @@ class PhabricatorAPI {
         return implode('&', $items);
     }
 
-    public static function post ($url, $arguments) {
+    protected static function post ($url, $arguments) {
         $options = [
             CURLOPT_URL => $url,
             CURLOPT_HEADER => false,
