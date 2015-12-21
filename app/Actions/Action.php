@@ -17,7 +17,7 @@ abstract class Action {
      * Initializes a new instance of an action to report
      */
     public function __construct () {
-        $this->action = get_called_class();
+        $this->action = class_basename(get_called_class());
     }
 
     /**
