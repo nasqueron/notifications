@@ -4,6 +4,7 @@ namespace Nasqueron\Notifications\Listeners;
 
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 use Nasqueron\Notifications\Events\NotificationEvent;
+use Nasqueron\Notifications\Jobs\FireGitHubNotification;
 use Nasqueron\Notifications\Notifications\GitHubNotification;
 
 use Event;
@@ -21,25 +22,8 @@ class NotificationListener {
      * @return void
      */
     public function onGitHubPayload(GitHubPayloadEvent $event) {
-        $notification = $this->createNotification($event);
-        $event = new NotificationEvent($notification);
-        Event::fire($event);
-    }
-
-    /**
-     * Creates a GitHub notification
-     *
-     * @param GitHubPayloadEvent $event
-     * @return Notification the notification
-     */
-    protected function createNotification(GitHubPayloadEvent $event) {
-        $notification = new GitHubNotification(
-            $event->door,          // project
-            $event->event,        // event type
-            $event->payload      // raw content
-        );
-
-        return $notification;
+        $job = new FireGitHubNotification($event);
+        $job->handle();
     }
 
     ///
