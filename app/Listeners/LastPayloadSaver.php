@@ -3,6 +3,7 @@
 namespace Nasqueron\Notifications\Listeners;
 
 use Nasqueron\Notifications\Events\Event;
+use Nasqueron\Notifications\Events\DockerHubPayloadEvent;
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 
 class LastPayloadSaver {
@@ -41,6 +42,10 @@ class LastPayloadSaver {
         $class = 'Nasqueron\Notifications\Listeners\LastPayloadSaver';
         $events->listen(
             'Nasqueron\Notifications\Events\GitHubPayloadEvent',
+            "$class@onPayload"
+        );
+        $events->listen(
+            'Nasqueron\Notifications\Events\DockerHubPayloadEvent',
             "$class@onPayload"
         );
     }

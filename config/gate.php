@@ -13,6 +13,7 @@ return [
     */
 
     'controllers' => [
+        'DockerHub',
         'GitHub',
         'Phabricator',
     ],
