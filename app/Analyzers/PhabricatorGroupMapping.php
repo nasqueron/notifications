@@ -65,7 +65,7 @@ class PhabricatorGroupMapping {
      *
      * @return bool
      */
-    public function doeStoryBelong (PhabricatorStory $story) {
+    public function doesStoryBelong (PhabricatorStory $story) {
         foreach ($this->words as $word) {
             if (strpos($story->text, $word) !== false) {
                 return true;
