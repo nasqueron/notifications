@@ -29,7 +29,7 @@ class PhabricatorGroupMapping {
      *
      * @var array
      */
-    public $words;
+    public $words = [];
 
     ///
     /// Helper methods

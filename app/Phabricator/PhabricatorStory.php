@@ -137,10 +137,17 @@ class PhabricatorStory {
             $method,
             [ 'phids[0]' => $objectPHID ]
         );
+        if (!count($reply) || !property_exists($reply, $objectPHID)) {
+            return "";
+        }
         return $reply->$objectPHID->repositoryPHID;
     }
 
     public function getItemProjectsPHIDs ($method, $objectPHID) {
+        if (!$objectPHID) {
+            return [];
+        }
+
         $api = PhabricatorAPI::forInstance($this->instance);
         $reply = $api->call(
             $method,

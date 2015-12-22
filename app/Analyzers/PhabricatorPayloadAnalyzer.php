@@ -114,7 +114,7 @@ class PhabricatorPayloadAnalyzer {
 
         // Words
         foreach ($this->configuration->groupsMapping as $mapping) {
-            if ($mapping->doesStoryBelong($story)) {
+            if ($mapping->doesStoryBelong($this->story)) {
                 return $mapping->group;
             }
         }
