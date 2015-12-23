@@ -16,6 +16,8 @@ class PhabricatorStory {
     public $instance;
 
     /**
+     * The unique identifier Phabricator assigns to each story
+     *
      * @var int
      */
     public $id;
@@ -47,7 +49,7 @@ class PhabricatorStory {
     public $text;
 
     /**
-     * The time the event occured
+     * The unixtime the event occured
      *
      * @var int
      */
@@ -99,6 +101,11 @@ class PhabricatorStory {
         return substr($this->data['objectPHID'], 5, 4);
     }
 
+    /**
+     * Gets the identifier of the projets related to this task
+     *
+     * return string[] The list of project PHIDs
+     */
     public function getProjectsPHIDs () {
         $objectPHID = $this->data['objectPHID'];
         $objectType = $this->getObjectType();
@@ -118,7 +125,6 @@ class PhabricatorStory {
                 );
 
             case 'CMIT':
-                // TODO: call API, return projects PHIDs
                 return $this->getItemProjectsPHIDs(
                     'repository.query',
                     $this->getRepositoryPHID('diffusion.querycommits')
@@ -130,6 +136,12 @@ class PhabricatorStory {
         }
     }
 
+    /**
+     * Gets the PHID of a repository
+     *
+     * @param string $method The API method to call (e.g. differential.query)
+     * @return string The repository PHID or "" if not found
+     */
     public function getRepositoryPHID ($method) {
         $objectPHID = $this->data['objectPHID'];
         $api = PhabricatorAPI::forInstance($this->instance);
@@ -143,6 +155,13 @@ class PhabricatorStory {
         return $reply->$objectPHID->repositoryPHID;
     }
 
+    /**
+     * Gets the projects for a specific item
+     *
+     * @param string $method The API method to call (e.g. differential.query)
+     * @param string $objectPHID The object PHID to pass as method parameter
+     * @return string[] The list of project PHIDs
+     */
     public function getItemProjectsPHIDs ($method, $objectPHID) {
         if (!$objectPHID) {
             return [];
@@ -156,6 +175,11 @@ class PhabricatorStory {
         return $reply->$objectPHID->projectPHIDs;
     }
 
+    /**
+     * Gets the list of the projects associated to the story
+     *
+     * @return string[] The list of project PHIDs
+     */
     public function getProjects () {
         $PHIDs = $this->getProjectsPHIDs();
 
@@ -177,6 +201,12 @@ class PhabricatorStory {
     /// Static helper methods
     ///
 
+    /**
+     * Maps a field of the API reply to a property of the PhabricatorStory class
+     *
+     * @param string $key The field of the API reply
+     * @return string The property's name
+     */
     public static function mapPhabricatorFeedKey ($key) {
         if ($key == "storyID") {
             return "id";
