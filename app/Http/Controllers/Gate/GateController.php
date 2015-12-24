@@ -28,7 +28,7 @@ class GateController extends Controller {
     /**
      * Handles GET requests
      */
-    public function onGet ($door = null) {
+    public function onGet () {
         // Virtually all the push APIs will send they payloads
         // using a POST request, so we can provide a sensible
         // default GET error message.
