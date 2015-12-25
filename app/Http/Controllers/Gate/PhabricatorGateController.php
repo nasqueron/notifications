@@ -61,7 +61,7 @@ class PhabricatorGateController extends GateController {
      * Extracts payload from the request
      */
     protected function extractPayload () {
-        $this->payload = $_POST;
+        $this->payload = Request::all();
     }
 
     /**
