@@ -49,8 +49,7 @@ class FirePhabricatorNotification extends Job implements SelfHandling {
     protected function createNotification() {
         return new PhabricatorNotification(
             $this->event->door,         // Project
-            $this->event->story,       // Story
-            $this->event->projects    // Phabricator projects
+            $this->event->story        // Story
         );
     }
 }

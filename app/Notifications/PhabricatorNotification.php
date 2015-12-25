@@ -15,7 +15,6 @@ class PhabricatorNotification extends Notification {
 
     private $story;
 
-    private $projects;
 
     /**
      * Initializes a new PhabricatorNotification instance
@@ -24,10 +23,9 @@ class PhabricatorNotification extends Notification {
      * @param PhabricatorStory $story The story to convert into a notification
      * @param string[] $projects the list of the projects for this story
      */
-    public function __construct ($project, PhabricatorStory $story, $projects) {
-        // Private properties used by the analyzer
+    public function __construct ($project, PhabricatorStory $story) {
+        // Private property used by the analyzer
         $this->story = $story;
-        $this->projects = $projects;
 
         // Straightforward properties
         $this->service = "Phabricator";
@@ -48,8 +46,7 @@ class PhabricatorNotification extends Notification {
         if ($this->analyzer === null) {
             $this->analyzer = new PhabricatorPayloadAnalyzer(
                 $this->project,
-                $this->story,
-                $this->projects
+                $this->story
             );
         }
         return $this->analyzer;

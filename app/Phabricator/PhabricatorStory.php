@@ -55,6 +55,16 @@ class PhabricatorStory {
      */
     public $epoch;
 
+    /**
+     * The projects attached to this story.
+     *
+     * When there is no project, [].
+     * When not yet queried, null.
+     *
+     * @var string[]|null
+     */
+    private $projects = null;
+
     ///
     /// Constructors
     ///
@@ -181,20 +191,30 @@ class PhabricatorStory {
      * @return string[] The list of project PHIDs
      */
     public function getProjects () {
+        if ($this->projects === null) {
+            $this->attachProjects();
+        }
+        return $this->projects;
+    }
+
+    /**
+     * Queries the list of the projects associated to the story
+     * and attached it to the projects property.
+     */
+    public function attachProjects () {
+        $this->projects = [];
+
         $PHIDs = $this->getProjectsPHIDs();
 
         if (count($PHIDs) == 0) {
             // No project is attached to the story's object
-            return [];
+            return;
         }
-
-        $projects = [];
 
         $map = ProjectsMap::load($this->instance);
         foreach ($PHIDs as $PHID) {
-            $projects[] = $map->getProjectName($PHID);
+            $this->projects[] = $map->getProjectName($PHID);
         }
-        return $projects;
     }
 
     ///

@@ -24,12 +24,6 @@ class PhabricatorPayloadAnalyzer {
     private $story;
 
     /**
-     * The projects associated to this story
-     * @var string[]
-     */
-    private $projects;
-
-    /**
      * The configuration for the payload analyzer
      * @var PhabricatorPayloadAnalyzerConfiguration;
      */
@@ -46,10 +40,9 @@ class PhabricatorPayloadAnalyzer {
      * @param string $event
      * @param stdClass $payload
      */
-    public function __construct($project, PhabricatorStory $story, $projects) {
+    public function __construct($project, PhabricatorStory $story) {
         $this->project = $project;
         $this->story = $story;
-        $this->projects = $projects;
 
         $this->loadConfiguration($project);
     }
@@ -105,7 +98,7 @@ class PhabricatorPayloadAnalyzer {
         // If the payload is about some repository matching a table of
         // symbols, we need to sort it to the right group.
         foreach ($this->configuration->groupsMapping as $mapping) {
-            foreach ($this->projects as $project) {
+            foreach ($this->story->getProjects() as $project) {
                 if ($mapping->doesProjectBelong($project)) {
                     return $mapping->group;
                 }
