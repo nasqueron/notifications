@@ -124,6 +124,10 @@ class PhabricatorAPI {
      * @return mixed
      */
     public static function getFirstResult ($reply) {
+        if (is_object($reply) && property_exists($reply, 'data')) {
+            $reply = $reply->data;
+        }
+
         foreach ($reply as $value) {
             return $value;
         }
