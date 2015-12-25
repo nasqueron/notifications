@@ -16,6 +16,17 @@ class PhabricatorPayloadEvent extends Event {
     public $door;
 
     /**
+     * The Phabricator instance
+     * @var string
+     */
+    protected $instance;
+
+    /**
+     * The raw payload
+     */
+    public $payload;
+
+    /**
      * The story sent by the request
      * @var PhabricatorStory
      */
@@ -28,14 +39,31 @@ class PhabricatorPayloadEvent extends Event {
     public $projects;
 
     /**
+     * Gets story from the request
+     *
+     * @param string $instance The Phabricator instance URL
+     * @return PhabricatorStory
+     */
+    protected function getStory () {
+        return PhabricatorStory::loadFromArray(
+            $this->instance,
+            $this->payload
+        );
+    }
+
+    /**
      * Creates a new event instance.
      *
      * @param string $door
-     * @param string $event
+     * @param string $instance The Phabricator instance URL
      * @param stdClass $payload
      */
-    public function __construct($door, PhabricatorStory $story) {
+    public function __construct($door, $instance, $payload) {
         $this->door = $door;
+        $this->instance = $instance;
+        $this->payload = $payload;
+
+        $story = $this->getStory();
         $this->story = $story;
         $this->projects = $story->getProjects(); // Cost: up to 3 API calls
     }

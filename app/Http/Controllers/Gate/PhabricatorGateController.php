@@ -86,34 +86,19 @@ class PhabricatorGateController extends GateController {
             'service' => static::SERVICE_NAME,
             'door' => $this->door
         ]);
-        file_put_contents(
-            storage_path('logs/payload.json'),
-            json_encode($this->payload)
-        );
     }
 
     ///
     /// Payload processing
     ///
 
-    /**
-     * Gets story from the request
-     *
-     * @return PhabricatorStory
-     */
-    protected function getStory () {
-        return PhabricatorStory::loadFromArray(
-            $this->instance,
-            $this->payload
-        );
-    }
-
     protected function onPayload () {
         $this->initializeReport();
 
         Event::fire(new PhabricatorPayloadEvent(
             $this->door,
-            $this->getStory()
+            $this->instance,
+            $this->payload
         ));
     }
 }

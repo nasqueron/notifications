@@ -39,14 +39,16 @@ class LastPayloadSaver {
      * @param  Illuminate\Events\Dispatcher  $events
      */
     public function subscribe ($events) {
+        $ns = 'Nasqueron\Notifications\Events';
         $class = 'Nasqueron\Notifications\Listeners\LastPayloadSaver';
-        $events->listen(
-            'Nasqueron\Notifications\Events\GitHubPayloadEvent',
-            "$class@onPayload"
-        );
-        $events->listen(
-            'Nasqueron\Notifications\Events\DockerHubPayloadEvent',
-            "$class@onPayload"
-        );
+        $eventsToListen = [
+            'DockerHubPayloadEvent',
+            'GitHubPayloadEvent',
+            'PhabricatorPayloadEvent',
+        ];
+
+        foreach ($eventsToListen as $event) {
+            $events->listen("$ns\\$event", "$class@onPayload");
+        }
     }
 }
