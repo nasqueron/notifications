@@ -11,4 +11,8 @@
     </description>
 
     <rule ref="rulesets/unusedcode.xml" />
+    <rule ref="rulesets/naming.xml/BooleanGetMethodName" />
+    <rule ref="rulesets/naming.xml/ConstantNamingConventions" />
+    <rule ref="rulesets/naming.xml/ConstructorWithNameAsEnclosingClass" />
+    <rule ref="rulesets/cleancode.xml/BooleanArgumentFlag" />
 </ruleset>
