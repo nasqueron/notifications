@@ -141,6 +141,12 @@ class PhabricatorStory {
                 );
                 break;
 
+            case 'PSTE':
+                return $this->getItemProjectsPHIDsThroughApplicationSearch(
+                    'paste.search',
+                    $objectPHID
+                );
+
             default:
                 return [];
         }
@@ -184,6 +190,30 @@ class PhabricatorStory {
 
         return PhabricatorAPI::getFirstResult($reply)->projectPHIDs;
     }
+
+    /**
+     * Gets the project for a specific item, using the new ApplicationSearch.
+     *
+     * This is a transitional method: when every Phabricator will have been
+     * migrated from info (generation 1) or query (generation 2) to search
+     * (generation 3), we'll rename it to getItemProjectsPHIDs and overwrite it.
+     */
+     protected function getItemProjectsPHIDsThroughApplicationSearch  ($method, $objectPHID) {
+        if (!$objectPHID) {
+            return [];
+        }
+
+        $api = PhabricatorAPI::forInstance($this->instance);
+        $reply = $api->call(
+            $method,
+            [
+                'constraints[phids][0]' => $objectPHID,
+                'attachments[projects]' => 1
+            ]
+        );
+
+        return PhabricatorAPI::getFirstResult($reply)->attachments->projects->projectPHIDs;
+     }
 
     /**
      * Gets the list of the projects associated to the story
