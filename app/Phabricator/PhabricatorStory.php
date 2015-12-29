@@ -126,7 +126,6 @@ class PhabricatorStory {
                     'repository.query',
                     $this->getRepositoryPHID('differential.query')
                 );
-                break;
 
             case 'TASK':
                 return $this->getItemProjectsPHIDs(
@@ -139,7 +138,6 @@ class PhabricatorStory {
                     'repository.query',
                     $this->getRepositoryPHID('diffusion.querycommits')
                 );
-                break;
 
             case 'PSTE':
                 return $this->getItemProjectsPHIDsThroughApplicationSearch(
