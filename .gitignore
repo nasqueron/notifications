@@ -2,3 +2,7 @@
 /node_modules
 composer.lock
 .env
+
+# Ant build
+build/
+cache.properties
