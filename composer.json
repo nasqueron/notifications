@@ -28,7 +28,8 @@
         "database"
     ],
     "psr-4": {
-        "Nasqueron\\Notifications\\": "app/"
+        "Nasqueron\\Notifications\\": "app/",
+        "Nasqueron\\Notifications\\Tests\\": "tests/"
     }
   },
   "autoload-dev": {

@@ -1,5 +1,7 @@
 <?php
 
+namespace Nasqueron\Notifications\Tests;
+
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 use Nasqueron\Notifications\Analyzers\GitHubPayloadAnalyzer;
