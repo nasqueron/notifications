@@ -57,6 +57,9 @@
     ],
     "phpmd": [
       "vendor/bin/phpmd app/ xml ruleset.xml"
+    ],
+    "test": [
+      "phpunit --no-coverage"
     ]
   },
   "config": {

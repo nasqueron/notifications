@@ -18,6 +18,9 @@
         <source type="pmd">
           <file name="logs/pmd.xml" />
         </source>
+        <source type="phpunit">
+          <coverage path="logs/coverage" />
+        </source>
       </enrich>
       <build engine="html" output="api">
         <file extension="html" />
