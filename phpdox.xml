@@ -12,6 +12,12 @@
         <source type="phploc">
           <file name="logs/phploc.xml" />
         </source>
+        <source type="checkstyle">
+          <file name="logs/checkstyle.xml" />
+        </source>
+        <source type="pmd">
+          <file name="logs/pmd.xml" />
+        </source>
       </enrich>
       <build engine="html" output="api">
         <file extension="html" />
