@@ -115,7 +115,7 @@ class PhabricatorAPI {
 
         $reply = json_decode(static::post($url, $arguments));
 
-        if ($reply->error_code !== NULL) {
+        if ($reply->error_code !== null) {
             throw new PhabricatorAPIException(
                 $reply->error_code,
                 $reply->error_info
