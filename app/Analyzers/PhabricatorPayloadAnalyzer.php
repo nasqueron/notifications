@@ -5,6 +5,7 @@ namespace Nasqueron\Notifications\Analyzers;
 use Nasqueron\Notifications\Phabricator\PhabricatorStory;
 
 use Config;
+use Storage;
 
 class PhabricatorPayloadAnalyzer {
     ///
@@ -57,7 +58,7 @@ class PhabricatorPayloadAnalyzer {
         $dir = Config::get('services.phabricator.analyzer.configDir');
         $filename = $dir . '/' . $this->project . '.json';
 
-        if (!file_exists($filename)) {
+        if (!Storage::has($filename)) {
             return $dir . '/' . static::CONFIG_DEFAULT_FILE;
         }
 
@@ -69,7 +70,7 @@ class PhabricatorPayloadAnalyzer {
 
         $mapper = new \JsonMapper();
         $this->configuration = $mapper->map(
-            json_decode(file_get_contents($fileName)),
+            json_decode(Storage::get($fileName)),
             new PhabricatorPayloadAnalyzerConfiguration()
         );
     }

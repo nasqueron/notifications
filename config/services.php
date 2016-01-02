@@ -37,18 +37,18 @@ return [
 
     'github' => [
         'analyzer' => [
-            'configDir' => storage_path(env('GITHUB_ANALYZER_CONFIG_DIR', 'app/GitHubPayloadAnalyzer'))
+            'configDir' => env('GITHUB_ANALYZER_CONFIG_DIR', 'GitHubPayloadAnalyzer')
         ]
     ],
 
     'phabricator' => [
         'analyzer' => [
-            'configDir' => storage_path(env('PHABRICATOR_ANALYZER_CONFIG_DIR', 'app/PhabricatorPayloadAnalyzer'))
+            'configDir' => env('PHABRICATOR_ANALYZER_CONFIG_DIR', 'PhabricatorPayloadAnalyzer')
         ]
     ],
 
     'gate' => [
-        'credentials' => storage_path(env('CREDENTIALS', 'app/credentials.json')),
+        'credentials' => env('CREDENTIALS', 'credentials.json'),
     ]
 
 ];

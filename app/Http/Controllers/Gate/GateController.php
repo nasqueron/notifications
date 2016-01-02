@@ -6,6 +6,7 @@ use Nasqueron\Notifications\Features;
 use Nasqueron\Notifications\Http\Controllers\Controller;
 
 use Report;
+use Storage;
 
 /**
  * Represents a controller handling an entry-point for API payloads
@@ -80,7 +81,7 @@ class GateController extends Controller {
      */
     protected function getServicesCredentials () {
         $path = config('services.gate.credentials');
-        $data = json_decode(file_get_contents($path));
+        $data = json_decode(Storage::get($path));
         return $data->services;
     }
 

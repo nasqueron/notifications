@@ -3,6 +3,7 @@
 namespace Nasqueron\Notifications\Console\Commands;
 
 use Illuminate\Console\Command;
+use Storage;
 
 use Nasqueron\Notifications\Phabricator\ProjectsMap;
 
@@ -56,7 +57,7 @@ class PhabricatorGetProjectsMap extends Command {
      */
     protected function getServicesCredentials () {
         $path = config('services.gate.credentials');
-        $data = json_decode(file_get_contents($path));
+        $data = json_decode(Storage::get($path));
         return $data->services;
     }
 }

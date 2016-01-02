@@ -2,6 +2,8 @@
 
 namespace Nasqueron\Notifications\Phabricator;
 
+use Storage;
+
 class PhabricatorAPI {
 
     ///
@@ -67,7 +69,7 @@ class PhabricatorAPI {
 
     private static function getServices () {
         $path = config('services.gate.credentials');
-        $data = json_decode(file_get_contents($path));
+        $data = json_decode(Storage::get($path));
         return $data->services;
     }
 

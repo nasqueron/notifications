@@ -3,6 +3,7 @@
 namespace Nasqueron\Notifications\Analyzers;
 
 use Config;
+use Storage;
 
 class GitHubPayloadAnalyzer {
     ///
@@ -63,7 +64,7 @@ class GitHubPayloadAnalyzer {
         $dir = Config::get('services.github.analyzer.configDir');
         $filename = $dir . '/' . $this->project . '.json';
 
-        if (!file_exists($filename)) {
+        if (!Storage::has($filename)) {
             return $dir . '/' . static::CONFIG_DEFAULT_FILE;
         }
 
@@ -74,7 +75,7 @@ class GitHubPayloadAnalyzer {
         $fileName = $this->getConfigurationFileName();
         $mapper = new \JsonMapper();
         $this->configuration = $mapper->map(
-            json_decode(file_get_contents($fileName)),
+            json_decode(Storage::get($fileName)),
             new GitHubPayloadAnalyzerConfiguration()
         );
     }
