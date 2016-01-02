@@ -56,7 +56,7 @@ class Services {
     /**
      * Finds a service for a specific gate, property and value
      *
-     * @param string $gate The gate (e.g. GitHub)
+     * @param string $gate The gate (e.g. Phabricator)
      * @param string $property The property to check (e.g. instance)
      * @param mixed $value The property value to find (e.g. 'http://devcentral.nasqueron.org')
      * @return stdClass|null The service information is found; otherwise, null.
