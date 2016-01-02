@@ -3,6 +3,7 @@
 namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
 use Nasqueron\Notifications\Features;
+use Nasqueron\Notifications\Services;
 use Nasqueron\Notifications\Http\Controllers\Controller;
 
 use Report;
@@ -75,40 +76,12 @@ class GateController extends Controller {
     ///
 
     /**
-     * Gets services credentials
-     *
-     * @return stdClass the services credentials
-     */
-    protected function getServicesCredentials () {
-        $path = config('services.gate.credentials');
-        $data = json_decode(Storage::get($path));
-        return $data->services;
-    }
-
-    /**
-     * Determines if a service definition matches this current gate and door.
-     *
-     * @param stdClass $service the service to check
-     * @return true if the service matches our gate and door; otherwise, false.
-     */
-    protected function doesServiceMatch ($service) {
-        return $service->gate == static::SERVICE_NAME
-            && $service->door == $this->door;
-    }
-
-    /**
      * Gets service credentials for this gate and door
      *
      * @return stdClass the service credentials
      */
     public function getService () {
-        foreach ($this->getServicesCredentials() as $service) {
-            if ($this->doesServiceMatch($service)) {
-                return $service;
-            }
-        }
-
-        return null;
+        return Services::findServiceByDoor(static::SERVICE_NAME, $this->door);
     }
 
     /**

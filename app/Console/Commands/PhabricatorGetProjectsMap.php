@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Storage;
 
 use Nasqueron\Notifications\Phabricator\ProjectsMap;
+use Nasqueron\Notifications\Services;
 
 class PhabricatorGetProjectsMap extends Command {
     /**
@@ -37,27 +38,14 @@ class PhabricatorGetProjectsMap extends Command {
      * @return mixed
      */
     public function handle() {
-        foreach ($this->getServicesCredentials() as $service) {
-            if ($service->gate == "Phabricator") {
-                $this->info("Querying projects map for " . $service->instance);
-                $map = ProjectsMap::fetch($service->instance);
-                $map->saveToCache();
-                $this->table(
-                    ['PHID', 'Project name'],
-                    $map->toArray()
-                );
-            }
+        foreach (Services::getForGate('Phabricator') as $service) {
+            $this->info("Querying projects map for " . $service->instance);
+            $map = ProjectsMap::fetch($service->instance);
+            $map->saveToCache();
+            $this->table(
+                ['PHID', 'Project name'],
+                $map->toArray()
+            );
         }
-    }
-
-    /**
-     * Gets service credentials
-     *
-     * @return stdClass the services credentials
-     */
-    protected function getServicesCredentials () {
-        $path = config('services.gate.credentials');
-        $data = json_decode(Storage::get($path));
-        return $data->services;
     }
 }

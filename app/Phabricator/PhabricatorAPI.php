@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Phabricator;
 
-use Storage;
+use Nasqueron\Notifications\Services;
 
 class PhabricatorAPI {
 
@@ -46,11 +46,10 @@ class PhabricatorAPI {
      * @return PhabricatorAPI|null A PhabricatorAPI instance for the project if found; otherwise, null.
      */
     public static function forInstance ($instance) {
-        $service = self::getServiceForInstance($instance);
+        $service = Services::findServiceByProperty('Phabricator', 'instance', $instance);
         if ($service === null) {
             throw new \RuntimeException("No credentials for Phabricator instance $instance.");
         }
-
         return new self($service->instance, $service->secret);
     }
 
@@ -61,42 +60,11 @@ class PhabricatorAPI {
      * @return PhabricatorAPI|null A PhabricatorAPI instance for the project if found; otherwise, null.
      */
     public static function forProject ($project) {
-        $service = self::getServiceForProject($project);
+        $service = Services::findServiceByDoor('Phabricator', $project);
         if ($service === null) {
             return null;
         }
         return new self($service->instance, $service->secret);
-    }
-
-
-    ///
-    /// Helper methods for static constructors
-    ///
-
-    private static function getServices () {
-        $path = config('services.gate.credentials');
-        $data = json_decode(Storage::get($path));
-        return $data->services;
-    }
-
-    private static function getServiceForInstance ($instance) {
-        foreach (self::getServices() as $service) {
-            if ($service->gate === "Phabricator" && $service->instance === $instance) {
-                return $service;
-            }
-        }
-
-        return null;
-    }
-
-    private static function getServiceForProject ($project) {
-        foreach (self::getServices() as $service) {
-            if ($service->gate === "Phabricator" && $service->door === $project) {
-                return $service;
-            }
-        }
-
-        return null;
     }
 
     ///
