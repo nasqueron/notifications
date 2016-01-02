@@ -39,6 +39,12 @@ class PhabricatorAPI {
         $this->apiToken = $apiToken;
     }
 
+    /**
+     * Gets an API instance for the specific instance
+     *
+     * @param string $instance The name of the instance (this matches that parameter in credentials.json)
+     * @return PhabricatorAPI|null A PhabricatorAPI instance for the project if found; otherwise, null.
+     */
     public static function forInstance ($instance) {
         $service = self::getServiceForInstance($instance);
         if ($service === null) {
@@ -49,7 +55,7 @@ class PhabricatorAPI {
     }
 
     /**
-     * Gets an API instance for the specify project
+     * Gets an API instance for the specific project
      *
      * @param string $project The name of the project (this matches the door parameter in credentials.json)
      * @return PhabricatorAPI|null A PhabricatorAPI instance for the project if found; otherwise, null.
