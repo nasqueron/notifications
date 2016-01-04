@@ -6,6 +6,10 @@ use Storage;
 
 class Services {
 
+    ///
+    /// Methods to get a list of services
+    ///
+
     /**
      * Gets the services found in credentials.json
      *
@@ -24,7 +28,7 @@ class Services {
      * @return array
      */
     public static function getForGate ($gate) {
-        return $services = [];
+        $services = [];
 
         foreach (self::get() as $service) {
             if ($service->gate === $gate) {
@@ -35,6 +39,9 @@ class Services {
         return $services;
     }
 
+    ///
+    /// Methods to find a service matching criteria
+    ///
 
     /**
      * Gets the service for a specific gate and door
