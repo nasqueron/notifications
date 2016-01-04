@@ -30,7 +30,7 @@ class PhabricatorStory {
     public $type;
 
     /**
-     * @var Array
+     * @var array
      */
     public $data;
 

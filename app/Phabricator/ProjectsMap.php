@@ -126,7 +126,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     }
 
     /**
-     * Gets a new ProjectsMap instance and queries Phabricator API to fill it.
+     * Gets a new ProjectsMap instance and queries Phabricator API to fill it
      *
      * @param string $phabricatorURL The Phabricator URL (e.g. http://secure.phabricator.com)
      * @return ProjectsMap
@@ -141,7 +141,10 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     /// API
     ///
 
-    public function fetchFromAPI () {
+    /**
+     * Fetches the projects' map from the Phabricator API
+     */
+    private function fetchFromAPI () {
        $reply = PhabricatorAPI::forInstance($this->instance)->call(
            'project.query',
            [ 'limit' => self::LIMIT ]
@@ -175,14 +178,27 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
         return class_basename(get_class($this)) . '-' . md5($this->instance);
     }
 
-    public function isCached () {
+    /**
+     * Determines if the instance is cached
+     *
+     * @return bool true if cached; otherwise, false.
+     */
+    private function isCached () {
         return Cache::has($this->getCacheKey());
     }
 
+    /**
+     * Saves data to cache
+     */
     public function saveToCache () {
         Cache::forever($this->getCacheKey(), $this->map);
     }
 
+    /**
+     * Loads data from cache
+     *
+     * Populates 'map' and 'source' properties
+     */
     public function loadFromCache () {
         $this->map = Cache::get($this->getCacheKey());
         $this->source = 'cache';
@@ -214,7 +230,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     /**
      * Returns the projects map as an array, each row ['PHID', 'project name']
      *
-     * @return Array
+     * @return array
      */
     public function toArray () {
         $array = [];
