@@ -6,7 +6,9 @@ use Nasqueron\Notifications\Features;
 use Nasqueron\Notifications\Services;
 use Nasqueron\Notifications\Http\Controllers\Controller;
 
+use App;
 use Report;
+use Response;
 use Storage;
 
 /**
@@ -67,7 +69,10 @@ class GateController extends Controller {
      */
     protected function renderReport () {
         if (Features::isEnabled('ActionsReport')) {
-            return Report::render();
+            $report = App::make('report');
+            $statusCode = $report->containsError() ? 503 : 200;
+            return Response::json($report)
+                ->setStatusCode($statusCode);
         }
     }
 

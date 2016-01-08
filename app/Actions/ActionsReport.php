@@ -2,8 +2,6 @@
 
 namespace Nasqueron\Notifications\Actions;
 
-use Response;
-
 class ActionsReport {
     /**
      * List of actions
@@ -88,24 +86,5 @@ class ActionsReport {
      */
     public function __toString () {
         return json_encode($this, JSON_PRETTY_PRINT);
-    }
-
-    /**
-     * Renders the report
-     *
-     * @return Illuminate\Http\Response
-     */
-    public function render () {
-        return Response::json($this)
-            ->setStatusCode($this->getResponseStatusCode());
-    }
-
-    /**
-     * Determines the HTTP status code of the response
-     *
-     * @return int 200 if all is fine, 503 if an error is present
-     */
-    public function getResponseStatusCode () {
-        return $this->containsError() ? 503 : 200;
     }
 }
