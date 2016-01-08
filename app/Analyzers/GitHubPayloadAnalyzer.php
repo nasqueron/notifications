@@ -98,7 +98,7 @@ class GitHubPayloadAnalyzer {
     public function isAdministrativeEvent () {
         $administrativeEvents = [
             'membership',    // Member added to team
-            'ping',          // Special ping ponf event, fired on new hook
+            'ping',          // Special ping pong event, fired on new hook
             'repository',    // Repository created
         ];
 
