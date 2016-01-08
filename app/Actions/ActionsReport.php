@@ -2,9 +2,6 @@
 
 namespace Nasqueron\Notifications\Actions;
 
-use Nasqueron\Notifications\Events\ReportEvent;
-
-use Event;
 use Response;
 
 class ActionsReport {
