@@ -1,0 +1,24 @@
+{
+    "actions": [
+        {
+            "method": "method",
+            "target": "target",
+            "routingKey": "",
+            "action": "AMQPAction",
+            "error": null
+        },
+        {
+            "method": "methodWithException",
+            "target": "target",
+            "routingKey": "",
+            "action": "AMQPAction",
+            "error": {
+                "type": "RuntimeException",
+                "message": "Lorem ipsum dolor"
+            }
+        }
+    ],
+    "created": 1452266121,
+    "gate": "QuuxGate",
+    "door": "Quuxians"
+}
