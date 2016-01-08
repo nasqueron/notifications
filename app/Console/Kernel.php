@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        \Nasqueron\Notifications\Console\Commands\ConfigShow::class,
         \Nasqueron\Notifications\Console\Commands\Inspire::class,
         \Nasqueron\Notifications\Console\Commands\PhabricatorGetProjectsMap::class,
     ];
