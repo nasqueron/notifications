@@ -58,7 +58,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @return Traversable
      */
     public function getIterator ( ) {
-        return new ArrayIterator($this->map);
+        return new \ArrayIterator($this->map);
     }
 
     ///

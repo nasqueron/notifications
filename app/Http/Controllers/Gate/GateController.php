@@ -6,6 +6,7 @@ use Nasqueron\Notifications\Features;
 use Nasqueron\Notifications\Http\Controllers\Controller;
 
 use App;
+use Log;
 use Report;
 use Response;
 use Services;
