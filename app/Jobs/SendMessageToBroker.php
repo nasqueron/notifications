@@ -3,6 +3,7 @@
 namespace Nasqueron\Notifications\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
+use Nasqueron\Notifications\Actions\ActionError;
 use Nasqueron\Notifications\Actions\AMQPAction;
 use Nasqueron\Notifications\Events\ReportEvent;
 use Nasqueron\Notifications\Jobs\Job;
@@ -99,7 +100,7 @@ class SendMessageToBroker extends Job implements SelfHandling {
             $this->routingKey
         );
         if ($this->exception !== null) {
-            $actionToReport->attachException($this->exception);
+            $actionToReport->attachError(new ActionError($this->exception));
         }
         Event::fire(new ReportEvent($actionToReport));
     }

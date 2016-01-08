@@ -21,11 +21,16 @@ abstract class Action {
     }
 
     /**
-     * Attaches an exception to an action to report
+     * Attaches an error to the action to report
      *
-     * @param \Exception $ex The exception to attach to the error report
+     * To attach an exception, you can use:
+     * <code>
+     * $actionToReport->attachError(new ActionError($exception));
+     * </code>
+     *
+     * @param Nasqueron\Notifications\Actions\ActionError $error The error to attach
      */
-    public function attachException ($ex) {
-        $this->error = new ActionError($ex);
+    public function attachError (ActionError $error) {
+        $this->error = $error;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Nasqueron\Notifications\Listeners;
 
+use Nasqueron\Notifications\Actions\ActionError;
 use Nasqueron\Notifications\Actions\NotifyNewCommitsAction;
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 use Nasqueron\Notifications\Events\ReportEvent;
@@ -68,7 +69,7 @@ class PhabricatorListener {
                 [ 'callsigns[0]' => $callSign ]
             );
         } catch (PhabricatorAPIException $ex) {
-            $actionToReport->attachException($ex);
+            $actionToReport->attachError(new ActionError($ex));
         }
 
         Event::fire(new ReportEvent($actionToReport));
