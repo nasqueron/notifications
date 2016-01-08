@@ -95,9 +95,9 @@ class ActionsReport {
      *
      * @return int 200 if all is fine, 503 if an error is present
      */
-     public function getResponseStatusCode () {
-         return $this->containsError() ? 503 : 200;
-     }
+    public function getResponseStatusCode () {
+        return $this->containsError() ? 503 : 200;
+    }
 
     ///
     /// Events
