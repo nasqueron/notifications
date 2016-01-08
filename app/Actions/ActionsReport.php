@@ -61,6 +61,15 @@ class ActionsReport {
     }
 
     /**
+     * Adds an action to the list of actions to report
+     *
+     * @param Action $action The action to add
+     */
+    public function addAction (Action $action) {
+        $this->actions[] = $action;
+    }
+
+    /**
      * Determines if one of the action has failed.
      *
      * @return bool
@@ -116,7 +125,7 @@ class ActionsReport {
         Event::listen(
             'Nasqueron\Notifications\Events\ReportEvent',
             function (ReportEvent $event) {
-                $this->actions[] = $event->action;
+                $this->addAction($event->action);
             }
         );
     }
