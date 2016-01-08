@@ -41,8 +41,6 @@ class ActionsReport {
      */
     public function __construct () {
         $this->created = time();
-
-        $this->listenToReports();
     }
 
     ///
@@ -112,21 +110,5 @@ class ActionsReport {
      */
     public function getResponseStatusCode () {
         return $this->containsError() ? 503 : 200;
-    }
-
-    ///
-    /// Events
-    ///
-
-    /**
-     * Listens to actions to report
-     */
-    public function listenToReports () {
-        Event::listen(
-            'Nasqueron\Notifications\Events\ReportEvent',
-            function (ReportEvent $event) {
-                $this->addAction($event->action);
-            }
-        );
     }
 }
