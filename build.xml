@@ -70,7 +70,7 @@
   <mkdir dir="${basedir}/build/logs"/>
   <mkdir dir="${basedir}/build/pdepend"/>
   <mkdir dir="${basedir}/build/phpdox"/>
-  <exec executable="${composer}">
+  <exec executable="${composer}" failonerror="true">
    <arg value="install"/>
   </exec>
   <property name="prepare.done" value="true"/>
