@@ -49,6 +49,12 @@ class ActionsReport {
     /// Properties
     ///
 
+    /**
+     * Sets the gate and the door for this report
+     *
+     * @param string $gate The gate
+     * @param string $door The door
+     */
     public function attachToGate ($gate, $door) {
         $this->gate = $gate;
         $this->door = $door;
@@ -103,6 +109,9 @@ class ActionsReport {
     /// Events
     ///
 
+    /**
+     * Listens to actions to report
+     */
     public function listenToReports () {
         Event::listen(
             'Nasqueron\Notifications\Events\ReportEvent',
