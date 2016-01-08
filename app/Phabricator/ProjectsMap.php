@@ -183,7 +183,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      *
      * @return bool true if cached; otherwise, false.
      */
-    private function isCached () {
+    public function isCached () {
         return Cache::has($this->getCacheKey());
     }
 
