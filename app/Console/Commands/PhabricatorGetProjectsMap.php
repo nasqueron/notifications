@@ -21,7 +21,7 @@ class PhabricatorGetProjectsMap extends Command {
      *
      * @var string
      */
-    protected $description = 'Regerate the projects map for each Phabricator instances';
+    protected $description = 'Regenerate the projects map for each Phabricator instances';
 
     /**
      * Create a new command instance.
