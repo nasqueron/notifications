@@ -2,11 +2,8 @@
 
 namespace Nasqueron\Notifications\Listeners;
 
-use Nasqueron\Notifications\Actions\Action;
-use Nasqueron\Notifications\Actions\AMQPAction;
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 use Nasqueron\Notifications\Events\NotificationEvent;
-use Nasqueron\Notifications\Events\ReportEvent;
 use Nasqueron\Notifications\Analyzers\GitHubPayloadAnalyzer;
 use Nasqueron\Notifications\Jobs\SendMessageToBroker;
 use Nasqueron\Notifications\Notification;

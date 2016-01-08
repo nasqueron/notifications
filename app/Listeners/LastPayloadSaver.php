@@ -3,8 +3,6 @@
 namespace Nasqueron\Notifications\Listeners;
 
 use Nasqueron\Notifications\Events\Event;
-use Nasqueron\Notifications\Events\DockerHubPayloadEvent;
-use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 
 class LastPayloadSaver {
     ///

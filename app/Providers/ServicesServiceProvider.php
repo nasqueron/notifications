@@ -2,11 +2,8 @@
 
 namespace Nasqueron\Notifications\Providers;
 
-use Illuminate\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
 
-use Nasqueron\Notifications\Actions\ActionsReport;
-use Nasqueron\Notifications\Events\ReportEvent;
 use Nasqueron\Notifications\Services\Services;
 
 class ServicesServiceProvider extends ServiceProvider {

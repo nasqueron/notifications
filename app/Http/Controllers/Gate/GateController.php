@@ -9,7 +9,6 @@ use App;
 use Report;
 use Response;
 use Services;
-use Storage;
 
 /**
  * Represents a controller handling an entry-point for API payloads

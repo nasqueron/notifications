@@ -7,7 +7,6 @@ use Illuminate\Console\Command;
 use Nasqueron\Notifications\Phabricator\ProjectsMap;
 
 use Services;
-use Storage;
 
 class PhabricatorGetProjectsMap extends Command {
     /**

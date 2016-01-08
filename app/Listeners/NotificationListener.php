@@ -4,14 +4,10 @@ namespace Nasqueron\Notifications\Listeners;
 
 use Nasqueron\Notifications\Events\DockerHubPayloadEvent;
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
-use Nasqueron\Notifications\Events\NotificationEvent;
 use Nasqueron\Notifications\Events\PhabricatorPayloadEvent;
 use Nasqueron\Notifications\Jobs\FireDockerHubNotification;
 use Nasqueron\Notifications\Jobs\FireGitHubNotification;
 use Nasqueron\Notifications\Jobs\FirePhabricatorNotification;
-use Nasqueron\Notifications\Notifications\GitHubNotification;
-
-use Event;
 
 class NotificationListener {
 

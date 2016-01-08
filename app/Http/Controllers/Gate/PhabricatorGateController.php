@@ -7,9 +7,6 @@ use Log;
 use Request;
 
 use Nasqueron\Notifications\Events\PhabricatorPayloadEvent;
-use Nasqueron\Notifications\Phabricator\PhabricatorStory;
-
-//use Nasqueron\Notifications\Events\PhabricatorPayloadEvent;
 
 class PhabricatorGateController extends GateController {
 
