@@ -3,10 +3,11 @@
 namespace Nasqueron\Notifications\Console\Commands;
 
 use Illuminate\Console\Command;
-use Storage;
 
 use Nasqueron\Notifications\Phabricator\ProjectsMap;
-use Nasqueron\Notifications\Services;
+
+use Services;
+use Storage;
 
 class PhabricatorGetProjectsMap extends Command {
     /**

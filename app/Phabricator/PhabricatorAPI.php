@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Phabricator;
 
-use Nasqueron\Notifications\Services;
+use Services;
 
 class PhabricatorAPI {
 

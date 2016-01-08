@@ -6,9 +6,10 @@ use Illuminate\Console\Command;
 
 use Nasqueron\Notifications\Phabricator\ProjectsMap;
 use Nasqueron\Notifications\Features;
-use Nasqueron\Notifications\Services;
 
 use Config;
+use Services;
+
 
 class ConfigShow extends Command
 {

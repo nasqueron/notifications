@@ -166,6 +166,7 @@ return [
         Nasqueron\Notifications\Providers\EventServiceProvider::class,
         Nasqueron\Notifications\Providers\ReportServiceProvider::class,
         Nasqueron\Notifications\Providers\RouteServiceProvider::class,
+        Nasqueron\Notifications\Providers\ServicesServiceProvider::class
 
     ],
 
@@ -213,6 +214,7 @@ return [
         'Route'     => Illuminate\Support\Facades\Route::class,
         'Schema'    => Illuminate\Support\Facades\Schema::class,
         'Session'   => Illuminate\Support\Facades\Session::class,
+        'Services'    => Nasqueron\Notifications\Facades\Services::class,
         'Storage'   => Illuminate\Support\Facades\Storage::class,
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,

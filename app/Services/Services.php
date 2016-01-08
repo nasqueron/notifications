@@ -1,10 +1,36 @@
 <?php
 
-namespace Nasqueron\Notifications;
+namespace Nasqueron\Notifications\Services;
 
 use Storage;
 
 class Services {
+
+    ///
+    /// Properties
+    ///
+
+    /**
+     * @var Service[]
+     */
+    public $services = [];
+
+    ///
+    /// Constructors
+    ///
+
+    /**
+     * Initializes a new instance of the Services class deserializing a JSON file.
+     *
+     * @param $file the JSON file to deserialize
+     * @return Services the deserialized instance
+     */
+    public static function loadFromJson ($file) {
+        $data = json_decode(Storage::get($file));
+        $mapper = new \JsonMapper();
+
+        return $mapper->map($data, new self());
+    }
 
     ///
     /// Methods to get a list of services
@@ -15,10 +41,8 @@ class Services {
      *
      * @return array
      */
-    public static function get () {
-        $path = config('services.gate.credentials');
-        $data = json_decode(Storage::get($path));
-        return $data->services;
+    public function get () {
+        return $this->services;
     }
 
     /**
@@ -27,10 +51,10 @@ class Services {
      * @param string $gate The gate (e.g. GitHub)
      * @return array
      */
-    public static function getForGate ($gate) {
+    public function getForGate ($gate) {
         $services = [];
 
-        foreach (self::get() as $service) {
+        foreach ($this->services as $service) {
             if ($service->gate === $gate) {
                 $services[] = $service;
             }
@@ -50,8 +74,8 @@ class Services {
      * @param string $door The door (e.g. Nasqueron)
      * @return stdClass|null The service information is found; otherwise, null.
      */
-    public static function findServiceByDoor ($gate, $door) {
-        foreach (self::get() as $service) {
+    public function findServiceByDoor ($gate, $door) {
+        foreach ($this->services as $service) {
             if ($service->gate === $gate && $service->door === $door) {
                 return $service;
             }
@@ -68,8 +92,8 @@ class Services {
      * @param mixed $value The property value to find (e.g. 'http://devcentral.nasqueron.org')
      * @return stdClass|null The service information is found; otherwise, null.
      */
-    public static function findServiceByProperty ($gate, $property, $value) {
-        foreach (Services::get() as $service) {
+    public function findServiceByProperty ($gate, $property, $value) {
+        foreach ($this->services as $service) {
             if ($service->gate === $gate && $service->$property === $value) {
                 return $service;
             }

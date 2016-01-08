@@ -3,12 +3,12 @@
 namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
 use Nasqueron\Notifications\Features;
-use Nasqueron\Notifications\Services;
 use Nasqueron\Notifications\Http\Controllers\Controller;
 
 use App;
 use Report;
 use Response;
+use Services;
 use Storage;
 
 /**
