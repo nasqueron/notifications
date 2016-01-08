@@ -80,7 +80,6 @@ class PhabricatorPayloadAnalyzer {
     ///
 
     public function isAdministrativeEvent () {
-        //TODO: determine events who qualify as administrative
         return false;
     }
 
