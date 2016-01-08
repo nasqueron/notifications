@@ -47,7 +47,7 @@ class ConfigShow extends Command
      */
     protected function getServicesTableRows () {
         $rows = [];
-        foreach (Services::Get() as $service) {
+        foreach (Services::get() as $service) {
             if (isset($service->instance)) {
                 $instance = $service->instance;
             } else {
