@@ -25,9 +25,6 @@
     "squizlabs/php_codesniffer": "2.*"
   },
   "autoload": {
-    "classmap": [
-        "database"
-    ],
     "psr-4": {
         "Nasqueron\\Notifications\\": "app/",
         "Nasqueron\\Notifications\\Tests\\": "tests/"
