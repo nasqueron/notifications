@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Providers;
 
-use Illuminate\Events\Dispatcher;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
 
 use Nasqueron\Notifications\Actions\ActionsReport;
@@ -26,7 +26,7 @@ class ReportServiceProvider extends ServiceProvider {
      * Listen to actions fired by the application to add to the report
      *
      * @param Nasqueron\Notifications\Actions\ActionsReport $report The report to add actions to
-     * @param Illuminate\Events\Dispatcher $events The application events
+     * @param Illuminate\Contracts\Events\Dispatcher $events The application events dispatcher
      */
     public static function listenToActionsForReport (ActionsReport $report, Dispatcher $events) {
         $events->listen(
