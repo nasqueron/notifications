@@ -26,8 +26,5 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Nasqueron\Notifications\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \Nasqueron\Notifications\Http\Middleware\RedirectIfAuthenticated::class,
     ];
 }
