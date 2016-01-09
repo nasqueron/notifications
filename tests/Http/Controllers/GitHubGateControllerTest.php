@@ -1,8 +1,10 @@
 <?php
 
-namespace Nasqueron\Notifications\Tests;
+namespace Nasqueron\Notifications\Tests\Http\Controllers;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+
+use Nasqueron\Notifications\Tests\TestCase;
 
 class GitHubGateControllerTest extends TestCase {
     /**
