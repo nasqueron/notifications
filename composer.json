@@ -13,7 +13,7 @@
     "php": ">=5.6.0",
     "laravel/framework": "5.2.*",
     "keruald/github": ">=0.2.0",
-    "keruald/broker": ">=0.1.0",
+    "keruald/broker": ">=0.2.0",
     "netresearch/jsonmapper": "~0.1.0"
   },
   "require-dev": {

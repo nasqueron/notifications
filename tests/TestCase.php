@@ -3,6 +3,7 @@
 namespace Nasqueron\Notifications\Tests;
 
 use Illuminate\Contracts\Console\Kernel;
+use Keruald\Broker\BlackholeBroker;
 
 use Mockery;
 
@@ -45,6 +46,15 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
         $mock->shouldReceive('listen');
 
         $this->app->instance('events', $mock);
+    }
+
+    /**
+     * Mocks the broker
+     */
+    public function disableBroker () {
+        $broker = new BlackholeBroker();
+        $broker->acceptAllMethodCalls(); // allows to be used as a mock
+        $this->app->instance('broker', $broker);
     }
 
     ///
