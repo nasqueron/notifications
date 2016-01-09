@@ -8,9 +8,6 @@ use Nasqueron\Notifications\Analyzers\GitHubPayloadAnalyzer;
 use Nasqueron\Notifications\Jobs\SendMessageToBroker;
 use Nasqueron\Notifications\Notification;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 use Config;
 
 class AMQPEventListener {
