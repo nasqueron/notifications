@@ -3,6 +3,7 @@
 namespace Nasqueron\Notifications\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 use Nasqueron\Notifications\Actions\ActionsReport;
@@ -15,7 +16,7 @@ class ReportServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        $this->app->singleton('report', function ($app) {
+        $this->app->singleton('report', function (Application $app) {
             $report = new ActionsReport();
             static::listenToActionsForReport($report, $app['events']);
             return $report;

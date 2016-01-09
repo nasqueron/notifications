@@ -2,6 +2,7 @@
 
 namespace Nasqueron\Notifications\Providers;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Keruald\Broker\AMQPBroker as Broker;
 
@@ -25,7 +26,7 @@ class BrokerServiceProvider extends ServiceProvider {
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function register() {
-        $this->app->singleton('broker', function ($app) {
+        $this->app->singleton('broker', function (Application $app) {
             $broker = new Broker();
             $broker->connect(
                 Config::get('broker.connections.amqp.host'),
