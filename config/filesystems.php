@@ -45,7 +45,9 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root'   => storage_path('app'),
+            'root'   => (env('APP_ENV') == 'testing') ?
+                            base_path('tests/data') :
+                            storage_path('app'),
         ],
 
         'ftp' => [
