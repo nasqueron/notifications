@@ -57,7 +57,7 @@ class NotificationListener {
      *
      * @param  Illuminate\Events\Dispatcher  $events
      */
-    public function subscribe ($events) {
+    public function subscribe (\Illuminate\Events\Dispatcher $events) {
         $class = 'Nasqueron\Notifications\Listeners\NotificationListener';
         $events->listen(
             'Nasqueron\Notifications\Events\DockerHubPayloadEvent',

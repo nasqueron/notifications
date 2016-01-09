@@ -36,7 +36,7 @@ class LastPayloadSaver {
      *
      * @param  Illuminate\Events\Dispatcher  $events
      */
-    public function subscribe ($events) {
+    public function subscribe (\Illuminate\Events\Dispatcher $events) {
         $ns = 'Nasqueron\Notifications\Events';
         $class = 'Nasqueron\Notifications\Listeners\LastPayloadSaver';
         $eventsToListen = [

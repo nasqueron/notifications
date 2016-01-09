@@ -129,7 +129,7 @@ class AMQPEventListener {
      *
      * @param  Illuminate\Events\Dispatcher  $events
      */
-    public function subscribe ($events) {
+    public function subscribe (\Illuminate\Events\Dispatcher $events) {
         $class = 'Nasqueron\Notifications\Listeners\AMQPEventListener';
         $events->listen(
             'Nasqueron\Notifications\Events\GitHubPayloadEvent',
