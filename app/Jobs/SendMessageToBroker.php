@@ -2,7 +2,6 @@
 
 namespace Nasqueron\Notifications\Jobs;
 
-use Illuminate\Contracts\Bus\SelfHandling;
 use Nasqueron\Notifications\Actions\ActionError;
 use Nasqueron\Notifications\Actions\AMQPAction;
 use Nasqueron\Notifications\Events\ReportEvent;
@@ -11,7 +10,7 @@ use Nasqueron\Notifications\Jobs\Job;
 use Broker;
 use Event;
 
-class SendMessageToBroker extends Job implements SelfHandling {
+class SendMessageToBroker extends Job {
 
     ///
     /// Private members

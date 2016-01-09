@@ -2,7 +2,6 @@
 
 namespace Nasqueron\Notifications\Jobs;
 
-use Illuminate\Contracts\Bus\SelfHandling;
 use Nasqueron\Notifications\Notifications\PhabricatorNotification;
 use Nasqueron\Notifications\Events\PhabricatorPayloadEvent;
 use Nasqueron\Notifications\Events\NotificationEvent;
@@ -10,7 +9,7 @@ use Nasqueron\Notifications\Jobs\Job;
 
 use Event;
 
-class FirePhabricatorNotification extends Job implements SelfHandling {
+class FirePhabricatorNotification extends Job {
 
     /**
      * @var PhabricatorPayloadEvent;

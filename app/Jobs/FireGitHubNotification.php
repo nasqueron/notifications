@@ -2,7 +2,6 @@
 
 namespace Nasqueron\Notifications\Jobs;
 
-use Illuminate\Contracts\Bus\SelfHandling;
 use Nasqueron\Notifications\Notifications\GitHubNotification;
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 use Nasqueron\Notifications\Events\NotificationEvent;
@@ -10,7 +9,7 @@ use Nasqueron\Notifications\Jobs\Job;
 
 use Event;
 
-class FireGitHubNotification extends Job implements SelfHandling {
+class FireGitHubNotification extends Job {
 
     /**
      * @var GitHubPayloadEvent;

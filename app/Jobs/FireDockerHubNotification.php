@@ -2,7 +2,6 @@
 
 namespace Nasqueron\Notifications\Jobs;
 
-use Illuminate\Contracts\Bus\SelfHandling;
 use Nasqueron\Notifications\Notifications\DockerHubNotification;
 use Nasqueron\Notifications\Events\DockerHubPayloadEvent;
 use Nasqueron\Notifications\Events\NotificationEvent;
@@ -10,7 +9,7 @@ use Nasqueron\Notifications\Jobs\Job;
 
 use Event;
 
-class FireDockerHubNotification extends Job implements SelfHandling {
+class FireDockerHubNotification extends Job {
 
     /**
      * @var DockerHubPayloadEvent;

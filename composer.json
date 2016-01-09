@@ -11,7 +11,7 @@
   "type": "project",
   "require": {
     "php": ">=5.6.0",
-    "laravel/framework": "5.1.*",
+    "laravel/framework": "5.2.*",
     "keruald/github": ">=0.2.0",
     "keruald/broker": ">=0.1.0",
     "netresearch/jsonmapper": "~0.1.0"
@@ -22,7 +22,9 @@
     "phpmd/phpmd" : "@stable",
     "phpunit/phpunit": "~4.0",
     "phpspec/phpspec": "~2.1",
-    "squizlabs/php_codesniffer": "2.*"
+    "squizlabs/php_codesniffer": "2.*",
+    "symfony/css-selector": "~3.0",
+    "symfony/dom-crawler": "~3.0"
   },
   "autoload": {
     "psr-4": {
