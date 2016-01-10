@@ -4,6 +4,7 @@ namespace Nasqueron\Notifications\Tests;
 
 use Illuminate\Contracts\Console\Kernel;
 use Keruald\Broker\BlackholeBroker;
+use Keruald\Broker\Broker;
 
 use Mockery;
 
@@ -55,6 +56,18 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
         $broker = new BlackholeBroker();
         $broker->acceptAllMethodCalls(); // allows to be used as a mock
         $this->app->instance('broker', $broker);
+    }
+
+    /**
+     * Mocks the broker, throwing an exception when sendMessage is called.
+     */
+    public function mockNotOperationalBroker () {
+        $mock = Mockery::mock('Keruald\Broker\Broker');
+        $mock->shouldReceive('connect');
+        $mock->shouldReceive('setExchangeTarget->routeTo->sendMessage')
+             ->andThrow(new \RuntimeException);
+
+        $this->app->instance('broker', $mock);
     }
 
     ///
