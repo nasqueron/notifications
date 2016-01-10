@@ -75,7 +75,6 @@ class GitHubGateController extends GateController {
 
         if (!$this->isLegitRequest()) {
             abort(403, 'Unauthorized action.');
-            return;
         }
 
         // Process the request
