@@ -12,6 +12,18 @@ use Config;
  */
 class Features {
 
+    ///
+    /// Feature information
+    ///
+
+    /**
+     * @param string $feature The feature to get the config key
+     * @return string The config key
+     */
+    private static function getFeatureConfigKey ($feature) {
+        return 'app.features.' . $feature;
+    }
+
     /**
      * Determines if the specified feature is enabled
      *
@@ -19,9 +31,33 @@ class Features {
      * @return bool
      */
     public static function isEnabled ($feature) {
-        $key = 'app.features.' . $feature;
+        $key = self::getFeatureConfigKey($feature);
         return Config::has($key) && (bool)Config::get($key);
     }
+
+    /**
+     * Enables a feature in our current configuration instance
+     *
+     * @param string $feature The feature
+     */
+    public static function enable ($feature) {
+        $key = self::getFeatureConfigKey($feature);
+        Config::set($key, true);
+    }
+
+    /**
+     * Disables a feature in our current configuration instance
+     *
+     * @param string $feature The feature
+     */
+    public static function disable ($feature) {
+        $key = self::getFeatureConfigKey($feature);
+        Config::set($key, false);
+    }
+
+    ///
+    /// Features lists
+    ///
 
     /**
      * Gets all the features, with the toggle status
@@ -52,5 +88,4 @@ class Features {
         $enabledFeatures = array_filter($features);
         return array_keys($enabledFeatures);
     }
-
 }
