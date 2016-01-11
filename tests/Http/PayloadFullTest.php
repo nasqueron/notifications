@@ -56,6 +56,24 @@ class PayloadFullTest extends TestCase {
     }
 
     /**
+     * Tests a DockerHub gate payload.
+     */
+    public function testDockerHubPayload () {
+        $payload = file_get_contents(__DIR__ . '/../data/payloads/DockerHubPushPayload.json');
+        $this->sendPayload(
+            '/gate/DockerHub/Acme', // A gate existing in data/credentials.json
+            $payload,
+            'POST',
+            []
+        )->seeJson([
+            'gate' => 'DockerHub',
+            'door' => 'Acme',
+            'action' => 'AMQPAction'
+        ]);
+        $this->assertResponseOk();
+    }
+
+    /**
      * Same than testPost, but without actions report.
      */
     public function testPostWithoutActionsReport () {
