@@ -79,7 +79,7 @@ class GitHubGateController extends GateController {
 
         // Process the request
 
-        $this->logRequest();
+        $this->logGateRequest();
         $this->onPayload();
 
         // Output
@@ -138,10 +138,8 @@ class GitHubGateController extends GateController {
     /**
      * Logs the request
      */
-    protected function logRequest () {
-        Log::info('[Gate] New payload.', [
-            'service' => static::SERVICE_NAME,
-            'door' => $this->door,
+    protected function logGateRequest () {
+        $this->logRequest([
             'delivery' => $this->delivery,
             'event' => $this->event,
         ]);

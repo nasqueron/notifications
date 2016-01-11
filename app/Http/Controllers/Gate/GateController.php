@@ -42,11 +42,11 @@ class GateController extends Controller {
     /**
      * Logs the request
      */
-    protected function logRequest () {
+    protected function logRequest ($extraContextualData = []) {
         Log::info('[Gate] New payload.', [
             'service' => static::SERVICE_NAME,
             'door' => $this->door,
-        ]);
+        ] + $extraContextualData);
     }
 
     ///

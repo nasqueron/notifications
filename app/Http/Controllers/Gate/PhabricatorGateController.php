@@ -75,16 +75,6 @@ class PhabricatorGateController extends GateController {
          return $service->instance;
      }
 
-    /**
-     * Logs the request
-     */
-    protected function logRequest () {
-        Log::info('[Gate] New payload.', [
-            'service' => static::SERVICE_NAME,
-            'door' => $this->door
-        ]);
-    }
-
     ///
     /// Payload processing
     ///
