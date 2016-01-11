@@ -1,7 +1,6 @@
 <?php
 
 namespace Nasqueron\Notifications\Tests;
-use Storage;
 
 class PayloadFullTest extends TestCase {
 
