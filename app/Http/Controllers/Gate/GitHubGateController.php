@@ -3,7 +3,6 @@
 namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
 use Event;
-use Log;
 use Request;
 
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
