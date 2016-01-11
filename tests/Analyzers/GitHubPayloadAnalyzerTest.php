@@ -21,7 +21,7 @@ class GitHubPayloadAnalyzerConfigurationTest extends TestCase {
      * Prepares the test
      */
      public function setUp () {
-        $filename = __DIR__ . '/../data/GitHubPayloadAnalyzer-Nasqueron.json';
+        $filename = __DIR__ . '/../data/GitHubPayloadAnalyzer/Nasqueron.json';
         $mapper = new \JsonMapper();
         $this->configuration = $mapper->map(
             json_decode(file_get_contents($filename)),

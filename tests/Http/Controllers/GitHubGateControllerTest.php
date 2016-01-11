@@ -25,7 +25,7 @@ class GitHubGateControllerTest extends TestCase {
      * Tests a GitHub gate payload.
      */
     public function testPost () {
-        $payload = file_get_contents(__DIR__ . '/../../data/GitHubPingPayload.json');
+        $payload = file_get_contents(__DIR__ . '/../../data/payloads/GitHubPingPayload.json');
         $this->sendPayload(
             '/gate/GitHub/Quux', // A gate not existing in data/credentials.json
             $payload,

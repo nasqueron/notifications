@@ -28,7 +28,7 @@ class PayloadFullTest extends TestCase {
     }
 
     protected function sendTestPayload ($signature) {
-        $payload = file_get_contents(__DIR__ . '/../data/GitHubPingPayload.json');
+        $payload = file_get_contents(__DIR__ . '/../data/payloads/GitHubPingPayload.json');
         $this->sendPayload(
             '/gate/GitHub/Acme', // A gate existing in data/credentials.json
             $payload,
@@ -88,7 +88,7 @@ class PayloadFullTest extends TestCase {
     public function testBrokerIssue () {
         $this->mockNotOperationalBroker();
 
-        $payload = file_get_contents(__DIR__ . '/../data/GitHubPingPayload.json');
+        $payload = file_get_contents(__DIR__ . '/../data/payloads/GitHubPingPayload.json');
         $this->sendPayload(
             '/gate/GitHub/Acme', // A gate existing in data/credentials.json
             $payload,
