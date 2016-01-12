@@ -36,6 +36,10 @@ return [
             'vhost'     => env('BROKER_VHOST', '/'),
         ],
 
+        'blackhole' => [
+            'driver'    => 'blackhole',
+        ]
+
     ],
 
     /*
