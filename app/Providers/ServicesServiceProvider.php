@@ -16,7 +16,7 @@ class ServicesServiceProvider extends ServiceProvider {
     public function register() {
         $this->app->singleton('services', function (Application $app) {
             $path = config('services.gate.credentials');
-            if ($app->make('filesystem')->has($path)) {
+            if (strlen($path) > 0 && $app->make('filesystem')->has($path)) {
                 return Services::loadFromJson($path);
             }
 
