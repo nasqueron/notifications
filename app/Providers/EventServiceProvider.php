@@ -6,7 +6,7 @@ use Illuminate\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-use File;
+use Config;
 
 class EventServiceProvider extends ServiceProvider {
 
@@ -14,12 +14,7 @@ class EventServiceProvider extends ServiceProvider {
      * Registers all our listeners as subscriber classes
      */
     private function subscribeListeners () {
-        $namespace = Container::getInstance()->getNamespace() . 'Listeners\\';
-        $files = File::allFiles(app_path('Listeners'));
-        foreach ($files as $file) {
-            $class = $namespace . $file->getBasename('.php');
-            $this->subscribe[] = $class;
-        }
+        $this->subscribe += Config::get('app.listeners');
     }
 
     /**

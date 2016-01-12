@@ -180,6 +180,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Events listeners
+    |--------------------------------------------------------------------------
+    |
+    | The events listeners listed here will be automatically loaded on the
+    | request to your application.
+    |
+    */
+
+    'listeners' => [
+        Nasqueron\Notifications\Listeners\AMQPEventListener::class,
+        Nasqueron\Notifications\Listeners\LastPayloadSaver::class,
+        Nasqueron\Notifications\Listeners\NotificationListener::class,
+        Nasqueron\Notifications\Listeners\PhabricatorListener::class,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Class Aliases
     |--------------------------------------------------------------------------
     |
