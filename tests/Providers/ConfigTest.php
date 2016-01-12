@@ -6,17 +6,35 @@ use Config;
 use File;
 
 class ConfigTest extends TestCase {
+    /**
+     * The actual list of services providers
+     *
+     * @var string[]
+     */
+    private $providers;
+
+    /**
+     * The service providers' namespace
+     *
+     * @var string
+     */
+    private $namespace;
+
+    public function setUp () {
+        parent::setUp();
+
+        $this->providers = Config::get('app.providers');
+        $this->namespace = $this->app->getInstance()->getNamespace()
+                         . 'Providers\\';
+    }
+
     public function testOmittedFiles () {
-        $providers = [];
-
-        $actualProviders = Config::get('app.providers');
-
-        $namespace = $this->app->getInstance()->getNamespace() . 'Providers\\';
         $files = File::allFiles(app_path('Providers'));
+
         foreach ($files as $file) {
-            $class = $namespace . $file->getBasename('.php');
+            $class = $this->namespace . $file->getBasename('.php');
             $this->assertContains(
-                $class, $actualProviders,
+                $class, $this->providers,
                 "The class $class should be added to config/app.php in the " .
                 "providers array."
             );
