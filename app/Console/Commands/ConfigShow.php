@@ -4,12 +4,11 @@ namespace Nasqueron\Notifications\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use Nasqueron\Notifications\Phabricator\ProjectsMap;
 use Nasqueron\Notifications\Features;
 
 use Config;
+use ProjectsMap;
 use Services;
-
 
 class ConfigShow extends Command
 {
@@ -67,7 +66,7 @@ class ConfigShow extends Command
     protected function getServiveStatus ($service) {
         if ($service->gate === 'Phabricator') {
             // Ensure the projects map is cached
-            $map = ProjectsMap::fetch($service->instance);
+            $map = \ProjectsMap::fetch($service->instance);
             if (!$map->isCached()) {
                 return "Projects map not cached.";
             }
