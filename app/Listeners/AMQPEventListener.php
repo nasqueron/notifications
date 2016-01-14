@@ -4,7 +4,7 @@ namespace Nasqueron\Notifications\Listeners;
 
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 use Nasqueron\Notifications\Events\NotificationEvent;
-use Nasqueron\Notifications\Analyzers\GitHubPayloadAnalyzer;
+use Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer;
 use Nasqueron\Notifications\Jobs\SendMessageToBroker;
 use Nasqueron\Notifications\Notification;
 

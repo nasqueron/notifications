@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Notifications;
 
-use Nasqueron\Notifications\Analyzers\GitHubPayloadAnalyzer;
+use Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer;
 use Nasqueron\Notifications\Notification;
 
 class GitHubNotification extends Notification {

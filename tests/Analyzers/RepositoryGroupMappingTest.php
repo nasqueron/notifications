@@ -4,7 +4,7 @@ namespace Nasqueron\Notifications\Tests\Analyzers;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-use Nasqueron\Notifications\Analyzers\RepositoryGroupMapping;
+use Nasqueron\Notifications\Analyzers\GitHub\RepositoryGroupMapping;
 use Nasqueron\Notifications\Tests\TestCase;
 
 class RepositoryGroupMappingTest extends TestCase {

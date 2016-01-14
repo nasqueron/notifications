@@ -1,6 +1,6 @@
 <?php
 
-namespace Nasqueron\Notifications\Analyzers;
+namespace Nasqueron\Notifications\Analyzers\GitHub;
 
 class RepositoryGroupMapping {
     ///
