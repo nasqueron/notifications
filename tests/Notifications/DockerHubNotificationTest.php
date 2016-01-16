@@ -43,4 +43,3 @@ class DockerHubNotificationTest extends TestCase {
         );
     }
 }
-
