@@ -41,9 +41,7 @@ class PhabricatorGateController extends GateController {
 
         if ($this->instance === "") {
             abort(404, 'Unknown Phabricator instance.');
-            return;
         }
-
 
         $this->extractPayload();
 
