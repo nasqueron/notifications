@@ -77,23 +77,25 @@ class PayloadFullTest extends TestCase {
      * Tests a Phabricator gate payload.
      */
     public function testPhabricatorPayload () {
-        $this->post(
-            '/gate/Phabricator/Acme',
-            [
-                'storyID' => 3849,
-                'storyType' => 'PhabricatorApplicationTransactionFeedStory',
-                'storyData[objectPHID]' => 'PHID-TASK-l34fw5wievp6n6rnvpuk',
-                'storyData[transactionPHIDs][PHID-XACT-TASK-by2g3dtlfq3l2wc]' => 'PHID-XACT-TASK-by2g3dtlfq3l2wc',
-                'storyAuthorPHID' => 'PHID-USER-fnetlprx7zdotfm2hdrz',
-                'storyText' => 'quux moved T123: Lorem ipsum dolor to Backlog on the Foo workboard.',
-                'epoch' => 1450654419,
-            ]
-        )->seeJson([
+        $data = [
+            'storyID' => 3849,
+            'storyType' => 'PhabricatorApplicationTransactionFeedStory',
+            'storyData[objectPHID]' => 'PHID-TASK-l34fw5wievp6n6rnvpuk',
+            'storyData[transactionPHIDs][PHID-XACT-TASK-by2g3dtlfq3l2wc]' => 'PHID-XACT-TASK-by2g3dtlfq3l2wc',
+            'storyAuthorPHID' => 'PHID-USER-fnetlprx7zdotfm2hdrz',
+            'storyText' => 'quux moved T123: Lorem ipsum dolor to Backlog on the Foo workboard.',
+            'epoch' => 1450654419,
+        ];
+
+        $this->post('/gate/Phabricator/Acme', $data)->seeJson([
             'gate' => 'Phabricator',
             'door' => 'Acme',
             'action' => 'AMQPAction'
         ]);
         $this->assertResponseOk();
+
+        $this->post('/gate/Phabricator/NotExistingDoor', $data);
+        $this->assertResponseStatus(404);
     }
 
     /**
