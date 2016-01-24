@@ -47,6 +47,10 @@ class GitHubPayloadAnalyzer {
      * @param stdClass $payload
      */
     public function __construct($project, $event, $payload) {
+        if (!is_object($payload)) {
+            throw new \InvalidArgumentException("Payload must be an object.");
+        }
+
         $this->project = $project;
         $this->event = $event;
         $this->payload = $payload;
