@@ -43,4 +43,17 @@ class GitHubGateControllerTest extends TestCase {
 
         $this->assertResponseOk();
     }
+
+    /**
+     * Tests a malformed GitHub gate payload.
+     */
+    public function testMalformedPost () {
+        $this->sendPayload(
+            '/gate/GitHub/Quux', // A gate not existing in data/credentials.json
+            "",
+            'POST',
+            []
+        );
+        $this->assertResponseStatus(400);
+    }
 }

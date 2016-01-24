@@ -76,6 +76,10 @@ class GitHubGateController extends GateController {
             abort(403, 'Unauthorized action.');
         }
 
+        if (!$this->isValidRequest()) {
+            abort(400, 'Bad request.');
+        }
+
         // Process the request
 
         $this->logGateRequest();
@@ -112,6 +116,25 @@ class GitHubGateController extends GateController {
         $request = Request::instance();
         $this->rawRequestContent = $request->getContent();
         $this->payload = json_decode($this->rawRequestContent);
+    }
+
+    /**
+     * Determines if the request is valid, ie contains the mandatory headers
+     * and a payload.
+     *
+     * @return bool true if the request looks valid; otherwise, false.
+     */
+    protected function isValidRequest () {
+        if (empty($this->event)) {
+            return false;
+        }
+        if (empty($this->delivery)) {
+            return false;
+        }
+        if (empty($this->payload) || !is_object($this->payload)) {
+            return false;
+        }
+        return true;
     }
 
     /**
