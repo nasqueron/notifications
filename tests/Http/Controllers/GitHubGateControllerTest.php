@@ -52,8 +52,44 @@ class GitHubGateControllerTest extends TestCase {
             '/gate/GitHub/Quux', // A gate not existing in data/credentials.json
             "",
             'POST',
-            []
+            [
+                'X-Github-Delivery' => 'e5dd9fc7-17ac-11e5-9427-73dad6b9b17c',
+            ]
         );
         $this->assertResponseStatus(400);
+
+        $this->sendPayload(
+            '/gate/GitHub/Quux', // A gate not existing in data/credentials.json
+            "",
+            'POST',
+            [
+                'X-Github-Event' => 'ping',
+            ]
+        );
+        $this->assertResponseStatus(400);
+
+        $this->sendPayload(
+            '/gate/GitHub/Quux', // A gate not existing in data/credentials.json
+            "",
+            'POST',
+            [
+                'X-Github-Delivery' => 'e5dd9fc7-17ac-11e5-9427-73dad6b9b17c',
+                'X-Github-Event' => 'ping',
+            ]
+        );
+        $this->assertResponseStatus(400);
+    }
+
+    public function testEmptySignature () {
+        $this->sendPayload(
+            '/gate/GitHub/Acme', // A gate existing in data/credentials.json
+            "",
+            'POST',
+            [
+                'X-Github-Event' => 'ping',
+                'X-Github-Delivery' => 'e5dd9fc7-17ac-11e5-9427-73dad6b9b17c',
+            ]
+        );
+        $this->assertResponseStatus(403);
     }
 }
