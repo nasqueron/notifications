@@ -127,6 +127,12 @@ class GitHubGateController extends GateController {
             return true;
         }
 
+        // If the secret is defined, but signature is missing from the
+        // request, we don't need to perform any other validation.
+        if (empty($this->signature)) {
+            return false;
+        }
+
         return XHubSignature::validatePayload(
             $secret,
             $this->rawRequestContent,
