@@ -256,6 +256,11 @@ class GitHubPayloadAnalyzer {
 
                 $repoAndBranch = $this->getWhere();
                 $user = $this->payload->pusher->name;
+
+                if ($n === 0) {
+                    return "$user forcely updated $repoAndBranch";
+                }
+
                 return "$user pushed $n commits to $repoAndBranch";
 
             case "repository":
