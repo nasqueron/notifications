@@ -238,7 +238,7 @@ class GitHubPayloadAnalyzer {
                 $type = $this->payload->ref_type;
                 $ref = $this->payload->ref;
 
-                if ($type == "tag" || $type == "branch") {
+                if ($type === "tag" || $type === "branch") {
                     return "New $type on $repository: $ref";
                 }
 
@@ -250,7 +250,7 @@ class GitHubPayloadAnalyzer {
 
             case "push":
                 $n = count($this->payload->commits);
-                if ($n == 1) {
+                if ($n === 1) {
                     return $this->getHeadCommitDescription();
                 }
 
@@ -291,9 +291,9 @@ class GitHubPayloadAnalyzer {
                 $ref = $this->payload->ref;
                 $url = $this->payload->repository->html_url;
 
-                if ($type == "tag") {
+                if ($type === "tag") {
                     $url .= "/releases/tag/" . $ref;
-                } elseif ($type == "branch") {
+                } elseif ($type === "branch") {
                     $url .= "/tree/" . $ref;
                 }
 
@@ -301,7 +301,7 @@ class GitHubPayloadAnalyzer {
 
             case "push":
                 $n = count($this->payload->commits);
-                if ($n == 1) {
+                if ($n === 1) {
                     return $this->payload->head_commit->url;
                 }
                 return $this->payload->compare;
