@@ -1,0 +1,200 @@
+{
+  "ref": "refs/heads/master",
+  "before": "aecf09db97cfc86cb2cb749ef2df35901162fe95",
+  "after": "a0b969672645a87e207fa25191732a42253a3603",
+  "created": false,
+  "deleted": false,
+  "forced": false,
+  "base_ref": null,
+  "compare": "https://github.com/nasqueron/notifications/compare/aecf09db97cf...a0b969672645",
+  "commits": [
+    {
+      "id": "de1c7bf32d714a94a1b4a351837a7817faace11d",
+      "distinct": true,
+      "message": "Tests for GitHubPayloadAnalyzerConfiguration",
+      "timestamp": "2015-12-07T15:45:27Z",
+      "url": "https://github.com/nasqueron/notifications/commit/de1c7bf32d714a94a1b4a351837a7817faace11d",
+      "author": {
+        "name": "Sébastien Santoro",
+        "email": "dereckson@espace-win.org",
+        "username": "dereckson"
+      },
+      "committer": {
+        "name": "Sébastien Santoro",
+        "email": "dereckson@espace-win.org",
+        "username": "dereckson"
+      },
+      "added": [
+        "tests/GitHubPayloadAnalyzerTest.php",
+        "tests/data/GitHubPayloadAnalyzer-Nasqueron.json"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+
+      ]
+    },
+    {
+      "id": "a0b969672645a87e207fa25191732a42253a3603",
+      "distinct": true,
+      "message": "Tidying and tests for RepositoryGroupMapping::doesRepositoryMatch\n\nLaravel provides a str_is helper function to check 'foo*' pattern,\nwe can so forget fnmatch (? is not really a wanted feature).\n\nAdded test, improved code comment.",
+      "timestamp": "2015-12-07T16:53:18Z",
+      "url": "https://github.com/nasqueron/notifications/commit/a0b969672645a87e207fa25191732a42253a3603",
+      "author": {
+        "name": "Sébastien Santoro",
+        "email": "dereckson@espace-win.org",
+        "username": "dereckson"
+      },
+      "committer": {
+        "name": "Sébastien Santoro",
+        "email": "dereckson@espace-win.org",
+        "username": "dereckson"
+      },
+      "added": [
+        "tests/RepositoryGroupMappingTest.php"
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "app/Analyzers/RepositoryGroupMapping.php"
+      ]
+    }
+  ],
+  "head_commit": {
+    "id": "a0b969672645a87e207fa25191732a42253a3603",
+    "distinct": true,
+    "message": "Tidying and tests for RepositoryGroupMapping::doesRepositoryMatch\n\nLaravel provides a str_is helper function to check 'foo*' pattern,\nwe can so forget fnmatch (? is not really a wanted feature).\n\nAdded test, improved code comment.",
+    "timestamp": "2015-12-07T16:53:18Z",
+    "url": "https://github.com/nasqueron/notifications/commit/a0b969672645a87e207fa25191732a42253a3603",
+    "author": {
+      "name": "Sébastien Santoro",
+      "email": "dereckson@espace-win.org",
+      "username": "dereckson"
+    },
+    "committer": {
+      "name": "Sébastien Santoro",
+      "email": "dereckson@espace-win.org",
+      "username": "dereckson"
+    },
+    "added": [
+      "tests/RepositoryGroupMappingTest.php"
+    ],
+    "removed": [
+
+    ],
+    "modified": [
+      "app/Analyzers/RepositoryGroupMapping.php"
+    ]
+  },
+  "repository": {
+    "id": 46330783,
+    "name": "notifications",
+    "full_name": "nasqueron/notifications",
+    "owner": {
+      "name": "nasqueron",
+      "email": ""
+    },
+    "private": false,
+    "html_url": "https://github.com/nasqueron/notifications",
+    "description": "Notifications center",
+    "fork": false,
+    "url": "https://github.com/nasqueron/notifications",
+    "forks_url": "https://api.github.com/repos/nasqueron/notifications/forks",
+    "keys_url": "https://api.github.com/repos/nasqueron/notifications/keys{/key_id}",
+    "collaborators_url": "https://api.github.com/repos/nasqueron/notifications/collaborators{/collaborator}",
+    "teams_url": "https://api.github.com/repos/nasqueron/notifications/teams",
+    "hooks_url": "https://api.github.com/repos/nasqueron/notifications/hooks",
+    "issue_events_url": "https://api.github.com/repos/nasqueron/notifications/issues/events{/number}",
+    "events_url": "https://api.github.com/repos/nasqueron/notifications/events",
+    "assignees_url": "https://api.github.com/repos/nasqueron/notifications/assignees{/user}",
+    "branches_url": "https://api.github.com/repos/nasqueron/notifications/branches{/branch}",
+    "tags_url": "https://api.github.com/repos/nasqueron/notifications/tags",
+    "blobs_url": "https://api.github.com/repos/nasqueron/notifications/git/blobs{/sha}",
+    "git_tags_url": "https://api.github.com/repos/nasqueron/notifications/git/tags{/sha}",
+    "git_refs_url": "https://api.github.com/repos/nasqueron/notifications/git/refs{/sha}",
+    "trees_url": "https://api.github.com/repos/nasqueron/notifications/git/trees{/sha}",
+    "statuses_url": "https://api.github.com/repos/nasqueron/notifications/statuses/{sha}",
+    "languages_url": "https://api.github.com/repos/nasqueron/notifications/languages",
+    "stargazers_url": "https://api.github.com/repos/nasqueron/notifications/stargazers",
+    "contributors_url": "https://api.github.com/repos/nasqueron/notifications/contributors",
+    "subscribers_url": "https://api.github.com/repos/nasqueron/notifications/subscribers",
+    "subscription_url": "https://api.github.com/repos/nasqueron/notifications/subscription",
+    "commits_url": "https://api.github.com/repos/nasqueron/notifications/commits{/sha}",
+    "git_commits_url": "https://api.github.com/repos/nasqueron/notifications/git/commits{/sha}",
+    "comments_url": "https://api.github.com/repos/nasqueron/notifications/comments{/number}",
+    "issue_comment_url": "https://api.github.com/repos/nasqueron/notifications/issues/comments{/number}",
+    "contents_url": "https://api.github.com/repos/nasqueron/notifications/contents/{+path}",
+    "compare_url": "https://api.github.com/repos/nasqueron/notifications/compare/{base}...{head}",
+    "merges_url": "https://api.github.com/repos/nasqueron/notifications/merges",
+    "archive_url": "https://api.github.com/repos/nasqueron/notifications/{archive_format}{/ref}",
+    "downloads_url": "https://api.github.com/repos/nasqueron/notifications/downloads",
+    "issues_url": "https://api.github.com/repos/nasqueron/notifications/issues{/number}",
+    "pulls_url": "https://api.github.com/repos/nasqueron/notifications/pulls{/number}",
+    "milestones_url": "https://api.github.com/repos/nasqueron/notifications/milestones{/number}",
+    "notifications_url": "https://api.github.com/repos/nasqueron/notifications/notifications{?since,all,participating}",
+    "labels_url": "https://api.github.com/repos/nasqueron/notifications/labels{/name}",
+    "releases_url": "https://api.github.com/repos/nasqueron/notifications/releases{/id}",
+    "created_at": 1447745790,
+    "updated_at": "2015-12-03T12:46:43Z",
+    "pushed_at": 1449507450,
+    "git_url": "git://github.com/nasqueron/notifications.git",
+    "ssh_url": "git@github.com:nasqueron/notifications.git",
+    "clone_url": "https://github.com/nasqueron/notifications.git",
+    "svn_url": "https://github.com/nasqueron/notifications",
+    "homepage": "",
+    "size": 88,
+    "stargazers_count": 0,
+    "watchers_count": 0,
+    "language": "PHP",
+    "has_issues": true,
+    "has_downloads": true,
+    "has_wiki": false,
+    "has_pages": false,
+    "forks_count": 0,
+    "mirror_url": null,
+    "open_issues_count": 0,
+    "forks": 0,
+    "open_issues": 0,
+    "watchers": 0,
+    "default_branch": "master",
+    "stargazers": 0,
+    "master_branch": "master",
+    "organization": "nasqueron"
+  },
+  "pusher": {
+    "name": "dereckson",
+    "email": "dereckson@espace-win.org"
+  },
+  "organization": {
+    "login": "nasqueron",
+    "id": 5605546,
+    "url": "https://api.github.com/orgs/nasqueron",
+    "repos_url": "https://api.github.com/orgs/nasqueron/repos",
+    "events_url": "https://api.github.com/orgs/nasqueron/events",
+    "members_url": "https://api.github.com/orgs/nasqueron/members{/member}",
+    "public_members_url": "https://api.github.com/orgs/nasqueron/public_members{/member}",
+    "avatar_url": "https://avatars.githubusercontent.com/u/5605546?v=3",
+    "description": "Central hub of a budding community of creative people, writers, developers and thinkers."
+  },
+  "sender": {
+    "login": "dereckson",
+    "id": 135563,
+    "avatar_url": "https://avatars.githubusercontent.com/u/135563?v=3",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/dereckson",
+    "html_url": "https://github.com/dereckson",
+    "followers_url": "https://api.github.com/users/dereckson/followers",
+    "following_url": "https://api.github.com/users/dereckson/following{/other_user}",
+    "gists_url": "https://api.github.com/users/dereckson/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/dereckson/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/dereckson/subscriptions",
+    "organizations_url": "https://api.github.com/users/dereckson/orgs",
+    "repos_url": "https://api.github.com/users/dereckson/repos",
+    "events_url": "https://api.github.com/users/dereckson/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/dereckson/received_events",
+    "type": "User",
+    "site_admin": false
+  }
+}
