@@ -12,6 +12,11 @@ class GitHubPayloadAnalyzerTest extends TestCase {
      */
      private $unknownEventAnalyzer;
 
+     /**
+      * @var Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer
+      */
+     private $pingAnalyzer;
+
     /**
      * Prepares the tests
      */
@@ -19,8 +24,14 @@ class GitHubPayloadAnalyzerTest extends TestCase {
         parent::setUp();
 
         $this->unknownEventAnalyzer = new GitHubPayloadAnalyzer(
-            "Acme",
+            "Acme", // Expected without known config file
             "quux",
+            new \stdClass
+        );
+
+        $this->pingAnalyzer = new GitHubPayloadAnalyzer(
+            "Nasqueron", // Expected with known config file
+            "ping",
             new \stdClass
         );
      }
@@ -37,6 +48,24 @@ class GitHubPayloadAnalyzerTest extends TestCase {
             "Acme",
             "push",
             "This is not an object deserialized from JSON but a string."
+        );
+    }
+
+    ///
+    /// Test getConfigurationFileName
+    ///
+
+    public function testGetConfigurationFileNameWhenConfigExists () {
+        $this->assertSame(
+            "GitHubPayloadAnalyzer/Nasqueron.json",
+            $this->pingAnalyzer->getConfigurationFileName()
+        );
+    }
+
+    public function testGetConfigurationFileNameWhenConfigDoesNotExist () {
+        $this->assertSame(
+            "GitHubPayloadAnalyzer/default.json",
+            $this->unknownEventAnalyzer->getConfigurationFileName()
         );
     }
 
