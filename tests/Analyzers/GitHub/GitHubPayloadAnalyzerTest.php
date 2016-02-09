@@ -17,6 +17,11 @@ class GitHubPayloadAnalyzerTest extends TestCase {
       */
      private $pingAnalyzer;
 
+     /**
+      * @var Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer
+      */
+     private $pushAnalyzer;
+
     /**
      * Prepares the tests
      */
@@ -33,6 +38,14 @@ class GitHubPayloadAnalyzerTest extends TestCase {
             "Nasqueron", // Expected with known config file
             "ping",
             new \stdClass
+        );
+
+        $filename = __DIR__ . "/../../data/payloads/GitHubEvents/push.json";
+        $payload = json_decode(file_get_contents($filename));
+        $this->pushAnalyzer = new GitHubPayloadAnalyzer(
+            "Nasqueron", // Expected with known config
+            "push",
+            $payload
         );
      }
 
@@ -67,6 +80,18 @@ class GitHubPayloadAnalyzerTest extends TestCase {
             "GitHubPayloadAnalyzer/default.json",
             $this->unknownEventAnalyzer->getConfigurationFileName()
         );
+    }
+
+    ///
+    /// Test getRepository
+    ///
+
+    public function testGetRepositoryWhenEventIsAdministrative () {
+        $this->assertEmpty($this->pingAnalyzer->getRepository());
+    }
+
+    public function testGetRepositoryWhenEventIsRepositoryRelative () {
+        $this->assertSame("public-repo", $this->pushAnalyzer->getRepository());
     }
 
     ///
