@@ -22,6 +22,11 @@ class GitHubPayloadAnalyzerTest extends TestCase {
       */
      private $pushAnalyzer;
 
+     /**
+      * @var Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer
+      */
+     private $pushToMappedRepositoryAnalyzer;
+
     /**
      * Prepares the tests
      */
@@ -41,11 +46,21 @@ class GitHubPayloadAnalyzerTest extends TestCase {
         );
 
         $filename = __DIR__ . "/../../data/payloads/GitHubEvents/push.json";
-        $payload = json_decode(file_get_contents($filename));
+        $payloadRawContent = file_get_contents($filename);
+
+        $payload = json_decode($payloadRawContent);
         $this->pushAnalyzer = new GitHubPayloadAnalyzer(
             "Nasqueron", // Expected with known config
             "push",
             $payload
+        );
+
+        $dockerPayload = json_decode($payloadRawContent);
+        $dockerPayload->repository->name = "docker-someapp";
+        $this->pushToMappedRepositoryAnalyzer = new GitHubPayloadAnalyzer(
+            "Nasqueron", // Expected with known config
+            "push",
+            $dockerPayload
         );
      }
 
@@ -95,14 +110,31 @@ class GitHubPayloadAnalyzerTest extends TestCase {
     }
 
     ///
+    /// Test getGroup
+    ///
+
+    public function testGetGroupWhenEventIsAdministrative () {
+        $this->assertSame("orgz", $this->pingAnalyzer->getGroup());
+    }
+
+    public function testGetGroupOnPushToMappedRepository () {
+        $this->assertSame("docker", $this->pushToMappedRepositoryAnalyzer->getGroup());
+
+    }
+
+    public function testGetGroupOnPushToNotMappedRepository () {
+        $this->assertSame("nasqueron", $this->pushAnalyzer->getGroup());
+    }
+
+    ///
     /// Test if our fallback is correct when the GitHub event type is unknown
     ///
 
-     public function testDescriptionContainsTypeWhenEventTypeIsUnknown () {
-         $this->assertContains(
-             "quux",
-             $this->unknownEventAnalyzer->getDescription()
-         );
-     }
+    public function testDescriptionContainsTypeWhenEventTypeIsUnknown () {
+        $this->assertContains(
+            "quux",
+            $this->unknownEventAnalyzer->getDescription()
+        );
+    }
 
 }
