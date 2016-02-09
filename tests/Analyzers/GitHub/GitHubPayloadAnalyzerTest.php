@@ -26,6 +26,21 @@ class GitHubPayloadAnalyzerTest extends TestCase {
      }
 
     ///
+    /// Test constructor
+    ///
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testConstructorThrowsAnExceptionWhenPayloadIsInvalid () {
+        new GitHubPayloadAnalyzer(
+            "Acme",
+            "push",
+            "This is not an object deserialized from JSON but a string."
+        );
+    }
+
+    ///
     /// Test if our fallback is correct when the GitHub event type is unknown
     ///
 
