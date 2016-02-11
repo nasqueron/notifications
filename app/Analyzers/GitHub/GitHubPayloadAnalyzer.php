@@ -95,7 +95,7 @@ class GitHubPayloadAnalyzer {
         $mapper = new \JsonMapper();
         $this->configuration = $mapper->map(
             json_decode(Storage::get($fileName)),
-            new GitHubPayloadAnalyzerConfiguration()
+            new GitHubPayloadAnalyzerConfiguration($this->project)
         );
     }
 
@@ -145,11 +145,7 @@ class GitHubPayloadAnalyzer {
             }
         }
 
-        // By default, fallback group is the project name or a specified value.
-        if (empty($this->configuration->defaultGroup)) {
-            return strtolower($this->project);
-        }
-        return $this->configuration->defaultGroup;
+        return $this->configuration->getDefaultGroup();
     }
 
     ///

@@ -24,7 +24,7 @@ class GitHubPayloadAnalyzerConfigurationTest extends TestCase {
         $mapper = new \JsonMapper();
         $this->configuration = $mapper->map(
             json_decode(file_get_contents($filename)),
-            new GitHubPayloadAnalyzerConfiguration()
+            new GitHubPayloadAnalyzerConfiguration('Nasqueron')
         );
 
         parent::setUp();
@@ -44,4 +44,22 @@ class GitHubPayloadAnalyzerConfigurationTest extends TestCase {
             );
         }
     }
+
+    ///
+    /// Tests for getDefaultGroup
+    ///
+
+    public function testGetDefaultGroup () {
+        $this->configuration->defaultGroup = "quux";
+        $this->assertSame("quux", $this->configuration->getDefaultGroup());
+    }
+
+    public function testGetDefaultGroupWhenNotInConfig () {
+        $this->configuration->defaultGroup = "";
+        $this->assertSame("nasqueron", $this->configuration->getDefaultGroup());
+
+        $this->configuration->defaultGroup = null;
+        $this->assertSame("nasqueron", $this->configuration->getDefaultGroup());
+    }
+
 }
