@@ -33,16 +33,16 @@ class PushEventTest extends TestCase {
 
 
     public function testGetRepositoryAndBranch () {
-        $this->assertEquals("", PushEvent::getRepositoryAndBranch("", "master"));
-        $this->assertEquals("", PushEvent::getRepositoryAndBranch("", "foo"));
-        $this->assertEquals("quux", PushEvent::getRepositoryAndBranch("quux", "master"));
-        $this->assertEquals("quux", PushEvent::getRepositoryAndBranch("quux", "refs/heads/master"));
-        $this->assertEquals("quux", PushEvent::getRepositoryAndBranch("quux", ""));
-        $this->assertEquals("quux (branch foo)", PushEvent::getRepositoryAndBranch("quux", "refs/heads/foo"));
-        $this->assertEquals("quux (branch feature/foo)", PushEvent::getRepositoryAndBranch("quux", "refs/heads/feature/foo"));
-        $this->assertEquals("quux (branch feature/foo)", PushEvent::getRepositoryAndBranch("quux", "feature/foo"));
-        $this->assertEquals("quux (branch foo)", PushEvent::getRepositoryAndBranch("quux", "foo"));
-        $this->assertEquals("quux (branch 0)", PushEvent::getRepositoryAndBranch("quux", "0"));
+        $this->assertSame("", PushEvent::getRepositoryAndBranch("", "master"));
+        $this->assertSame("", PushEvent::getRepositoryAndBranch("", "foo"));
+        $this->assertSame("quux", PushEvent::getRepositoryAndBranch("quux", "master"));
+        $this->assertSame("quux", PushEvent::getRepositoryAndBranch("quux", "refs/heads/master"));
+        $this->assertSame("quux", PushEvent::getRepositoryAndBranch("quux", ""));
+        $this->assertSame("quux (branch foo)", PushEvent::getRepositoryAndBranch("quux", "refs/heads/foo"));
+        $this->assertSame("quux (branch feature/foo)", PushEvent::getRepositoryAndBranch("quux", "refs/heads/feature/foo"));
+        $this->assertSame("quux (branch feature/foo)", PushEvent::getRepositoryAndBranch("quux", "feature/foo"));
+        $this->assertSame("quux (branch foo)", PushEvent::getRepositoryAndBranch("quux", "foo"));
+        $this->assertSame("quux (branch 0)", PushEvent::getRepositoryAndBranch("quux", "0"));
     }
 
     ///
@@ -50,8 +50,8 @@ class PushEventTest extends TestCase {
     ///
 
     public function testGetCommitTitle () {
-        $this->assertEquals("", PushEvent::getCommitTitle(""));
-        $this->assertEquals("Lorem ipsum dolor", PushEvent::getCommitTitle("Lorem ipsum dolor"));
+        $this->assertSame("", PushEvent::getCommitTitle(""));
+        $this->assertSame("Lorem ipsum dolor", PushEvent::getCommitTitle("Lorem ipsum dolor"));
 
         $longCommitMessages = [
             "I was born in a water moon. Some people, especially its inhabitants, called it a planet, but as it was only a little over two hundred kilometres in diameter, 'moon' seems the more accurate term. The moon was made entirely of water, by which I mean it was a globe that not only had no land, but no rock either, a sphere with no solid core at all, just liquid water, all the way down to the very centre of the globe.",
@@ -59,7 +59,7 @@ class PushEventTest extends TestCase {
         ];
         $shortCommitTitle = "I was born in a water moon. Some people, especially its inhabitants, ca…";
         foreach ($longCommitMessages as $longCommitMessage) {
-            $this->assertEquals(
+            $this->assertSame(
                 $shortCommitTitle,
                 PushEvent::getCommitTitle($longCommitMessage)
             );

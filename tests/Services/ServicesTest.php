@@ -20,7 +20,7 @@ class ServicesTest extends TestCase {
 
         $this->assertGreaterThan(0, $actualServices);
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->services->services, // This is public, so testable
             $actualServices
         );
@@ -41,7 +41,7 @@ class ServicesTest extends TestCase {
                 'Nasqueron\Notifications\Services\Service',
                 $service
             );
-            $this->assertEquals('GitHub', $service->gate);
+            $this->assertSame('GitHub', $service->gate);
         }
     }
 
@@ -53,8 +53,8 @@ class ServicesTest extends TestCase {
                 'Nasqueron\Notifications\Services\Service',
                 $service
         );
-        $this->assertEquals('GitHub', $service->gate);
-        $this->assertEquals('Acme', $service->door);
+        $this->assertSame('GitHub', $service->gate);
+        $this->assertSame('Acme', $service->door);
 
         // Search doesn't give any result
 
@@ -74,8 +74,8 @@ class ServicesTest extends TestCase {
                 'Nasqueron\Notifications\Services\Service',
                 $service
         );
-        $this->assertEquals('Phabricator', $service->gate);
-        $this->assertEquals('Acme', $service->door);
+        $this->assertSame('Phabricator', $service->gate);
+        $this->assertSame('Acme', $service->door);
 
         // Search doesn't give any result
 

@@ -20,6 +20,6 @@ class AMQPActionTest extends TestCase {
 
     public function testPublicProperties () {
         $this->assertNull($this->action->error);
-        $this->assertEquals('AMQPAction', $this->action->action);
+        $this->assertSame('AMQPAction', $this->action->action);
     }
 }

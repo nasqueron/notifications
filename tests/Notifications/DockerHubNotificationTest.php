@@ -28,16 +28,16 @@ class DockerHubNotificationTest extends TestCase {
     }
 
     public function testProperties () {
-        $this->assertEquals("DockerHub", $this->notification->service);
-        $this->assertEquals("Acme", $this->notification->project);
-        $this->assertEquals("docker", $this->notification->group);
-        $this->assertEquals($this->payload, $this->notification->rawContent);
-        $this->assertEquals("push", $this->notification->type);
-        $this->assertEquals(
+        $this->assertSame("DockerHub", $this->notification->service);
+        $this->assertSame("Acme", $this->notification->project);
+        $this->assertSame("docker", $this->notification->group);
+        $this->assertSame($this->payload, $this->notification->rawContent);
+        $this->assertSame("push", $this->notification->type);
+        $this->assertSame(
             "New image pushed to Docker Hub registry for svendowideit/testhook by trustedbuilder",
             $this->notification->text
         );
-        $this->assertEquals(
+        $this->assertSame(
             "https://registry.hub.docker.com/u/svendowideit/testhook/",
             $this->notification->link
         );

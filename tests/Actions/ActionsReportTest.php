@@ -22,7 +22,7 @@ class ActionsReportTest extends TestCase {
         $this->assertEmpty($this->report->gate);
         $this->assertEmpty($this->report->door);
         $this->assertFalse($this->report->containsError());
-        $this->assertEquals(0, count($this->report->actions));
+        $this->assertSame(0, count($this->report->actions));
 
         // Adds a first action
         // Our report should be valid.
@@ -32,7 +32,7 @@ class ActionsReportTest extends TestCase {
         );
         $this->report->addAction($action);
 
-        $this->assertEquals(1, count($this->report->actions));
+        $this->assertSame(1, count($this->report->actions));
         $this->assertFalse($this->report->containsError());
 
         // Let's attach an exception to a new action.
@@ -45,13 +45,13 @@ class ActionsReportTest extends TestCase {
         $action->attachError(new ActionError($ex));
         $this->report->addAction($action);
 
-        $this->assertEquals(2, count($this->report->actions));
+        $this->assertSame(2, count($this->report->actions));
         $this->assertTrue($this->report->containsError());
 
         // Attaches to gate
         $this->report->attachToGate('QuuxGate', 'Quuxians');
-        $this->assertEquals('QuuxGate', $this->report->gate);
-        $this->assertEquals('Quuxians', $this->report->door);
+        $this->assertSame('QuuxGate', $this->report->gate);
+        $this->assertSame('Quuxians', $this->report->door);
 
         // Test rendering
         $actualReport = (string)$this->report;

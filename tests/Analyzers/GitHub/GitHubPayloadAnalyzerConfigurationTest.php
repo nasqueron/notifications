@@ -34,8 +34,8 @@ class GitHubPayloadAnalyzerConfigurationTest extends TestCase {
      * Determines the JSON object is well parsed
      */
     public function testProperties () {
-        $this->assertEquals("orgz", $this->configuration->administrativeGroup);
-        $this->assertEquals("nasqueron", $this->configuration->defaultGroup);
+        $this->assertSame("orgz", $this->configuration->administrativeGroup);
+        $this->assertSame("nasqueron", $this->configuration->defaultGroup);
 
         foreach ($this->configuration->repositoryMapping as $item) {
             $this->assertInstanceOf(

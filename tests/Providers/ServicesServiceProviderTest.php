@@ -29,13 +29,13 @@ class ServicesServiceProviderTest extends TestCase {
         Config::set('services.gate.credentials', null);
         $services = $this->app->make('services');
 
-        $this->assertEquals(0, count($services->services));
+        $this->assertSame(0, count($services->services));
     }
 
     public function testWithNontFoundCredentialsFile () {
         Config::set('services.gate.credentials', 'notfound.json');
         $services = $this->app->make('services');
 
-        $this->assertEquals(0, count($services->services));
+        $this->assertSame(0, count($services->services));
     }
 }

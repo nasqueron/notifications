@@ -19,6 +19,6 @@ class NotifyNewCommitsActionTest extends TestCase {
 
     public function testPublicProperties () {
         $this->assertNull($this->action->error);
-        $this->assertEquals('NotifyNewCommitsAction', $this->action->action);
+        $this->assertSame('NotifyNewCommitsAction', $this->action->action);
     }
 }
