@@ -1,6 +1,6 @@
 <?php
 
-namespace Nasqueron\Notifications\Analyzers;
+namespace Nasqueron\Notifications\Analyzers\Phabricator;
 
 class PhabricatorPayloadAnalyzerConfiguration {
     /**
@@ -20,7 +20,7 @@ class PhabricatorPayloadAnalyzerConfiguration {
     /**
      * An array of RepositoryGroupMapping objects to match repositories & groups
      *
-     * @var PhabricatorGroupMapping[]
+     * @var ProjectGroupMapping[]
      */
     public $groupsMapping;
 }

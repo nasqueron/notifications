@@ -1,10 +1,10 @@
 <?php
 
-namespace Nasqueron\Notifications\Analyzers;
+namespace Nasqueron\Notifications\Analyzers\Phabricator;
 
 use Nasqueron\Notifications\Phabricator\PhabricatorStory;
 
-class PhabricatorGroupMapping {
+class ProjectGroupMapping {
     ///
     /// Properties
     ///

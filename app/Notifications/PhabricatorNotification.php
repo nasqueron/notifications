@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Notifications;
 
-use Nasqueron\Notifications\Analyzers\PhabricatorPayloadAnalyzer;
+use Nasqueron\Notifications\Analyzers\Phabricator\PhabricatorPayloadAnalyzer;
 use Nasqueron\Notifications\Notification;
 use Nasqueron\Notifications\Phabricator\PhabricatorStory;
 
