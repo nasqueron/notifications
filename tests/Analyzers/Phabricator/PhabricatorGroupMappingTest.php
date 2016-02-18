@@ -2,15 +2,15 @@
 
 namespace Nasqueron\Notifications\Tests\Analyzers\Phabricator;
 
-use Nasqueron\Notifications\Analyzers\Phabricator\ProjectGroupMapping;
+use Nasqueron\Notifications\Analyzers\Phabricator\PhabricatorGroupMapping;
 use Nasqueron\Notifications\Tests\TestCase;
 
-class ProjectGroupMappingTest extends TestCase {
+class PhabricatorGroupMappingTest extends TestCase {
 
     use WithConfiguration;
 
     /**
-     * @var ProjectGroupMapping|]
+     * @var PhabricatorGroupMapping|]
      */
     private $mappings;
 
@@ -41,35 +41,35 @@ class ProjectGroupMappingTest extends TestCase {
 
     public function testDoesProjectMatch () {
         $this->assertTrue(
-            ProjectGroupMapping::doesProjectMatch(
+            PhabricatorGroupMapping::doesProjectMatch(
                 'quux*',
                 'quuxians'
             )
         );
 
         $this->assertTrue(
-            ProjectGroupMapping::doesProjectMatch(
+            PhabricatorGroupMapping::doesProjectMatch(
                 'quux*',
                 'quux'
             )
         );
 
         $this->assertFalse(
-            ProjectGroupMapping::doesProjectMatch(
+            PhabricatorGroupMapping::doesProjectMatch(
                 'foobar',
                 'quux'
             )
         );
 
         $this->assertFalse(
-            ProjectGroupMapping::doesProjectMatch(
+            PhabricatorGroupMapping::doesProjectMatch(
                 '',
                 'quuxians'
             )
         );
 
         $this->assertFalse(
-            ProjectGroupMapping::doesProjectMatch(
+            PhabricatorGroupMapping::doesProjectMatch(
                 'quux*',
                 ''
             )

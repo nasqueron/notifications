@@ -20,7 +20,7 @@ class PhabricatorPayloadAnalyzerConfiguration {
     /**
      * An array of RepositoryGroupMapping objects to match repositories & groups
      *
-     * @var ProjectGroupMapping[]
+     * @var PhabricatorGroupMapping[]
      */
     public $groupsMapping;
 }

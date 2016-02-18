@@ -4,7 +4,7 @@ namespace Nasqueron\Notifications\Analyzers\Phabricator;
 
 use Nasqueron\Notifications\Phabricator\PhabricatorStory;
 
-class ProjectGroupMapping {
+class PhabricatorGroupMapping {
     ///
     /// Properties
     ///
