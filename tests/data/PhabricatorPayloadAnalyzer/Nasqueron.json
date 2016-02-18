@@ -1,0 +1,42 @@
+{
+    "administrativeGroup": "orgz",
+    "defaultGroup": "nasqueron",
+    "groupsMapping": [
+        {
+            "group": "docker",
+            "projects": [
+                "Docker images",
+                "Nasqueron Docker deployment squad"
+            ]
+        },
+        {
+            "group": "tasacora",
+            "projects":[
+                "Tasacora"
+            ],
+            "words": [
+                "Tasacora",
+                "cartography"
+            ]
+        },
+        {
+            "group": "ops",
+            "projects": [
+                "Continous integration and delivery",
+                "IPv6",
+                "Mail",
+                "Message queues",
+                "Murasil",
+                "Nasqueron security operations squad",
+                "Servers",
+                "Ops-sprint-*"
+            ],
+            "words": [
+                "Ysul",
+                "Dwellers",
+                "pkg audit"
+            ],
+            "wordsAreStrong": true
+        }
+    ]
+}
