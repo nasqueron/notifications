@@ -20,7 +20,17 @@ trait WithConfiguration {
     }
 
     private function getStory() {
-        return new PhabricatorStory("https://phab.acme");
+        return $this
+            ->getMockBuilder("Nasqueron\Notifications\Phabricator\PhabricatorStory")
+            ->setConstructorArgs(["https://phab.acme"])
+            ->getMock();
+    }
+
+    private function attachProjectsToStoryMock ($mock, $projects) {
+        $mock
+            ->expects($this->any())
+            ->method("getProjects")
+            ->will($this->returnValue($projects));
     }
 
 }
