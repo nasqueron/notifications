@@ -48,15 +48,10 @@ class ConfigShow extends Command
     protected function getServicesTableRows () {
         $rows = [];
         foreach (Services::get() as $service) {
-            if (isset($service->instance)) {
-                $instance = $service->instance;
-            } else {
-                $instance = 'ø';
-            }
             $rows[] = [
                 $service->gate,
                 $service->door,
-                $instance,
+                $service->getInstanceName(),
                 $this->getServiveStatus($service)
             ];
         }
