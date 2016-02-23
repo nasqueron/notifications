@@ -43,7 +43,7 @@ class ConfigShow extends Command
     /**
      * Gets the services (defined in credentials.json) as table rows
      *
-     * @return arrray
+     * @return array
      */
     protected function getServicesTableRows () {
         $rows = [];
