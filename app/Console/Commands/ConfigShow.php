@@ -77,6 +77,7 @@ class ConfigShow extends Command
                 return "Projects map not cached.";
             }
         }
+
         return "✓";
     }
 
