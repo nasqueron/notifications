@@ -67,6 +67,11 @@ class EventTest extends TestCase {
                 'Removed tag on baxterthehacker/public-repo: simple-tag',
                 'https://github.com/baxterthehacker/public-repo/tags'
             ],
+            'ForkEvent' => [
+                'fork',
+                'baxterthehacker/public-repo has been forked to baxterandthehackers/public-repo',
+                'https://github.com/baxterandthehackers/public-repo'
+            ],
             'PushEvent' => [
                 'push',
                 'baxterthehacker committed Update README.md',

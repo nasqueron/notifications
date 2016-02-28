@@ -30,6 +30,8 @@ return [
         'DeleteEvent' => 'Removed :type on :repository: :ref',
         'DeleteEventUnknown' => 'Unknown delete reference: :type :ref',
 
+        'ForkEvent' => ':repo_base has been forked to :repo_fork',
+
         'PingEvent' => '« :zen » — GitHub Webhooks ping zen aphorism.',
 
         'PushEvent' => [
