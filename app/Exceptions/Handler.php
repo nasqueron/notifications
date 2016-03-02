@@ -5,6 +5,7 @@ namespace Nasqueron\Notifications\Exceptions;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Validation\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -21,6 +22,7 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         AuthorizationException::class,
+        CommandNotFoundException::class,
         HttpException::class,
         ModelNotFoundException::class,
         ValidationException::class,
