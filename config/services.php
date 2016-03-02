@@ -35,6 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'sentry' => [
+        'dsn' => env('SENTRY_DSN'),
+    ],
+
     'github' => [
         'analyzer' => [
             'configDir' => env('GITHUB_ANALYZER_CONFIG_DIR', 'GitHubPayloadAnalyzer')

@@ -9,6 +9,9 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Validation\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+use Config;
+use Raven;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -33,7 +36,29 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
+        if ($this->shouldReportToSentry()) {
+            $this->reportToSentry($e);
+        }
+
         parent::report($e);
+    }
+
+    /**
+     * Determines if the error handler should report to Sentry
+     *
+     * @return bool
+     */
+    protected function shouldReportToSentry () {
+        return Raven::isConfigured() && Config::get('app.env') !== 'testing';
+    }
+
+    /**
+     * Reports the exception to Sentry
+     *
+     * @param Exception $e The exception to report
+     */
+    protected function reportToSentry (Exception $e) {
+        Raven::captureException($e);
     }
 
     /**

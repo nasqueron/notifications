@@ -174,6 +174,7 @@ return [
         Nasqueron\Notifications\Providers\EventServiceProvider::class,
         Nasqueron\Notifications\Providers\ReportServiceProvider::class,
         Nasqueron\Notifications\Providers\RouteServiceProvider::class,
+        Nasqueron\Notifications\Providers\SentryServiceProvider::class,
         Nasqueron\Notifications\Providers\ServicesServiceProvider::class
 
     ],
@@ -231,6 +232,7 @@ return [
         'Mail'      => Illuminate\Support\Facades\Mail::class,
         'Password'  => Illuminate\Support\Facades\Password::class,
         'Queue'     => Illuminate\Support\Facades\Queue::class,
+        'Raven'     => Nasqueron\Notifications\Facades\Raven::class,
         'Redirect'  => Illuminate\Support\Facades\Redirect::class,
         'Redis'     => Illuminate\Support\Facades\Redis::class,
         'Report'    => Nasqueron\Notifications\Facades\Report::class,
