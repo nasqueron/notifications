@@ -134,6 +134,11 @@ class PhabricatorAPI {
         curl_setopt_array($ch, $options);
         $result = curl_exec($ch);
         curl_close($ch);
+
+        if ($result === false) {
+            throw new \RuntimeException("Can't reach Phabricator API endpoint: $url");
+        }
+
         return $result;
     }
 }
