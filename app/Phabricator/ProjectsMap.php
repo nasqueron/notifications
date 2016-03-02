@@ -8,6 +8,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
 
     ///
     /// Private properties and constants
+    ///
 
     /**
      * The maximum number of projects to fetch
