@@ -2,6 +2,7 @@
 
 namespace Nasqueron\Notifications\Tests\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Nasqueron\Notifications\Exceptions\Handler;
 use Nasqueron\Notifications\Tests\TestCase;
 
@@ -16,24 +17,38 @@ class HandlerTest extends TestCase {
      */
     private $handler;
 
+    /**
+     * Raven_Client
+     */
+    private $ravenClientMock;
+
     public function setUp () {
         parent::setUp();
 
         $logger = App::make('log');
         $this->handler = new Handler($logger);
+
+        $this->mockRavenClient();
     }
 
     protected function mockRavenClient () {
-        $mock = Mockery::mock('Raven_Client');
-        $mock->shouldReceive('captureException')->once();
+        // Inject into our container a mock of Raven_Client
+        $this->ravenClientMock = Mockery::mock('Raven_Client');
+        $this->app->instance('raven', $this->ravenClientMock);
 
+        // Environment shouldn't be 'testing' and DSN should be defined,
+        // so Handler::report will call Raven to report to Sentry
         Config::set('app.env', 'testing-raven');
         Config::set('services.sentry.dsn', 'mock');
-        $this->app->instance('raven', $mock);
     }
 
     public function testRavenReport () {
-        $this->mockRavenClient();
+        $this->ravenClientMock->shouldReceive('captureException')->once();
         $this->handler->report(new \Exception);
+    }
+
+    public function testExceptionInDontReportArray () {
+        $this->ravenClientMock->shouldReceive('captureException')->never();
+        $this->handler->report(new AuthorizationException);
     }
 }

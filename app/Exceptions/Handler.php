@@ -36,11 +36,15 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
+        if (!$this->shouldReport($e)) {
+            return;
+        }
+
         if ($this->shouldReportToSentry()) {
             $this->reportToSentry($e);
         }
 
-        parent::report($e);
+        $this->log->error($e);
     }
 
     /**
