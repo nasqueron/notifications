@@ -4,9 +4,11 @@ namespace Nasqueron\Notifications\Tests\Console\Commands;
 
 use Symfony\Component\Console\Tester\CommandTester;
 
+use Nasqueron\Notifications\Services\Service;
 use Nasqueron\Notifications\Tests\TestCase as BaseTestCase;
 
 use Artisan;
+use Mockery;
 
 class TestCase extends BaseTestCase {
 
@@ -54,6 +56,27 @@ class TestCase extends BaseTestCase {
 
     protected function findCommand ($expectedType) {
         return self::findInstanceOf($expectedType, Artisan::all());
+    }
+
+    ///
+    /// Helper methods to mock services
+    ///
+
+    protected function mockServices () {
+        // Inject into our container a mock of Services
+        $mock = Mockery::mock('Nasqueron\Notifications\Services\Services');
+        $this->app->instance('services', $mock);
+
+        return $mock;
+    }
+
+    protected function mockService ($gate = 'Storm') {
+        $service = new Service;
+        $service->gate = $gate;
+        $service->door = 'Acme';
+        $service->instance = "http://www.perdu.com";
+
+        return $service;
     }
 
 }

@@ -22,21 +22,7 @@ class ConfigShowTest extends TestCase {
     public function setUp () {
         parent::setUp();
 
-        $this->mockServices();
-    }
-
-    protected function mockServices () {
-        // Inject into our container a mock of Services
-        $this->servicesMock = Mockery::mock('Nasqueron\Notifications\Services\Services');
-        $this->app->instance('services', $this->servicesMock);
-    }
-
-    protected function mockService ($gate = 'Storm') {
-        $service = new Service;
-        $service->gate = $gate;
-        $service->door = 'Acme';
-        $service->instance = "http://www.perdu.com";
-        return $service;
+        $this->servicesMock = $this->mockServices();
     }
 
     public function testRegularExecute () {
