@@ -201,8 +201,11 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     * Populates 'map' and 'source' properties
     */
     public function loadFromCache () {
-        $this->map = Cache::get($this->getCacheKey());
-        $this->source = 'cache';
+        $cachedMap = Cache::get($this->getCacheKey());
+        if ($cachedMap !== null) {
+            $this->map = $cachedMap;
+            $this->source = 'cache';
+        }
     }
 
     ///
