@@ -70,6 +70,34 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
         $this->app->instance('broker', $mock);
     }
 
+    /**
+     * Mocks the Phabricator API
+     *
+     * @return Nasqueron\Notifications\Phabricator\PhabricatorAPIFactory The mock
+     */
+    protected function mockPhabricatorAPI () {
+        // Inject into our container a mock of PhabricatorAPI
+        $mock = Mockery::mock('Nasqueron\Notifications\Phabricator\PhabricatorAPIFactory');
+        $this->app->instance('phabricator-api', $mock);
+
+        return $mock;
+    }
+
+    private function mockPhabricatorAPIProjectsQueryReply () {
+        $json = file_get_contents('tests/data/PhabricatorProjetsQueryReply.json');
+        return json_decode($json);
+    }
+
+    /**
+     * Mocks the Phabricator API
+     */
+    protected function mockPhabricatorAPIForProjectsMap () {
+        $mock = $this->mockPhabricatorAPI();
+
+        $reply = $this->mockPhabricatorAPIProjectsQueryReply();
+        $mock->shouldReceive('get->call')->andReturn($reply);
+    }
+
     ///
     /// Helpers to post data to gates
     ///

@@ -1,0 +1,61 @@
+{
+    "data": {
+        "PHID-PROJ-6dg6ogx5pjmk24ur4tp4": {
+            "id": "60",
+            "phid": "PHID-PROJ-6dg6ogx5pjmk24ur4tp4",
+            "name": "Accounts",
+            "profileImagePHID": "PHID-FILE-fgoutnn6wzccr6w2nldv",
+            "icon": "tag",
+            "color": "orange",
+            "members": [
+                "PHID-USER-fnetlprx7zdotfm2hdrz"
+            ],
+            "slugs": [
+                "accounts"
+            ],
+            "dateCreated": "1453142137",
+            "dateModified": "1453142157"
+        },
+        "PHID-PROJ-cztcgpvqr6smnnekotq7": {
+            "id": "17",
+            "phid": "PHID-PROJ-cztcgpvqr6smnnekotq7",
+            "name": "Agora",
+            "profileImagePHID": "PHID-FILE-2lbihkjdnretjk52wmoi",
+            "icon": "folder",
+            "color": "blue",
+            "members": [
+                "PHID-USER-fnetlprx7zdotfm2hdrz"
+            ],
+            "slugs": [
+                "agora",
+                "wiki"
+            ],
+            "dateCreated": "1417065185",
+            "dateModified": "1417076656"
+        },
+        "PHID-PROJ-3iew3cqf3htpazfyzb5a": {
+            "id": "29",
+            "phid": "PHID-PROJ-3iew3cqf3htpazfyzb5a",
+            "name": "architecture",
+            "profileImagePHID": "PHID-FILE-bljt7kpva2cwkx6omh2j",
+            "icon": "tag",
+            "color": "orange",
+            "members": [
+                "PHID-USER-fnetlprx7zdotfm2hdrz"
+            ],
+            "slugs": [
+                "architecture",
+                "architect",
+                "archi"
+            ],
+            "dateCreated": "1427725535",
+            "dateModified": "1427725949"
+        }
+    },
+    "slugMap": [],
+    "cursor": {
+        "limit": "3",
+        "after": "29",
+        "before": null
+    }
+}

@@ -172,6 +172,8 @@ return [
         Nasqueron\Notifications\Providers\AppServiceProvider::class,
         Nasqueron\Notifications\Providers\BrokerServiceProvider::class,
         Nasqueron\Notifications\Providers\EventServiceProvider::class,
+        Nasqueron\Notifications\Providers\PhabricatorAPIServiceProvider::class,
+        Nasqueron\Notifications\Providers\PhabricatorProjectsMapServiceProvider::class,
         Nasqueron\Notifications\Providers\ReportServiceProvider::class,
         Nasqueron\Notifications\Providers\RouteServiceProvider::class,
         Nasqueron\Notifications\Providers\SentryServiceProvider::class,
@@ -249,6 +251,8 @@ return [
          * App aliases...
          */
         'Broker'    => Nasqueron\Notifications\Facades\Broker::class,
+        'PhabricatorAPI' => Nasqueron\Notifications\Facades\PhabricatorAPI::class,
+        'ProjectsMap' => Nasqueron\Notifications\Facades\ProjectsMap::class,
         'Raven'     => Nasqueron\Notifications\Facades\Raven::class,
         'Report'    => Nasqueron\Notifications\Facades\Report::class,
         'Services'  => Nasqueron\Notifications\Facades\Services::class,
