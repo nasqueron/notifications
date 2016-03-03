@@ -15,7 +15,7 @@ class ProjectsMapFactoryTest extends TestCase {
         parent::setUp();
         $this->factory = $this->app->make('phabricator-projectsmap');
 
-        $mock = $this->mockPhabricatorAPIForProjectsMap();
+        $this->mockPhabricatorAPIForProjectsMap();
     }
 
     public function testLoadProjectsMap () {
