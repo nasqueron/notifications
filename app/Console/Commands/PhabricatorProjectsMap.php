@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 use ProjectsMap;
 use Services;
 
-class PhabricatorGetProjectsMap extends Command {
+class PhabricatorProjectsMap extends Command {
     /**
      * The name and signature of the console command.
      *
