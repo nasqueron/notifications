@@ -112,4 +112,16 @@ class PhabricatorGroupMappingTest extends TestCase {
         );
     }
 
+    /**
+     * Test to fix T773
+     */
+    public function testDoesStoryBelongWhenWordIsInAnotherCase () {
+        $mapping = $this->mappings['words'];
+
+        $this->story->text = "Review the Cartography elements.";
+        $this->assertTrue(
+            $mapping->doesStoryBelong($this->story)
+        );
+    }
+
 }
