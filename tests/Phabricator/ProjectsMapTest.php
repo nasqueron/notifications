@@ -161,30 +161,4 @@ class ProjectsMapTest extends TestCase {
         );
     }
 
-    ///
-    /// Tests API
-    ///
-
-    private function mockPhabricatorAPIWithReply ($reply) {
-        $mock = $this->mockPhabricatorAPI();
-        $mock->shouldReceive('get->call')->andReturn($reply);
-        eval(\Psy\sh());
-    }
-
-    /**
-     * @expectedException Exception
-     */
-    public function testFetchFromAPIWithoutReply () {
-        $this->mockPhabricatorAPIWithReply(false);
-        ProjectsMap::fetch("http://phabricator.acme.tld");
-    }
-
-    /**
-     * @expectedException Exception
-     */
-    public function testFetchFromAPIInvalidReply () {
-        $this->mockPhabricatorAPIWithReply(new stdClass);
-        ProjectsMap::fetch("http://phabricator.acme.tld");
-    }
-
 }
