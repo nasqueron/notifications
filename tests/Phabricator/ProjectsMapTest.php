@@ -5,6 +5,8 @@ namespace Nasqueron\Notifications\Tests\Phabricator;
 use Nasqueron\Notifications\Phabricator\ProjectsMap;
 use Nasqueron\Notifications\Tests\TestCase;
 
+use Mockery;
+
 class ProjectsMapTest extends TestCase {
 
     /**
@@ -159,6 +161,32 @@ class ProjectsMapTest extends TestCase {
             ],
             $this->map->toArray()
         );
+    }
+
+    ///
+    /// Tests API
+    ///
+
+    private function mockPhabricatorAPIWithReply ($reply) {
+        return Mockery::mock('Nasqueron\Notifications\Contract\APIClient')
+            ->shouldReceive('call')
+            ->andReturn($reply);
+    }
+
+    /**
+     * @expectedException Exception
+     */
+    public function testFetchFromAPIWithoutReply () {
+        $mock = $this->mockPhabricatorAPIWithReply(false);
+        ProjectsMap::fetch("http://phabricator.acme.tld", $mock);
+    }
+
+    /**
+     * @expectedException Exception
+     */
+    public function testFetchFromAPIInvalidReply () {
+        $mock = $this->mockPhabricatorAPIWithReply(new \stdClass);
+        ProjectsMap::fetch("http://phabricator.acme.tld", $mock);
     }
 
 }

@@ -139,10 +139,12 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     * Gets a new ProjectsMap instance and queries Phabricator API to fill it
     *
     * @param string $phabricatorURL The Phabricator URL (e.g. http://secure.phabricator.com)
+    * @param Nasqueron\Notifications\Contracts\APIClient $apiClient The Phabricator API client
     * @return ProjectsMap
     */
-    public static function fetch ($phabricatorURL) {
+    public static function fetch ($phabricatorURL, APIClient $apiClient = null) {
         $instance = new self($phabricatorURL);
+        $instance->setAPIClient($apiClient);
         $instance->fetchFromAPI();
         return $instance;
     }
@@ -165,7 +167,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     /**
      * @param Nasqueron\Notifications\Contracts\APIClient $apiClient
      */
-    public function setAPIClient (APIClient $apiClient) {
+    public function setAPIClient (APIClient $apiClient = null) {
         $this->apiClient = $apiClient;
     }
 
