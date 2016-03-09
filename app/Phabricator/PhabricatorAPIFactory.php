@@ -2,7 +2,9 @@
 
 namespace Nasqueron\Notifications\Phabricator;
 
-class PhabricatorAPIFactory {
+use Nasqueron\Notifications\Contracts\APIFactory;
+
+class PhabricatorAPIFactory implements APIFactory {
 
     /**
      * Gets an instance of the Phabricator API client class

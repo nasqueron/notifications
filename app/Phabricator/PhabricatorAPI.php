@@ -2,9 +2,11 @@
 
 namespace Nasqueron\Notifications\Phabricator;
 
+use Nasqueron\Notifications\Contracts\APIClient;
+
 use Services;
 
-class PhabricatorAPI {
+class PhabricatorAPI implements APIClient {
 
     ///
     /// Private members
@@ -15,7 +17,7 @@ class PhabricatorAPI {
      *
      * @var string
      */
-    private $instance;
+    private $endPoint;
 
     /**
      * The token generated at /settings/panel/apitokens/ to query the API
@@ -31,11 +33,11 @@ class PhabricatorAPI {
     /**
      * Initializes a new instance of the Phabricator API class
      *
-     * @param string $instance The Phabricator main URL, without trailing slash
+     * @param string $endPoint The Phabricator main URL, without trailing slash
      * @param string $apiToken The token generated at /settings/panel/apitokens/
      */
-    public function __construct ($instance, $apiToken) {
-        $this->instance = $instance;
+    public function __construct ($endPoint, $apiToken) {
+        $this->endPoint = $endPoint;
         $this->apiToken = $apiToken;
     }
 
@@ -68,17 +70,27 @@ class PhabricatorAPI {
     }
 
     ///
-    /// Public methods
+    /// APIClient implementation
     ///
+
+    /**
+     * Sets API end point
+     *
+     * @param string $url The API end point URL
+     */
+    public function setEndPoint ($url) {
+        $this->endPoint = $url;
+    }
 
     /**
      * Calls a Conduit API method
      *
-     * @param $method The method to call (e.g. repository.create)
-     * @param $arguments The arguments to use
+     * @param string $method The method to call (e.g. repository.create)
+     * @param array $arguments The arguments to use
+     * @return mixed The API result
      */
     public function call ($method, $arguments = []) {
-        $url = $this->instance . '/api/' . $method;
+        $url = $this->endPoint . '/api/' . $method;
         $arguments['api.token'] = $this->apiToken;
 
         $reply = json_decode(static::post($url, $arguments));
@@ -92,6 +104,10 @@ class PhabricatorAPI {
 
         return $reply->result;
     }
+
+    ///
+    /// Helper methods
+    ///
 
     /**
      * Gets the first result of an API reply

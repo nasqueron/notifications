@@ -2,6 +2,9 @@
 
 namespace Nasqueron\Notifications\Phabricator;
 
+use Nasqueron\Notifications\Phabricator\PhabricatorAPIClient as ApiClient;
+
+use App;
 use Cache;
 
 class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
@@ -28,6 +31,12 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     * @var string
     */
     private $instance;
+
+    /**
+     *
+     * @var Nasqueron\Notifications\Contracts\APIClient
+     */
+    private $apiClient;
 
     /**
     * The source of the map
@@ -143,10 +152,28 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
+     * @return Nasqueron\Notifications\Contracts\APIClient
+     */
+    public function getAPIClient () {
+        if ($this->apiClient === null) {
+            $factory = App::make('phabricator-api');
+            $this->apiClient = $factory->get($this->instance);
+        }
+        return $this->apiClient;
+    }
+
+    /**
+     * @param Nasqueron\Notifications\Contracts\APIClient $apiClient
+     */
+    public function setAPIClient (APIClient $apiClient) {
+        $this->apiClient = $apiClient;
+    }
+
+    /**
     * Fetches the projects' map from the Phabricator API
     */
     private function fetchFromAPI () {
-        $reply = \PhabricatorAPI::get($this->instance)->call(
+        $reply = $this->getAPIClient()->call(
             'project.query',
             [ 'limit' => self::LIMIT ]
         );
