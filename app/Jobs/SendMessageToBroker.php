@@ -9,6 +9,7 @@ use Nasqueron\Notifications\Jobs\Job;
 
 use Broker;
 use Event;
+use Log;
 
 class SendMessageToBroker extends Job {
 
@@ -86,6 +87,7 @@ class SendMessageToBroker extends Job {
                 ->sendMessage($this->message);
         } catch (\Exception $ex) {
             $this->exception = $ex;
+            Log::error($ex);
         }
     }
 

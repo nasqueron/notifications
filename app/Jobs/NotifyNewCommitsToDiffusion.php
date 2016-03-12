@@ -10,6 +10,7 @@ use Nasqueron\Notifications\Phabricator\PhabricatorAPIException;
 
 
 use Event;
+use Log;
 use PhabricatorAPI;
 
 /**
@@ -96,6 +97,7 @@ class NotifyNewCommitsToDiffusion extends Job {
         } catch (PhabricatorAPIException $ex) {
             $actionError = new ActionError($ex);
             $this->actionToReport->attachError($actionError);
+            Log::error($ex);
         }
     }
 
