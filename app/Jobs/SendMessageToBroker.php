@@ -81,7 +81,7 @@ class SendMessageToBroker extends Job {
      */
     protected function sendMessage () {
         try {
-            Broker::setExchangeTarget($this->target)
+            Broker::setExchangeTarget($this->target, "topic", true)
                 ->routeTo($this->routingKey)
                 ->sendMessage($this->message);
         } catch (\Exception $ex) {
