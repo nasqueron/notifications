@@ -77,6 +77,9 @@ class GitHubPayloadAnalyzer {
     /// Configuration
     ///
 
+    /**
+     * The default name of the configuration file
+     */
     const CONFIG_DEFAULT_FILE = 'default.json';
 
     public function getConfigurationFileName () {

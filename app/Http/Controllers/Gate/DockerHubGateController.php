@@ -31,6 +31,9 @@ class DockerHubGateController extends GateController {
     /// Constants
     ///
 
+    /**
+     * The name of the service this gate accepts payload from.
+     */
     const SERVICE_NAME = 'DockerHub';
 
     ///
