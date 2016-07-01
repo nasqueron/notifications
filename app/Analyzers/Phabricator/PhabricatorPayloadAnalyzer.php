@@ -8,6 +8,7 @@ use Config;
 use Storage;
 
 class PhabricatorPayloadAnalyzer {
+    
     ///
     /// Private members
     ///
@@ -57,6 +58,11 @@ class PhabricatorPayloadAnalyzer {
      */
     const CONFIG_DEFAULT_FILE = 'default.json';
 
+    /**
+     * Gets the full path to the configuration file.
+     *
+     * @return string
+     */
     public function getConfigurationFileName () {
         $dir = Config::get('services.phabricator.analyzer.configDir');
         $filename = $dir . '/' . $this->project . '.json';
@@ -68,6 +74,11 @@ class PhabricatorPayloadAnalyzer {
         return $filename;
     }
 
+    /**
+     * Gets the full path to the configuration file.
+     *
+     * @return string
+     */
     public function loadConfiguration () {
         $fileName = $this->getConfigurationFileName();
 
@@ -82,12 +93,15 @@ class PhabricatorPayloadAnalyzer {
     /// Qualification of the story
     ///
 
+    /**
+     * @return bool
+     */
     public function isAdministrativeEvent () {
         return false;
     }
 
     /**
-     * Gets the group for a specific story
+     * Gets the group for a specific story.
      *
      * @return string the group, central part of the routing key
      */

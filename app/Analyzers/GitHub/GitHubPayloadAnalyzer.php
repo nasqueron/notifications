@@ -9,6 +9,7 @@ use Config;
 use Storage;
 
 class GitHubPayloadAnalyzer {
+    
     ///
     /// Private members
     ///
@@ -82,6 +83,11 @@ class GitHubPayloadAnalyzer {
      */
     const CONFIG_DEFAULT_FILE = 'default.json';
 
+    /**
+     * Gets the full path to the configuration file.
+     *
+     * @return string
+     */
     public function getConfigurationFileName () {
         $dir = Config::get('services.github.analyzer.configDir');
         $filename = $dir . '/' . $this->project . '.json';
@@ -106,10 +112,16 @@ class GitHubPayloadAnalyzer {
     /// Properties
     ///
 
+    /**
+     * Gets the name of the repository.
+     *
+     * @var string
+     */
     public function getRepository () {
         if ($this->isAdministrativeEvent()) {
             return '';
         }
+
         return $this->payload->repository->name;
     }
 
@@ -117,6 +129,9 @@ class GitHubPayloadAnalyzer {
     /// Qualification of the payload
     ///
 
+    /**
+     * @return bool
+     */
     public function isAdministrativeEvent () {
         $administrativeEvents = [
             'membership',    // Member added to team
@@ -128,9 +143,9 @@ class GitHubPayloadAnalyzer {
     }
 
     /**
-     * Gets the group for a specific payload
+     * Gets the group for a specific payload.
      *
-     * @return string the group, central part of the routing key
+     * @return string The group, central part of the routing key
      */
     public function getGroup () {
         // Some events are organization-level only and can't be mapped to an
@@ -156,7 +171,7 @@ class GitHubPayloadAnalyzer {
     ///
 
     /**
-     * Gets a short textual description of the event
+     * Gets a short textual description of the event.
      *
      * @return string
      */
@@ -165,11 +180,12 @@ class GitHubPayloadAnalyzer {
     }
 
     /**
-     * Gets a link to view the event on GitHub
+     * Gets a link to view the event on GitHub.
      *
      * @return string The most relevant URL
      */
     public function getLink () {
       return $this->analyzerEvent->getLink();
     }
+    
 }
