@@ -2,8 +2,6 @@
 
 namespace Nasqueron\Notifications\Tests\Providers;
 
-use Nasqueron\Notifications\Providers\EventServiceProvider;
-
 use Config;
 use File;
 
