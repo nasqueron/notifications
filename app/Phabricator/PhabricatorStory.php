@@ -108,8 +108,8 @@ class PhabricatorStory {
      * @return string The object type, as a 4 letters string (e.g. 'TASK')
      */
     public function getObjectType () {
-        if (!array_key_exists('objectPHID', $this->data)) {
-            return 'MISC';
+        if ($this->data === null || !array_key_exists('objectPHID', $this->data)) {
+            return 'VOID';
         }
 
         return substr($this->data['objectPHID'], 5, 4);
