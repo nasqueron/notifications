@@ -1,5 +1,5 @@
 {
 	"repository.callsign": "NOTIF",
-	"phabricator.uri": "http://devcentral.nasqueron.org",
+	"phabricator.uri": "https://devcentral.nasqueron.org",
 	"unit.engine": "PhpunitTestEngine"
 }
