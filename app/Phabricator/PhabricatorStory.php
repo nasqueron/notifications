@@ -108,6 +108,10 @@ class PhabricatorStory {
      * @return string The object type, as a 4 letters string (e.g. 'TASK')
      */
     public function getObjectType () {
+        if (!array_key_exists('objectPHID', $this->data)) {
+            return 'MISC';
+        }
+
         return substr($this->data['objectPHID'], 5, 4);
     }
 
@@ -117,6 +121,10 @@ class PhabricatorStory {
      * return string[] The list of project PHIDs
      */
     public function getProjectsPHIDs () {
+        if (!array_key_exists('objectPHID', $this->data)) {
+            return [];
+        }
+
         $objectPHID = $this->data['objectPHID'];
         $objectType = $this->getObjectType();
 
