@@ -43,6 +43,8 @@ return [
         'RepositoryEventFork' => ' (fork)',
 
         'StatusEvent' => 'Status of :commit: :status',
+
+        'WatchEvent' => ':user starred :repository',
     ],
 
     'StatusEventState' => [

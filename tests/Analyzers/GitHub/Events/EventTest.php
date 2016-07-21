@@ -87,6 +87,11 @@ class EventTest extends TestCase {
                 'Status of 9049f126: default — success',
                 ''
             ],
+            'WatchEvent' => [
+                'watch',
+                'baxterthehacker starred baxterthehacker/public-repo',
+                'https://github.com/baxterthehacker'
+            ],
         ];
     }
 
