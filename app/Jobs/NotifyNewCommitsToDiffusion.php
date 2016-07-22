@@ -80,7 +80,6 @@ class NotifyNewCommitsToDiffusion extends Job {
         $this->sendReport();
     }
 
-
     /**
      * Initializes the actions report.
      */
