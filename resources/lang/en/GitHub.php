@@ -39,8 +39,14 @@ return [
             'n' => ':user pushed :count commits to :repoAndBranch', // n > 1
         ],
 
-        'RepositoryEvent' => 'New repository :repository',
+        'RepositoryEventPerAction' => [
+            'created' => 'New repository :repository',
+            'deleted' => "Repository :repository deleted (danger zone)",
+            'publicized' => "Repository :repository is now public",
+            'privatized' => "Repository :repository is now private",
+        ],
         'RepositoryEventFork' => ' (fork)',
+        'RepositoryEventUnknown' => 'Unknown repository action: :action',
 
         'StatusEvent' => 'Status of :commit: :status',
 

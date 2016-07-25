@@ -45,4 +45,28 @@ class RepositoryEventTest extends TestCase {
         $this->assertContains("Lorem ipsum dolor", $event->getDescription());
     }
 
+    /**
+     * @dataProvider payloadDescriptionProvider
+     */
+    public function testWhenRepositoryPerAction ($action, $description) {
+        $this->payload->action = $action;
+        $event = new RepositoryEvent($this->payload);
+        $this->assertSame($description, $event->getDescription());
+    }
+
+    /**
+     * Provides actions and descritions for testWhenRepositoryPerAction
+     *
+     * See https://developer.github.com/v3/activity/events/types/#repositoryevent
+     */
+    public function payloadDescriptionProvider () {
+        return [
+            ['created', "New repository baxterandthehackers/new-repository"],
+            ['deleted', "Repository baxterandthehackers/new-repository deleted (danger zone)"],
+            ['publicized', "Repository baxterandthehackers/new-repository is now public"],
+            ['privatized', "Repository baxterandthehackers/new-repository is now private"],
+            ['quuxed', "Unknown repository action: quuxed"],
+        ];
+    }
+
 }
