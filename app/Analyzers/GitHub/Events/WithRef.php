@@ -17,7 +17,7 @@ trait WithRef {
      * The ref type 'repository' is deemed invalid, as we shouldn't receive it.
      *
      * @param string $type The ref type to check
-     * @return bool true if the ref type id valid; otheriwse, false
+     * @return bool true if the ref type id valid; otherwise, false
      */
     protected static function isValidRefType ($type) {
         $types = ['branch', 'tag'];
