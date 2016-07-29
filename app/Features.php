@@ -25,7 +25,7 @@ class Features {
     }
 
     /**
-     * Determines if the specified feature is enabled
+     * Determines if the specified feature is enabled.
      *
      * @param string $feature The feature to check in the config
      * @return bool
@@ -36,7 +36,7 @@ class Features {
     }
 
     /**
-     * Enables a feature in our current configuration instance
+     * Enables a feature in our current configuration instance.
      *
      * @param string $feature The feature
      */
@@ -46,7 +46,7 @@ class Features {
     }
 
     /**
-     * Disables a feature in our current configuration instance
+     * Disables a feature in our current configuration instance.
      *
      * @param string $feature The feature
      */
@@ -60,7 +60,7 @@ class Features {
     ///
 
     /**
-     * Gets all the features, with the toggle status
+     * Gets all the features, with the toggle status.
      *
      * @return array An array with features as keys, bool as values (true if enabled)
      */
@@ -69,7 +69,7 @@ class Features {
     }
 
     /**
-     * Lists all the features
+     * Lists all the features.
      *
      * @return string[] a list of all features
      */
