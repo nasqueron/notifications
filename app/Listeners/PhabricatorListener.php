@@ -2,10 +2,6 @@
 
 namespace Nasqueron\Notifications\Listeners;
 
-/**
- * Verified:
- */
-
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 use Nasqueron\Notifications\Jobs\NotifyNewCommitsToDiffusion;
 
