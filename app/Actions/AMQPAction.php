@@ -27,7 +27,7 @@ class AMQPAction extends Action {
     /**
      * Initializes a new instance of a AMQP action to report
      */
-    function __construct ($method, $target, $routingKey = '') {
+    public function __construct ($method, $target, $routingKey = '') {
         parent::__construct();
 
         $this->method = $method;

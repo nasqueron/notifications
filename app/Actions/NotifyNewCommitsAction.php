@@ -13,7 +13,7 @@ class NotifyNewCommitsAction extends Action {
     /**
      * Initializes a new instance of a AMQP action to report
      */
-    function __construct ($callSign) {
+    public function __construct ($callSign) {
         parent::__construct();
 
         $this->callSign = $callSign;
