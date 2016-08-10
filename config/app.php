@@ -195,6 +195,7 @@ return [
 
     'listeners' => [
         Nasqueron\Notifications\Listeners\AMQPEventListener::class,
+        Nasqueron\Notifications\Listeners\DockerHubListener::class,
         Nasqueron\Notifications\Listeners\LastPayloadSaver::class,
         Nasqueron\Notifications\Listeners\NotificationListener::class,
         Nasqueron\Notifications\Listeners\PhabricatorListener::class,
