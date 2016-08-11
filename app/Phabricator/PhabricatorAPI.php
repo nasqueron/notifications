@@ -45,7 +45,7 @@ class PhabricatorAPI implements APIClient {
      * Gets an API instance for the specific instance
      *
      * @param string $instance The name of the instance (this matches that parameter in credentials.json)
-     * @return PhabricatorAPI|null A PhabricatorAPI instance for the project if found; otherwise, null.
+     * @return PhabricatorAPI A PhabricatorAPI instance for the project if found; otherwise, null.
      */
     public static function forInstance ($instance) {
         $service = Services::findServiceByProperty('Phabricator', 'instance', $instance);
@@ -59,12 +59,12 @@ class PhabricatorAPI implements APIClient {
      * Gets an API instance for the specific project
      *
      * @param string $project The name of the project (this matches the door parameter in credentials.json)
-     * @return PhabricatorAPI|null A PhabricatorAPI instance for the project if found; otherwise, null.
+     * @return PhabricatorAPI A PhabricatorAPI instance for the project if found; otherwise, null.
      */
     public static function forProject ($project) {
         $service = Services::findServiceByDoor('Phabricator', $project);
         if ($service === null) {
-            return null;
+            throw new \RuntimeException("No credentials for Phabricator project $project.");
         }
         return new self($service->instance, $service->secret);
     }
