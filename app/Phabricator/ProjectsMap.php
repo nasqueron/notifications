@@ -14,22 +14,22 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
-    * The maximum number of projects to fetch
-    */
+     * The maximum number of projects to fetch
+     */
     const LIMIT = 1000;
 
     /**
-    * The projects as an array with phid as keys, project names as $value
-    *
-    * @var string[]
-    */
+     * The projects as an array with phid as keys, project names as $value
+     *
+     * @var string[]
+     */
     private $map = [];
 
     /**
-    * The Phabricator instance for this projects map
-    *
-    * @var string
-    */
+     * The Phabricator instance for this projects map
+     *
+     * @var string
+     */
     private $instance;
 
     /**
@@ -50,10 +50,10 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
-    * Initializes a new instance of ProjectsMap
-    *
-    * @param string $instance The Phabricator root URL without trailing slash
-    */
+     * Initializes a new instance of ProjectsMap.
+     *
+     * @param string $instance The Phabricator root URL without trailing slash
+     */
     public function __construct ($instance) {
         $this->instance = $instance;
     }
@@ -63,10 +63,10 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
-    * Gets iterator
-    *
-    * @return Traversable
-    */
+     * Gets iterator.
+     *
+     * @return Traversable
+     */
     public function getIterator () {
         return new \ArrayIterator($this->map);
     }
@@ -76,39 +76,40 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
-    * Determines whether an offset exists
-    *
-    * @param mixed $offset The offset
-    */
+     * Determines whether an offset exists.
+     *
+     * @param mixed $offset The offset
+     * @return bool
+     */
     public function offsetExists ($offset) {
         return array_key_exists($offset, $this->map);
     }
 
     /**
-    * Gets an offset
-    *
-    * @param mixed $offset The offset
-    * @return mixed The value
-    */
+     * Gets the value at the specified offset.
+     *
+     * @param mixed $offset The offset.
+     * @return mixed The value
+     */
     public function offsetGet ($offset) {
         return $this->map[$offset];
     }
 
     /**
-    * Assigns a value to the specified offset
-    *
-    * @param mixed $offset The offset
-    * @param mixed $value The value to assign
-    */
+     * Assigns a value to the specified offset.
+     *
+     * @param mixed $offset The offset
+     * @param mixed $value The value to assign
+     */
     public function offsetSet ($offset, $value) {
         $this->map[$offset] = $value;
     }
 
     /**
-    * Unset an offset
-    *
-    * @param mixed $offset The offset
-    */
+     * Unsets a value at the specified offset.
+     *
+     * @param mixed $offset The offset where to remove the value
+     */
     public function offsetUnset ($offset) {
         unset($this->map[$offset]);
     }
@@ -118,11 +119,11 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
-    * Gets a new ProjectsMap instance from cache or API when not cached
-    *
-    * @param string $phabricatorURL The Phabricator URL (e.g. http://secure.phabricator.com)
-    * @return ProjectsMap
-    */
+     * Gets a new ProjectsMap instance from cache or API when not cached.
+     *
+     * @param string $phabricatorURL The Phabricator URL (e.g. http://secure.phabricator.com)
+     * @return ProjectsMap
+     */
     public static function load ($phabricatorURL) {
         $instance = new self($phabricatorURL);
 
@@ -136,12 +137,12 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     }
 
     /**
-    * Gets a new ProjectsMap instance and queries Phabricator API to fill it
-    *
-    * @param string $phabricatorURL The Phabricator URL (e.g. http://secure.phabricator.com)
-    * @param Nasqueron\Notifications\Contracts\APIClient $apiClient The Phabricator API client
-    * @return ProjectsMap
-    */
+     * Gets a new ProjectsMap instance and queries Phabricator API to fill it.
+     *
+     * @param string $phabricatorURL The Phabricator URL (e.g. http://secure.phabricator.com)
+     * @param Nasqueron\Notifications\Contracts\APIClient $apiClient The Phabricator API client
+     * @return ProjectsMap
+     */
     public static function fetch ($phabricatorURL, APIClient $apiClient = null) {
         $instance = new self($phabricatorURL);
         $instance->setAPIClient($apiClient);
@@ -172,8 +173,10 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     }
 
     /**
-    * Fetches the projects' map from the Phabricator API
-    */
+     * Fetches the projects' map from the Phabricator API.
+     * 
+     * @throws \Exception when API reply is empty or invalid.
+     */
     private function fetchFromAPI () {
         $reply = $this->getAPIClient()->call(
             'project.query',
@@ -200,35 +203,35 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
-    * Gets cache key
-    *
-    * @return string The cache key for the current projects map
-    */
+     * Gets cache key.
+     *
+     * @return string The cache key for the current projects map
+     */
     private function getCacheKey () {
         return class_basename(get_class($this)) . '-' . md5($this->instance);
     }
 
     /**
-    * Determines if the instance is cached
-    *
-    * @return bool true if cached; otherwise, false.
-    */
+     * Determines if the instance is cached
+     *
+     * @return bool true if cached; otherwise, false.
+     */
     public function isCached () {
         return Cache::has($this->getCacheKey());
     }
 
     /**
-    * Saves data to cache
-    */
+     * Saves data to cache
+     */
     public function saveToCache () {
         Cache::forever($this->getCacheKey(), $this->map);
     }
 
     /**
-    * Loads data from cache
-    *
-    * Populates 'map' and 'source' properties
-    */
+     * Loads data from cache
+     *
+     * Populates 'map' and 'source' properties
+     */
     public function loadFromCache () {
         $cachedMap = Cache::get($this->getCacheKey());
         if ($cachedMap !== null) {
@@ -242,11 +245,11 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
-    * Gets project name, refreshing the cache if needed
-    *
-    * @param string $projectPHID the PHID of the project to query the name
-    * @return string
-    */
+     * Gets project name, refreshing the cache if needed.
+     *
+     * @param string $projectPHID the PHID of the project to query the name
+     * @return string The name of the poject, or an empty string if not found
+     */
     public function getProjectName ($projectPHID) {
         if ($this->offsetExists($projectPHID)) {
             return $this->offsetGet($projectPHID);
@@ -261,10 +264,10 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     }
 
     /**
-    * Returns the projects map as an array, each row ['PHID', 'project name']
-    *
-    * @return array
-    */
+     * Returns the projects map as an array.
+     *
+     * @return array An array, each row containing ['PHID', 'project name']
+     */
     public function toArray () {
         $array = [];
         foreach ($this->map as $phid => $projectName) {

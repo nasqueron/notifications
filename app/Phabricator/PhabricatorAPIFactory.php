@@ -7,7 +7,7 @@ use Nasqueron\Notifications\Contracts\APIFactory;
 class PhabricatorAPIFactory implements APIFactory {
 
     /**
-     * Gets an instance of the Phabricator API client class
+     * Gets an instance of the Phabricator API client class.
      *
      * @param string $instance The Phabricator instance
      * @return Nasqueron\Notifications\Phabricator\PhabricatorAPI
@@ -17,7 +17,7 @@ class PhabricatorAPIFactory implements APIFactory {
     }
 
     /**
-     * Gets an instance of the Phabricator API client class for a project
+     * Gets an instance of the Phabricator API client class for a project.
      *
      * @param string $project The Phabricator project name
      * @return Nasqueron\Notifications\Phabricator\PhabricatorAPI

@@ -5,7 +5,7 @@ namespace Nasqueron\Notifications\Phabricator;
 class ProjectsMapFactory {
 
     /**
-     * Loads projects map from cache or fetches it from API if not cached
+     * Loads projects map from cache or fetches it from API if not cached.
      *
      * @param string $instance The Phabricator instance
      * @return Nasqueron\Notifications\Phabricator\ProjectsMap
@@ -15,7 +15,7 @@ class ProjectsMapFactory {
     }
 
     /**
-     * Fetches projects map from API
+     * Fetches projects map from API.
      *
      * @param string $instance The Phabricator instance
      * @return Nasqueron\Notifications\Phabricator\ProjectsMap
