@@ -4,9 +4,11 @@ namespace Nasqueron\Notifications\Listeners;
 
 use Nasqueron\Notifications\Events\DockerHubPayloadEvent;
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
+use Nasqueron\Notifications\Events\JenkinsPayloadEvent;
 use Nasqueron\Notifications\Events\PhabricatorPayloadEvent;
 use Nasqueron\Notifications\Jobs\FireDockerHubNotification;
 use Nasqueron\Notifications\Jobs\FireGitHubNotification;
+use Nasqueron\Notifications\Jobs\FireJenkinsNotification;
 use Nasqueron\Notifications\Jobs\FirePhabricatorNotification;
 
 class NotificationListener {
@@ -48,6 +50,17 @@ class NotificationListener {
         $job->handle();
     }
 
+    /**
+     * Handles a Jenkins payload event.
+     *
+     * @param JenkinsPayloadEvent $event
+     * @return void
+     */
+    public function onJenkinsPayload (JenkinsPayloadEvent $event) {
+        $job = new FireJenkinsNotification($event);
+        $job->handle();
+    }
+
     ///
     /// Events listening
     ///
@@ -68,9 +81,14 @@ class NotificationListener {
             "$class@onGitHubPayload"
         );
         $events->listen(
+            'Nasqueron\Notifications\Events\JenkinsPayloadEvent',
+            "$class@onJenkinsPayload"
+        );
+        $events->listen(
             'Nasqueron\Notifications\Events\PhabricatorPayloadEvent',
             "$class@onPhabricatorPayload"
         );
+
     }
 
 }

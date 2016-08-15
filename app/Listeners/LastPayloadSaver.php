@@ -42,6 +42,7 @@ class LastPayloadSaver {
         $eventsToListen = [
             'DockerHubPayloadEvent',
             'GitHubPayloadEvent',
+            'JenkinsPayloadEvent',
             'PhabricatorPayloadEvent',
         ];
 

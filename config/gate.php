@@ -15,6 +15,7 @@ return [
     'controllers' => [
         'DockerHub',
         'GitHub',
+        'Jenkins',
         'Phabricator',
     ],
 

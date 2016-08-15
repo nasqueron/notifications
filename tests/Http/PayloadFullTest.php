@@ -74,6 +74,25 @@ class PayloadFullTest extends TestCase {
     }
 
     /**
+     * Tests a Jenkins gate payload.
+     */
+    public function testJenkinsPayload () {
+        $payload = file_get_contents(__DIR__ . '/../data/payloads/JenkinsPayload.json');
+
+        $this->sendPayload(
+            '/gate/Jenkins/Acme', // A gate existing in data/credentials.json
+            $payload,
+            'POST',
+            []
+        )->seeJson([
+            'gate' => 'Jenkins',
+            'door' => 'Acme',
+            'action' => 'AMQPAction'
+        ]);
+        $this->assertResponseOk();
+    }
+
+    /**
      * Tests a Phabricator gate payload.
      */
     public function testPhabricatorPayload () {
