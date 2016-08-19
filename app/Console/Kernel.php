@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \Nasqueron\Notifications\Console\Commands\ConfigShow::class,
         \Nasqueron\Notifications\Console\Commands\Inspire::class,
+        \Nasqueron\Notifications\Console\Commands\NotificationsPayload::class,
         \Nasqueron\Notifications\Console\Commands\PhabricatorProjectsMap::class,
     ];
 
