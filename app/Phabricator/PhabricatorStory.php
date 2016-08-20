@@ -173,6 +173,10 @@ class PhabricatorStory {
             [ 'phids[0]' => $objectPHID ]
         );
 
+        if ($reply === []) {
+            return "";
+        }
+
         return PhabricatorAPI::getFirstResult($reply)->repositoryPHID;
     }
 
