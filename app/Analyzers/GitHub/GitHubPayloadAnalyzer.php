@@ -9,7 +9,7 @@ use Config;
 use Storage;
 
 class GitHubPayloadAnalyzer {
-    
+
     ///
     /// Private members
     ///
@@ -187,5 +187,5 @@ class GitHubPayloadAnalyzer {
     public function getLink () {
       return $this->analyzerEvent->getLink();
     }
-    
+
 }
