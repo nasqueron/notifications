@@ -34,7 +34,7 @@ class GitHubPayloadAnalyzer {
 
     /**
      * The configuration for the payload analyzer
-     * @var Event;
+     * @var Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzerConfiguration;
      */
     private $configuration;
 
