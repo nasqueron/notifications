@@ -1,0 +1,27 @@
+{
+    "defaultGroup": "ci",
+    "groupsMapping": [
+        {
+            "group": "wikidata",
+            "items": [
+                "deploy-irc-daeghrefn-wikidata"
+            ]
+        },
+        {
+            "group": "ops",
+            "items": [
+                "deploy-website-*",
+                "test-prod-env"
+            ]
+        },
+        {
+            "group": "devtools",
+            "items": [
+                "test-notifications-*"
+            ]
+        }
+    ],
+    "notifyOnlyOnFailure": [
+        "test-prod-env"
+    ]
+}

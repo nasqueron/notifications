@@ -2,6 +2,7 @@
 
 namespace Nasqueron\Notifications\Notifications;
 
+use Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzer;
 use Nasqueron\Notifications\Notification;
 
 /**
@@ -11,6 +12,11 @@ use Nasqueron\Notifications\Notification;
  * https://wiki.jenkins-ci.org/display/JENKINS/Notification+Plugin
  */
 class JenkinsNotification extends Notification {
+
+    /**
+     * @var \Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzer
+     */
+    private $analyzer = null;
 
     /**
      * Initializes a new instance of the JenkinsNotification class.
@@ -71,12 +77,27 @@ class JenkinsNotification extends Notification {
     }
 
     /**
+     * Gets analyzer
+     *
+     * @return \Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzer
+     */
+    private function getAnalyzer () {
+        if ($this->analyzer === null) {
+            $this->analyzer = new JenkinsPayloadAnalyzer(
+                $this->project,
+                $this->rawContent
+            );
+        }
+        return $this->analyzer;
+    }
+
+    /**
      * Gets the notification group.
      *
      * @return string
      */
     public function getGroup () {
-        return "ci"; // This is a temporary group, intended before mapping.
+        return $this->getAnalyzer()->getGroup();
     }
 
 }

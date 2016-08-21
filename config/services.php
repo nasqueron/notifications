@@ -45,6 +45,12 @@ return [
         ]
     ],
 
+    'jenkins' => [
+        'analyzer' => [
+            'configDir' => env('JENKINS_ANALYZER_CONFIG_DIR', 'JenkinsPayloadAnalyzer')
+        ]
+    ],
+
     'phabricator' => [
         'analyzer' => [
             'configDir' => env('PHABRICATOR_ANALYZER_CONFIG_DIR', 'PhabricatorPayloadAnalyzer')
