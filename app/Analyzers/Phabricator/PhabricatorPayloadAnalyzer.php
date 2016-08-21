@@ -36,11 +36,10 @@ class PhabricatorPayloadAnalyzer {
     ///
 
     /**
-     * Creates a new GitHubPayloadAnalyzer instance.
+     * Creates a new PhabricatorPayloadAnalyzer instance.
      *
      * @param string $project
-     * @param string $event
-     * @param stdClass $payload
+     * @param PhabricatorStory $story
      */
     public function __construct($project, PhabricatorStory $story) {
         $this->project = $project;
