@@ -100,4 +100,13 @@ class JenkinsNotification extends Notification {
         return $this->getAnalyzer()->getGroup();
     }
 
+    /**
+     * Indicates if we should handle this payload to trigger a notification.
+     *
+     * @return bool if false, this payload is to be ignored for notifications
+     */
+    public function shouldNotify () {
+        return $this->getAnalyzer()->shouldNotify();
+    }
+
 }

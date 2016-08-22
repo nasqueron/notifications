@@ -36,7 +36,9 @@ class FireJenkinsNotification extends Job {
      */
     public function handle() {
         $notification = $this->createNotification();
-        Event::fire(new NotificationEvent($notification));
+        if ($notification->shouldNotify()) {
+            Event::fire(new NotificationEvent($notification));
+        }
     }
 
     /**

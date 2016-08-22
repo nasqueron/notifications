@@ -117,4 +117,57 @@ class JenkinsPayloadAnalyzer {
         return $this->configuration->getDefaultGroup();
     }
 
+    ///
+    /// Notify only on failure helper methods
+    ///
+
+    /**
+     * Tries to get build status.
+     *
+     * @param out string $status
+     * @return bool indicates if the build status is defined in the payload
+     */
+    private function tryGetBuildStatus (&$status) {
+        if (!isset($this->payload->build->status)) {
+            return false;
+        }
+
+        $status = $this->payload->build->status;
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function shouldNotifyOnlyOnFailure () {
+        return in_array(
+            $this->getJobName(),
+            $this->configuration->notifyOnlyOnFailure
+        );
+    }
+
+    /**
+     * Determines if the build status is a failure.
+     *
+     * @return bool
+     */
+    public function isFailure () {
+        if (!$this->tryGetBuildStatus($status)) {
+            return false;
+        }
+
+        return $status === "FAILURE"
+            || $status === "ABORTED"
+            || $status === "UNSTABLE";
+    }
+
+    /**
+     * Indicates if we should handle this payload to trigger a notification.
+     *
+     * @return bool if false, this payload is to be ignored for notifications
+     */
+    public function shouldNotify () {
+        return $this->isFailure() || !$this->shouldNotifyOnlyOnFailure();
+    }
+
 }

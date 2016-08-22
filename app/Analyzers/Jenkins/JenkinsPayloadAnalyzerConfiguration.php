@@ -34,9 +34,9 @@ class JenkinsPayloadAnalyzerConfiguration {
     public $groupsMapping;
 
     /**
-     * @var string[]
+     * @var array
      */
-    public $notifyOnlyOnFailureJobs;
+    public $notifyOnlyOnFailure;
 
     ///
     /// Constructor

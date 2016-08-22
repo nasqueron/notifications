@@ -1,0 +1,9 @@
+{
+    "name": "test-prod-env",
+    "url": "job/test-prod-env/",
+    "build": {
+        "full_url": "https://ci.nasqueron.org/job/test-prod-env/5944/",
+        "phase": "COMPLETED",
+        "status": "SUCCESS"
+    }
+}
