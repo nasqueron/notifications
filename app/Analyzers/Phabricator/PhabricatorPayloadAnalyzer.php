@@ -8,7 +8,7 @@ use Config;
 use Storage;
 
 class PhabricatorPayloadAnalyzer {
-    
+
     ///
     /// Private members
     ///
@@ -115,7 +115,7 @@ class PhabricatorPayloadAnalyzer {
         // symbols, we need to sort it to the right group.
         foreach ($this->configuration->groupsMapping as $mapping) {
             foreach ($this->story->getProjects() as $project) {
-                if ($mapping->doesProjectBelong($project)) {
+                if ($mapping->doesItemBelong($project)) {
                     return $mapping->group;
                 }
             }

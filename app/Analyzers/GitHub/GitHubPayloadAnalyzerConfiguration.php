@@ -36,7 +36,7 @@ class GitHubPayloadAnalyzerConfiguration {
     /**
      * An array of RepositoryGroupMapping objects to match repositories & groups
      *
-     * @var RepositoryGroupMapping[]
+     * @var \Nasqueron\Notifications\Analyzers\ItemGroupMapping[]
      */
     public $repositoryMapping;
 

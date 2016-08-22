@@ -158,7 +158,7 @@ class GitHubPayloadAnalyzer {
         // symbols, we need to sort it to the right group.
         $repository = $this->getRepository();
         foreach ($this->configuration->repositoryMapping as $mapping) {
-            if ($mapping->doesRepositoryBelong($repository)) {
+            if ($mapping->doesItemBelong($repository)) {
                 return $mapping->group;
             }
         }

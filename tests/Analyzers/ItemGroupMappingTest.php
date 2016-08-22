@@ -4,42 +4,42 @@ namespace Nasqueron\Notifications\Tests\Analyzers;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-use Nasqueron\Notifications\Analyzers\GitHub\RepositoryGroupMapping;
+use Nasqueron\Notifications\Analyzers\ItemGroupMapping;
 use Nasqueron\Notifications\Tests\TestCase;
 
-class RepositoryGroupMappingTest extends TestCase {
+class ItemGroupMappingTest extends TestCase {
 
-    public function testDoesRepositoryMatch () {
+    public function testDoesItemMatch () {
         $this->assertTrue(
-            RepositoryGroupMapping::doesRepositoryMatch(
+            ItemGroupMapping::doesItemMatch(
                 'quux*',
                 'quuxians'
             )
         );
 
         $this->assertTrue(
-            RepositoryGroupMapping::doesRepositoryMatch(
+            ItemGroupMapping::doesItemMatch(
                 'quux*',
                 'quux'
             )
         );
 
         $this->assertFalse(
-            RepositoryGroupMapping::doesRepositoryMatch(
+            ItemGroupMapping::doesItemMatch(
                 'foobar',
                 'quux'
             )
         );
 
         $this->assertFalse(
-            RepositoryGroupMapping::doesRepositoryMatch(
+            ItemGroupMapping::doesItemMatch(
                 '',
                 'quuxians'
             )
         );
 
         $this->assertFalse(
-            RepositoryGroupMapping::doesRepositoryMatch(
+            ItemGroupMapping::doesItemMatch(
                 'quux*',
                 ''
             )

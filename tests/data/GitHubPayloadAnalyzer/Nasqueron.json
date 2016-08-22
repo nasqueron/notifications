@@ -4,19 +4,19 @@
     "repositoryMapping": [
         {
             "group": "docker",
-            "repositories": [
+            "items": [
                 "docker-*"
             ]
         },
         {
             "group": "tasacora",
-            "repositories": [
+            "items": [
                 "tasacora-*"
             ]
         },
         {
             "group": "ops",
-            "repositories": [
+            "items": [
                 "decommission",
                 "discourse-config",
                 "ftp",

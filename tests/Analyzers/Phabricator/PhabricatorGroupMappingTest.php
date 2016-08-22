@@ -39,63 +39,26 @@ class PhabricatorGroupMappingTest extends TestCase {
     /// Tests
     ///
 
-    public function testDoesProjectMatch () {
-        $this->assertTrue(
-            PhabricatorGroupMapping::doesProjectMatch(
-                'quux*',
-                'quuxians'
-            )
-        );
-
-        $this->assertTrue(
-            PhabricatorGroupMapping::doesProjectMatch(
-                'quux*',
-                'quux'
-            )
-        );
-
-        $this->assertFalse(
-            PhabricatorGroupMapping::doesProjectMatch(
-                'foobar',
-                'quux'
-            )
-        );
-
-        $this->assertFalse(
-            PhabricatorGroupMapping::doesProjectMatch(
-                '',
-                'quuxians'
-            )
-        );
-
-        $this->assertFalse(
-            PhabricatorGroupMapping::doesProjectMatch(
-                'quux*',
-                ''
-            )
-        );
-    }
-
     public function testDoesProjectBelong () {
         $mapping = $this->mappings['projects'];
         $this->assertFalse(
-            $mapping->doesProjectBelong("")
+            $mapping->doesItemBelong("")
         );
 
         $this->assertFalse(
-            $mapping->doesProjectBelong("Tasacora")
+            $mapping->doesItemBelong("Tasacora")
         );
 
         $this->assertTrue(
-            $mapping->doesProjectBelong("Docker images")
+            $mapping->doesItemBelong("Docker images")
         );
 
         $this->assertFalse(
-            $mapping->doesProjectBelong("Docker")
+            $mapping->doesItemBelong("Docker")
         );
 
         $this->assertFalse(
-            $mapping->doesProjectBelong("Docker images quux")
+            $mapping->doesItemBelong("Docker images quux")
         );
     }
 

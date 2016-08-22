@@ -4,14 +4,14 @@
     "groupsMapping": [
         {
             "group": "docker",
-            "projects": [
+            "items": [
                 "Docker images",
                 "Nasqueron Docker deployment squad"
             ]
         },
         {
             "group": "tasacora",
-            "projects":[
+            "items":[
                 "Tasacora"
             ],
             "words": [
@@ -21,7 +21,7 @@
         },
         {
             "group": "ops",
-            "projects": [
+            "items": [
                 "Continous integration and delivery",
                 "IPv6",
                 "Mail",

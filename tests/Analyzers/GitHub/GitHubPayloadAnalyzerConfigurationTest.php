@@ -5,6 +5,7 @@ namespace Nasqueron\Notifications\Tests\Analyzers;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 use Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzerConfiguration;
+use Nasqueron\Notifications\Analyzers\ItemGroupMapping;
 use Nasqueron\Notifications\Tests\TestCase;
 
 class GitHubPayloadAnalyzerConfigurationTest extends TestCase {
@@ -38,10 +39,7 @@ class GitHubPayloadAnalyzerConfigurationTest extends TestCase {
         $this->assertSame("nasqueron", $this->configuration->defaultGroup);
 
         foreach ($this->configuration->repositoryMapping as $item) {
-            $this->assertInstanceOf(
-                'Nasqueron\Notifications\Analyzers\GitHub\RepositoryGroupMapping',
-                $item
-            );
+            $this->assertInstanceOf(ItemGroupMapping::class, $item);
         }
     }
 
