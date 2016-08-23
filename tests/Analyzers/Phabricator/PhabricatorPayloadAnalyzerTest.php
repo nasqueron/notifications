@@ -86,4 +86,11 @@ class PhabricatorPayloadAnalyzerTest extends TestCase {
         );
     }
 
+    /**
+     * @expectedException \BadMethodCallException
+     */
+    public function testGetItemThrowsBadMethodCallException () {
+        $this->analyzer->getItemName();
+    }
+
 }

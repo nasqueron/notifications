@@ -1,7 +1,7 @@
 {
     "administrativeGroup": "orgz",
     "defaultGroup": "nasqueron",
-    "groupsMapping": [
+    "map": [
         {
             "group": "docker",
             "items": [

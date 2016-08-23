@@ -1,6 +1,6 @@
 {
     "defaultGroup": "ci",
-    "groupsMapping": [
+    "map": [
         {
             "group": "wikidata",
             "items": [

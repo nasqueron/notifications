@@ -37,7 +37,7 @@ class JenkinsPayloadAnalyzerConfigurationTest extends TestCase {
     public function testProperties () {
         $this->assertSame("ci", $this->configuration->defaultGroup);
 
-        foreach ($this->configuration->groupsMapping as $item) {
+        foreach ($this->configuration->map as $item) {
             $this->assertInstanceOf(ItemGroupMapping::class, $item);
         }
     }

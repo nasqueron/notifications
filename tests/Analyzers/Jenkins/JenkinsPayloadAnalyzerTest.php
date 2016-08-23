@@ -31,8 +31,8 @@ class JenkinsPayloadAnalyzerTest extends TestCase {
         $this->analyzer = new JenkinsPayloadAnalyzer("Nasqueron", $this->payload);
     }
 
-    public function testGetJobName () {
-        $this->assertSame("test-prod-env", $this->analyzer->getJobName());
+    public function testGetItemName () {
+        $this->assertSame("test-prod-env", $this->analyzer->getItemName());
     }
 
     public function testGetGroup () {

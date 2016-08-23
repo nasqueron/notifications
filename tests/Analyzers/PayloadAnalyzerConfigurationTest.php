@@ -4,16 +4,16 @@ namespace Nasqueron\Notifications\Tests\Analyzers;
 
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-use Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzerConfiguration;
+use Nasqueron\Notifications\Analyzers\PayloadAnalyzerConfiguration;
 use Nasqueron\Notifications\Analyzers\ItemGroupMapping;
 use Nasqueron\Notifications\Tests\TestCase;
 
-class GitHubPayloadAnalyzerConfigurationTest extends TestCase {
+class PayloadAnalyzerConfigurationTest extends TestCase {
 
     /**
      * Configuration
      *
-     * @var Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzerConfiguration
+     * @var Nasqueron\Notifications\Analyzers\PayloadAnalyzerConfiguration
      */
      protected $configuration;
 
@@ -21,11 +21,11 @@ class GitHubPayloadAnalyzerConfigurationTest extends TestCase {
      * Prepares the test
      */
      public function setUp () {
-        $filename = __DIR__ . '/../../data/GitHubPayloadAnalyzer/Nasqueron.json';
+        $filename = __DIR__ . '/../data/GitHubPayloadAnalyzer/Nasqueron.json';
         $mapper = new \JsonMapper();
         $this->configuration = $mapper->map(
             json_decode(file_get_contents($filename)),
-            new GitHubPayloadAnalyzerConfiguration('Nasqueron')
+            new PayloadAnalyzerConfiguration('Nasqueron')
         );
 
         parent::setUp();
@@ -38,7 +38,7 @@ class GitHubPayloadAnalyzerConfigurationTest extends TestCase {
         $this->assertSame("orgz", $this->configuration->administrativeGroup);
         $this->assertSame("nasqueron", $this->configuration->defaultGroup);
 
-        foreach ($this->configuration->repositoryMapping as $item) {
+        foreach ($this->configuration->map as $item) {
             $this->assertInstanceOf(ItemGroupMapping::class, $item);
         }
     }

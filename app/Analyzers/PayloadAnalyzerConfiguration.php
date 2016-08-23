@@ -1,8 +1,8 @@
 <?php
 
-namespace Nasqueron\Notifications\Analyzers\GitHub;
+namespace Nasqueron\Notifications\Analyzers;
 
-class GitHubPayloadAnalyzerConfiguration {
+class PayloadAnalyzerConfiguration {
 
     ///
     /// Private members
@@ -13,7 +13,7 @@ class GitHubPayloadAnalyzerConfiguration {
      *
      * @var string
      */
-    private $project;
+    protected $project;
 
     ///
     /// Public properties
@@ -38,14 +38,14 @@ class GitHubPayloadAnalyzerConfiguration {
      *
      * @var \Nasqueron\Notifications\Analyzers\ItemGroupMapping[]
      */
-    public $repositoryMapping;
+    public $map;
 
     ///
     /// Constructor
     ///
 
     /**
-     * Initializes a new instance of the GitHubPayloadAnalyzerConfiguration class
+     * Initializes a new instance of the BasePayloadAnalyzerConfiguration class
      *
      * @param string $project The project name this configuration is related to
      */
@@ -70,4 +70,5 @@ class GitHubPayloadAnalyzerConfiguration {
 
         return $this->defaultGroup;
     }
+
 }

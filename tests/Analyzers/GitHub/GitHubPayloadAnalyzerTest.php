@@ -98,15 +98,15 @@ class GitHubPayloadAnalyzerTest extends TestCase {
     }
 
     ///
-    /// Test getRepository
+    /// Test getItemName
     ///
 
-    public function testGetRepositoryWhenEventIsAdministrative () {
-        $this->assertEmpty($this->pingAnalyzer->getRepository());
+    public function testGetItemNameWhenEventIsAdministrative () {
+        $this->assertEmpty($this->pingAnalyzer->getItemName());
     }
 
-    public function testGetRepositoryWhenEventIsRepositoryRelative () {
-        $this->assertSame("public-repo", $this->pushAnalyzer->getRepository());
+    public function testGetItemNameWhenEventIsRepositoryRelative () {
+        $this->assertSame("public-repo", $this->pushAnalyzer->getItemName());
     }
 
     ///

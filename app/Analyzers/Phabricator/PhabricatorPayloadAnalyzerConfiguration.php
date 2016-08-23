@@ -2,25 +2,15 @@
 
 namespace Nasqueron\Notifications\Analyzers\Phabricator;
 
-class PhabricatorPayloadAnalyzerConfiguration {
-    /**
-     * The group for organization only events
-     *
-     * @var string
-     */
-    public $administrativeGroup;
+use Nasqueron\Notifications\Analyzers\PayloadAnalyzerConfiguration;
 
-    /**
-     * The default group to fallback for any event not mapped in another group
-     *
-     * @var string
-     */
-    public $defaultGroup;
+class PhabricatorPayloadAnalyzerConfiguration extends PayloadAnalyzerConfiguration {
 
     /**
      * An array of RepositoryGroupMapping objects to match repositories & groups
      *
      * @var PhabricatorGroupMapping[]
      */
-    public $groupsMapping;
+    public $map;
+
 }

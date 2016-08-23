@@ -30,7 +30,7 @@ class PhabricatorGroupMappingTest extends TestCase {
             'strongWords',
         ];
 
-        $this->mappings = array_combine($keys, $config->groupsMapping);
+        $this->mappings = array_combine($keys, $config->map);
 
         $this->story = $this->getStory();
     }
