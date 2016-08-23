@@ -9,11 +9,11 @@ class PhabricatorStory {
     ///
 
     /**
-     * The Phabricator main URL
+     * The Phabricator instance name
      *
      * @var string
      */
-    public $instance;
+    public $instanceName;
 
     /**
      * The unique identifier Phabricator assigns to each story
@@ -72,10 +72,10 @@ class PhabricatorStory {
     /**
      * Initializes a new instance of the Phabricator story class
      *
-     * @param string $instance The Phabricator main URL, without trailing slash
+     * @param string $instanceName The Phabricator instance name
      */
-    public function __construct ($instance) {
-        $this->instance = $instance;
+    public function __construct ($instanceName) {
+        $this->instanceName = $instanceName;
     }
 
     /**
@@ -87,8 +87,8 @@ class PhabricatorStory {
      * @param string $payload The data submitted by Phabricator
      * @return PhabricatorStory
      */
-    public static function loadFromArray ($phabricatorURL, $payload) {
-        $instance = new self($phabricatorURL);
+    public static function loadFromArray ($instanceName, $payload) {
+        $instance = new self($instanceName);
 
         foreach ($payload as $key => $value) {
             $property = self::mapPhabricatorFeedKey($key);
@@ -167,7 +167,7 @@ class PhabricatorStory {
     public function getRepositoryPHID ($method) {
         $objectPHID = $this->data['objectPHID'];
 
-        $api = PhabricatorAPI::forInstance($this->instance);
+        $api = PhabricatorAPI::forProject($this->instanceName);
         $reply = $api->call(
             $method,
             [ 'phids[0]' => $objectPHID ]
@@ -192,7 +192,7 @@ class PhabricatorStory {
             return [];
         }
 
-        $api = PhabricatorAPI::forInstance($this->instance);
+        $api = PhabricatorAPI::forProject($this->instanceName);
         $reply = $api->call(
             $method,
             [ 'phids[0]' => $objectPHID ]
@@ -217,7 +217,7 @@ class PhabricatorStory {
             return [];
         }
 
-        $api = PhabricatorAPI::forInstance($this->instance);
+        $api = PhabricatorAPI::forProject($this->instanceName);
         $reply = $api->call(
             $method,
             [

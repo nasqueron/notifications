@@ -21,14 +21,14 @@ class ProjectsMapFactoryTest extends TestCase {
     public function testLoadProjectsMap () {
         $this->assertInstanceOf(
             '\Nasqueron\Notifications\Phabricator\ProjectsMap',
-            $this->factory->load("https://phabricator.acme.tld")
+            $this->factory->load("Acme")
         );
     }
 
     public function testFetchProjectsMap () {
         $this->assertInstanceOf(
             '\Nasqueron\Notifications\Phabricator\ProjectsMap',
-            $this->factory->fetch("https://phabricator.acme.tld")
+            $this->factory->fetch("Acme")
         );
     }
 

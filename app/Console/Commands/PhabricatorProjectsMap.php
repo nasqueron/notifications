@@ -39,7 +39,7 @@ class PhabricatorProjectsMap extends Command {
     public function handle() {
         foreach (Services::getForGate('Phabricator') as $service) {
             $this->info("Querying projects map for " . $service->instance);
-            $map = ProjectsMap::fetch($service->instance);
+            $map = ProjectsMap::fetch($service->door);
             $map->saveToCache();
             $this->table(
                 ['PHID', 'Project name'],

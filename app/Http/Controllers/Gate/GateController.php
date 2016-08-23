@@ -90,6 +90,13 @@ class GateController extends Controller {
     }
 
     /**
+     * Checks if a registered service exists for this service and door
+     */
+    protected function doesServiceExist () {
+        return $this->getService() !== null;
+    }
+
+    /**
      * Gets secret for this service and door.
      *
      * @return string the secret, or if unknown, an empty string

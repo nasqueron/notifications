@@ -22,7 +22,7 @@ trait WithConfiguration {
     private function getStory() {
         return $this
             ->getMockBuilder("Nasqueron\Notifications\Phabricator\PhabricatorStory")
-            ->setConstructorArgs(["https://phab.acme"])
+            ->setConstructorArgs(["Acme"])
             ->getMock();
     }
 

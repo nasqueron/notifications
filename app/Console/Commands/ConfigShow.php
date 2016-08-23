@@ -66,7 +66,7 @@ class ConfigShow extends Command
     protected function getServiveStatus ($service) {
         if ($service->gate === 'Phabricator') {
             // Ensure the projects map is cached
-            $map = \ProjectsMap::fetch($service->instance);
+            $map = \ProjectsMap::fetch($service->door);
             if (!$map->isCached()) {
                 return "Projects map not cached.";
             }

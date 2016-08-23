@@ -95,7 +95,7 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
         $mock = $this->mockPhabricatorAPI();
 
         $reply = $this->mockPhabricatorAPIProjectsQueryReply();
-        $mock->shouldReceive('get->call')->andReturn($reply);
+        $mock->shouldReceive('getForProject->call')->andReturn($reply);
     }
 
     ///

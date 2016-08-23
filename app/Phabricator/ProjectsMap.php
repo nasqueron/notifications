@@ -26,11 +26,11 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     private $map = [];
 
     /**
-     * The Phabricator instance for this projects map
+     * The Phabricator instance name for this projects map
      *
      * @var string
      */
-    private $instance;
+    private $instanceName;
 
     /**
      *
@@ -52,10 +52,10 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     /**
      * Initializes a new instance of ProjectsMap.
      *
-     * @param string $instance The Phabricator root URL without trailing slash
+     * @param string $instanceName The Phabricator instance name
      */
-    public function __construct ($instance) {
-        $this->instance = $instance;
+    public function __construct ($instanceName) {
+        $this->instanceName = $instanceName;
     }
 
     ///
@@ -121,11 +121,11 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets a new ProjectsMap instance from cache or API when not cached.
      *
-     * @param string $phabricatorURL The Phabricator URL (e.g. http://secure.phabricator.com)
+     * @param string $phabricatorInstanceName The Phabricator instance name
      * @return ProjectsMap
      */
-    public static function load ($phabricatorURL) {
-        $instance = new self($phabricatorURL);
+    public static function load ($phabricatorInstanceName) {
+        $instance = new self($phabricatorInstanceName);
 
         if ($instance->isCached()) {
             $instance->loadFromCache();
@@ -139,12 +139,12 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets a new ProjectsMap instance and queries Phabricator API to fill it.
      *
-     * @param string $phabricatorURL The Phabricator URL (e.g. http://secure.phabricator.com)
+     * @param string $phabricatorInstanceName The Phabricator instance name
      * @param Nasqueron\Notifications\Contracts\APIClient $apiClient The Phabricator API client
      * @return ProjectsMap
      */
-    public static function fetch ($phabricatorURL, APIClient $apiClient = null) {
-        $instance = new self($phabricatorURL);
+    public static function fetch ($phabricatorInstanceName, APIClient $apiClient = null) {
+        $instance = new self($phabricatorInstanceName);
         $instance->setAPIClient($apiClient);
         $instance->fetchFromAPI();
         return $instance;
@@ -160,7 +160,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     public function getAPIClient () {
         if ($this->apiClient === null) {
             $factory = App::make('phabricator-api');
-            $this->apiClient = $factory->get($this->instance);
+            $this->apiClient = $factory->getForProject($this->instanceName);
         }
         return $this->apiClient;
     }
@@ -174,7 +174,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
 
     /**
      * Fetches the projects' map from the Phabricator API.
-     * 
+     *
      * @throws \Exception when API reply is empty or invalid.
      */
     private function fetchFromAPI () {
@@ -184,11 +184,11 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
         );
 
         if (!$reply) {
-            throw new \Exception("Empty reply calling project.query at $this->instance API.");
+            throw new \Exception("Empty reply calling project.query at $this->instanceName Conduit API.");
         }
 
         if (!property_exists($reply, 'data')) {
-            throw new \Exception("Invalid reply calling project.query at $this->instance API.");
+            throw new \Exception("Invalid reply calling project.query at $this->instanceName Conduit API.");
         }
 
         foreach ($reply->data as $phid => $projectInfo) {
@@ -208,7 +208,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @return string The cache key for the current projects map
      */
     private function getCacheKey () {
-        return class_basename(get_class($this)) . '-' . md5($this->instance);
+        return class_basename(get_class($this)) . '-' . md5($this->instanceName);
     }
 
     /**

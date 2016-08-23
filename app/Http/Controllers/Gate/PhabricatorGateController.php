@@ -40,9 +40,8 @@ class PhabricatorGateController extends GateController {
      */
     public function onPost ($door) {
         $this->door = $door;
-        $this->instance = $this->getInstance();
 
-        if ($this->instance === "") {
+        if (!$this->doesServiceExist()) {
             abort(404, 'Unknown Phabricator instance.');
         }
 
@@ -61,20 +60,6 @@ class PhabricatorGateController extends GateController {
         $this->payload = Request::all();
     }
 
-    /**
-     * Gets the instance matching this door
-     *
-     * @return string The Phabricator root URL without trailing slash
-     */
-     protected function getInstance () {
-         $service = $this->getService();
-         if ($service === null) {
-            return "";
-         }
-
-         return $service->instance;
-     }
-
     ///
     /// Payload processing
     ///
@@ -84,7 +69,6 @@ class PhabricatorGateController extends GateController {
 
         Event::fire(new PhabricatorPayloadEvent(
             $this->door,
-            $this->instance,
             $this->payload
         ));
     }

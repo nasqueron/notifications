@@ -16,12 +16,6 @@ class PhabricatorPayloadEvent extends Event {
     public $door;
 
     /**
-     * The Phabricator instance
-     * @var string
-     */
-    protected $instance;
-
-    /**
      * The raw payload
      */
     public $payload;
@@ -35,12 +29,11 @@ class PhabricatorPayloadEvent extends Event {
     /**
      * Gets story from the request
      *
-     * @param string $instance The Phabricator instance URL
      * @return PhabricatorStory
      */
     protected function getStory () {
         return PhabricatorStory::loadFromArray(
-            $this->instance,
+            $this->door,
             $this->payload
         );
     }
@@ -49,12 +42,10 @@ class PhabricatorPayloadEvent extends Event {
      * Creates a new event instance.
      *
      * @param string $door
-     * @param string $instance The Phabricator instance URL
      * @param stdClass $payload
      */
-    public function __construct($door, $instance, $payload) {
+    public function __construct($door, $payload) {
         $this->door = $door;
-        $this->instance = $instance;
         $this->payload = $payload;
 
         $this->story = $this->getStory();
