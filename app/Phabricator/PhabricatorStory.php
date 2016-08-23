@@ -2,6 +2,8 @@
 
 namespace Nasqueron\Notifications\Phabricator;
 
+use InvalidArgumentException;
+
 class PhabricatorStory {
 
     ///
@@ -96,6 +98,25 @@ class PhabricatorStory {
         }
 
         return $instance;
+    }
+
+    /**
+     * Initializes a new instance of PhabricatorStory from a JSON payload.
+     *
+     * This is intended to parse files saved by LastPayloadSaver::savePayload.
+     *
+     * @param string $instanceName The Phabricator instance name
+     * @param string $payload The data submitted by Phabricator's JSON representation
+     * @return PhabricatorStory
+     */
+    public static function loadFromJson ($instanceName, $payload) {
+        $array = json_decode($payload, true);
+
+        if (!is_array($array)) {
+            throw new InvalidArgumentException("Payload should be deserializable as an array.");
+        }
+
+        return self::loadFromArray($instanceName, $array);
     }
 
     ///

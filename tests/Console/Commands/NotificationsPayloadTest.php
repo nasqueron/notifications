@@ -28,6 +28,22 @@ class NotificationsPayloadTest extends TestCase {
         $this->assertContains('svendowideit\/testhook', $this->tester->getDisplay());
     }
 
+    public function testPhabricatorPayload () {
+        $path = __DIR__ . '/../../data/payloads/PhabricatorPastePayload.json';
+        $this->tester->execute([
+            'command' => $this->command->getName(),
+            'service' => 'Phabricator',
+            'payload' => $path,
+            'args' => [
+                'Acme',
+            ],
+        ]);
+
+        $this->assertContains('"service": "Phabricator"', $this->tester->getDisplay());
+        $this->assertContains('"project": "Acme"', $this->tester->getDisplay());
+        $this->assertContains('"type": "PSTE"', $this->tester->getDisplay());
+    }
+
     /**
      * @expectedException InvalidArgumentException
      */

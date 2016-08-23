@@ -13,28 +13,21 @@ class PhabricatorNotification extends Notification {
      */
     private $analyzer = null;
 
-    private $story;
-
-
     /**
      * Initializes a new PhabricatorNotification instance
      *
      * @param string $project The project for this notification
-     * @param PhabricatorStory $story The story to convert into a notification
-     * @param string[] $projects the list of the projects for this story
+     * @param PhabricatorStory $payload The story to convert into a notification
      */
-    public function __construct ($project, PhabricatorStory $story) {
-        // Private property used by the analyzer
-        $this->story = $story;
-
+    public function __construct ($project, PhabricatorStory $payload) {
         // Straightforward properties
         $this->service = "Phabricator";
         $this->project = $project;
-        $this->rawContent = json_encode($story);
-        $this->text = $story->text;
+        $this->rawContent = $payload;
+        $this->text = $payload->text;
 
         // Analyzes and fills
-        $this->type = $story->getObjectType();
+        $this->type = $payload->getObjectType();
         $this->group = $this->getGroup();
         $this->link = $this->getLink();
     }
@@ -48,7 +41,7 @@ class PhabricatorNotification extends Notification {
         if ($this->analyzer === null) {
             $this->analyzer = new PhabricatorPayloadAnalyzer(
                 $this->project,
-                $this->story
+                $this->rawContent
             );
         }
         return $this->analyzer;

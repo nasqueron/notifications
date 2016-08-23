@@ -2,6 +2,8 @@
 
 namespace Nasqueron\Notifications\Console\Commands;
 
+use Nasqueron\Notifications\Phabricator\PhabricatorStory;
+
 use Illuminate\Console\Command;
 
 use InvalidArgumentException;
@@ -123,9 +125,24 @@ class NotificationsPayload extends Command {
         $keys = $this->getNotificationConstructorParameters();
 
         $values = $this->argument('args');
-        $values['payload'] = json_decode($this->payload);
+        $values['payload'] = $this->payload;
 
         $this->constructor = self::argumentsArrayCombine($keys, $values);
+        $this->constructor['payload'] = $this->formatPayload();
+    }
+
+    /**
+     * Formats payload to pass to constructor
+     *
+     * @return PhabricatorStory|stdClass A deserialization of the payload
+     */
+    private function formatPayload() {
+        if ($this->service === "Phabricator") {
+            $project = $this->constructor['project'];
+            return PhabricatorStory::loadFromJson($project, $this->payload);
+        }
+
+        return json_decode($this->payload);
     }
 
     /**

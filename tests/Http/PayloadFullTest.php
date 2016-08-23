@@ -92,11 +92,8 @@ class PayloadFullTest extends TestCase {
         $this->assertResponseOk();
     }
 
-    /**
-     * Tests a Phabricator gate payload.
-     */
-    public function testPhabricatorPayload () {
-        $data = [
+    private function getDataForPhabricatorPayloadTests () {
+        return [
             'storyID' => 3849,
             'storyType' => 'PhabricatorApplicationTransactionFeedStory',
             'storyData[objectPHID]' => 'PHID-TASK-l34fw5wievp6n6rnvpuk',
@@ -105,6 +102,13 @@ class PayloadFullTest extends TestCase {
             'storyText' => 'quux moved T123: Lorem ipsum dolor to Backlog on the Foo workboard.',
             'epoch' => 1450654419,
         ];
+    }
+
+    /**
+     * Tests a Phabricator gate payload.
+     */
+    public function testPhabricatorPayload () {
+        $data = $this->getDataForPhabricatorPayloadTests();
 
         $this->post('/gate/Phabricator/Acme', $data)->seeJson([
             'gate' => 'Phabricator',
@@ -112,6 +116,13 @@ class PayloadFullTest extends TestCase {
             'action' => 'AMQPAction'
         ]);
         $this->assertResponseOk();
+    }
+
+    /**
+     * Tests a Phabricator gate payload, when the door doesn't exist.
+     */
+    public function testPhabricatorPayloadOnNotExistingDoor () {
+        $data = $this->getDataForPhabricatorPayloadTests();
 
         $this->post('/gate/Phabricator/NotExistingDoor', $data);
         $this->assertResponseStatus(404);
