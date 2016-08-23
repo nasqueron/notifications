@@ -134,7 +134,7 @@ class NotificationsPayload extends Command {
      * @param array $keys
      * @param array $values
      * @return array
-     * 
+     *
      * @throws InvalidArgumentException when keys and values counts don't match
      */
     public static function argumentsArrayCombine ($keys, $values) {
