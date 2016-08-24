@@ -83,7 +83,7 @@ class PhabricatorStory {
      *
      * This is intended to parse the feed.hooks payloads.
      *
-     * @param string $phabricatorURL The Phabricator URL (e.g. http://secure.phabricator.com)
+     * @param string $instanceName The Phabricator instance name
      * @param string $payload The data submitted by Phabricator
      * @return PhabricatorStory
      */
@@ -255,7 +255,7 @@ class PhabricatorStory {
             return;
         }
 
-        $map = ProjectsMap::load($this->instance);
+        $map = ProjectsMap::load($this->instanceName);
         foreach ($PHIDs as $PHID) {
             $this->projects[] = $map->getProjectName($PHID);
         }
