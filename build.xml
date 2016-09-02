@@ -27,6 +27,10 @@
          depends="prepare,static-analysis-parallel,phpunit,phpdox,-check-failure"
          description="Performs static analysis (executing the tools in parallel), runs the tests, and generates project documentation"/>
 
+ <target name="phabricator-build"
+         depends="prepare,static-analysis-parallel,phpunit-no-coverage"
+         description="Performs static analysis, runs the tests (without generating code coverage reports)"/>
+
  <target name="quick-build"
          depends="prepare,lint,phpunit-no-coverage"
          description="Performs a lint check and runs the tests (without generating code coverage reports)"/>
@@ -71,7 +75,7 @@
   <mkdir dir="${basedir}/build/pdepend"/>
   <mkdir dir="${basedir}/build/phpdox"/>
   <exec executable="${composer}" failonerror="true">
-   <arg value="install"/>
+   <arg value="update"/>
   </exec>
   <property name="prepare.done" value="true"/>
  </target>
