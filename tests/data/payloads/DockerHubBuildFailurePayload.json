@@ -1,0 +1,40 @@
+{
+  "tags": [],
+  "timestamp": 1472676730.131279,
+  "storage": {
+    "url": "https://so.api.mailgun.net/v3/domains/notifications.domain.tld/messages/somehash",
+    "key": "somekey"
+  },
+  "envelope": {
+    "sender": "no-reply@notify.docker.com",
+    "transport": "smtp",
+    "targets": "docker-hub-notify@notifications.domain.tld"
+  },
+  "recipient-domain": "notifications.domain.tld",
+  "method": "smtp",
+  "campaigns": [],
+  "user-variables": {},
+  "flags": {
+    "is-routed": null,
+    "is-authenticated": false,
+    "is-system-test": false,
+    "is-test-mode": false
+  },
+  "log-level": "info",
+  "id": "te1cKBxQTJWxpalPRcnmBw",
+  "message": {
+    "headers": {
+      "to": "docker-hub-notify@notifications.domain.tld",
+      "message-id": "CAKg6iAHgQ4e8etV=gi4pbBueeA-o0Qsv02u1Cp9ZKTH8-tL9xw@mail.gmail.com",
+      "from": "no-reply@notify.docker.com",
+      "subject": "There's been an issue with your automated build"
+    },
+    "attachments": [],
+    "recipients": [
+      "docker-hub-notify@notifications.domain.tld"
+    ],
+    "size": 2674
+  },
+  "recipient": "docker-hub-notify@notifications.domain.tld",
+  "event": "accepted"
+}

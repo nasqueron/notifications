@@ -18,13 +18,26 @@ class DockerHubPayloadEvent extends Event {
      * The event triggering this request
      * @var string
      */
-    public $event = "push";
+    public $event;
 
     /**
      * The request content, as a structured data
      * @var stdClass
      */
     public $payload;
+
+    /**
+     * Gets event according the kind of payload we receive.
+     *
+     * @return string
+     */
+    public function getEvent () {
+        if (isset($this->payload->repository->repo_url)) {
+            return "push";
+        }
+
+        return "buildFailure";
+    }
 
     /**
      * Creates a new event instance.
@@ -34,7 +47,7 @@ class DockerHubPayloadEvent extends Event {
      */
     public function __construct($door, $payload) {
         $this->door = $door;
-        //$this->event = $event; // Currently, the API only send push events
         $this->payload = $payload;
+        $this->event = $this->getEvent();
     }
 }

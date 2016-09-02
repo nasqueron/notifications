@@ -4,6 +4,8 @@ namespace Nasqueron\Notifications\Notifications;
 
 use Nasqueron\Notifications\Notification;
 
+use InvalidArgumentException;
+
 /**
  * A Docker Hub notification.
  *
@@ -34,19 +36,52 @@ class DockerHubNotification extends Notification {
         $this->group = "docker";
 
         // Properties from the payload
-        $this->text = $this->getText();
-        $this->link = $payload->repository->repo_url;
+        $this->analyzeByEvent();
+    }
+
+    ///
+    /// Analyze by event
+    ///
+
+    /**
+     * Fills properties from event payload.
+     */
+    public function analyzeByEvent () {
+        $analyzer = $this->getAnalyzer();
+        $this->rawContent = $analyzer->getPayload();
+        $this->text = $analyzer->getText();
+        $this->link = $analyzer->getLink();
     }
 
     /**
-     * Gets the notification text. Intended to convey a short message (thing Twitter or IRC).
+     * Gets analyzer class name for the current event.
      *
      * @return string
      */
-    public function getText () {
-        $repo = $this->rawContent->repository->repo_name;
-        $who = $this->rawContent->push_data->pusher;
-        return "New image pushed to Docker Hub registry for $repo by $who";
+    private function getAnalyzerClassName () {
+        return "Nasqueron\Notifications\Analyzers\DockerHub\\"
+             . ucfirst($this->type)
+             . "Event";
     }
+
+    /**
+     * Gets analyzer for the current event.
+     *
+     * @return \Nasqueron\Notifications\Analyzers\DockerHub\BaseEvent
+     */
+    private function getAnalyzer () {
+        $class = $this->getAnalyzerClassName();
+
+        if (!class_exists($class)) {
+            throw new InvalidArgumentException(
+                "Event $this->type doesn't have a matching $class class."
+            );
+        }
+
+        return new $class($this->rawContent);
+    }
+
+
+
 
 }
