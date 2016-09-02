@@ -4,11 +4,6 @@ namespace Nasqueron\Notifications\Analyzers\Jenkins;
 
 use Nasqueron\Notifications\Analyzers\BasePayloadAnalyzer;
 
-use Config;
-use Storage;
-
-use InvalidArgumentException;
-
 class JenkinsPayloadAnalyzer extends BasePayloadAnalyzer {
 
     /**
