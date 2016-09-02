@@ -36,13 +36,6 @@
     }
   },
   "scripts": {
-    "post-install-cmd": [
-      "php artisan clear-compiled",
-      "php artisan optimize"
-    ],
-    "post-update-cmd": [
-      "php artisan optimize"
-    ],
     "post-root-package-install": [
       "php -r \"copy('.env.example', '.env');\""
     ],
