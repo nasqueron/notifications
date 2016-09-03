@@ -171,6 +171,7 @@ return [
          */
         Nasqueron\Notifications\Providers\AppServiceProvider::class,
         Nasqueron\Notifications\Providers\BrokerServiceProvider::class,
+        Nasqueron\Notifications\Providers\DockerHubServiceProvider::class,
         Nasqueron\Notifications\Providers\EventServiceProvider::class,
         Nasqueron\Notifications\Providers\MailgunServiceProvider::class,
         Nasqueron\Notifications\Providers\PhabricatorAPIServiceProvider::class,
@@ -252,6 +253,7 @@ return [
          * App aliases...
          */
         'Broker'    => Nasqueron\Notifications\Facades\Broker::class,
+        'DockerHub' => Nasqueron\Notifications\Facades\DockerHub::class,
         'Mailgun'   => Nasqueron\Notifications\Facades\Mailgun::class,
         'PhabricatorAPI' => Nasqueron\Notifications\Facades\PhabricatorAPI::class,
         'ProjectsMap' => Nasqueron\Notifications\Facades\ProjectsMap::class,

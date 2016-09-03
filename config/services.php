@@ -39,6 +39,10 @@ return [
         'dsn' => env('SENTRY_DSN'),
     ],
 
+    'dockerhub' => [
+        'tokens' => env('DOCKERHUB_TOKENS', 'DockerHubTokens.json')
+    ],
+
     'github' => [
         'analyzer' => [
             'configDir' => env('GITHUB_ANALYZER_CONFIG_DIR', 'GitHubPayloadAnalyzer')
