@@ -2,7 +2,6 @@
 
 namespace Nasqueron\Notifications\Providers;
 
-use Illuminate\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
