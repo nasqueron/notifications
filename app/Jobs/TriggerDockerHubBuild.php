@@ -9,7 +9,6 @@ use Nasqueron\Notifications\Events\ReportEvent;
 use DockerHub;
 use Event;
 
-use BadMethodCallException;
 use Exception;
 
 /**
