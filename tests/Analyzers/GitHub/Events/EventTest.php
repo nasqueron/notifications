@@ -67,6 +67,11 @@ class EventTest extends TestCase {
                 'Removed tag on baxterthehacker/public-repo: simple-tag',
                 'https://github.com/baxterthehacker/public-repo/tags'
             ],
+            'IssueCommentEvent' => [
+                'issue_comment',
+                "baxterthehacker added a comment to issue #2 — Spelling error in the README file: You are totally right! I'll get this fixed right away.",
+                'https://github.com/baxterthehacker/public-repo/issues/2#issuecomment-99262140'
+            ],
             'ForkEvent' => [
                 'fork',
                 'baxterthehacker/public-repo has been forked to baxterandthehackers/public-repo',

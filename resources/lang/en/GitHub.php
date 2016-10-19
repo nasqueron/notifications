@@ -32,6 +32,13 @@ return [
 
         'ForkEvent' => ':repo_base has been forked to :repo_fork',
 
+        'IssueCommentEventPerAction' => [
+            'created' => ":author added a comment to issue #:issueNumber — :issueTitle: :excerpt",
+            'edited' => ":author edited a comment to issue #:issueNumber — :issueTitle: :excerpt",
+            'deleted' => ":author deleted a comment to issue #:issueNumber — :issueTitle",
+        ],
+        'IssueCommentEventUnknown' => 'Unknown issue comment action: :action',
+
         'PingEvent' => '« :zen » — GitHub Webhooks ping zen aphorism.',
 
         'PushEvent' => [
