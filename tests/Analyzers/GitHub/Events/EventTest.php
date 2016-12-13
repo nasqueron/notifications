@@ -77,6 +77,11 @@ class EventTest extends TestCase {
                 'baxterthehacker/public-repo has been forked to baxterandthehackers/public-repo',
                 'https://github.com/baxterandthehackers/public-repo'
             ],
+            'PullRequestEvent' => [
+                'pull_request',
+                'baxterthehacker has opened a pull request: #1 — Update the README with new information',
+                'https://github.com/baxterthehacker/public-repo/pull/1'
+            ],
             'PushEvent' => [
                 'push',
                 'baxterthehacker committed Update README.md',
