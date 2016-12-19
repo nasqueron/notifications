@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Phabricator;
 
-use Nasqueron\Notifications\Phabricator\PhabricatorAPIClient as ApiClient;
+use Nasqueron\Notifications\Contracts\APIClient as APIClient;
 
 use App;
 use Cache;
@@ -143,7 +143,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @param Nasqueron\Notifications\Contracts\APIClient $apiClient The Phabricator API client
      * @return ProjectsMap
      */
-    public static function fetch ($phabricatorInstanceName, APIClient $apiClient = null) {
+    public static function fetch ($phabricatorInstanceName, ?APIClient $apiClient = null) {
         $instance = new self($phabricatorInstanceName);
         $instance->setAPIClient($apiClient);
         $instance->fetchFromAPI();
@@ -168,7 +168,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     /**
      * @param Nasqueron\Notifications\Contracts\APIClient $apiClient
      */
-    public function setAPIClient (APIClient $apiClient = null) {
+    public function setAPIClient (?APIClient $apiClient = null) {
         $this->apiClient = $apiClient;
     }
 

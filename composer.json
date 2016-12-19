@@ -10,7 +10,7 @@
   "license": "BSD-2-Clause",
   "type": "project",
   "require": {
-    "php": ">=5.6.0",
+    "php": ">=7.1.0",
     "laravel/framework": "5.2.*",
     "guzzlehttp/guzzle": "^6.2",
     "keruald/dockerhub": "^0.0.3",

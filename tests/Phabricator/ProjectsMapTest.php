@@ -2,6 +2,7 @@
 
 namespace Nasqueron\Notifications\Tests\Phabricator;
 
+use Nasqueron\Notifications\Contracts\APIClient;
 use Nasqueron\Notifications\Phabricator\ProjectsMap;
 use Nasqueron\Notifications\Tests\TestCase;
 
@@ -167,10 +168,20 @@ class ProjectsMapTest extends TestCase {
     /// Tests API
     ///
 
-    private function mockPhabricatorAPIWithReply ($reply) {
-        return Mockery::mock('Nasqueron\Notifications\Contract\APIClient')
-            ->shouldReceive('call')
-            ->andReturn($reply);
+    private function mockPhabricatorAPIWithReply ($reply) : APIClient {
+        return (new class($reply) implements APIClient {
+            private $reply;
+
+            public function __construct ($reply) {
+                $this->reply = $reply;
+            }
+
+            public function setEndPoint ($url) : void { }
+
+            public function call ($method, $arguments = []) {
+                return $this->reply;
+            }
+        });
     }
 
     /**
