@@ -21,6 +21,7 @@
     "sentry/sentry": "^0.13.0"
   },
   "require-dev": {
+    "etsy/phan": "dev-master",
     "fzaninotto/faker": "~1.4",
     "mockery/mockery": "0.9.*",
     "phpmd/phpmd" : "@stable",
