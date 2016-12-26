@@ -26,8 +26,8 @@ class ReportServiceProvider extends ServiceProvider {
     /**
      * Listen to actions fired by the application to add to the report
      *
-     * @param Nasqueron\Notifications\Actions\ActionsReport $report The report to add actions to
-     * @param Illuminate\Contracts\Events\Dispatcher $events The application events dispatcher
+     * @param \Nasqueron\Notifications\Actions\ActionsReport $report The report to add actions to
+     * @param \Illuminate\Contracts\Events\Dispatcher $events The application events dispatcher
      */
     public static function listenToActionsForReport (ActionsReport $report, Dispatcher $events) {
         $events->listen(

@@ -11,7 +11,7 @@ use Mockery;
 class ProjectsMapTest extends TestCase {
 
     /**
-     * @var Nasqueron\Notifications\Phabricator\ProjectsMap
+     * @var \Nasqueron\Notifications\Phabricator\ProjectsMap
      */
     private $map;
 

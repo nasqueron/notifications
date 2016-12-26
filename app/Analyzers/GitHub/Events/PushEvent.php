@@ -16,7 +16,7 @@ class PushEvent extends Event {
      * Gets the description message key according the amount of commits
      *
      * @param int $count The count of commits
-     * @return The l10n message key for description
+     * @return string The l10n message key for description
      */
     private static function getDescriptionMessageKey ($count) {
         $key = 'GitHub.EventsDescriptions.PushEvent';

@@ -43,7 +43,7 @@ class FirePhabricatorNotification extends Job {
      * Creates a Phabricator notification
      *
      * @param PhabricatorPayloadEvent $event
-     * @return Notification the notification
+     * @return \Nasqueron\Notifications\Notification The notification
      */
     protected function createNotification() {
         return new PhabricatorNotification(

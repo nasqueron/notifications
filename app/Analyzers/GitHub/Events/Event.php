@@ -11,7 +11,7 @@ class Event {
     /**
      * The payload
      *
-     * @var stdClass
+     * @var \stdClass
      */
     protected $payload;
 

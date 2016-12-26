@@ -9,7 +9,7 @@ abstract class Action {
     public $action;
 
     /**
-     * @var Nasqueron\Notifications\Actions\ActionError
+     * @var ActionError
      */
     public $error;
 
@@ -28,7 +28,7 @@ abstract class Action {
      * $actionToReport->attachError(new ActionError($exception));
      * </code>
      *
-     * @param Nasqueron\Notifications\Actions\ActionError $error The error to attach
+     * @param ActionError $error The error to attach
      */
     public function attachError (ActionError $error) {
         $this->error = $error;

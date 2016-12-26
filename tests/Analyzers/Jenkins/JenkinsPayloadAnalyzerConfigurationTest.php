@@ -13,7 +13,7 @@ class JenkinsPayloadAnalyzerConfigurationTest extends TestCase {
     /**
      * Configuration
      *
-     * @var Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzerConfiguration
+     * @var \Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzerConfiguration
      */
      protected $configuration;
 

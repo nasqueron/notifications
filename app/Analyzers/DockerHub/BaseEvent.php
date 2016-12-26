@@ -5,14 +5,14 @@ namespace Nasqueron\Notifications\Analyzers\DockerHub;
 abstract class BaseEvent {
 
     /**
-     * @var stdClass
+     * @var \stdClass
      */
     protected $payload;
 
     /**
      * Initializes a new instance of the BaseEvent object.
      *
-     * @param stdClass $payload The payload to analyze
+     * @param \stdClass $payload The payload to analyze
      */
     public function __construct ($payload) {
         $this->payload = $payload;

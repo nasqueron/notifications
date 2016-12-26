@@ -22,7 +22,7 @@ class GitHubPayloadEvent extends Event {
 
     /**
      * The request content, as a structured data
-     * @var stdClass
+     * @var \stdClass
      */
     public $payload;
 
@@ -31,7 +31,7 @@ class GitHubPayloadEvent extends Event {
      *
      * @param string $door
      * @param string $event
-     * @param stdClass $payload
+     * @param \stdClass $payload
      */
     public function __construct($door, $event, $payload) {
         $this->door = $door;

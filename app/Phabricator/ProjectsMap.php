@@ -34,7 +34,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
 
     /**
      *
-     * @var Nasqueron\Notifications\Contracts\APIClient
+     * @var \Nasqueron\Notifications\Contracts\APIClient
      */
     private $apiClient;
 
@@ -140,7 +140,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * Gets a new ProjectsMap instance and queries Phabricator API to fill it.
      *
      * @param string $phabricatorInstanceName The Phabricator instance name
-     * @param Nasqueron\Notifications\Contracts\APIClient $apiClient The Phabricator API client
+     * @param \Nasqueron\Notifications\Contracts\APIClient $apiClient The Phabricator API client
      * @return ProjectsMap
      */
     public static function fetch ($phabricatorInstanceName, ?APIClient $apiClient = null) {
@@ -155,7 +155,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     ///
 
     /**
-     * @return Nasqueron\Notifications\Contracts\APIClient
+     * @return \Nasqueron\Notifications\Contracts\APIClient
      */
     public function getAPIClient () {
         if ($this->apiClient === null) {
@@ -166,7 +166,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     }
 
     /**
-     * @param Nasqueron\Notifications\Contracts\APIClient $apiClient
+     * @param \Nasqueron\Notifications\Contracts\APIClient|null $apiClient
      */
     public function setAPIClient (?APIClient $apiClient = null) {
         $this->apiClient = $apiClient;

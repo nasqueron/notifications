@@ -14,7 +14,7 @@ class DockerHubNotificationTest extends TestCase {
     use WithMockHttpClient;
 
     /**
-     * @return Nasqueron\Notifications\Notifications\DockerHubNotification
+     * @return \Nasqueron\Notifications\Notifications\DockerHubNotification
      */
     protected function prepareNotification ($event) {
         $path = __DIR__ . '/../data/payloads/DockerHub' . ucfirst($event)
@@ -71,7 +71,7 @@ class DockerHubNotificationTest extends TestCase {
     }
 
     /**
-     * @return stdClass
+     * @return \stdClass
      */
     protected function mockMailgunResponse () {
         return json_decode($this->mockHttpClientResponseBody());

@@ -8,7 +8,7 @@ use Nasqueron\Notifications\Tests\TestCase;
 class PushEventTest extends TestCase {
 
     /**
-     * @var stdClass[]
+     * @var \stdClass[]
      */
     private $payloads;
 

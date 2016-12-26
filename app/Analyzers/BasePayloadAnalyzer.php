@@ -22,13 +22,13 @@ abstract class BasePayloadAnalyzer {
 
     /**
      * The request content, as a structured data
-     * @var stdClass
+     * @var \stdClass
      */
     protected $payload;
 
     /**
      * The configuration for the payload analyzer
-     * @var Nasqueron\Notifications\Analyzers\BasePayloadAnalyzerConfiguration;
+     * @var BasePayloadAnalyzerConfiguration;
      */
     protected $configuration;
 
@@ -40,7 +40,7 @@ abstract class BasePayloadAnalyzer {
      * Creates a new JenkinsPayloadAnalyzer instance.
      *
      * @param string $project
-     * @param stdClass $payload
+     * @param  \stdClass $payload
      */
     public function __construct($project, $payload) {
         if (!is_object($payload)) {

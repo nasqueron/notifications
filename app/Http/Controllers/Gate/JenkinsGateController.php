@@ -16,7 +16,7 @@ class JenkinsGateController extends GateController {
     /**
      * The request content, as a structured data
      *
-     * @var stdClass
+     * @var \stdClass
      */
     private $payload;
 
@@ -44,7 +44,7 @@ class JenkinsGateController extends GateController {
      * Handles POST requests
      *
      * @param Request $request the HTTP request
-     * @return Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function onPost ($door) {
         // Parses the request and check if it's legit

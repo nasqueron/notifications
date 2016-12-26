@@ -8,7 +8,7 @@ use Nasqueron\Notifications\Tests\TestCase;
 class StatusEventTest extends TestCase {
 
     /**
-     * @var stdClass
+     * @var \stdClass
      */
     private $payload;
 

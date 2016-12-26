@@ -65,7 +65,7 @@ class GateController extends Controller {
     /**
      * Renders the report
      *
-     * @return Illuminate\Http\Response|null
+     * @return \Illuminate\Http\Response|null
      */
     protected function renderReport () {
         if (Features::isEnabled('ActionsReport')) {
@@ -83,7 +83,7 @@ class GateController extends Controller {
     /**
      * Gets service credentials for this gate and door
      *
-     * @return stdClass the service credentials
+     * @return \stdClass the service credentials
      */
     public function getService () {
         return Services::findServiceByDoor(static::SERVICE_NAME, $this->door);

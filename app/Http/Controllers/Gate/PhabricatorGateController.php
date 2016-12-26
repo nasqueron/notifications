@@ -16,7 +16,7 @@ class PhabricatorGateController extends GateController {
     /**
      * The request content, as a structured data
      *
-     * @var string
+     * @var array
      */
     private $payload;
 

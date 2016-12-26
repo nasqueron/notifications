@@ -26,7 +26,7 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
     /**
      * The payload analyzer event
      *
-     * @var Nasqueron\Notifications\Analyzers\GitHub\Events\Event;
+     * @var \Nasqueron\Notifications\Analyzers\GitHub\Events\Event;
      */
     private $analyzerEvent;
 
@@ -39,7 +39,7 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
      *
      * @param string $project
      * @param string $event
-     * @param stdClass $payload
+     * @param \stdClass $payload
      */
     public function __construct($project, $event, $payload) {
         parent::__construct($project, $payload);

@@ -72,7 +72,7 @@ class Services {
      *
      * @param string $gate The gate (e.g. GitHub)
      * @param string $door The door (e.g. Nasqueron)
-     * @return stdClass|null The service information is found; otherwise, null.
+     * @return \stdClass|null The service information is found; otherwise, null.
      */
     public function findServiceByDoor ($gate, $door) {
         foreach ($this->services as $service) {
@@ -90,7 +90,7 @@ class Services {
      * @param string $gate The gate (e.g. Phabricator)
      * @param string $property The property to check (e.g. instance)
      * @param mixed $value The property value to find (e.g. 'http://devcentral.nasqueron.org')
-     * @return stdClass|null The service information is found; otherwise, null.
+     * @return \stdClass|null The service information is found; otherwise, null.
      */
     public function findServiceByProperty ($gate, $property, $value) {
         foreach ($this->services as $service) {

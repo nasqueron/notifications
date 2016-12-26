@@ -17,6 +17,7 @@ class PhabricatorPayloadEvent extends Event {
 
     /**
      * The raw payload
+     * @var iterable
      */
     public $payload;
 
@@ -32,7 +33,7 @@ class PhabricatorPayloadEvent extends Event {
      * @return PhabricatorStory
      */
     protected function getStory () {
-        return PhabricatorStory::loadFromArray(
+        return PhabricatorStory::loadFromIterable(
             $this->door,
             $this->payload
         );
@@ -42,9 +43,9 @@ class PhabricatorPayloadEvent extends Event {
      * Creates a new event instance.
      *
      * @param string $door
-     * @param stdClass $payload
+     * @param iterable $payload
      */
-    public function __construct($door, $payload) {
+    public function __construct(string $door, iterable $payload) {
         $this->door = $door;
         $this->payload = $payload;
 

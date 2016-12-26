@@ -9,7 +9,7 @@ class BuildFailureEvent extends BaseEvent {
     /**
      * Initializes a new instance of the BuildFailureEvent object.
      *
-     * @param stdClass $payload The payload to analyze
+     * @param \stdClass $payload The payload to analyze
      */
     public function __construct ($payload) {
         parent::__construct($payload);
@@ -19,7 +19,7 @@ class BuildFailureEvent extends BaseEvent {
     /**
      * Gets a MailGun message.
      *
-     * @return stdClass
+     * @return \stdClass
      */
     private function getMailGunPayload () {
         return Mailgun::fetchMessageFromPayload($this->payload);

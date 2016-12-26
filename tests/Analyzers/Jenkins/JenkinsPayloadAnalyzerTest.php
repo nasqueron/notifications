@@ -11,12 +11,12 @@ class JenkinsPayloadAnalyzerTest extends TestCase {
     /**
      * Jenkins analyzer to a successful build
      *
-     * @var Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzer
+     * @var \Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzer
      */
     protected $analyzer;
 
     /**
-     * @var stdClass
+     * @var \stdClass
      */
     protected $payload;
 

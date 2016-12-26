@@ -10,7 +10,7 @@ class PhabricatorAPIFactory implements APIFactory {
      * Gets an instance of the Phabricator API client class.
      *
      * @param string $instance The Phabricator instance
-     * @return Nasqueron\Notifications\Phabricator\PhabricatorAPI
+     * @return \Nasqueron\Notifications\Phabricator\PhabricatorAPI
      */
     public function get ($instance) {
         return PhabricatorAPI::forInstance($instance);
@@ -20,7 +20,7 @@ class PhabricatorAPIFactory implements APIFactory {
      * Gets an instance of the Phabricator API client class for a project.
      *
      * @param string $project The Phabricator project name
-     * @return Nasqueron\Notifications\Phabricator\PhabricatorAPI
+     * @return PhabricatorAPI
      */
     public function getForProject ($project) {
         return PhabricatorAPI::forProject($project);

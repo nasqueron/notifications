@@ -35,7 +35,7 @@ class PhabricatorNotification extends Notification {
     /**
      * Gets analyzer
      *
-     * @return Nasqueron\Notifications\Analyzers\Phabricator\PhabricatorPayloadAnalyzer
+     * @return \Nasqueron\Notifications\Analyzers\Phabricator\PhabricatorPayloadAnalyzer
      */
     private function getAnalyzer () {
         if ($this->analyzer === null) {

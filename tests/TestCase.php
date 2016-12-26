@@ -73,7 +73,7 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
     /**
      * Mocks the Phabricator API
      *
-     * @return Nasqueron\Notifications\Phabricator\PhabricatorAPIFactory The mock
+     * @return \Nasqueron\Notifications\Phabricator\PhabricatorAPIFactory The mock
      */
     protected function mockPhabricatorAPI () {
         // Inject into our container a mock of PhabricatorAPI

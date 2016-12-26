@@ -8,7 +8,7 @@ use Nasqueron\Notifications\Tests\TestCase;
 class UnknownEventTest extends TestCase {
 
     /**
-     * @var Nasqueron\Notifications\Analyzers\GitHub\Events\UnknownEvent
+     * @var \Nasqueron\Notifications\Analyzers\GitHub\Events\UnknownEvent
      */
     private $event;
 

@@ -169,7 +169,7 @@ class NotificationsPayload extends Command {
      * Initializes a new instance of the relevant notification class,
      * with the arguments given in the constructor property.
      *
-     * @return Nasqueron\Notifications\Notification
+     * @return \Nasqueron\Notifications\Notification
      */
     private function getNotification () {
         $class = $this->getNotificationClass();

@@ -7,12 +7,12 @@ use Nasqueron\Notifications\Tests\TestCase;
 
 class JenkinsNotificationTest extends TestCase {
     /**
-     * @var Nasqueron\Notifications\Notifications\JenkinsNotification
+     * @var \Nasqueron\Notifications\Notifications\JenkinsNotification
      */
     private $notification;
 
     /**
-     * @var stdClass
+     * @var \stdClass
      */
     private $payload;
 

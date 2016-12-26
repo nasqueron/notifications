@@ -81,15 +81,15 @@ class PhabricatorStory {
     }
 
     /**
-     * Initializes a new instance of PhabricatorStory from an array.
+     * Initializes a new instance of PhabricatorStory from an iterable.
      *
      * This is intended to parse the feed.hooks payloads.
      *
      * @param string $instanceName The Phabricator instance name
-     * @param string $payload The data submitted by Phabricator
+     * @param iterable $payload The data submitted by Phabricator
      * @return PhabricatorStory
      */
-    public static function loadFromArray ($instanceName, $payload) {
+    public static function loadFromIterable (string $instanceName, iterable $payload) {
         $instance = new self($instanceName);
 
         foreach ($payload as $key => $value) {
@@ -116,7 +116,7 @@ class PhabricatorStory {
             throw new InvalidArgumentException("Payload should be deserializable as an array.");
         }
 
-        return self::loadFromArray($instanceName, $array);
+        return self::loadFromIterable($instanceName, $array);
     }
 
     ///

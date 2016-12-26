@@ -16,7 +16,7 @@ class JenkinsPayloadEvent extends Event {
 
     /**
      * The request content, as a structured data
-     * @var stdClass
+     * @var \stdClass
      */
     public $payload;
 
@@ -24,7 +24,7 @@ class JenkinsPayloadEvent extends Event {
      * Creates a new event instance.
      *
      * @param string $door
-     * @param stdClass $payload
+     * @param \stdClass $payload
      */
     public function __construct($door, $payload) {
         $this->door = $door;

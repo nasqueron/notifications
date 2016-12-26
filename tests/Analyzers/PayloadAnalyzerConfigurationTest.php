@@ -13,7 +13,7 @@ class PayloadAnalyzerConfigurationTest extends TestCase {
     /**
      * Configuration
      *
-     * @var Nasqueron\Notifications\Analyzers\PayloadAnalyzerConfiguration
+     * @var \Nasqueron\Notifications\Analyzers\PayloadAnalyzerConfiguration
      */
      protected $configuration;
 

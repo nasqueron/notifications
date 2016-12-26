@@ -8,22 +8,22 @@ use Nasqueron\Notifications\Tests\TestCase;
 class GitHubPayloadAnalyzerTest extends TestCase {
 
     /**
-     * @var Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer
+     * @var \Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer
      */
      private $unknownEventAnalyzer;
 
      /**
-      * @var Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer
+      * @var \Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer
       */
      private $pingAnalyzer;
 
      /**
-      * @var Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer
+      * @var \Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer
       */
      private $pushAnalyzer;
 
      /**
-      * @var Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer
+      * @var \Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer
       */
      private $pushToMappedRepositoryAnalyzer;
 

@@ -8,12 +8,12 @@ use Nasqueron\Notifications\Tests\TestCase;
 class ServiceTest extends TestCase {
 
     /**
-     * @var Nasqueron\Notifications\Services\Service
+     * @var \Nasqueron\Notifications\Services\Service
      */
     private $serviceWithInstance;
 
     /**
-     * @var Nasqueron\Notifications\Services\Service
+     * @var \Nasqueron\Notifications\Services\Service
      */
     private $serviceWithoutInstance;
 
