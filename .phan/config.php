@@ -1,7 +1,5 @@
 <?php
 
-use \Phan\Issue;
-
 return [
 
     // A list of directories that should be parsed for class and
