@@ -18,7 +18,7 @@ class ReportServiceProvider extends ServiceProvider {
     public function register() {
         $this->app->singleton('report', function (Application $app) {
             $report = new ActionsReport();
-            static::listenToActionsForReport($report, $app['events']);
+            static::listenToActionsForReport($report, $app->make('events'));
             return $report;
         });
     }
