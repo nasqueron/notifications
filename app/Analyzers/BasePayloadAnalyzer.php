@@ -11,6 +11,15 @@ use InvalidArgumentException;
 abstract class BasePayloadAnalyzer {
 
     ///
+    /// Constants
+    ///
+
+    /**
+     * The name of the service, used to get specific classes and config
+     */
+    const SERVICE_NAME = "UnknownService";
+
+    ///
     /// Private members
     ///
 
