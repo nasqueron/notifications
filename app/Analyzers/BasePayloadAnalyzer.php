@@ -28,7 +28,7 @@ abstract class BasePayloadAnalyzer {
 
     /**
      * The configuration for the payload analyzer
-     * @var BasePayloadAnalyzerConfiguration;
+     * @var PayloadAnalyzerConfiguration;
      */
     protected $configuration;
 
