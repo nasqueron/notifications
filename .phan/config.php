@@ -36,6 +36,8 @@ return [
         'vendor/mockery/mockery/library',
         'vendor/netresearch/jsonmapper/src',
         'vendor/sentry/sentry/lib/Raven',
+        'vendor/symfony/console',
+        'vendor/symfony/http-kernel',
     ],
 
     'file_list' => [
