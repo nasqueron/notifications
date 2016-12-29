@@ -50,7 +50,7 @@ abstract class BasePayloadAnalyzer {
         $this->project = $project;
         $this->payload = $payload;
 
-        $this->loadConfiguration($project);
+        $this->loadConfiguration();
     }
 
     ///

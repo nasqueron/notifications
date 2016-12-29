@@ -37,7 +37,7 @@ class PhabricatorPayloadAnalyzer extends BasePayloadAnalyzer {
         $this->project = $project;
         $this->story = $story;
 
-        $this->loadConfiguration($project);
+        $this->loadConfiguration();
     }
 
     ///
