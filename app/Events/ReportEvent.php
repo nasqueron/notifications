@@ -10,7 +10,7 @@ class ReportEvent extends Event {
     use SerializesModels;
 
     /**
-     * @var ActionReport
+     * @var Action
      */
     public $action;
 
