@@ -110,9 +110,9 @@ class PhabricatorAPI implements APIClient {
     ///
 
     /**
-     * Gets the first result of an API reply
+     * Gets the first result of an API reply.
      *
-     * @param Traversable|array $reply
+     * @param iterable $reply
      * @return mixed
      */
     public static function getFirstResult ($reply) {
