@@ -35,6 +35,7 @@ return [
         'vendor/laravel/framework/src/Illuminate/View',
         'vendor/mockery/mockery/library',
         'vendor/netresearch/jsonmapper/src',
+        'vendor/psr/log/Psr/Log',
         'vendor/sentry/sentry/lib/Raven',
         'vendor/symfony/console',
         'vendor/symfony/http-kernel',
