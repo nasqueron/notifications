@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
             $this->reportToSentry($e);
         }
 
-        $this->log->error($e);
+        $this->log->error((string)$e);
     }
 
     /**
