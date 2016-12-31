@@ -125,6 +125,9 @@ return [
         // Enable the API entry point at the /gate URL
         'Gate' => true,
 
+        // Enable the configuration report entry point at the /config URL
+        'GetConfig' => true,
+
         // Send a response to inform the caller of the different actions done.
         // If disabled, send an empty 200 response instead.
         'ActionsReport' => true,
