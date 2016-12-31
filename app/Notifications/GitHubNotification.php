@@ -12,7 +12,7 @@ class GitHubNotification extends Notification {
      */
     private $analyzer = null;
 
-    public function __construct ($project, $event, $payload) {
+    public function __construct (string $project, string $event, \stdClass $payload) {
         // Straightforward properties
         $this->service = "GitHub";
         $this->project = $project;
@@ -28,7 +28,7 @@ class GitHubNotification extends Notification {
     /**
      * Gets analyzer
      */
-    private function getAnalyzer () {
+    private function getAnalyzer () : GitHubPayloadAnalyzer {
         if ($this->analyzer === null) {
             $this->analyzer = new GitHubPayloadAnalyzer(
                 $this->project,
@@ -44,7 +44,7 @@ class GitHubNotification extends Notification {
      *
      * @return string the target group for the notification
      */
-    public function getGroup () {
+    public function getGroup () : string {
         return $this->getAnalyzer()->getGroup();
     }
 
@@ -53,7 +53,7 @@ class GitHubNotification extends Notification {
      *
      * @return string
      */
-    public function getText () {
+    public function getText () : string {
         return $this->getAnalyzer()->getDescription();
     }
 
@@ -62,7 +62,7 @@ class GitHubNotification extends Notification {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         return $this->getAnalyzer()->getLink();
     }
 

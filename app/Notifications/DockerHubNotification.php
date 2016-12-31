@@ -2,6 +2,7 @@
 
 namespace Nasqueron\Notifications\Notifications;
 
+use Nasqueron\Notifications\Analyzers\DockerHub\BaseEvent;
 use Nasqueron\Notifications\Notification;
 
 use InvalidArgumentException;
@@ -27,7 +28,7 @@ use InvalidArgumentException;
  */
 class DockerHubNotification extends Notification {
 
-    public function __construct ($project, $event, $payload) {
+    public function __construct (string $project, string $event, \stdClass $payload) {
         // Straightforward properties
         $this->service = "DockerHub";
         $this->project = $project;
@@ -46,7 +47,7 @@ class DockerHubNotification extends Notification {
     /**
      * Fills properties from event payload.
      */
-    public function analyzeByEvent () {
+    public function analyzeByEvent () : void {
         $analyzer = $this->getAnalyzer();
         $this->rawContent = $analyzer->getPayload();
         $this->text = $analyzer->getText();
@@ -58,7 +59,7 @@ class DockerHubNotification extends Notification {
      *
      * @return string
      */
-    private function getAnalyzerClassName () {
+    private function getAnalyzerClassName () : string {
         return "Nasqueron\Notifications\Analyzers\DockerHub\\"
              . ucfirst($this->type)
              . "Event";
@@ -69,7 +70,7 @@ class DockerHubNotification extends Notification {
      *
      * @return \Nasqueron\Notifications\Analyzers\DockerHub\BaseEvent
      */
-    private function getAnalyzer () {
+    private function getAnalyzer () : BaseEvent {
         $class = $this->getAnalyzerClassName();
 
         if (!class_exists($class)) {

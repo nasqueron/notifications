@@ -50,14 +50,15 @@ class SendMessageToBroker extends Job {
     ///
 
     /**
-     * Create a new job instance.
+     * Creates a new job instance.
      *
-     * @param string $routingKey the routing key, for topic exchange
-     * @param string $message the message to send
+     * @param string $target The queue or exchange to send the message to
+     * @param string $routingKey The routing key, for topic exchange
+     * @param string $message The message to send
      *
      * @return void
      */
-    public function __construct ($target, $routingKey, $message) {
+    public function __construct (string $target, string $routingKey, string $message) {
         $this->target = $target;
         $this->routingKey = $routingKey;
         $this->message = $message;
@@ -72,15 +73,15 @@ class SendMessageToBroker extends Job {
      *
      * @return void
      */
-    public function handle() {
+    public function handle() : void {
         $this->sendMessage();
         $this->report();
     }
 
     /**
-     * Sends the message to the broker
+     * Sends the message to the broker.
      */
-    protected function sendMessage () {
+    protected function sendMessage () : void {
         try {
             Broker::setExchangeTarget($this->target, "topic", true)
                 ->routeTo($this->routingKey)
@@ -92,9 +93,9 @@ class SendMessageToBroker extends Job {
     }
 
     /**
-     * Prepares a report and fires a report event
+     * Prepares a report and fires a report event.
      */
-    protected function report () {
+    protected function report () : void {
         $actionToReport = new AMQPAction(
             "publish",
             $this->target,

@@ -19,7 +19,7 @@ class PhabricatorNotification extends Notification {
      * @param string $project The project for this notification
      * @param PhabricatorStory $payload The story to convert into a notification
      */
-    public function __construct ($project, PhabricatorStory $payload) {
+    public function __construct (string $project, PhabricatorStory $payload) {
         // Straightforward properties
         $this->service = "Phabricator";
         $this->project = $project;
@@ -37,7 +37,7 @@ class PhabricatorNotification extends Notification {
      *
      * @return \Nasqueron\Notifications\Analyzers\Phabricator\PhabricatorPayloadAnalyzer
      */
-    private function getAnalyzer () {
+    private function getAnalyzer () : PhabricatorPayloadAnalyzer {
         if ($this->analyzer === null) {
             $this->analyzer = new PhabricatorPayloadAnalyzer(
                 $this->project,
@@ -52,7 +52,7 @@ class PhabricatorNotification extends Notification {
      *
      * @return string the target group for the notification
      */
-    public function getGroup () {
+    public function getGroup () : string {
         return $this->getAnalyzer()->getGroup();
     }
 
@@ -61,7 +61,7 @@ class PhabricatorNotification extends Notification {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         return "";
     }
 

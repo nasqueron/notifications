@@ -19,7 +19,7 @@ class DeleteEvent extends Event {
      *
      * @return string
      */
-    public function getDescription () {
+    public function getDescription () : string {
         $repository = $this->payload->repository->full_name;
         $type = $this->payload->ref_type;
         $ref = $this->payload->ref;
@@ -62,7 +62,7 @@ class DeleteEvent extends Event {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         $type = $this->payload->ref_type;
 
         $url  = $this->payload->repository->html_url;

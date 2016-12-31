@@ -5,8 +5,7 @@ namespace Nasqueron\Notifications\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;
 
-class Inspire extends Command
-{
+class Inspire extends Command {
     /**
      * The name and signature of the console command.
      *
@@ -22,12 +21,9 @@ class Inspire extends Command
     protected $description = 'Display an inspiring quote';
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
+     * Executes the console command.
      */
-    public function handle()
-    {
-        $this->comment(PHP_EOL.Inspiring::quote().PHP_EOL);
+    public function handle() : void {
+        $this->comment(PHP_EOL . Inspiring::quote() . PHP_EOL);
     }
 }

@@ -71,7 +71,7 @@ class NotifyNewCommitsToDiffusion extends Job {
      *
      * @return void
      */
-    public function handle () {
+    public function handle () : void {
         if (!$this->fetchRequirements()) {
             return;
         }
@@ -84,14 +84,14 @@ class NotifyNewCommitsToDiffusion extends Job {
     /**
      * Initializes the actions report.
      */
-    private function initializeReport () {
+    private function initializeReport () : void {
         $this->actionToReport = new NotifyNewCommitsAction($this->callSign);
     }
 
     /**
      * Notifies Phabricator to pull from the repository.
      */
-    private function notifyPhabricator () {
+    private function notifyPhabricator () : void {
         try {
             $this->callDiffusionLookSoon();
         } catch (PhabricatorAPIException $ex) {
@@ -104,7 +104,7 @@ class NotifyNewCommitsToDiffusion extends Job {
     /**
      * Fires a report event with the actions report.
      */
-    private function sendReport () {
+    private function sendReport () : void {
         $event = new ReportEvent($this->actionToReport);
         Event::fire($event);
     }
@@ -119,7 +119,7 @@ class NotifyNewCommitsToDiffusion extends Job {
      *
      * @return string The Phabricator project name
      */
-    private function getPhabricatorProject () {
+    private function getPhabricatorProject () : string {
         return $this->sourceProject;
     }
 
@@ -132,7 +132,7 @@ class NotifyNewCommitsToDiffusion extends Job {
      *
      * @return bool true if all requirement have been fetched ; otherwise, false.
      */
-    private function fetchRequirements () {
+    private function fetchRequirements () : bool {
         return $this->fetchAPI() && $this->fetchCallSign();
     }
 
@@ -141,7 +141,7 @@ class NotifyNewCommitsToDiffusion extends Job {
      *
      * @return bool true if an API instance has been fetch ; otherwise, false.
      */
-    private function fetchAPI () {
+    private function fetchAPI () : bool {
         $project = $this->getPhabricatorProject();
         $this->api = PhabricatorAPI::getForProject($project);
 
@@ -153,7 +153,7 @@ class NotifyNewCommitsToDiffusion extends Job {
      *
      * @return bool true if a call sign have been found ; otherwise, false.
      */
-    private function fetchCallSign () {
+    private function fetchCallSign () : bool {
         $this->callSign = $this->getCallSign();
 
         return $this->callSign !== "";
@@ -168,7 +168,7 @@ class NotifyNewCommitsToDiffusion extends Job {
      *
      * @return string the repository call sign "OPS", or "" if not in Phabricator
      */
-    private function getCallSign () {
+    private function getCallSign () : string {
         $reply = $this->api->call(
             'repository.query',
             [ 'remoteURIs[0]' => $this->repository ]
@@ -186,7 +186,7 @@ class NotifyNewCommitsToDiffusion extends Job {
      *
      * @throws PhabricatorAPIException
      */
-    private function callDiffusionLookSoon () {
+    private function callDiffusionLookSoon () : void {
         $this->api->call(
             'diffusion.looksoon',
             [ 'callsigns[0]' => $this->callSign ]

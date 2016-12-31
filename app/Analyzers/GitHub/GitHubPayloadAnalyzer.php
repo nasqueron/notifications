@@ -41,7 +41,7 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
      * @param string $event
      * @param \stdClass $payload
      */
-    public function __construct($project, $event, $payload) {
+    public function __construct(string $project, string $event, \stdClass $payload) {
         parent::__construct($project, $payload);
 
         $this->event = $event;
@@ -62,7 +62,7 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
      *
      * @var string
      */
-    public function getItemName () {
+    public function getItemName () : string {
         if ($this->isAdministrativeEvent()) {
             return '';
         }
@@ -77,7 +77,7 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
     /**
      * @return bool
      */
-    public function isAdministrativeEvent () {
+    public function isAdministrativeEvent () : bool {
         $administrativeEvents = [
             'membership',    // Member added to team
             'ping',          // Special ping pong event, fired on new hook
@@ -96,7 +96,7 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
      *
      * @return string
      */
-    public function getDescription () {
+    public function getDescription () : string {
         return $this->analyzerEvent->getDescription();
     }
 
@@ -105,7 +105,7 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
      *
      * @return string The most relevant URL
      */
-    public function getLink () {
+    public function getLink () : string {
       return $this->analyzerEvent->getLink();
     }
 

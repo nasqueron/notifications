@@ -16,7 +16,7 @@ class ForkEvent extends Event {
      *
      * @return string
      */
-    public function getDescription () {
+    public function getDescription () : string {
         return trans(
             'GitHub.EventsDescriptions.ForkEvent',
             [
@@ -31,7 +31,7 @@ class ForkEvent extends Event {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         return $this->payload->forkee->html_url;
     }
 }

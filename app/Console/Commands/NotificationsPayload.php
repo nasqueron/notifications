@@ -2,6 +2,7 @@
 
 namespace Nasqueron\Notifications\Console\Commands;
 
+use Nasqueron\Notifications\Notification;
 use Nasqueron\Notifications\Phabricator\PhabricatorStory;
 
 use Illuminate\Console\Command;
@@ -48,18 +49,9 @@ class NotificationsPayload extends Command {
     private $constructor;
 
     /**
-     * Creates a new command instance.
-     *
-     * @return void
-     */
-    public function __construct() {
-        parent::__construct();
-    }
-
-    /**
      * Executes the console command.
      */
-    public function handle() {
+    public function handle() : void {
         if ($this->parseArguments()) {
             $this->printNotification();
         }
@@ -70,7 +62,7 @@ class NotificationsPayload extends Command {
      *
      * @return bool true if arguments looks good; otherwise, false.
      */
-    private function parseArguments () {
+    private function parseArguments () : bool {
         try {
             $this->parseService();
             $this->parsePayload();
@@ -90,7 +82,7 @@ class NotificationsPayload extends Command {
      *
      * @throws InvalidArgumentException when a notification class can't be found for the requested service.
      */
-    private function parseService () {
+    private function parseService () : void {
         $this->service = $this->argument('service');
 
         if (!class_exists($this->getNotificationClass())) {
@@ -105,7 +97,7 @@ class NotificationsPayload extends Command {
      *
      * @throws InvalidArgumentException when payload file is not found.
      */
-    private function parsePayload () {
+    private function parsePayload () : void {
         $payloadFile = $this->argument('payload');
 
         if (!file_exists($payloadFile)) {
@@ -121,7 +113,7 @@ class NotificationsPayload extends Command {
      *
      * @throws InvalidArgumentException when too many or too few arguments have been given.
      */
-    private function parseConstructorParameters () {
+    private function parseConstructorParameters () : void {
         $keys = $this->getNotificationConstructorParameters();
 
         $values = $this->argument('args');
@@ -154,7 +146,7 @@ class NotificationsPayload extends Command {
      *
      * @throws InvalidArgumentException when keys and values counts don't match
      */
-    public static function argumentsArrayCombine ($keys, $values) {
+    public static function argumentsArrayCombine (array $keys, array $values) : array {
         $countKeys = count($keys);
         $countValues = count($values);
 
@@ -171,7 +163,7 @@ class NotificationsPayload extends Command {
      *
      * @return \Nasqueron\Notifications\Notification
      */
-    private function getNotification () {
+    private function getNotification () : Notification {
         $class = $this->getNotificationClass();
         $args = array_values($this->constructor);
         return new $class(...$args);
@@ -182,14 +174,14 @@ class NotificationsPayload extends Command {
      *
      * @return string
      */
-    private function formatNotification () {
+    private function formatNotification () : string {
         return json_encode($this->getNotification(), JSON_PRETTY_PRINT);
     }
 
     /**
      * Prints the notification for the service, payload and specified arguments.
      */
-    private function printNotification () {
+    private function printNotification () : void {
         $this->line($this->formatNotification());
     }
 
@@ -198,7 +190,7 @@ class NotificationsPayload extends Command {
      *
      * @return string
      */
-    private function getNotificationClass () {
+    private function getNotificationClass () : string {
         $namespace = "Nasqueron\Notifications\Notifications\\";
         return $namespace . $this->service . "Notification";
     }
@@ -209,7 +201,7 @@ class NotificationsPayload extends Command {
      *
      * @return array
      */
-    private function getNotificationConstructorParameters () {
+    private function getNotificationConstructorParameters () : array {
         $parameters = [];
 
         $class = new ReflectionClass($this->getNotificationClass());

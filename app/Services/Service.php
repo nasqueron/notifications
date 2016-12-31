@@ -28,7 +28,7 @@ class Service {
      *
      * @return string The instance name or "ø" if omitted
      */
-    public function getInstanceName () {
+    public function getInstanceName () : string {
         if (!isset($this->instance)) {
             return "ø";
         }

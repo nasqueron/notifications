@@ -30,7 +30,7 @@ abstract class Action {
      *
      * @param ActionError $error The error to attach
      */
-    public function attachError (ActionError $error) {
+    public function attachError (ActionError $error) : void {
         $this->error = $error;
     }
 }

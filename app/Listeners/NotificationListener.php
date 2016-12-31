@@ -23,7 +23,7 @@ class NotificationListener {
      * @param DockerHubPayloadEvent $event
      * @return void
      */
-    public function onDockerHubPayload(DockerHubPayloadEvent $event) {
+    public function onDockerHubPayload(DockerHubPayloadEvent $event) : void {
         $job = new FireDockerHubNotification($event);
         $job->handle();
     }
@@ -34,7 +34,7 @@ class NotificationListener {
      * @param GitHubPayloadEvent $event
      * @return void
      */
-    public function onGitHubPayload(GitHubPayloadEvent $event) {
+    public function onGitHubPayload(GitHubPayloadEvent $event) : void {
         $job = new FireGitHubNotification($event);
         $job->handle();
     }
@@ -45,7 +45,7 @@ class NotificationListener {
      * @param PhabricatorPayloadEvent $event
      * @return void
      */
-    public function onPhabricatorPayload(PhabricatorPayloadEvent $event) {
+    public function onPhabricatorPayload(PhabricatorPayloadEvent $event) : void {
         $job = new FirePhabricatorNotification($event);
         $job->handle();
     }
@@ -56,7 +56,7 @@ class NotificationListener {
      * @param JenkinsPayloadEvent $event
      * @return void
      */
-    public function onJenkinsPayload (JenkinsPayloadEvent $event) {
+    public function onJenkinsPayload (JenkinsPayloadEvent $event) : void {
         $job = new FireJenkinsNotification($event);
         $job->handle();
     }
@@ -70,7 +70,7 @@ class NotificationListener {
      *
      * @param \Illuminate\Events\Dispatcher $events
      */
-    public function subscribe (\Illuminate\Events\Dispatcher $events) {
+    public function subscribe (\Illuminate\Events\Dispatcher $events) : void {
         $class = 'Nasqueron\Notifications\Listeners\NotificationListener';
         $events->listen(
             'Nasqueron\Notifications\Events\DockerHubPayloadEvent',

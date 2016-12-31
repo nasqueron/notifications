@@ -69,7 +69,7 @@ class GitHubPayloadAnalyzerTest extends TestCase {
     ///
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException TypeError
      */
     public function testConstructorThrowsAnExceptionWhenPayloadIsInvalid () {
         new GitHubPayloadAnalyzer(

@@ -41,7 +41,7 @@ class StatusEvent extends Event {
      *
      * @return string
      */
-    public function getDescription () {
+    public function getDescription () : string {
         return trans('GitHub.EventsDescriptions.StatusEvent', [
             'commit' => substr($this->payload->sha, 0, 8),
             'status' => $this->getStatusResult(),
@@ -53,7 +53,7 @@ class StatusEvent extends Event {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         $url = $this->payload->target_url;
 
         if ($url === null) {

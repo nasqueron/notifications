@@ -31,10 +31,8 @@ class FirePhabricatorNotification extends Job {
 
     /**
      * Executes the job.
-     *
-     * @return void
      */
-    public function handle() {
+    public function handle() : void {
         $notification = $this->createNotification();
         Event::fire(new NotificationEvent($notification));
     }
@@ -45,7 +43,7 @@ class FirePhabricatorNotification extends Job {
      * @param PhabricatorPayloadEvent $event
      * @return \Nasqueron\Notifications\Notification The notification
      */
-    protected function createNotification() {
+    protected function createNotification() : PhabricatorNotification {
         return new PhabricatorNotification(
             $this->event->door,         // Project
             $this->event->story        // Story

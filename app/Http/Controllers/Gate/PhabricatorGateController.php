@@ -2,10 +2,12 @@
 
 namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
+use Nasqueron\Notifications\Events\PhabricatorPayloadEvent;
+
+use Symfony\Component\HttpFoundation\Response;
+
 use Event;
 use Request;
-
-use Nasqueron\Notifications\Events\PhabricatorPayloadEvent;
 
 class PhabricatorGateController extends GateController {
 
@@ -37,8 +39,9 @@ class PhabricatorGateController extends GateController {
      * Handles POST requests
      *
      * @param Request $request the HTTP request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function onPost ($door) {
+    public function onPost ($door) : Response {
         $this->door = $door;
 
         if (!$this->doesServiceExist()) {

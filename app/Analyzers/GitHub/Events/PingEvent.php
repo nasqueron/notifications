@@ -14,7 +14,7 @@ class PingEvent extends Event {
      *
      * @return string
      */
-    public function getDescription () {
+    public function getDescription () : string {
         return trans(
             'GitHub.EventsDescriptions.PingEvent',
             [
@@ -29,7 +29,7 @@ class PingEvent extends Event {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         return '';
     }
 }

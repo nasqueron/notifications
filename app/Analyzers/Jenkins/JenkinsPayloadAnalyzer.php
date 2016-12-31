@@ -20,7 +20,7 @@ class JenkinsPayloadAnalyzer extends BasePayloadAnalyzer {
      *
      * @var string
      */
-    public function getItemName () {
+    public function getItemName () : string {
         return $this->payload->name;
     }
 
@@ -34,7 +34,7 @@ class JenkinsPayloadAnalyzer extends BasePayloadAnalyzer {
      * @param out string $status
      * @return bool indicates if the build status is defined in the payload
      */
-    private function tryGetBuildStatus (&$status) {
+    private function tryGetBuildStatus (string &$status) : bool {
         if (!isset($this->payload->build->status)) {
             return false;
         }
@@ -46,7 +46,7 @@ class JenkinsPayloadAnalyzer extends BasePayloadAnalyzer {
     /**
      * @return bool
      */
-    public function shouldNotifyOnlyOnFailure () {
+    public function shouldNotifyOnlyOnFailure () : bool {
         return in_array(
             $this->getItemName(),
             $this->configuration->notifyOnlyOnFailure
@@ -58,7 +58,9 @@ class JenkinsPayloadAnalyzer extends BasePayloadAnalyzer {
      *
      * @return bool
      */
-    public function isFailure () {
+    public function isFailure () : bool {
+        $status = "";
+
         if (!$this->tryGetBuildStatus($status)) {
             return false;
         }
@@ -73,7 +75,7 @@ class JenkinsPayloadAnalyzer extends BasePayloadAnalyzer {
      *
      * @return bool if false, this payload is to be ignored for notifications
      */
-    public function shouldNotify () {
+    public function shouldNotify () : bool {
         return $this->isFailure() || !$this->shouldNotifyOnlyOnFailure();
     }
 

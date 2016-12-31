@@ -14,7 +14,7 @@ class CommitCommentEvent extends Event {
      *
      * @return string
      */
-    public function getDescription () {
+    public function getDescription () : string {
         $comment = $this->payload->comment;
 
         return trans(
@@ -32,7 +32,7 @@ class CommitCommentEvent extends Event {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         return $this->payload->comment->html_url;
     }
 }

@@ -25,7 +25,7 @@ class IssueCommentEvent extends Event {
      *
      * @return string
      */
-    public function getDescription () {
+    public function getDescription () : string {
         $action = $this->payload->action;
 
         if (!static::isValidAction($action)) {
@@ -57,7 +57,7 @@ class IssueCommentEvent extends Event {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         return $this->payload->comment->html_url;
     }
 

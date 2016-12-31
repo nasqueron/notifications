@@ -49,7 +49,7 @@ class PayloadAnalyzerConfiguration {
      *
      * @param string $project The project name this configuration is related to
      */
-    public function __construct ($project) {
+    public function __construct (string $project) {
         $this->project = $project;
     }
 
@@ -63,7 +63,7 @@ class PayloadAnalyzerConfiguration {
      * @return string the default group, as set in the configuration,
      *                or if omitted, the project name as fallback.
      */
-    public function getDefaultGroup () {
+    public function getDefaultGroup () : string {
         if (empty($this->defaultGroup)) {
             return strtolower($this->project);
         }

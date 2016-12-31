@@ -10,7 +10,7 @@ class Kernel extends ConsoleKernel
     /**
      * The Artisan commands provided by your application.
      *
-     * @var array
+     * @var string[]
      */
     protected $commands = [
         \Nasqueron\Notifications\Console\Commands\ConfigShow::class,
@@ -25,8 +25,7 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-    protected function schedule(Schedule $schedule)
-    {
+    protected function schedule (Schedule $schedule) : void {
         $schedule->command('inspire')
                  ->hourly();
     }

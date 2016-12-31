@@ -22,7 +22,7 @@ class CreateEvent extends Event {
      *
      * @return string
      */
-    public function getDescription () {
+    public function getDescription () : string {
         $repository = $this->payload->repository->full_name;
         $type = $this->payload->ref_type;
         $ref = $this->payload->ref;
@@ -50,10 +50,10 @@ class CreateEvent extends Event {
     /**
      * Gets link segments for the type
      *
-     * @return Array
+     * @return array
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
-    private function getLinkRefSegments () {
+    private function getLinkRefSegments () : array {
         return [
              'tag' => '/releases/tag/',
              'branch' => '/tree/',
@@ -65,7 +65,7 @@ class CreateEvent extends Event {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         $type = $this->payload->ref_type;
         $ref  = $this->payload->ref;
 

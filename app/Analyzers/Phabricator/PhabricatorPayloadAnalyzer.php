@@ -33,7 +33,7 @@ class PhabricatorPayloadAnalyzer extends BasePayloadAnalyzer {
      * @param string $project
      * @param PhabricatorStory $story
      */
-    public function __construct($project, PhabricatorStory $story) {
+    public function __construct(string $project, PhabricatorStory $story) {
         $this->project = $project;
         $this->story = $story;
 
@@ -49,7 +49,7 @@ class PhabricatorPayloadAnalyzer extends BasePayloadAnalyzer {
      *
      * @return string the group, central part of the routing key
      */
-    public function getGroup () {
+    public function getGroup () : string {
         // If the payload is about some repository matching a table of
         // symbols, we need to sort it to the right group.
         foreach ($this->configuration->map as $mapping) {

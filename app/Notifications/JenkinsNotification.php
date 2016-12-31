@@ -42,7 +42,7 @@ class JenkinsNotification extends Notification {
      *
      * @return string
      */
-    public function getType () {
+    public function getType () : string {
         $build = $this->rawContent->build;
 
         $type = strtolower($build->phase);
@@ -60,7 +60,7 @@ class JenkinsNotification extends Notification {
      *
      * @return string
      */
-    public function getText () {
+    public function getText () : string {
         $name = $this->rawContent->name;
 
         $build = $this->rawContent->build;
@@ -81,7 +81,7 @@ class JenkinsNotification extends Notification {
      *
      * @return \Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzer
      */
-    private function getAnalyzer () {
+    private function getAnalyzer () : JenkinsPayloadAnalyzer {
         if ($this->analyzer === null) {
             $this->analyzer = new JenkinsPayloadAnalyzer(
                 $this->project,
@@ -96,7 +96,7 @@ class JenkinsNotification extends Notification {
      *
      * @return string
      */
-    public function getGroup () {
+    public function getGroup () : string {
         return $this->getAnalyzer()->getGroup();
     }
 
@@ -105,7 +105,7 @@ class JenkinsNotification extends Notification {
      *
      * @return bool if false, this payload is to be ignored for notifications
      */
-    public function shouldNotify () {
+    public function shouldNotify () : bool {
         return $this->getAnalyzer()->shouldNotify();
     }
 

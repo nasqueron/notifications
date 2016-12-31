@@ -30,7 +30,7 @@ class UnknownEvent extends Event {
      *
      * @return string
      */
-    public function getDescription () {
+    public function getDescription () : string {
         return "Some $this->eventType happened";
     }
 
@@ -39,7 +39,7 @@ class UnknownEvent extends Event {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         return "";
     }
 }

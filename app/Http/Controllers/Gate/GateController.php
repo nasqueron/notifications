@@ -4,6 +4,10 @@ namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
 use Nasqueron\Notifications\Features;
 use Nasqueron\Notifications\Http\Controllers\Controller;
+use Nasqueron\Notifications\Services\Service;
+
+use Symfony\Component\HttpFoundation\Response as BaseResponse;
+use Illuminate\View\View;
 
 use App;
 use Log;
@@ -32,7 +36,7 @@ class GateController extends Controller {
     /**
      * Handles GET requests
      */
-    public function onGet () {
+    public function onGet () : View {
         // Virtually all the push APIs will send they payloads
         // using a POST request, so we can provide a sensible
         // default GET error message.
@@ -42,7 +46,7 @@ class GateController extends Controller {
     /**
      * Logs the request
      */
-    protected function logRequest ($extraContextualData = []) {
+    protected function logRequest (array $extraContextualData = []) : void {
         Log::info('[Gate] New payload.', [
             'service' => static::SERVICE_NAME,
             'door' => $this->door,
@@ -56,7 +60,7 @@ class GateController extends Controller {
     /**
      * Initializes the report and registers it
      */
-    protected function initializeReport () {
+    protected function initializeReport () : void {
         if (Features::isEnabled('ActionsReport')) {
             Report::attachToGate(static::SERVICE_NAME, $this->door);
         }
@@ -65,15 +69,17 @@ class GateController extends Controller {
     /**
      * Renders the report
      *
-     * @return \Illuminate\Http\Response|null
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function renderReport () {
-        if (Features::isEnabled('ActionsReport')) {
-            $report = App::make('report');
-            $statusCode = $report->containsError() ? 503 : 200;
-            return Response::json($report)
-                ->setStatusCode($statusCode);
+    protected function renderReport () : BaseResponse {
+        if (!Features::isEnabled('ActionsReport')) {
+            return response("");
         }
+
+        $report = App::make('report');
+        $statusCode = $report->containsError() ? 503 : 200;
+        return Response::json($report)
+            ->setStatusCode($statusCode);
     }
 
     ///
@@ -83,16 +89,16 @@ class GateController extends Controller {
     /**
      * Gets service credentials for this gate and door
      *
-     * @return \stdClass the service credentials
+     * @return Nasqueron\Notifications\Services\Service|null The service information is found; otherwise, null.
      */
-    public function getService () {
+    public function getService () : ?Service {
         return Services::findServiceByDoor(static::SERVICE_NAME, $this->door);
     }
 
     /**
-     * Checks if a registered service exists for this service and door
+     * Checks if a registered service exists for this service and door.
      */
-    protected function doesServiceExist () {
+    protected function doesServiceExist () : bool {
         return $this->getService() !== null;
     }
 
@@ -101,7 +107,7 @@ class GateController extends Controller {
      *
      * @return string the secret, or if unknown, an empty string
      */
-    protected function getSecret () {
+    protected function getSecret () : string {
         $service= $this->getService();
 
         if ($service !== null) {

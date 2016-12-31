@@ -2,11 +2,13 @@
 
 namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
+use Nasqueron\Notifications\Events\GitHubPayloadEvent;
+
+use Keruald\GitHub\XHubSignature;
+use Symfony\Component\HttpFoundation\Response;
+
 use Event;
 use Request;
-
-use Nasqueron\Notifications\Events\GitHubPayloadEvent;
-use Keruald\GitHub\XHubSignature;
 
 class GitHubGateController extends GateController {
 
@@ -66,9 +68,9 @@ class GitHubGateController extends GateController {
      * Handles POST requests
      *
      * @param Request $request the HTTP request
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function onPost ($door) {
+    public function onPost ($door) : Response {
         // Parses the request and check if it's legit
 
         $this->door = $door;

@@ -20,7 +20,7 @@ class AMQPEventListener {
      *
      * @param GitHubPayloadEvent $event the payload event
      */
-    protected static function getGitHubEventRoutingKey (GitHubPayloadEvent $event) {
+    protected static function getGitHubEventRoutingKey (GitHubPayloadEvent $event) : string {
        $key = [
            strtolower($event->door),
            self::getGroup($event),
@@ -29,7 +29,7 @@ class AMQPEventListener {
        return implode('.', $key);
     }
 
-    protected static function getAnalyzer (GitHubPayloadEvent $event) {
+    protected static function getAnalyzer (GitHubPayloadEvent $event) : GitHubPayloadAnalyzer {
         return new GitHubPayloadAnalyzer(
             $event->door,
             $event->event,
@@ -42,7 +42,7 @@ class AMQPEventListener {
      *
      * @return string the group, central part of the routing key
      */
-    protected static function getGroup (GitHubPayloadEvent $event) {
+    protected static function getGroup (GitHubPayloadEvent $event) : string {
         $analyzer = self::getAnalyzer($event);
         return $analyzer->getGroup();
     }
@@ -51,9 +51,8 @@ class AMQPEventListener {
      * Handles a GitHub payload event.
      *
      * @param GitHubPayloadEvent $event
-     * @return void
      */
-    public function onGitHubPayload(GitHubPayloadEvent $event) {
+    public function onGitHubPayload(GitHubPayloadEvent $event) : void {
         $this->sendRawPayload($event);
     }
 
@@ -62,7 +61,7 @@ class AMQPEventListener {
      *
      * @param GitHubPayloadEvent $event
      */
-    protected function sendRawPayload(GitHubPayloadEvent $event) {
+    protected function sendRawPayload(GitHubPayloadEvent $event) : void {
         $target = Config::get('broker.targets.github_events');
         $routingKey = static::getGitHubEventRoutingKey($event);
         $message = json_encode($event->payload);
@@ -79,9 +78,8 @@ class AMQPEventListener {
      * Handles a notification event.
      *
      * @param NotificationEvent $event
-     * @return void
      */
-    public function onNotification(NotificationEvent $event) {
+    public function onNotification(NotificationEvent $event) : void {
         $this->sendNotification($event);
     }
 
@@ -90,7 +88,7 @@ class AMQPEventListener {
      *
      * @param NotificationEvent $event
      */
-    protected static function getNotificationRoutingKey (Notification $notification) {
+    protected static function getNotificationRoutingKey (Notification $notification) : string {
         $key = [
             $notification->project,
             $notification->group,
@@ -106,7 +104,7 @@ class AMQPEventListener {
      *
      * @param NotificationEvent $event
      */
-    protected function sendNotification(NotificationEvent $event) {
+    protected function sendNotification(NotificationEvent $event) : void {
         $notification = $event->notification;
 
         $target = Config::get('broker.targets.notifications');
@@ -126,7 +124,7 @@ class AMQPEventListener {
      *
      * @param \Illuminate\Events\Dispatcher $events
      */
-    public function subscribe (\Illuminate\Events\Dispatcher $events) {
+    public function subscribe (\Illuminate\Events\Dispatcher $events) : void {
         $class = 'Nasqueron\Notifications\Listeners\AMQPEventListener';
         $events->listen(
             'Nasqueron\Notifications\Events\GitHubPayloadEvent',

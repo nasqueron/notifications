@@ -27,7 +27,7 @@ class PhabricatorGroupMapping extends ItemGroupMapping {
      *
      * @return bool
      */
-    public function doesStoryBelong (PhabricatorStory $story) {
+    public function doesStoryBelong (PhabricatorStory $story) : bool {
         foreach ($this->words as $word) {
             if (stripos($story->text, $word) !== false) {
                 return true;

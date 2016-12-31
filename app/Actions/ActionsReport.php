@@ -48,7 +48,7 @@ class ActionsReport {
      * @param string $gate The gate
      * @param string $door The door
      */
-    public function attachToGate ($gate, $door) {
+    public function attachToGate (string $gate, string $door) : void {
         $this->gate = $gate;
         $this->door = $door;
     }
@@ -58,7 +58,7 @@ class ActionsReport {
      *
      * @param Action $action The action to add
      */
-    public function addAction (Action $action) {
+    public function addAction (Action $action) : void {
         $this->actions[] = $action;
     }
 
@@ -67,7 +67,7 @@ class ActionsReport {
      *
      * @return bool
      */
-    public function containsError () {
+    public function containsError () : bool {
         foreach ($this->actions as $action) {
             if ($action->error !== null) {
                 return true;
@@ -84,7 +84,7 @@ class ActionsReport {
     /**
      * Gets a JSON string representation of the current instance
      */
-    public function __toString () {
+    public function __toString () : string {
         return json_encode($this, JSON_PRETTY_PRINT);
     }
 }

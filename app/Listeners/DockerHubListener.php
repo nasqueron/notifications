@@ -23,7 +23,7 @@ class DockerHubListener {
      *
      * @param GitHubPayloadEvent $event The GitHub payload event
      */
-    public function onGitHubPayload (GitHubPayloadEvent $event) {
+    public function onGitHubPayload (GitHubPayloadEvent $event) : void {
         if ($this->shouldNotify($event)) {
             $this->notifyNewCommits($event);
         }
@@ -37,7 +37,7 @@ class DockerHubListener {
      * @param GitHubPayloadEvent $event The GitHub payload event
      * @return bool
      */
-    public function shouldNotify (GitHubPayloadEvent $event) {
+    public function shouldNotify (GitHubPayloadEvent $event) : bool {
         return $event->event === 'push'
             && DockerHub::hasToken($this->getRepository($event));
     }
@@ -47,7 +47,7 @@ class DockerHubListener {
      *
      * @param GitHubPayloadEvent $event The GitHub payload event
      */
-    public function notifyNewCommits (GitHubPayloadEvent $event) {
+    public function notifyNewCommits (GitHubPayloadEvent $event) : void {
         $job = new TriggerDockerHubBuild($this->getRepository($event));
         $job->handle();
     }
@@ -57,7 +57,7 @@ class DockerHubListener {
      *
      * @var string
      */
-    private function getRepository (GitHubPayloadEvent $event) {
+    private function getRepository (GitHubPayloadEvent $event) : string {
         return $event->payload->repository->full_name;
     }
 
@@ -70,7 +70,7 @@ class DockerHubListener {
      *
      * @param Dispatcher $events
      */
-    public function subscribe (Dispatcher $events) {
+    public function subscribe (Dispatcher $events) : void {
         $class = DockerHubListener::class;
         $events->listen(
             GitHubPayloadEvent::class,

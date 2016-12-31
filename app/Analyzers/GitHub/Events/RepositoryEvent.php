@@ -25,7 +25,7 @@ class RepositoryEvent extends Event {
      *
      * @return string
      */
-    public function getDescription () {
+    public function getDescription () : string {
         $action = $this->payload->action;
 
         if (!static::isValidAction($action)) {
@@ -59,7 +59,7 @@ class RepositoryEvent extends Event {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         return $this->payload->repository->html_url;
     }
 }

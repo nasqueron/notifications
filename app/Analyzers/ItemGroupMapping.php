@@ -38,7 +38,7 @@ class ItemGroupMapping {
      * @param string $item The item name to compare with the pattern
      * @return bool
      */
-    public static function doesItemMatch ($pattern, $item) {
+    public static function doesItemMatch (string $pattern, string $item) : bool {
         return str_is($pattern, $item);
     }
 
@@ -47,7 +47,7 @@ class ItemGroupMapping {
      *
      * @return bool
      */
-    public function doesItemBelong ($actualItem) {
+    public function doesItemBelong (string $actualItem) : bool {
         foreach ($this->items as $candidateItem) {
             if (static::doesItemMatch($candidateItem, $actualItem)) {
                 return true;

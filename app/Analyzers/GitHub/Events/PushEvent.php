@@ -33,7 +33,7 @@ class PushEvent extends Event {
      *
      * @return string
      */
-    public function getDescription () {
+    public function getDescription () : string {
         $n = count($this->payload->commits);
 
         if ($n === 1) {
@@ -55,7 +55,7 @@ class PushEvent extends Event {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         $n = count($this->payload->commits);
 
         if ($n === 1) {

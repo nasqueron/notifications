@@ -34,7 +34,7 @@ class FireJenkinsNotification extends Job {
      *
      * @return void
      */
-    public function handle() {
+    public function handle() : void {
         $notification = $this->createNotification();
         if ($notification->shouldNotify()) {
             Event::fire(new NotificationEvent($notification));
@@ -47,7 +47,7 @@ class FireJenkinsNotification extends Job {
      * @param JenkinsPayloadEvent $event
      * @return \Nasqueron\Notifications\Notification The notification
      */
-    protected function createNotification() {
+    protected function createNotification() : JenkinsNotification {
         return new JenkinsNotification(
             $this->event->door,          // project
             $this->event->payload      // raw content

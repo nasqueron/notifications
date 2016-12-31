@@ -50,7 +50,7 @@ class TriggerDockerHubBuild extends Job {
      *
      * @return void
      */
-    public function handle () {
+    public function handle () : void {
         $this->initializeReport();
         $this->triggerBuild();
         $this->sendReport();
@@ -59,14 +59,14 @@ class TriggerDockerHubBuild extends Job {
     /**
      * Initializes the actions report.
      */
-    private function initializeReport () {
+    private function initializeReport () : void {
         $this->actionToReport = new TriggerDockerHubBuildAction($this->image);
     }
 
     /**
      * Triggers a new Docker Hub build.
      */
-    private function triggerBuild () {
+    private function triggerBuild () : void {
         try {
             DockerHub::build($this->image);
         } catch (Exception $ex) {
@@ -78,7 +78,7 @@ class TriggerDockerHubBuild extends Job {
     /**
      * Fires a report event with the actions report.
      */
-    private function sendReport () {
+    private function sendReport () : void {
         $event = new ReportEvent($this->actionToReport);
         Event::fire($event);
     }

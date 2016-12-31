@@ -23,20 +23,16 @@ class PhabricatorProjectsMap extends Command {
     protected $description = 'Regenerate the projects map for each Phabricator instances';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * Creates a new command instance.
      */
     public function __construct() {
         parent::__construct();
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
+     * Executes the console command.
      */
-    public function handle() {
+    public function handle() : void {
         foreach (Services::getForGate('Phabricator') as $service) {
             $this->info("Querying projects map for " . $service->instance);
             $map = ProjectsMap::fetch($service->door);

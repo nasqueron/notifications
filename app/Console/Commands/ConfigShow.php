@@ -5,6 +5,7 @@ namespace Nasqueron\Notifications\Console\Commands;
 use Illuminate\Console\Command;
 
 use Nasqueron\Notifications\Features;
+use Nasqueron\Notifications\Services\Service;
 
 use Config;
 use ProjectsMap;
@@ -28,8 +29,6 @@ class ConfigShow extends Command
 
     /**
      * Creates a new command instance.
-     *
-     * @return void
      */
     public function __construct () {
         parent::__construct();
@@ -40,11 +39,11 @@ class ConfigShow extends Command
     ///
 
     /**
-     * Gets the services (defined in credentials.json) as table rows
+     * Gets the services (defined in credentials.json) as table rows.
      *
-     * @return array
+     * @return \Nasqueron\Notifications\Services\Service[]
      */
-    protected function getServicesTableRows () {
+    protected function getServicesTableRows () : array {
         $rows = [];
         foreach (Services::get() as $service) {
             $rows[] = [
@@ -58,12 +57,12 @@ class ConfigShow extends Command
     }
 
     /**
-     * Gets service status
+     * Gets service status.
      *
-     * @param $service The service to check
+     * @param \Nasqueron\Notifications\Services\Service $service The service to check
      * @return string A description of the issue if something is wrong; otherwise, "✓".
      */
-    protected function getServiveStatus ($service) {
+    protected function getServiveStatus (Service $service) : string {
         if ($service->gate === 'Phabricator') {
             // Ensure the projects map is cached
             $map = \ProjectsMap::fetch($service->door);
@@ -80,7 +79,7 @@ class ConfigShow extends Command
      *
      * @return array
      */
-    protected function getFeaturesTableRows () {
+    protected function getFeaturesTableRows () : array {
         $rows = [];
         foreach (Features::getAll() as $key => $value) {
             if ($value) {
@@ -100,23 +99,21 @@ class ConfigShow extends Command
 
     /**
      * Executes the console command.
-     *
-     * @return mixed
      */
-    public function handle () {
+    public function handle () : void {
         $this->printGates();
         $this->printFeatures();
         $this->printServices();
     }
 
-    protected final function printGates () {
+    protected final function printGates () : void {
         $this->info("Gates:\n");
         foreach (Config::get('gate.controllers') as $gate) {
             $this->line('- ' . $gate);
         }
     }
 
-    protected final function printFeatures () {
+    protected final function printFeatures () : void {
         $this->info("\nFeatures:\n");
         $this->table(
             ['Feature', 'Enabled'],
@@ -124,7 +121,7 @@ class ConfigShow extends Command
         );
     }
 
-    protected final function printServices () {
+    protected final function printServices () : void {
         $this->info("\nServices declared in credentials:\n");
         $this->table(
             ['Gate', 'Door', 'Instance', 'Status'],

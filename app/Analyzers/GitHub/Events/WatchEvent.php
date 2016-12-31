@@ -20,7 +20,7 @@ class WatchEvent extends Event {
      *
      * @return string
      */
-    public function getDescription () {
+    public function getDescription () : string {
         return trans(
             'GitHub.EventsDescriptions.WatchEvent',
             [
@@ -35,7 +35,7 @@ class WatchEvent extends Event {
      *
      * @return string
      */
-    public function getLink () {
+    public function getLink () : string {
         return $this->payload->sender->html_url;
     }
 }

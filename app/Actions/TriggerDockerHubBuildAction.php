@@ -12,8 +12,10 @@ class TriggerDockerHubBuildAction extends Action {
 
     /**
      * Initializes a new instance of a DockerHub build trigger action to report
+     *
+     * @param string $image The Docker Hub image to trigger
      */
-    public function __construct ($image) {
+    public function __construct (string $image) {
         parent::__construct();
 
         $this->image = $image;

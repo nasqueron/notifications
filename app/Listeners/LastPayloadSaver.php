@@ -12,16 +12,16 @@ class LastPayloadSaver {
     /**
      * Handles payload events
      */
-    public function onPayload (Event $event) {
+    public function onPayload (Event $event) : void {
         self::savePayload($event->payload);
     }
 
     /**
      * Saves payload to log file
      *
-     * @param string $payload The payload to save
+     * @param mixed $payload The payload to save
      */
-    public static function savePayload ($payload) {
+    public static function savePayload ($payload) : void {
         $filename = storage_path('logs/payload.json');
         $content  = json_encode($payload);
         file_put_contents($filename, $content);
@@ -36,7 +36,7 @@ class LastPayloadSaver {
      *
      * @param \Illuminate\Events\Dispatcher $events
      */
-    public function subscribe (\Illuminate\Events\Dispatcher $events) {
+    public function subscribe (\Illuminate\Events\Dispatcher $events) : void {
         $ns = 'Nasqueron\Notifications\Events';
         $class = 'Nasqueron\Notifications\Listeners\LastPayloadSaver';
         $eventsToListen = [

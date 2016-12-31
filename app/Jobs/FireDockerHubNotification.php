@@ -31,10 +31,8 @@ class FireDockerHubNotification extends Job {
 
     /**
      * Executes the job.
-     *
-     * @return void
      */
-    public function handle() {
+    public function handle() : void {
         $notification = $this->createNotification();
         Event::fire(new NotificationEvent($notification));
     }
@@ -45,7 +43,7 @@ class FireDockerHubNotification extends Job {
      * @param DockerHubPayloadEvent $event
      * @return \Nasqueron\Notifications\Notification The notification
      */
-    protected function createNotification() {
+    protected function createNotification() : DockerHubNotification {
         return new DockerHubNotification(
             $this->event->door,          // project
             $this->event->event,        // event type

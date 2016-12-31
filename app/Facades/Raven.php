@@ -16,14 +16,14 @@ class Raven extends Facade {
      *
      * @return string
      */
-    protected static function getFacadeAccessor() {
+    protected static function getFacadeAccessor() : string {
         return 'raven';
     }
 
     /**
      * Determines if a Sentry DSN is provided in the configuration
      */
-    public static function isConfigured () {
+    public static function isConfigured () : bool {
         return Config::get('services.sentry.dsn') !== null;
     }
 }

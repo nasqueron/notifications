@@ -51,11 +51,7 @@ abstract class BasePayloadAnalyzer {
      * @param string $project
      * @param  \stdClass $payload
      */
-    public function __construct($project, $payload) {
-        if (!is_object($payload)) {
-            throw new InvalidArgumentException("Payload must be an object.");
-        }
-
+    public function __construct(string $project, \stdClass $payload) {
         $this->project = $project;
         $this->payload = $payload;
 
@@ -76,7 +72,7 @@ abstract class BasePayloadAnalyzer {
      *
      * @return string
      */
-    public function getConfigurationFileName () {
+    public function getConfigurationFileName () : string {
         $dir = Config::get('services.' . strtolower(static::SERVICE_NAME) . '.analyzer.configDir');
 
         $filename = $dir . '/' . $this->project . '.json';
@@ -93,7 +89,7 @@ abstract class BasePayloadAnalyzer {
      *
      * @return string
      */
-    private function getCandidateConfigurationClassName() {
+    private function getCandidateConfigurationClassName() : string {
         $namespace = 'Nasqueron\Notifications\Analyzers\\' . static::SERVICE_NAME;
         return $namespace . "\\" . static::SERVICE_NAME . 'PayloadAnalyzerConfiguration';
     }
@@ -104,7 +100,7 @@ abstract class BasePayloadAnalyzer {
      *
      * @return string The configuration class to use
      */
-    private function getConfigurationClassName () {
+    private function getConfigurationClassName () : string {
         $class = $this->getCandidateConfigurationClassName();
 
         if (class_exists($class)) {
@@ -117,7 +113,7 @@ abstract class BasePayloadAnalyzer {
     /**
      * Loads configuration for the analyzer
      */
-    public function loadConfiguration () {
+    public function loadConfiguration () : void {
         $fileName = $this->getConfigurationFileName();
         $class = $this->getConfigurationClassName();
 
@@ -137,7 +133,7 @@ abstract class BasePayloadAnalyzer {
      *
      * @var string
      */
-    public function getItemName () {
+    public function getItemName () : string {
         throw new BadMethodCallException("The getItemName method must be implemented in the analyzer class if used.");
     }
 
@@ -147,7 +143,7 @@ abstract class BasePayloadAnalyzer {
      *
      * @return bool
      */
-    public function isAdministrativeEvent () {
+    public function isAdministrativeEvent () : bool {
         return false;
     }
 
@@ -156,7 +152,7 @@ abstract class BasePayloadAnalyzer {
      *
      * @return string The group, central part of the routing key
      */
-    public function getGroup () {
+    public function getGroup () : string {
         // Some events are organization-level only and can't be mapped
         // to projects.
         if ($this->isAdministrativeEvent()) {

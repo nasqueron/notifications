@@ -31,7 +31,7 @@ class DockerHubPayloadEvent extends Event {
      *
      * @return string
      */
-    public function getEvent () {
+    public function getEvent () : string {
         if (isset($this->payload->repository->repo_url)) {
             return "push";
         }

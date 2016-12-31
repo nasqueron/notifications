@@ -21,7 +21,7 @@ class PhabricatorListener {
      *
      * @param GitHubPayloadEvent $event The GitHub payload event
      */
-    public function onGitHubPayload (GitHubPayloadEvent $event) {
+    public function onGitHubPayload (GitHubPayloadEvent $event) : void {
         if ($event->event === 'push') {
             $this->notifyNewCommits($event);
         }
@@ -32,7 +32,7 @@ class PhabricatorListener {
      *
      * @param GitHubPayloadEvent $event The GitHub payload event
      */
-    public function notifyNewCommits (GitHubPayloadEvent $event) {
+    public function notifyNewCommits (GitHubPayloadEvent $event) : void {
         $job = new NotifyNewCommitsToDiffusion(
             $event->door,
             $event->payload->repository->clone_url
@@ -49,7 +49,7 @@ class PhabricatorListener {
      *
      * @param Dispatcher $events
      */
-    public function subscribe (Dispatcher $events) {
+    public function subscribe (Dispatcher $events) : void {
         $class = PhabricatorListener::class;
         $events->listen(
             GitHubPayloadEvent::class,

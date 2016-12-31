@@ -11,9 +11,11 @@ class NotifyNewCommitsAction extends Action {
     public $callSign;
 
     /**
-     * Initializes a new instance of a AMQP action to report
+     * Initializes a new instance of a AMQP action to report.
+     *
+     * @param string $callSign The Phabricator repository call sign
      */
-    public function __construct ($callSign) {
+    public function __construct (string $callSign) {
         parent::__construct();
 
         $this->callSign = $callSign;
