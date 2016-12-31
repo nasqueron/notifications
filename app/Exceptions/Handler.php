@@ -2,23 +2,25 @@
 
 namespace Nasqueron\Notifications\Exceptions;
 
-use Exception;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Validation\ValidationException;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Illuminate\Foundation\Validation\ValidationException;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 use Config;
 use Raven;
 
-class Handler extends ExceptionHandler
-{
+use Exception;
+
+class Handler extends ExceptionHandler {
+
     /**
      * A list of the exception types that should not be reported.
      *
-     * @var array
+     * @var string[]
      */
     protected $dontReport = [
         AuthorizationException::class,
@@ -29,15 +31,13 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-     * Report or log an exception.
+     * Reports or logs an exception.
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $e
-     * @return void
+     * @param \Exception $e
      */
-    public function report(Exception $e)
-    {
+    public function report(Exception $e) : void {
         if (!$this->shouldReport($e)) {
             return;
         }
@@ -54,7 +54,7 @@ class Handler extends ExceptionHandler
      *
      * @return bool
      */
-    protected function shouldReportToSentry () {
+    protected function shouldReportToSentry () : bool {
         return Raven::isConfigured() && Config::get('app.env') !== 'testing';
     }
 
@@ -63,19 +63,8 @@ class Handler extends ExceptionHandler
      *
      * @param Exception $e The exception to report
      */
-    protected function reportToSentry (Exception $e) {
+    protected function reportToSentry (Exception $e) : void {
         Raven::captureException($e);
     }
 
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
-     * @return \Illuminate\Http\Response
-     */
-    public function render($request, Exception $e)
-    {
-        return parent::render($request, $e);
-    }
 }
