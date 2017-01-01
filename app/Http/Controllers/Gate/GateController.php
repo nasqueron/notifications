@@ -3,8 +3,8 @@
 namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
 use Nasqueron\Notifications\Config\Features;
+use Nasqueron\Notifications\Config\Services\Service;
 use Nasqueron\Notifications\Http\Controllers\Controller;
-use Nasqueron\Notifications\Services\Service;
 
 use Symfony\Component\HttpFoundation\Response as BaseResponse;
 use Illuminate\View\View;
@@ -89,7 +89,7 @@ class GateController extends Controller {
     /**
      * Gets service credentials for this gate and door
      *
-     * @return Nasqueron\Notifications\Services\Service|null The service information is found; otherwise, null.
+     * @return \Nasqueron\Notifications\Config\Services\Service|null The service information is found; otherwise, null.
      */
     public function getService () : ?Service {
         return Services::findServiceByDoor(static::SERVICE_NAME, $this->door);

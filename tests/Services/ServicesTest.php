@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Tests\Services;
 
-use Nasqueron\Notifications\Services\Services;
+use Nasqueron\Notifications\Config\Services\Services;
 use Nasqueron\Notifications\Tests\TestCase;
 
 class ServicesTest extends TestCase {
@@ -27,7 +27,7 @@ class ServicesTest extends TestCase {
 
         foreach ($actualServices as $service) {
             $this->assertInstanceOf(
-                'Nasqueron\Notifications\Services\Service',
+                'Nasqueron\Notifications\Config\Services\Service',
                 $service
             );
         }
@@ -38,7 +38,7 @@ class ServicesTest extends TestCase {
         $this->assertGreaterThan(0, $actualServices);
         foreach ($actualServices as $service) {
             $this->assertInstanceOf(
-                'Nasqueron\Notifications\Services\Service',
+                'Nasqueron\Notifications\Config\Services\Service',
                 $service
             );
             $this->assertSame('GitHub', $service->gate);
@@ -50,7 +50,7 @@ class ServicesTest extends TestCase {
 
         $service = $this->services->findServiceByDoor('GitHub', 'Acme');
         $this->assertInstanceOf(
-                'Nasqueron\Notifications\Services\Service',
+                'Nasqueron\Notifications\Config\Services\Service',
                 $service
         );
         $this->assertSame('GitHub', $service->gate);
@@ -71,7 +71,7 @@ class ServicesTest extends TestCase {
             'https://phabricator.acme.tld'
         );
         $this->assertInstanceOf(
-                'Nasqueron\Notifications\Services\Service',
+                'Nasqueron\Notifications\Config\Services\Service',
                 $service
         );
         $this->assertSame('Phabricator', $service->gate);

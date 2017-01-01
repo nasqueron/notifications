@@ -10,7 +10,7 @@ class ServicesServiceProviderTest extends TestCase {
 
     public function testType () {
         $this->assertServiceInstanceOf(
-            'Nasqueron\Notifications\Services\Services',
+            "Nasqueron\Notifications\Config\Services\Services",
             'services'
         );
     }

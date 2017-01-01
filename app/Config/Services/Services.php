@@ -1,6 +1,6 @@
 <?php
 
-namespace Nasqueron\Notifications\Services;
+namespace Nasqueron\Notifications\Config\Services;
 
 use Storage;
 

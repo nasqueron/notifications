@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Tests\Services;
 
-use Nasqueron\Notifications\Services\Service;
+use Nasqueron\Notifications\Config\Services\Service;
 use Nasqueron\Notifications\Tests\TestCase;
 
 class ServiceTest extends TestCase {

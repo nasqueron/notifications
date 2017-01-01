@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Tests\Console\Commands;
 
-use Nasqueron\Notifications\Services\Service;
+use Nasqueron\Notifications\Config\Services\Service;
 
 class PhabricatorProjectsMapTest extends TestCase {
 

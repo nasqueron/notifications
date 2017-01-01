@@ -5,7 +5,7 @@ namespace Nasqueron\Notifications\Providers;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
-use Nasqueron\Notifications\Services\Services;
+use Nasqueron\Notifications\Config\Services\Services;
 
 class ServicesServiceProvider extends ServiceProvider {
     /**

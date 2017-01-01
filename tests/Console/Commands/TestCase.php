@@ -4,7 +4,7 @@ namespace Nasqueron\Notifications\Tests\Console\Commands;
 
 use Symfony\Component\Console\Tester\CommandTester;
 
-use Nasqueron\Notifications\Services\Service;
+use Nasqueron\Notifications\Config\Services\Service;
 use Nasqueron\Notifications\Tests\TestCase as BaseTestCase;
 
 use Artisan;

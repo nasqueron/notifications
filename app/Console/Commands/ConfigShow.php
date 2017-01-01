@@ -5,7 +5,7 @@ namespace Nasqueron\Notifications\Console\Commands;
 use Illuminate\Console\Command;
 
 use Nasqueron\Notifications\Config\Features;
-use Nasqueron\Notifications\Services\Service;
+use Nasqueron\Notifications\Config\Services\Service;
 
 use Config;
 use ProjectsMap;
@@ -41,7 +41,7 @@ class ConfigShow extends Command
     /**
      * Gets the services (defined in credentials.json) as table rows.
      *
-     * @return \Nasqueron\Notifications\Services\Service[]
+     * @return \Nasqueron\Notifications\Config\Services\Service[]
      */
     protected function getServicesTableRows () : array {
         $rows = [];
@@ -59,7 +59,7 @@ class ConfigShow extends Command
     /**
      * Gets service status.
      *
-     * @param \Nasqueron\Notifications\Services\Service $service The service to check
+     * @param \Nasqueron\Notifications\Config\Services\Service $service The service to check
      * @return string A description of the issue if something is wrong; otherwise, "✓".
      */
     protected function getServiveStatus (Service $service) : string {
