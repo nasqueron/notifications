@@ -4,7 +4,7 @@ namespace Nasqueron\Notifications\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use Nasqueron\Notifications\Features;
+use Nasqueron\Notifications\Config\Features;
 use Nasqueron\Notifications\Services\Service;
 
 use Config;

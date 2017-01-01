@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
-use Nasqueron\Notifications\Features;
+use Nasqueron\Notifications\Config\Features;
 use Nasqueron\Notifications\Http\Controllers\Controller;
 use Nasqueron\Notifications\Services\Service;
 

@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Tests\Console\Commands;
 
-use Nasqueron\Notifications\Features;
+use Nasqueron\Notifications\Config\Features;
 use Nasqueron\Notifications\Services\Service;
 
 use Mockery;

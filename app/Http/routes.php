@@ -1,6 +1,6 @@
 <?php
 
-use Nasqueron\Notifications\Features;
+use Nasqueron\Notifications\Config\Features;
 
 /*
 |--------------------------------------------------------------------------

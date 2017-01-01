@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Tests;
 
-use Nasqueron\Notifications\Features;
+use Nasqueron\Notifications\Config\Features;
 
 class FeaturesTest extends TestCase {
     public function testEnable () {

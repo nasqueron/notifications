@@ -3,7 +3,7 @@
 namespace Nasqueron\Notifications\Tests;
 
 use Keruald\Broker\BlackholeBroker;
-use Nasqueron\Notifications\Features;
+use Nasqueron\Notifications\Config\Features;
 
 class PayloadFullTest extends TestCase {
 
