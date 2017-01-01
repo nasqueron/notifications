@@ -1,0 +1,23 @@
+{
+    "gates": [
+        "DockerHub",
+        "GitHub",
+        "Jenkins",
+        "Phabricator"
+    ],
+    "features": [
+        {
+            "name": "Gate",
+            "enabled": true
+        },
+        {
+            "name": "GetConfig",
+            "enabled": true
+        },
+        {
+            "name": "ActionsReport",
+            "enabled": true
+        }
+    ],
+    "services": []
+}

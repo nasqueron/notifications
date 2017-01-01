@@ -58,25 +58,4 @@ class TestCase extends BaseTestCase {
         return self::findInstanceOf($expectedType, Artisan::all());
     }
 
-    ///
-    /// Helper methods to mock services
-    ///
-
-    protected function mockServices () {
-        // Inject into our container a mock of Services
-        $mock = Mockery::mock('Nasqueron\Notifications\Config\Services\Services');
-        $this->app->instance('services', $mock);
-
-        return $mock;
-    }
-
-    protected function mockService ($gate = 'Storm') {
-        $service = new Service;
-        $service->gate = $gate;
-        $service->door = 'Acme';
-        $service->instance = "http://www.perdu.com";
-
-        return $service;
-    }
-
 }

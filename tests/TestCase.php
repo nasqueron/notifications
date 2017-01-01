@@ -2,6 +2,8 @@
 
 namespace Nasqueron\Notifications\Tests;
 
+use Nasqueron\Notifications\Config\Services\Service;
+
 use Illuminate\Contracts\Console\Kernel;
 use Keruald\Broker\BlackholeBroker;
 use Keruald\Broker\Broker;
@@ -96,6 +98,27 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
 
         $reply = $this->mockPhabricatorAPIProjectsQueryReply();
         $mock->shouldReceive('getForProject->call')->andReturn($reply);
+    }
+
+    ///
+    /// Helper methods to mock services
+    ///
+
+    protected function mockServices () {
+        // Inject into our container a mock of Services
+        $mock = Mockery::mock('Nasqueron\Notifications\Config\Services\Services');
+        $this->app->instance('services', $mock);
+
+        return $mock;
+    }
+
+    protected function mockService ($gate = 'Storm') {
+        $service = new Service;
+        $service->gate = $gate;
+        $service->door = 'Acme';
+        $service->instance = "http://www.perdu.com";
+
+        return $service;
     }
 
     ///
