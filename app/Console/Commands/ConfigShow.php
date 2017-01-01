@@ -4,12 +4,7 @@ namespace Nasqueron\Notifications\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use Nasqueron\Notifications\Config\Features;
-use Nasqueron\Notifications\Config\Services\Service;
-
-use Config;
-use ProjectsMap;
-use Services;
+use Nasqueron\Notifications\Config\Reporting\ConfigReport;
 
 class ConfigShow extends Command
 {
@@ -28,11 +23,9 @@ class ConfigShow extends Command
     protected $description = 'Show notifications center configuration';
 
     /**
-     * Creates a new command instance.
+     * @var \Nasqueron\Notifications\Config\Reporting\ConfigReport
      */
-    public function __construct () {
-        parent::__construct();
-    }
+    private $report;
 
     ///
     /// Prepare information tables
@@ -41,37 +34,16 @@ class ConfigShow extends Command
     /**
      * Gets the services (defined in credentials.json) as table rows.
      *
-     * @return \Nasqueron\Notifications\Config\Services\Service[]
+     * @return array
      */
     protected function getServicesTableRows () : array {
         $rows = [];
-        foreach (Services::get() as $service) {
-            $rows[] = [
-                $service->gate,
-                $service->door,
-                $service->getInstanceName(),
-                $this->getServiveStatus($service)
-            ];
+
+        foreach ($this->report->services as $service) {
+            $rows[] = $service->toFancyArray();
         }
+
         return $rows;
-    }
-
-    /**
-     * Gets service status.
-     *
-     * @param \Nasqueron\Notifications\Config\Services\Service $service The service to check
-     * @return string A description of the issue if something is wrong; otherwise, "✓".
-     */
-    protected function getServiveStatus (Service $service) : string {
-        if ($service->gate === 'Phabricator') {
-            // Ensure the projects map is cached
-            $map = \ProjectsMap::fetch($service->door);
-            if (!$map->isCached()) {
-                return "Projects map not cached.";
-            }
-        }
-
-        return "✓";
     }
 
     /**
@@ -81,15 +53,11 @@ class ConfigShow extends Command
      */
     protected function getFeaturesTableRows () : array {
         $rows = [];
-        foreach (Features::getAll() as $key => $value) {
-            if ($value) {
-                $checkMark = '✓';
-            } else {
-                $checkMark = '';
-            }
 
-            $rows[] = [$key, $checkMark];
+        foreach ($this->report->features as $feature) {
+            $rows[] = $feature->toFancyArray();
         }
+
         return $rows;
     }
 
@@ -101,14 +69,20 @@ class ConfigShow extends Command
      * Executes the console command.
      */
     public function handle () : void {
+        $this->prepareReport();
+
         $this->printGates();
         $this->printFeatures();
         $this->printServices();
     }
 
+    protected final function prepareReport() : void {
+        $this->report = new ConfigReport();
+    }
+
     protected final function printGates () : void {
         $this->info("Gates:\n");
-        foreach (Config::get('gate.controllers') as $gate) {
+        foreach ($this->report->gates as $gate) {
             $this->line('- ' . $gate);
         }
     }

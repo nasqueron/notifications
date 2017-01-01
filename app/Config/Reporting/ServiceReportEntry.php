@@ -6,7 +6,7 @@ use Nasqueron\Notifications\Config\Services\Service;
 
 use ProjectsMap;
 
-class ServiceReportEntry {
+final class ServiceReportEntry extends BaseReportEntry {
 
     ///
     /// Private members
@@ -97,6 +97,38 @@ class ServiceReportEntry {
 
         $map = ProjectsMap::fetch($this->service->door);
         return !$map->isCached();
+    }
+
+    ///
+    /// Format
+    ///
+
+    /**
+     * Gets the entry as an array. Formats empty string.
+     *
+     * @return string[]
+     */
+    public function toArray () : array {
+        return [
+            $this->gate,
+            $this->door,
+            $this->instance,
+            $this->status,
+        ];
+    }
+
+    /**
+     * Gets the entry as an array. Formats empty string.
+     *
+     * @return string[]
+     */
+    public function toFancyArray () : array {
+        return [
+            $this->gate,
+            $this->door,
+            self::fancyString($this->instance, 'ø'),
+            self::fancyString($this->status, '✓'),
+        ];
     }
 
 }
