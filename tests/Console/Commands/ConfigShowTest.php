@@ -15,7 +15,7 @@ class ConfigShowTest extends TestCase {
     protected $class = 'Nasqueron\Notifications\Console\Commands\ConfigShow';
 
     /**
-     * Nasqueron\Notifications\Services\Services
+     * Nasqueron\Notifications\Config\Services\Services
      */
     private $servicesMock;
 

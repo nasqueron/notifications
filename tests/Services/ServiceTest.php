@@ -8,12 +8,12 @@ use Nasqueron\Notifications\Tests\TestCase;
 class ServiceTest extends TestCase {
 
     /**
-     * @var \Nasqueron\Notifications\Services\Service
+     * @var \Nasqueron\Notifications\Config\Services\Service
      */
     private $serviceWithInstance;
 
     /**
-     * @var \Nasqueron\Notifications\Services\Service
+     * @var \Nasqueron\Notifications\Config\Services\Service
      */
     private $serviceWithoutInstance;
 
@@ -23,7 +23,7 @@ class ServiceTest extends TestCase {
         $this->serviceWithInstance = clone $this->serviceWithoutInstance;
         $this->serviceWithInstance->instance = "http://www.perdu.com";
     }
-    
+
     ///
     /// Tests for getInstanceName()
     ///

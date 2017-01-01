@@ -64,7 +64,7 @@ class TestCase extends BaseTestCase {
 
     protected function mockServices () {
         // Inject into our container a mock of Services
-        $mock = Mockery::mock('Nasqueron\Notifications\Services\Services');
+        $mock = Mockery::mock('Nasqueron\Notifications\Config\Services\Services');
         $this->app->instance('services', $mock);
 
         return $mock;

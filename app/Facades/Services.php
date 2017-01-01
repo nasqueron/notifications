@@ -5,7 +5,7 @@ namespace Nasqueron\Notifications\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Nasqueron\Notifications\Services\Services
+ * @see \Nasqueron\Notifications\Config\Services\Services
  */
 class Services extends Facade {
 
