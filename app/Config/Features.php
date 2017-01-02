@@ -17,6 +17,8 @@ class Features {
     ///
 
     /**
+     * Gets the configuration key for the specified feature name.
+     *
      * @param string $feature The feature to get the config key
      * @return string The config key
      */
@@ -79,7 +81,7 @@ class Features {
     }
 
     /**
-     * Lists the enabled features
+     * Lists the enabled features.
      *
      * @return string[] a list of enabled features
      */
