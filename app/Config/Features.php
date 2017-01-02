@@ -88,4 +88,5 @@ class Features {
         $enabledFeatures = array_filter($features);
         return array_keys($enabledFeatures);
     }
+
 }

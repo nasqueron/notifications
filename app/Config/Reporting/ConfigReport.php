@@ -75,5 +75,4 @@ class ConfigReport {
         return $services;
     }
 
-
 }
