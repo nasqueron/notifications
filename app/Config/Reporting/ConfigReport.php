@@ -43,6 +43,8 @@ class ConfigReport {
     ///
 
     /**
+     * Queries information about the features enabled from the configuration.
+     *
      * @return string[]
      */
     protected function queryGates () : array {
@@ -50,6 +52,8 @@ class ConfigReport {
     }
 
     /**
+     * Queries information about the features enabled from the configuration.
+     *
      * @return FeatureReportEntry[]
      */
     protected function queryFeatures () : array {
@@ -63,6 +67,8 @@ class ConfigReport {
     }
 
     /**
+     * Queries information about services described in credentials.json.
+     *
      * @return ServiceReportEntry[]
      */
     protected function queryServices () : array {
