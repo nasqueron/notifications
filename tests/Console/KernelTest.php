@@ -4,10 +4,18 @@ namespace Nasqueron\Notifications\Tests\Console;
 
 use Nasqueron\Notifications\Tests\TestCase;
 
+use Nasqueron\Notifications\Console\Kernel;
+use Illuminate\Contracts\Console\Kernel as BaseKernel;
+
 use Artisan;
 use File;
 
 class KernelTest extends TestCase {
+    /**
+     * @var \Nasqueron\Notifications\Console\Kernel
+     */
+    private $kernel;
+
     /**
      * The actual list of services providers
      *
@@ -25,7 +33,8 @@ class KernelTest extends TestCase {
     public function setUp () {
         parent::setUp();
 
-        $this->commands = Artisan::all();
+        $this->kernel = $this->app->make(BaseKernel::class);
+        $this->commands = $this->kernel->all();
         $this->namespace = $this->app->getInstance()->getNamespace()
                          . 'Console\\Commands\\';
     }
@@ -41,6 +50,32 @@ class KernelTest extends TestCase {
                 "The class $class should be added to app/Console/Kernel.php."
             );
         }
+    }
+
+    public function testGet () {
+        $this->assertInstanceOf(
+            \Nasqueron\Notifications\Console\Commands\Inspire::class,
+            $this->kernel->get('inspire')
+        );
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testGetWhenCommandDoesNotExist () {
+        $this->kernel->get('notexisting');
+    }
+
+    public function testGetByClass () {
+        $class = \Nasqueron\Notifications\Console\Commands\Inspire::class;
+        $this->assertInstanceOf($class, $this->kernel->getByClass($class));
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testGetByClassWhenCommandDoesNotExist () {
+        $this->kernel->getByClass('notexisting');
     }
 
     ///
