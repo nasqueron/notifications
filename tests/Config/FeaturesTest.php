@@ -6,6 +6,7 @@ use Nasqueron\Notifications\Config\Features;
 use Nasqueron\Notifications\Tests\TestCase;
 
 class FeaturesTest extends TestCase {
+
     public function testEnable () {
         // Find it (en vain …)
         $this->assertNotContains('Quux', Features::getEnabled());
@@ -24,6 +25,6 @@ class FeaturesTest extends TestCase {
         $this->assertContains('Quux', Features::getAll());
         $this->assertContains('Quux', Features::getAvailable());
         $this->assertNotContains('Quux', Features::getEnabled());
-
     }
+
 }
