@@ -1,6 +1,6 @@
 <?php
 
-namespace Nasqueron\Notifications\Tests\Services;
+namespace Nasqueron\Notifications\Tests\Config\Services;
 
 use Nasqueron\Notifications\Config\Services\Services;
 use Nasqueron\Notifications\Tests\TestCase;

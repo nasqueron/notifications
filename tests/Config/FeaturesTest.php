@@ -1,8 +1,9 @@
 <?php
 
-namespace Nasqueron\Notifications\Tests;
+namespace Nasqueron\Notifications\Tests\Config;
 
 use Nasqueron\Notifications\Config\Features;
+use Nasqueron\Notifications\Tests\TestCase;
 
 class FeaturesTest extends TestCase {
     public function testEnable () {
