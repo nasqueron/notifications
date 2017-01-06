@@ -41,7 +41,7 @@ class FireGitHubNotification extends Job {
      * Creates a GitHub notification
      *
      * @param GitHubPayloadEvent $event
-     * @return \Nasqueron\Notifications\Notification The notification
+     * @return \Nasqueron\Notifications\Notifications\Notification The notification
      */
     protected function createNotification() : GitHubNotification {
         return new GitHubNotification(

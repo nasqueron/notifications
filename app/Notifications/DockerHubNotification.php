@@ -3,7 +3,6 @@
 namespace Nasqueron\Notifications\Notifications;
 
 use Nasqueron\Notifications\Analyzers\DockerHub\BaseEvent;
-use Nasqueron\Notifications\Notification;
 
 use InvalidArgumentException;
 

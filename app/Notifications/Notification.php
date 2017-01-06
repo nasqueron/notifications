@@ -1,6 +1,6 @@
 <?php
 
-namespace Nasqueron\Notifications;
+namespace Nasqueron\Notifications\Notifications;
 
 class Notification {
 

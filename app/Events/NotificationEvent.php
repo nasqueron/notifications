@@ -2,15 +2,16 @@
 
 namespace Nasqueron\Notifications\Events;
 
-use Nasqueron\Notifications\Notification;
 use Nasqueron\Notifications\Events\Event;
+use Nasqueron\Notifications\Notifications\Notification;
+
 use Illuminate\Queue\SerializesModels;
 
 class NotificationEvent extends Event {
     use SerializesModels;
 
     /**
-     * @var \Nasqueron\Notifications\Notification
+     * @var Notification
      */
     public $notification;
 

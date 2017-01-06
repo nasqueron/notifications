@@ -6,7 +6,7 @@ use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 use Nasqueron\Notifications\Events\NotificationEvent;
 use Nasqueron\Notifications\Analyzers\GitHub\GitHubPayloadAnalyzer;
 use Nasqueron\Notifications\Jobs\SendMessageToBroker;
-use Nasqueron\Notifications\Notification;
+use Nasqueron\Notifications\Notifications\Notification;
 
 use Config;
 

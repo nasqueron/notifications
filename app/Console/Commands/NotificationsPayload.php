@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Console\Commands;
 
-use Nasqueron\Notifications\Notification;
+use Nasqueron\Notifications\Notifications\Notification;
 use Nasqueron\Notifications\Phabricator\PhabricatorStory;
 
 use Illuminate\Console\Command;
@@ -161,7 +161,7 @@ class NotificationsPayload extends Command {
      * Initializes a new instance of the relevant notification class,
      * with the arguments given in the constructor property.
      *
-     * @return \Nasqueron\Notifications\Notification
+     * @return \Nasqueron\Notifications\Notifications\Notification
      */
     private function getNotification () : Notification {
         $class = $this->getNotificationClass();

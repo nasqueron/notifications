@@ -45,7 +45,7 @@ class FireJenkinsNotification extends Job {
      * Creates a Jenkins notification
      *
      * @param JenkinsPayloadEvent $event
-     * @return \Nasqueron\Notifications\Notification The notification
+     * @return \Nasqueron\Notifications\Notifications\Notification The notification
      */
     protected function createNotification() : JenkinsNotification {
         return new JenkinsNotification(

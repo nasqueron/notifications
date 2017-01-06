@@ -3,7 +3,6 @@
 namespace Nasqueron\Notifications\Notifications;
 
 use Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzer;
-use Nasqueron\Notifications\Notification;
 
 /**
  * A Jenkins notification.
