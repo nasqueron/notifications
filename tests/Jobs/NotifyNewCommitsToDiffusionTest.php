@@ -2,43 +2,69 @@
 
 namespace Nasqueron\Notifications\Tests\Jobs;
 
+use Nasqueron\Notifications\Jobs\Job;
 use Nasqueron\Notifications\Jobs\NotifyNewCommitsToDiffusion;
-use Nasqueron\Notifications\Phabricator\PhabricatorAPI;
 use Nasqueron\Notifications\Tests\TestCase;
-
-use Mockery;
 
 class NotifyNewCommitsToDiffusionTest extends TestCase {
 
-    /**
-     * Mock for the Phabricator API factory
-     * @var \Mockery\MockInterface
-     */
-    private $apiFactoryMock;
+    ///
+    /// Tests
+    ///
 
     /**
-     * The job to test
-     * @var NotifyNewCommitsToDiffusion
+     * @dataProvider apiRepositoryReplyProvider
      */
-    private $job;
+    public function testHandle ($apiRepositoryReply, int $apiCallCounts) {
+        $this->mockPhabricatorAPI()
+            ->shouldReceive('getForProject->call')
+            ->andReturn(
+                // First API call: repository.query
+                $apiRepositoryReply,
 
-    public function setUp () {
-        parent::setUp();
+                // Second API call: diffusion.looksoon
+                null
+            )
+            ->times($apiCallCounts); // 2 when repository.query is valid
+                                     // 1 otherwise
 
-        $this->apiFactoryMock = $this->mockPhabricatorAPI();
-        $this->job = $this->mockJob();
+        $job = $this->mockJob();
+        $job->handle();
+    }
+
+    public function testJobWhenThereIsNoPhabricatorInstanceForTheProject () {
+        $job = $this->mockJob("not-existing-project");
+        $job->handle();
+    }
+
+    ///
+    /// Helper methods
+    ///
+
+    /**
+     * Mocks a job
+     */
+    protected function mockJob(string $project = "acme") : Job {
+        return new NotifyNewCommitsToDiffusion(
+            $project,
+            "ssh://acme/k2.git"
+        );
     }
 
     /**
-     * @return NotifyNewCommitsToDiffusion
+     * Provides API repository reply and associated API calls count
      */
-    protected function mockJob() {
-        return new NotifyNewCommitsToDiffusion("acme", "ssh://acme/k2.git");
-    }
+    public function apiRepositoryReplyProvider () : array {
+        return [
+            // Regular behavior
+            [[new class { public $callsign = "K2"; }], 2],
 
-    public function testJobWantsPhabricatorAPI () {
-        $this->apiFactoryMock->shouldReceive('getForProject')->once();
-        $this->job->handle();
+            // Phabricator doesn't know this repo
+            [[], 1],
+
+            // Some error occurs and the API reply is null
+            [null, 1],
+        ];
     }
 
 }

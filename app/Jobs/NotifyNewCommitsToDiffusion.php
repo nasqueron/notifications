@@ -8,10 +8,11 @@ use Nasqueron\Notifications\Events\ReportEvent;
 use Nasqueron\Notifications\Phabricator\PhabricatorAPI as API;
 use Nasqueron\Notifications\Phabricator\PhabricatorAPIException;
 
-
 use Event;
 use Log;
 use PhabricatorAPI;
+
+use RuntimeException;
 
 /**
  * This class allows to notify Phabricator of new commits, so daemons can pull
@@ -143,9 +144,13 @@ class NotifyNewCommitsToDiffusion extends Job {
      */
     private function fetchAPI () : bool {
         $project = $this->getPhabricatorProject();
-        $this->api = PhabricatorAPI::getForProject($project);
 
-        return $this->api !== null;
+        try {
+            $this->api = PhabricatorAPI::getForProject($project);
+            return true;
+        } catch (RuntimeException $ex) {
+            return false;
+        }
     }
 
     /**
