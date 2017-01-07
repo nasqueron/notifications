@@ -67,10 +67,10 @@ class GitHubGateController extends GateController {
     /**
      * Handles POST requests
      *
-     * @param Request $request the HTTP request
+     * @param string $door The door, matching the project for this payload
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function onPost ($door) : Response {
+    public function onPost (string $door) : Response {
         // Parses the request and check if it's legit
 
         $this->door = $door;
@@ -98,7 +98,7 @@ class GitHubGateController extends GateController {
     /**
      * Extracts headers from the request
      */
-    protected function extractHeaders () {
+    protected function extractHeaders () : void {
         $this->signature = $this->getSignature();
         $this->event     = Request::header('X-Github-Event');
         $this->delivery  = Request::header('X-Github-Delivery');
@@ -107,9 +107,9 @@ class GitHubGateController extends GateController {
     /**
      * Gets the signature from an X-Hub-Signature header
      *
-     * @param string the signature part of the header
+     * @return string The signature part of the header
      */
-    private function getSignature () {
+    private function getSignature () : string {
         $headerSignature = Request::header('X-Hub-Signature');
         return XHubSignature::parseSignature($headerSignature);
     }
@@ -117,7 +117,7 @@ class GitHubGateController extends GateController {
     /**
      * Extracts payload from the request
      */
-    protected function extractPayload () {
+    protected function extractPayload () : void {
         $request = Request::instance();
         $this->rawRequestContent = $request->getContent();
         $this->payload = json_decode($this->rawRequestContent);
@@ -129,7 +129,7 @@ class GitHubGateController extends GateController {
      *
      * @return bool true if the request looks valid; otherwise, false.
      */
-    protected function isValidRequest () {
+    protected function isValidRequest () : bool {
         if (empty($this->event)) {
             return false;
         }
@@ -147,7 +147,7 @@ class GitHubGateController extends GateController {
      *
      * @return bool true if the request looks legit; otherwise, false.
      */
-    protected function isLegitRequest () {
+    protected function isLegitRequest () : bool {
         $secret = $this->getSecret();
 
         // If the secret is not defined, request legitimation is bypassed

@@ -45,10 +45,10 @@ class JenkinsGateController extends GateController {
     /**
      * Handles POST requests
      *
-     * @param Request $request the HTTP request
+     * @param string $door The door, matching the project for this payload
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function onPost ($door) : Response {
+    public function onPost (string $door) : Response {
         // Parses the request and check if it's legit
 
         $this->door = $door;

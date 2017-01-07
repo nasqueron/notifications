@@ -38,10 +38,10 @@ class PhabricatorGateController extends GateController {
     /**
      * Handles POST requests
      *
-     * @param Request $request the HTTP request
+     * @param string $door The door, matching the project for this payload
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function onPost ($door) : Response {
+    public function onPost (string $door) : Response {
         $this->door = $door;
 
         if (!$this->doesServiceExist()) {
@@ -59,7 +59,7 @@ class PhabricatorGateController extends GateController {
     /**
      * Extracts payload from the request
      */
-    protected function extractPayload () {
+    protected function extractPayload () : void {
         $this->payload = Request::all();
     }
 
@@ -67,7 +67,7 @@ class PhabricatorGateController extends GateController {
     /// Payload processing
     ///
 
-    protected function onPayload () {
+    protected function onPayload () : void {
         $this->initializeReport();
 
         Event::fire(new PhabricatorPayloadEvent(

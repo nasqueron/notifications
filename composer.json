@@ -14,7 +14,7 @@
     "laravel/framework": "5.2.*",
     "guzzlehttp/guzzle": "^6.2",
     "keruald/dockerhub": "^0.0.3",
-    "keruald/github": "^0.2.0",
+    "keruald/github": "^0.2.1",
     "keruald/broker": "^0.4.1",
     "keruald/mailgun": "^0.0.1",
     "netresearch/jsonmapper": "~0.1.0",
