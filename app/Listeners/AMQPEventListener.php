@@ -6,6 +6,8 @@ use Nasqueron\Notifications\Events\NotificationEvent;
 use Nasqueron\Notifications\Jobs\SendMessageToBroker;
 use Nasqueron\Notifications\Notifications\Notification;
 
+use Illuminate\Events\Dispatcher;
+
 use Config;
 
 class AMQPEventListener {
@@ -20,7 +22,7 @@ class AMQPEventListener {
      * @param NotificationEvent $event
      */
     public function onNotification(NotificationEvent $event) : void {
-        $this->sendNotification($event);
+        $this->sendNotification($event->notification);
     }
 
     /**
@@ -29,24 +31,22 @@ class AMQPEventListener {
      * @param NotificationEvent $event
      */
     protected static function getNotificationRoutingKey (Notification $notification) : string {
-        $key = [
+        $keyParts = [
             $notification->project,
             $notification->group,
             $notification->service,
-            $notification->type
+            $notification->type,
         ];
 
-        return strtolower(implode('.', $key));
+        return strtolower(implode('.', $keyParts));
     }
 
     /**
-     * This is our gateway specialized for distilled notifications
+     * Sends the notification to the broker target for distilled notifications.
      *
-     * @param NotificationEvent $event
+     * @param Notification The notification to send
      */
-    protected function sendNotification(NotificationEvent $event) : void {
-        $notification = $event->notification;
-
+    protected function sendNotification(Notification $notification) : void {
         $target = Config::get('broker.targets.notifications');
         $routingKey = static::getNotificationRoutingKey($notification);
         $message = json_encode($notification);
@@ -60,15 +60,13 @@ class AMQPEventListener {
     ///
 
     /**
-     * Register the listeners for the subscriber.
+     * Registers the listeners for the subscriber.
      *
-     * @param \Illuminate\Events\Dispatcher $events
+     * @param Dispatcher $events
      */
-    public function subscribe (\Illuminate\Events\Dispatcher $events) : void {
-        $class = 'Nasqueron\Notifications\Listeners\AMQPEventListener';
-        $events->listen(
-            'Nasqueron\Notifications\Events\NotificationEvent',
-            "$class@onNotification"
-        );
+    public function subscribe (Dispatcher $events) : void {
+        $class = AMQPEventListener::class;
+        $events->listen(NotificationEvent::class, "$class@onNotification");
     }
+
 }
