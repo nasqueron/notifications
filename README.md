@@ -12,8 +12,6 @@ It allows to bridge GitHub and Phabricator, to notify an IRC/Slack bot
 of what happens on your CI infrastructure or to orchestrate the communication
 between the different CI software.
 
-You can also use it as an HTTP to AMQP gateway.
-
 The broker layer interface is abstracted, you can use another broker
 if you send a pull request to the keruald/broker repository.
 
