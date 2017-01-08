@@ -32,7 +32,7 @@ We recommend RabbitMQ as broker, but any AMQP broker is suitable.
 
     docker pull nasqueron/rabbitmq
     docker run -dt -p 5672:5672 -p 15672:15672 \
-    -v /data/log -v /data/mnesia
+    -v /data/log -v /data/mnesia \
     --hostname blue-rabbit --name blue-rabbit \
     nasqueron/rabbitmq
 
