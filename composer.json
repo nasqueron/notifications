@@ -24,9 +24,12 @@
     "etsy/phan": "dev-master",
     "fzaninotto/faker": "~1.4",
     "mockery/mockery": "0.9.*",
+    "pdepend/pdepend": "^2.4.1",
+    "phploc/phploc": "^3.0.1",
     "phpmd/phpmd" : "@stable",
     "phpunit/phpunit": "~4.0",
     "phpspec/phpspec": "~2.1",
+    "sebastian/phpcpd": "^2.0.4",
     "squizlabs/php_codesniffer": "2.*",
     "symfony/css-selector": "~3.0",
     "symfony/dom-crawler": "~3.0"
