@@ -68,6 +68,36 @@ Prepare a configuration file:
 
 See the section above for hints about how to configure your broker.
 
+### Dependencies for manual installation
+
+Composer will give you the list of extensions you need:
+
+  - bcmath (required by the broker library)
+  - curl (required by Laravel)
+  - mbstring (required by Laravel)
+
+As a developer, you also need:
+
+  - ast (required by phan)
+  - dom (required by phpunit)
+
+As ast isn't generally packaged, to install it:
+
+```
+$ git clone https://github.com/nikic/php-ast.git
+$ cd php-ast
+$ ./configure
+$ make
+$ sudo make install
+```
+
+You can also skip the developer extensions with:
+
+`composer install --ignore-platform-reqs`
+
+Finally, if you wish to run the full ant build, you need to install phpdox
+manually, as dependencies aren't compatible with the others.
+
 ## Notifications format
 
 Each notification is represented as an object with the following
