@@ -198,7 +198,16 @@ class PhabricatorStory {
             return "";
         }
 
-        return PhabricatorAPI::getFirstResult($reply)->repositoryPHID;
+        $apiResult = PhabricatorAPI::getFirstResult($reply);
+        if ($apiResult === null) {
+            // Repository information can't be fetched (T1136).
+            // This occurs when the bot account used to fetch information
+            // doesn't have access to the repository, for example if it's
+            // in a private space or restricted to a group it doesn't belong to.
+            return "";
+        }
+
+        return $apiResult->repositoryPHID;
     }
 
     /**
