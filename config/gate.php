@@ -13,6 +13,10 @@ return [
     */
 
     'controllers' => [
+        // Native notifications
+        'Notification',
+
+        // External services
         'DockerHub',
         'GitHub',
         'Jenkins',

@@ -1,5 +1,6 @@
 {
     "gates": [
+        "Notification",
         "DockerHub",
         "GitHub",
         "Jenkins",
