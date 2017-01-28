@@ -6,7 +6,6 @@ use Config;
 use Storage;
 
 use BadMethodCallException;
-use InvalidArgumentException;
 
 abstract class BasePayloadAnalyzer {
 
