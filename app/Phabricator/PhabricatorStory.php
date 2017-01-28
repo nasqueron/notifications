@@ -256,7 +256,16 @@ class PhabricatorStory {
             ]
         );
 
-        return PhabricatorAPI::getFirstResult($reply)->attachments->projects->projectPHIDs;
+        $apiResult = PhabricatorAPI::getFirstResult($reply);
+        if ($apiResult === null) {
+            // Object information (e.g. a paste) can't be fetched (T1138).
+            // This occurs when the bot account used to fetch information
+            // doesn't have access to the object, for example if it's
+            // in a private space or restricted to a group it doesn't belong to.
+            return [];
+        }
+
+        return $apiResult->attachments->projects->projectPHIDs;
      }
 
     /**
