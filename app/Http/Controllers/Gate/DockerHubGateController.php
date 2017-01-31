@@ -30,15 +30,6 @@ class DockerHubGateController extends GateController {
     private $rawRequestContent;
 
     ///
-    /// Constants
-    ///
-
-    /**
-     * The name of the service this gate accepts payload from.
-     */
-    const SERVICE_NAME = 'DockerHub';
-
-    ///
     /// Request processing
     ///
 
@@ -71,6 +62,10 @@ class DockerHubGateController extends GateController {
         $request = Request::instance();
         $this->rawRequestContent = $request->getContent();
         $this->payload = json_decode($this->rawRequestContent);
+    }
+
+    public function getServiceName () : string {
+        return "DockerHub";
     }
 
     ///

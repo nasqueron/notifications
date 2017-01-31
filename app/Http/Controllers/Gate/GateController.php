@@ -48,7 +48,7 @@ class GateController extends Controller {
      */
     protected function logRequest (array $extraContextualData = []) : void {
         Log::info('[Gate] New payload.', [
-            'service' => static::SERVICE_NAME,
+            'service' => $this->getServiceName(),
             'door' => $this->door,
         ] + $extraContextualData);
     }
@@ -62,7 +62,7 @@ class GateController extends Controller {
      */
     protected function initializeReport () : void {
         if (Features::isEnabled('ActionsReport')) {
-            Report::attachToGate(static::SERVICE_NAME, $this->door);
+            Report::attachToGate($this->getServiceName(), $this->door);
         }
     }
 
@@ -92,7 +92,7 @@ class GateController extends Controller {
      * @return \Nasqueron\Notifications\Config\Services\Service|null The service information is found; otherwise, null.
      */
     public function getService () : ?Service {
-        return Services::findServiceByDoor(static::SERVICE_NAME, $this->door);
+        return Services::findServiceByDoor($this->getServiceName(), $this->door);
     }
 
     /**

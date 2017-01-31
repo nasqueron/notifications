@@ -52,15 +52,6 @@ class GitHubGateController extends GateController {
     private $rawRequestContent;
 
     ///
-    /// Constants
-    ///
-
-    /**
-     * The name of the service this gate accepts payload from.
-     */
-    const SERVICE_NAME = 'GitHub';
-
-    ///
     /// Request processing
     ///
 
@@ -176,6 +167,10 @@ class GitHubGateController extends GateController {
             'delivery' => $this->delivery,
             'event' => $this->event,
         ]);
+    }
+
+    public function getServiceName () : string {
+        return "GitHub";
     }
 
     ///

@@ -23,15 +23,6 @@ class PhabricatorGateController extends GateController {
     private $payload;
 
     ///
-    /// Constants
-    ///
-
-    /**
-     * The name of the service this gate accepts payload from.
-     */
-    const SERVICE_NAME = 'Phabricator';
-
-    ///
     /// Requests processing
     ///
 
@@ -61,6 +52,10 @@ class PhabricatorGateController extends GateController {
      */
     protected function extractPayload () : void {
         $this->payload = Request::all();
+    }
+
+    public function getServiceName () : string {
+        return "Phabricator";
     }
 
     ///
