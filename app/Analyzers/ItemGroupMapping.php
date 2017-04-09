@@ -25,7 +25,7 @@ class ItemGroupMapping {
      *
      * @var array
      */
-    public $items;
+    public $items = [];
 
     ///
     /// Helper methods
