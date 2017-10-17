@@ -32,7 +32,7 @@ class PhabricatorStory {
     public $type;
 
     /**
-     * @var array
+     * @var array|null
      */
     public $data;
 
