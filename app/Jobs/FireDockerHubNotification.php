@@ -40,8 +40,7 @@ class FireDockerHubNotification extends Job {
     /**
      * Creates a DockerHub notification
      *
-     * @param DockerHubPayloadEvent $event
-     * @return \Nasqueron\Notifications\Notifications\Notification The notification
+     * @return \Nasqueron\Notifications\Notifications\DockerHubNotification The notification
      */
     protected function createNotification() : DockerHubNotification {
         return new DockerHubNotification(

@@ -17,7 +17,7 @@ class ReportEvent extends Event {
     /**
      * Creates a new event instance.
      *
-     * @param ActionReport $action the action to report
+     * @param Action $action the action to report
      */
     public function __construct(Action $action) {
         $this->action = $action;

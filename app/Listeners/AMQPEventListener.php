@@ -28,7 +28,7 @@ class AMQPEventListener {
     /**
      * Gets routing key, to allow consumers to select the topic they subscribe to.
      *
-     * @param NotificationEvent $event
+     * @param Notification The $notification from where the keys must be extracted
      */
     protected static function getNotificationRoutingKey (Notification $notification) : string {
         $keyParts = [

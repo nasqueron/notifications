@@ -52,7 +52,7 @@ class Kernel extends ConsoleKernel
     /**
      * Gets a command by class
      *
-     * @param string $name The command class
+     * @param string $class The command class
      * @return \Illuminate\Console\Command
      * @throws \RuntimeException when command doesn't exit
      */

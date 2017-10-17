@@ -65,7 +65,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     /**
      * Gets iterator.
      *
-     * @return Traversable
+     * @return \Traversable
      */
     public function getIterator () {
         return new \ArrayIterator($this->map);
@@ -140,7 +140,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * Gets a new ProjectsMap instance and queries Phabricator API to fill it.
      *
      * @param string $phabricatorInstanceName The Phabricator instance name
-     * @param \Nasqueron\Notifications\Contracts\APIClient $apiClient The Phabricator API client
+     * @param \Nasqueron\Notifications\Contracts\APIClient|null $apiClient The Phabricator API client
      * @return ProjectsMap
      */
     public static function fetch ($phabricatorInstanceName, ?APIClient $apiClient = null) {

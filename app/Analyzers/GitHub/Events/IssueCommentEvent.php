@@ -12,7 +12,7 @@ class IssueCommentEvent extends Event {
     /**
      * Determines if the action is valid.
      *
-     * @param string $type The action to check
+     * @param string $action The action to check
      * @return bool true if the action is valid; otherwise, false
      */
     protected static function isValidAction ($action) {

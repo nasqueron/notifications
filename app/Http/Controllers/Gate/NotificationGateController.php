@@ -21,7 +21,7 @@ class NotificationGateController extends GateController {
     /**
      * The request content, as a structured data
      *
-     * @var \stdClass
+     * @var \Nasqueron\Notifications\Notifications\Notification
      */
     private $payload;
 
@@ -88,10 +88,10 @@ class NotificationGateController extends GateController {
         }
 
         $mapper = new \JsonMapper();
-        return $mapper->map(
+        return (Notification)($mapper->map(
             $payload,
             new Notification
-        );
+        ));
     }
 
     private function normalizePayload () : void {

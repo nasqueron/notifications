@@ -21,7 +21,7 @@ class ActionError {
     /**
      * Initializes a new action error report instance from the specified Exception
      *
-     * @param Exception $ex The exception to build an ActionError instance from
+     * @param \Exception $ex The exception to build an ActionError instance from
      */
     public function __construct (\Exception $ex) {
         $this->type = class_basename(get_class($ex));
