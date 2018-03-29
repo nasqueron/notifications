@@ -179,7 +179,7 @@ class NotifyNewCommitsToDiffusion extends Job {
             [ 'remoteURIs[0]' => $this->repository ]
         );
 
-        if (!count($reply)) {
+        if ($reply === null || !count($reply)) {
             return "";
         }
 
