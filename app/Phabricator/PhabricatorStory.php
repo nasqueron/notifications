@@ -123,13 +123,17 @@ class PhabricatorStory {
     /// Helper methods
     ///
 
+    private function hasVoidObjectType () : bool {
+        return $this->data === null || !isset($this->data['objectPHID']);
+    }
+
     /**
      * Gets object type (e.g. TASK for PHID-TASK-l34fw5wievp6n6rnvpuk)
      *
      * @return string The object type, as a 4 letters string (e.g. 'TASK')
      */
     public function getObjectType () {
-        if ($this->data === null || !array_key_exists('objectPHID', $this->data)) {
+        if ($this->hasVoidObjectType()) {
             return 'VOID';
         }
 
