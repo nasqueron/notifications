@@ -46,7 +46,8 @@ class RepositoryEvent extends Event {
             $message .= trans('GitHub.EventsDescriptions.RepositoryEventFork');
         }
 
-        if ($description = $this->payload->repository->description) {
+        $description = (string)$this->payload->repository->description;
+        if ($description !== "") {
             $message .= trans('GitHub.Separator');
             $message .= $description;
         }
