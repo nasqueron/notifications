@@ -23,13 +23,6 @@ class PhabricatorProjectsMap extends Command {
     protected $description = 'Regenerate the projects map for each Phabricator instances';
 
     /**
-     * Creates a new command instance.
-     */
-    public function __construct() {
-        parent::__construct();
-    }
-
-    /**
      * Executes the console command.
      */
     public function handle() : void {
