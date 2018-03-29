@@ -22,4 +22,22 @@ class PhabricatorStoryTest extends TestCase {
         yield ["VOID", ['foo' => 'bar']];
         yield ["TASK", ['objectPHID' => 'PHID-TASK-l34fw5wievp6n6rnvpuk']];
     }
+
+    /**
+     * @dataProvider provideKeys
+     */
+    public function testMapPhabricatorFeedKey ($expected, $key) {
+        $this->assertEquals(
+            $expected,
+            PhabricatorStory::mapPhabricatorFeedKey($key)
+        );
+    }
+
+    public function provideKeys () : iterable {
+        yield ['id', 'storyID'];
+        yield ['id', 'storyId'];
+        yield ['task', 'storyTask'];
+        yield ['story', 'story'];
+        yield ['', ''];
+    }
 }

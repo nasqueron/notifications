@@ -315,9 +315,8 @@ class PhabricatorStory {
             return "id";
         }
 
-        if (starts_with($key, "story")) {
-            $key = substr($key, 5);
-            $key[0] = strtolower($key[0]); // lowercase
+        if (starts_with($key, "story") && strlen($key) > 5) {
+            return lcfirst(substr($key, 5));
         }
 
         return $key;
