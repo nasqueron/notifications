@@ -13,7 +13,7 @@ class PhabricatorStoryTest extends TestCase {
         $story = new PhabricatorStory('acme');
         $story->data = $data;
 
-		$this->assertEquals($expected, $story->getObjectType());
+        $this->assertEquals($expected, $story->getObjectType());
     }
 
     public function provideStories () : iterable {
