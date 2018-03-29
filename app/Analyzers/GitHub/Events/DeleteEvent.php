@@ -52,8 +52,8 @@ class DeleteEvent extends Event {
      */
     private function getLinkRefSegments () {
         return [
-             'tag' => '/tags',
-             'branch' => '/branches',
+            'tag' => '/tags',
+            'branch' => '/branches',
         ];
     }
 

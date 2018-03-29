@@ -55,8 +55,8 @@ class CreateEvent extends Event {
      */
     private function getLinkRefSegments () : array {
         return [
-             'tag' => '/releases/tag/',
-             'branch' => '/tree/',
+            'tag' => '/releases/tag/',
+            'branch' => '/tree/',
         ];
     }
 
