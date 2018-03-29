@@ -5,8 +5,8 @@ namespace Nasqueron\Notifications\Providers;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
-class SentryServiceProvider extends ServiceProvider
-{
+class SentryServiceProvider extends ServiceProvider {
+
     /**
      * Bootstraps the application services.
      *

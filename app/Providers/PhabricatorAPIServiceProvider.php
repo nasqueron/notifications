@@ -6,8 +6,8 @@ use Illuminate\Support\ServiceProvider;
 
 use Nasqueron\Notifications\Phabricator\PhabricatorAPIFactory;
 
-class PhabricatorAPIServiceProvider extends ServiceProvider
-{
+class PhabricatorAPIServiceProvider extends ServiceProvider {
+
     /**
      * Bootstraps the application services.
      *

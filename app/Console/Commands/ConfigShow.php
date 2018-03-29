@@ -6,8 +6,8 @@ use Illuminate\Console\Command;
 
 use Nasqueron\Notifications\Config\Reporting\ConfigReport;
 
-class ConfigShow extends Command
-{
+class ConfigShow extends Command {
+
     /**
      * The name and signature of the console command.
      *

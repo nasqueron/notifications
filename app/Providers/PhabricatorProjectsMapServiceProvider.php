@@ -6,8 +6,8 @@ use Illuminate\Support\ServiceProvider;
 
 use Nasqueron\Notifications\Phabricator\ProjectsMapFactory;
 
-class PhabricatorProjectsMapServiceProvider extends ServiceProvider
-{
+class PhabricatorProjectsMapServiceProvider extends ServiceProvider {
+
     /**
      * Bootstraps the application services.
      *
