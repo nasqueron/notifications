@@ -35,7 +35,8 @@ if (Features::isEnabled('GetConfig')) {
 if (Features::isEnabled('Gate')) {
     foreach (Config::get('gate.controllers') as $controller) {
         $controllerRoute = '/gate/' . $controller . '/';
-        Route::get($controllerRoute . '{door?}', "Gate\\${controller}GateController@onGet");
-        Route::post($controllerRoute . '{door}', "Gate\\${controller}GateController@onPost");
+        $controllerClass = "Gate\\${controller}GateController";
+        Route::get($controllerRoute . '{door?}', "$controllerClass@onGet");
+        Route::post($controllerRoute . '{door}', "$controllerClass@onPost");
     }
 }

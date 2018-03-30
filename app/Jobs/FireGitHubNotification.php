@@ -37,11 +37,7 @@ class FireGitHubNotification extends Job {
         Event::fire(new NotificationEvent($notification));
     }
 
-    /**
-     * Creates a GitHub notification
-     *
-     * @return \Nasqueron\Notifications\Notifications\GitHubNotification The notification
-     */
+
     protected function createNotification() : GitHubNotification {
         return new GitHubNotification(
             $this->event->door,          // project

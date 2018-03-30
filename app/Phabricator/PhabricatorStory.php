@@ -89,7 +89,9 @@ class PhabricatorStory {
      * @param iterable $payload The data submitted by Phabricator
      * @return PhabricatorStory
      */
-    public static function loadFromIterable (string $instanceName, iterable $payload) {
+    public static function loadFromIterable (
+        string $instanceName, iterable $payload
+    ) {
         $instance = new self($instanceName);
 
         foreach ($payload as $key => $value) {
@@ -100,20 +102,17 @@ class PhabricatorStory {
         return $instance;
     }
 
-    /**
-     * Initializes a new instance of PhabricatorStory from a JSON payload.
-     *
-     * This is intended to parse files saved by LastPayloadSaver::savePayload.
-     *
-     * @param string $instanceName The Phabricator instance name
-     * @param string $payload The data submitted by Phabricator's JSON representation
-     * @return PhabricatorStory
-     */
-    public static function loadFromJson ($instanceName, $payload) {
+    public static function loadFromJson (
+        $instanceName,
+        $payload
+    ) {
         $array = json_decode($payload, true);
 
         if (!is_array($array)) {
-            throw new InvalidArgumentException("Payload should be deserializable as an array.");
+            throw new InvalidArgumentException(<<<MSG
+Payload should be deserializable as an array.
+MSG
+);
         }
 
         return self::loadFromIterable($instanceName, $array);
@@ -246,7 +245,10 @@ class PhabricatorStory {
      * migrated from info (generation 1) or query (generation 2) to search
      * (generation 3), we'll rename it to getItemProjectsPHIDs and overwrite it.
      */
-     protected function getItemProjectsPHIDsThroughApplicationSearch  ($method, $objectPHID) {
+     protected function getItemProjectsPHIDsThroughApplicationSearch  (
+         $method,
+         $objectPHID
+     ) {
         if (!$objectPHID) {
             return [];
         }

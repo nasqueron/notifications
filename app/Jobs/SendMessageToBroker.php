@@ -58,7 +58,11 @@ class SendMessageToBroker extends Job {
      *
      * @return void
      */
-    public function __construct (string $target, string $routingKey, string $message) {
+    public function __construct (
+        string $target,
+        string $routingKey,
+        string $message
+    ) {
         $this->target = $target;
         $this->routingKey = $routingKey;
         $this->message = $message;

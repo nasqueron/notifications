@@ -20,7 +20,9 @@ class PhabricatorProjectsMap extends Command {
      *
      * @var string
      */
-    protected $description = 'Regenerate the projects map for each Phabricator instances';
+    protected $description = <<<'TXT'
+Regenerate the projects map for each Phabricator instances
+TXT;
 
     /**
      * Executes the console command.

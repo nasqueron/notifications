@@ -131,7 +131,7 @@ class NotifyNewCommitsToDiffusion extends Job {
     /**
      * Fetches API and call sign.
      *
-     * @return bool true if all requirement have been fetched ; otherwise, false.
+     * @return bool true if all requirement have been fetched
      */
     private function fetchRequirements () : bool {
         return $this->fetchAPI() && $this->fetchCallSign();
@@ -140,7 +140,7 @@ class NotifyNewCommitsToDiffusion extends Job {
     /**
      * Fetches the Phabricator API to use for the current source project.
      *
-     * @return bool true if an API instance has been fetch ; otherwise, false.
+     * @return bool true if an API instance has been fetched
      */
     private function fetchAPI () : bool {
         $project = $this->getPhabricatorProject();
@@ -169,9 +169,9 @@ class NotifyNewCommitsToDiffusion extends Job {
     ///
 
     /**
-     * Gets the call sign matching the repository URL.
+     * Gets the call sign matching the repository URL (e.g. "OPS").
      *
-     * @return string the repository call sign "OPS", or "" if not in Phabricator
+     * @return string the repository call sign, or "" if not in Phabricator
      */
     private function getCallSign () : string {
         $reply = $this->api->call(

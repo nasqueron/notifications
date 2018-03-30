@@ -41,11 +41,6 @@ class FireJenkinsNotification extends Job {
         }
     }
 
-    /**
-     * Creates a Jenkins notification
-     *
-     * @return \Nasqueron\Notifications\Notifications\JenkinsNotification The notification
-     */
     protected function createNotification() : JenkinsNotification {
         return new JenkinsNotification(
             $this->event->door,          // project

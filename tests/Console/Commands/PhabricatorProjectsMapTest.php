@@ -3,13 +3,14 @@
 namespace Nasqueron\Notifications\Tests\Console\Commands;
 
 use Nasqueron\Notifications\Config\Services\Service;
+use Nasqueron\Notifications\Console\Commands\PhabricatorProjectsMap;
 
 class PhabricatorProjectsMapTest extends TestCase {
 
     /**
      * @var string
      */
-    protected $class = 'Nasqueron\Notifications\Console\Commands\PhabricatorProjectsMap';
+    protected $class = PhabricatorProjectsMap::class;
 
     public function setUp () {
         parent::setUp();

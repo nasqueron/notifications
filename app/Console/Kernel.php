@@ -35,8 +35,6 @@ class Kernel extends ConsoleKernel {
     /**
      * Gets a command by name
      *
-     * @param string $name The command name (first word of the command signature)
-     * @return \Illuminate\Console\Command
      * @throws \RuntimeException when command doesn't exit
      */
     public function get (string $name) : Command {

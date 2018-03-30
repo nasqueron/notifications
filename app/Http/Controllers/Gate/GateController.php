@@ -88,11 +88,12 @@ class GateController extends Controller {
 
     /**
      * Gets service credentials for this gate and door
-     *
-     * @return \Nasqueron\Notifications\Config\Services\Service|null The service information is found; otherwise, null.
      */
     public function getService () : ?Service {
-        return Services::findServiceByDoor($this->getServiceName(), $this->door);
+        return Services::findServiceByDoor(
+            $this->getServiceName(),
+            $this->door
+        );
     }
 
     /**

@@ -31,7 +31,11 @@ class AMQPAction extends Action {
      * @param string $target The queue or exchange target on the broker
      * @param string $routingKey The routing key for this exchange or queue
      */
-    public function __construct (string $method, string $target, string $routingKey = '') {
+    public function __construct (
+        string $method,
+        string $target,
+        string $routingKey = ''
+    ) {
         parent::__construct();
 
         $this->method = $method;

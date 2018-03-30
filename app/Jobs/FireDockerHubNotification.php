@@ -37,11 +37,6 @@ class FireDockerHubNotification extends Job {
         Event::fire(new NotificationEvent($notification));
     }
 
-    /**
-     * Creates a DockerHub notification
-     *
-     * @return \Nasqueron\Notifications\Notifications\DockerHubNotification The notification
-     */
     protected function createNotification() : DockerHubNotification {
         return new DockerHubNotification(
             $this->event->door,          // project

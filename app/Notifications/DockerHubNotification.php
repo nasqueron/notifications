@@ -27,7 +27,11 @@ use InvalidArgumentException;
  */
 class DockerHubNotification extends Notification {
 
-    public function __construct (string $project, string $event, \stdClass $payload) {
+    public function __construct (
+        string $project,
+        string $event,
+        \stdClass $payload
+    ) {
         // Straightforward properties
         $this->service = "DockerHub";
         $this->project = $project;

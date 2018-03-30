@@ -66,7 +66,9 @@ class ConfigShowTest extends TestCase {
     }
 
     protected function mockProjectsMap () {
-        $mock = Mockery::mock('Nasqueron\Notifications\Phabricator\ProjectsMap');
+        $mock = Mockery::mock(
+            'Nasqueron\Notifications\Phabricator\ProjectsMap'
+        );
         $this->app->instance('phabricator-projectsmap', $mock);
 
         return $mock;

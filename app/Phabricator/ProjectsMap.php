@@ -138,12 +138,11 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
 
     /**
      * Gets a new ProjectsMap instance and queries Phabricator API to fill it.
-     *
-     * @param string $phabricatorInstanceName The Phabricator instance name
-     * @param \Nasqueron\Notifications\Contracts\APIClient|null $apiClient The Phabricator API client
-     * @return ProjectsMap
      */
-    public static function fetch ($phabricatorInstanceName, ?APIClient $apiClient = null) {
+    public static function fetch (
+        string $phabricatorInstanceName,
+        ?APIClient $apiClient = null
+    ) {
         $instance = new self($phabricatorInstanceName);
         $instance->setAPIClient($apiClient);
         $instance->fetchFromAPI();
@@ -184,11 +183,17 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
         );
 
         if (!$reply) {
-            throw new \Exception("Empty reply calling project.query at $this->instanceName Conduit API.");
+            throw new \Exception(<<<MSG
+Empty reply calling project.query at $this->instanceName Conduit API.
+MSG
+);
         }
 
         if (!property_exists($reply, 'data')) {
-            throw new \Exception("Invalid reply calling project.query at $this->instanceName Conduit API.");
+            throw new \Exception(<<<MSG
+Invalid reply calling project.query at $this->instanceName Conduit API.
+MSG
+);
         }
 
         foreach ($reply->data as $phid => $projectInfo) {
@@ -208,7 +213,9 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @return string The cache key for the current projects map
      */
     private function getCacheKey () {
-        return class_basename(get_class($this)) . '-' . md5($this->instanceName);
+        return class_basename(get_class($this))
+               . '-'
+               . md5($this->instanceName);
     }
 
     /**

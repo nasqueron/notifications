@@ -20,8 +20,6 @@ class Services {
     ///
 
     /**
-     * Initializes a new instance of the Services class deserializing a JSON file.
-     *
      * @param string $file The JSON file to deserialize
      * @return Services The deserialized instance
      */
@@ -89,10 +87,15 @@ class Services {
      *
      * @param string $gate The gate (e.g. Phabricator)
      * @param string $property The property to check (e.g. instance)
-     * @param mixed $value The property value to find (e.g. 'http://devcentral.nasqueron.org')
+     * @param mixed $value The property value to find
+     *                     (e.g. 'http://devcentral.nasqueron.org')
      * @return Service|null The service information is found; otherwise, null.
      */
-    public function findServiceByProperty (string $gate, string $property, $value) : ?Service {
+    public function findServiceByProperty (
+        string $gate,
+        string $property,
+        $value
+    ) : ?Service {
         foreach ($this->services as $service) {
             if ($service->gate === $gate && $service->$property === $value) {
                 return $service;

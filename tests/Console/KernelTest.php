@@ -89,7 +89,11 @@ class KernelTest extends TestCase {
      * @param array $haystack The array where to find
      * @param string $message The test message
      */
-    public static function assertArrayContainsInstanceOf ($expectedType, $haystack, $message = '') {
+    public static function assertArrayContainsInstanceOf (
+        $expectedType,
+        $haystack,
+        $message = ''
+    ) {
         self::assertThat(
             self::arrayContainsInstanceOf($expectedType, $haystack),
             self::isTrue(),
@@ -105,7 +109,10 @@ class KernelTest extends TestCase {
      * @param array $haystack The array where to find
      * @return bool
      */
-    protected static function arrayContainsInstanceOf ($expectedType, $haystack) {
+    protected static function arrayContainsInstanceOf (
+        $expectedType,
+        $haystack
+    ) {
         foreach ($haystack as $item) {
             if ($item instanceof $expectedType) {
                 return true;

@@ -2,8 +2,10 @@
 
 namespace Nasqueron\Notifications\Providers;
 
-use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\{
+    Contracts\Events\Dispatcher as DispatcherContract,
+    Foundation\Support\Providers\EventServiceProvider as ServiceProvider
+};
 
 use Config;
 

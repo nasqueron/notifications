@@ -25,12 +25,9 @@ class AMQPEventListener {
         $this->sendNotification($event->notification);
     }
 
-    /**
-     * Gets routing key, to allow consumers to select the topic they subscribe to.
-     *
-     * @param Notification The $notification from where the keys must be extracted
-     */
-    protected static function getNotificationRoutingKey (Notification $notification) : string {
+    protected static function getNotificationRoutingKey (
+        Notification $notification
+    ) : string {
         $keyParts = [
             $notification->project,
             $notification->group,
@@ -66,7 +63,10 @@ class AMQPEventListener {
      */
     public function subscribe (Dispatcher $events) : void {
         $class = AMQPEventListener::class;
-        $events->listen(NotificationEvent::class, "$class@onNotification");
+        $events->listen(
+            NotificationEvent::class,
+            "$class@onNotification"
+        );
     }
 
 }

@@ -23,7 +23,10 @@ class NotificationsPayload extends Command {
      *
      * @var string
      */
-    protected $description = 'Gets a notification payload from a service payload';
+    protected $description = <<<'TXT'
+Gets a notification payload from a service payload
+TXT;
+
 
     /**
      * The service to handle a payload for.
@@ -80,13 +83,16 @@ class NotificationsPayload extends Command {
      *
      * Fills it to the service property.
      *
-     * @throws InvalidArgumentException when a notification class can't be found for the requested service.
+     * @throws InvalidArgumentException when a notification class can't be
+     * found for the requested service.
      */
     private function parseService () : void {
         $this->service = $this->argument('service');
 
         if (!class_exists($this->getNotificationClass())) {
-            throw new InvalidArgumentException("Unknown service: $this->service");
+            throw new InvalidArgumentException(
+                "Unknown service: $this->service"
+            );
         }
     }
 
@@ -111,7 +117,7 @@ class NotificationsPayload extends Command {
      * Parses all the extra arguments and sets the constructor property
      * as an array of constructor arguments.
      *
-     * @throws InvalidArgumentException when too many or too few arguments have been given.
+     * @throws InvalidArgumentException on wrong arguments count.
      */
     private function parseConstructorParameters () : void {
         $keys = $this->getNotificationConstructorParameters();
@@ -146,12 +152,17 @@ class NotificationsPayload extends Command {
      *
      * @throws InvalidArgumentException when keys and values counts don't match
      */
-    public static function argumentsArrayCombine (array $keys, array $values) : array {
+    public static function argumentsArrayCombine (
+        array $keys, array $values
+    ) : array {
         $countKeys = count($keys);
         $countValues = count($values);
 
         if ($countKeys != $countValues) {
-            throw new InvalidArgumentException("Number of arguments mismatch: got $countValues but expected $countKeys.");
+            throw new InvalidArgumentException(<<<MSG
+Number of arguments mismatch: got $countValues but expected $countKeys.
+MSG
+            );
         }
 
         return array_combine($keys, $values);

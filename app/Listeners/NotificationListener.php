@@ -45,7 +45,9 @@ class NotificationListener {
      * @param PhabricatorPayloadEvent $event
      * @return void
      */
-    public function onPhabricatorPayload(PhabricatorPayloadEvent $event) : void {
+    public function onPhabricatorPayload(
+        PhabricatorPayloadEvent $event
+    ) : void {
         $job = new FirePhabricatorNotification($event);
         $job->handle();
     }

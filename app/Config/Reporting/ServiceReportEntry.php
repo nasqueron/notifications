@@ -45,11 +45,6 @@ final class ServiceReportEntry extends BaseReportEntry {
     /// Constructor
     ///
 
-    /**
-     * Initializes a new instance of the ServiceReportEntry class.
-     *
-     * @param \Nasqueron\Notifications\Config\Services\Service $service The service
-     */
     public function __construct (Service $service) {
         $this->service = $service;
         $this->query();

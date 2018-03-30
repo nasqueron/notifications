@@ -63,8 +63,6 @@ class Features {
 
     /**
      * Gets all the features, with the toggle status.
-     *
-     * @return array An array with features as keys, bool as values (true if enabled)
      */
     public static function getAll () : array {
        return Config::get('app.features');

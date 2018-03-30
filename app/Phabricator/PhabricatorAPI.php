@@ -42,29 +42,31 @@ class PhabricatorAPI implements APIClient {
     }
 
     /**
-     * Gets an API instance for the specific instance
-     *
-     * @param string $instance The name of the instance (this matches that parameter in credentials.json)
-     * @return PhabricatorAPI A PhabricatorAPI instance for the project if found; otherwise, null.
+     * @throws \RuntimeException when the service isn't in credentials.json
      */
-    public static function forInstance ($instance) {
-        $service = Services::findServiceByProperty('Phabricator', 'instance', $instance);
+    public static function forInstance ($instance) : PhabricatorAPI {
+        $service = Services::findServiceByProperty(
+            'Phabricator',
+            'instance',
+            $instance
+        );
         if ($service === null) {
-            throw new \RuntimeException("No credentials for Phabricator instance $instance.");
+            throw new \RuntimeException(
+                "No credentials for Phabricator instance $instance."
+            );
         }
         return new self($service->instance, $service->secret);
     }
 
     /**
-     * Gets an API instance for the specific project
-     *
-     * @param string $project The name of the project (this matches the door parameter in credentials.json)
-     * @return PhabricatorAPI A PhabricatorAPI instance for the project if found; otherwise, null.
+     * @throws \RuntimeException when the service isn't in credentials.json
      */
     public static function forProject ($project) {
         $service = Services::findServiceByDoor('Phabricator', $project);
         if ($service === null) {
-            throw new \RuntimeException("No credentials for Phabricator project $project.");
+            throw new \RuntimeException(
+                "No credentials for Phabricator project $project."
+            );
         }
         return new self($service->instance, $service->secret);
     }
@@ -152,7 +154,9 @@ class PhabricatorAPI implements APIClient {
         curl_close($ch);
 
         if ($result === false) {
-            throw new \RuntimeException("Can't reach Phabricator API endpoint: $url");
+            throw new \RuntimeException(
+                "Can't reach Phabricator API endpoint: $url"
+            );
         }
 
         return $result;

@@ -9,7 +9,7 @@ class NotificationsPayloadTest extends TestCase {
     /**
      * @var string
      */
-    protected $class = 'Nasqueron\Notifications\Console\Commands\NotificationsPayload';
+    protected $class = NotificationsPayload::class;
 
     public function testRegularExecute () {
         $path = __DIR__ . '/../../data/payloads/DockerHubPushPayload.json';

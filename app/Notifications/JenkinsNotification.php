@@ -55,7 +55,8 @@ class JenkinsNotification extends Notification {
     }
 
     /**
-     * Gets the notification text. Intended to convey a short message (thing Twitter or IRC).
+     * Gets the notification text. Intended to convey a short message
+     * (thing Twitter or IRC).
      *
      * @return string
      */

@@ -38,7 +38,10 @@ class ItemGroupMapping {
      * @param string $item The item name to compare with the pattern
      * @return bool
      */
-    public static function doesItemMatch (string $pattern, string $item) : bool {
+    public static function doesItemMatch (
+        string $pattern,
+        string $item
+    ) : bool {
         return str_is($pattern, $item);
     }
 

@@ -11,7 +11,11 @@ class GitHubNotification extends Notification {
      */
     private $analyzer = null;
 
-    public function __construct (string $project, string $event, \stdClass $payload) {
+    public function __construct (
+        string $project,
+        string $event,
+        \stdClass $payload
+    ) {
         // Straightforward properties
         $this->service = "GitHub";
         $this->project = $project;
@@ -48,7 +52,8 @@ class GitHubNotification extends Notification {
     }
 
     /**
-     * Gets the notification text. Intended to convey a short message (thing Twitter or IRC).
+     * Gets the notification text.
+     * Intended to convey a short message (thing Twitter or IRC).
      *
      * @return string
      */

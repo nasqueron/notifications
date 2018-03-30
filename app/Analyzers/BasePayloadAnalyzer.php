@@ -72,7 +72,11 @@ abstract class BasePayloadAnalyzer {
      * @return string
      */
     public function getConfigurationFileName () : string {
-        $dir = Config::get('services.' . strtolower(static::SERVICE_NAME) . '.analyzer.configDir');
+        $dir = Config::get(
+            'services.'
+            . strtolower(static::SERVICE_NAME)
+            . '.analyzer.configDir'
+        );
 
         $filename = $dir . '/' . $this->project . '.json';
 
@@ -89,8 +93,9 @@ abstract class BasePayloadAnalyzer {
      * @return string
      */
     private function getCandidateConfigurationClassName() : string {
-        $namespace = 'Nasqueron\Notifications\Analyzers\\' . static::SERVICE_NAME;
-        return $namespace . "\\" . static::SERVICE_NAME . 'PayloadAnalyzerConfiguration';
+        return 'Nasqueron\Notifications\Analyzers\\' . static::SERVICE_NAME //ns
+               . "\\"
+               . static::SERVICE_NAME . 'PayloadAnalyzerConfiguration'; // class
     }
 
     /**
@@ -133,7 +138,10 @@ abstract class BasePayloadAnalyzer {
      * @var string
      */
     public function getItemName () : string {
-        throw new BadMethodCallException("The getItemName method must be implemented in the analyzer class if used.");
+        throw new BadMethodCallException(<<<MSG
+The getItemName method must be implemented in the analyzer class if used.
+MSG
+);
     }
 
     /**

@@ -37,11 +37,6 @@ class FirePhabricatorNotification extends Job {
         Event::fire(new NotificationEvent($notification));
     }
 
-    /**
-     * Creates a Phabricator notification
-     *
-     * @return \Nasqueron\Notifications\Notifications\PhabricatorNotification The notification
-     */
     protected function createNotification() : PhabricatorNotification {
         return new PhabricatorNotification(
             $this->event->door,         // Project

@@ -22,7 +22,10 @@ abstract class BaseReportEntry {
      * @param string $emptyStringGlyph The glyph to use if the string is empty
      * @return string
      */
-    public static function fancyString (string $string, string $emptyStringGlyph) : string {
+    public static function fancyString (
+        string $string,
+        string $emptyStringGlyph
+    ) : string {
         if ($string === "") {
             return $emptyStringGlyph;
         }
@@ -35,10 +38,16 @@ abstract class BaseReportEntry {
      *
      * @param bool $value The source value
      * @param string $truthyStringGlyph The glyph to use if the value is true
-     * @param string $falsyStringGlyph The glyph to use if the value is false [facultative, by default an empty string]
+     * @param string $falsyStringGlyph The glyph to use if the value is false
+     *                                 [facultative, by default an empty string]
+     *
      * @return string The relevant glyph
      */
-    public static function fancyBool (bool $value, string $truthyStringGlyph, string $falsyStringGlyph = '') : string {
+    public static function fancyBool (
+        bool $value,
+        string $truthyStringGlyph,
+        string $falsyStringGlyph = ''
+    ) : string {
         if ($value) {
             return $truthyStringGlyph;
         }

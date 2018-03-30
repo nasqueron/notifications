@@ -41,7 +41,11 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
      * @param string $event
      * @param \stdClass $payload
      */
-    public function __construct(string $project, string $event, \stdClass $payload) {
+    public function __construct(
+        string $project,
+        string $event,
+        \stdClass $payload
+    ) {
         parent::__construct($project, $payload);
 
         $this->event = $event;

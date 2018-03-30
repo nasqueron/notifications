@@ -46,7 +46,9 @@ class Event {
     public static function forPayload ($eventName, $payload) {
         $class = self::getClass($eventName);
         if (!class_exists($class)) {
-            throw new \InvalidArgumentException("Class doesn't exist: $class (for $eventName)");
+            throw new \InvalidArgumentException(
+                "Class doesn't exist: $class (for $eventName)"
+            );
         }
         return new $class($payload);
     }
