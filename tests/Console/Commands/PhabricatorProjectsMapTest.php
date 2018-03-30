@@ -25,7 +25,9 @@ class PhabricatorProjectsMapTest extends TestCase {
 
     public function testRegularExecute () {
         $this->tester->execute(['command' => $this->command->getName()]);
-        $this->assertRegexp('/PHID.*Project name/', $this->tester->getDisplay());
-        $this->assertRegexp('/PHID-PROJ-cztcgpvqr6smnnekotq7.*Agora/', $this->tester->getDisplay());
+        $this->assertRegexpInDisplay('/PHID.*Project name/');
+        $this->assertRegexpInDisplay(
+            '/PHID-PROJ-cztcgpvqr6smnnekotq7.*Agora/'
+        );
     }
 }

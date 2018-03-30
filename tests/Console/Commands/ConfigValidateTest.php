@@ -29,7 +29,7 @@ class ConfigValidateTest extends TestCase {
         $this->tester->execute(['command' => $this->command->getName()]);
 
         // When all files are valid, nothing is displayed
-        $this->assertRegexp("/$error/", $this->tester->getDisplay());
+        $this->assertRegexpInDisplay("/$error/");
     }
 
     /**

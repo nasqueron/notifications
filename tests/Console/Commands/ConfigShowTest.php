@@ -31,9 +31,9 @@ class ConfigShowTest extends TestCase {
 
         $this->tester->execute(['command' => $this->command->getName()]);
 
-        $this->assertRegexp('/Gates/', $this->tester->getDisplay());
-        $this->assertRegexp('/Features/', $this->tester->getDisplay());
-        $this->assertRegexp('/Services declared/', $this->tester->getDisplay());
+        $this->assertRegexpInDisplay('/Gates/');
+        $this->assertRegexpInDisplay('/Features/');
+        $this->assertRegexpInDisplay('/Services declared/');
     }
 
     public function testRegularExecuteWithService () {
@@ -44,7 +44,7 @@ class ConfigShowTest extends TestCase {
             ->andReturn([$service]);
 
         $this->tester->execute(['command' => $this->command->getName()]);
-        $this->assertRegexp('/Storm/', $this->tester->getDisplay());
+        $this->assertRegexpInDisplay('/Storm/');
     }
 
     public function testRegularExecuteWithPhabricatorService () {
@@ -60,7 +60,9 @@ class ConfigShowTest extends TestCase {
             ->shouldReceive('findServiceByProperty');
 
         $this->tester->execute(['command' => $this->command->getName()]);
-        $this->assertRegexp('/Phabricator.*Projects map not cached./', $this->tester->getDisplay());
+        $this->assertRegexpInDisplay(
+            '/Phabricator.*Projects map not cached./'
+        );
     }
 
     protected function mockProjectsMap () {
@@ -81,7 +83,7 @@ class ConfigShowTest extends TestCase {
             ->shouldReceive('fetch->isCached')->once()->andReturn(true);
 
         $this->tester->execute(['command' => $this->command->getName()]);
-        $this->assertRegexp('/Phabricator.*✓/', $this->tester->getDisplay());
+        $this->assertRegexpInDisplay('/Phabricator.*✓/');
     }
 
     public function testExecuteWhenSomeFeatureIsDisabled () {
@@ -90,8 +92,12 @@ class ConfigShowTest extends TestCase {
         $this->servicesMock->shouldReceive('get')->once()->andReturn([]);
 
         $this->tester->execute(['command' => $this->command->getName()]);
-        $this->assertRegexp('/Gate *\| *✓ *\|/', $this->tester->getDisplay());
-        $this->assertRegexp('/ActionsReport *\| *\|/', $this->tester->getDisplay());
+        $this->assertRegexpInDisplay(
+            '/Gate *\| *✓ *\|/'
+        );
+        $this->assertRegexpInDisplay(
+            '/ActionsReport *\| *\|/'
+        );
     }
 
 }

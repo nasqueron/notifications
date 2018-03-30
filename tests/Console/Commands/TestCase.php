@@ -34,4 +34,19 @@ class TestCase extends BaseTestCase {
         $this->tester = new CommandTester($this->command);
     }
 
+    ///
+    /// Display assertions
+    ///
+
+    public function assertDisplayContains(string $expectedNeedle) {
+        $this->assertContains(
+            $expectedNeedle,
+            $this->tester->getDisplay()
+        );
+    }
+
+    public function assertRegexpInDisplay (string $pattern) {
+        $this->assertRegexp($pattern, $this->tester->getDisplay());
+    }
+
 }

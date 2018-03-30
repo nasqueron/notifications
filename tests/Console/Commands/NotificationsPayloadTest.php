@@ -23,9 +23,9 @@ class NotificationsPayloadTest extends TestCase {
             ],
         ]);
 
-        $this->assertContains('"service": "DockerHub"', $this->tester->getDisplay());
-        $this->assertContains('"project": "Acme"', $this->tester->getDisplay());
-        $this->assertContains('svendowideit\/testhook', $this->tester->getDisplay());
+        $this->assertDisplayContains('"service": "DockerHub"');
+        $this->assertDisplayContains('"project": "Acme"');
+        $this->assertDisplayContains('svendowideit\/testhook');
     }
 
     public function testPhabricatorPayload () {
@@ -39,9 +39,9 @@ class NotificationsPayloadTest extends TestCase {
             ],
         ]);
 
-        $this->assertContains('"service": "Phabricator"', $this->tester->getDisplay());
-        $this->assertContains('"project": "Acme"', $this->tester->getDisplay());
-        $this->assertContains('"type": "PSTE"', $this->tester->getDisplay());
+        $this->assertDisplayContains('"service": "Phabricator"');
+        $this->assertDisplayContains('"project": "Acme"');
+        $this->assertDisplayContains('"type": "PSTE"');
     }
 
     /**
@@ -62,11 +62,7 @@ class NotificationsPayloadTest extends TestCase {
             ],
         ]);
 
-        $this->assertContains(
-            'File not found: /tmp/not.found',
-            $this->tester->getDisplay()
-        );
-
+        $this->assertDisplayContains('File not found: /tmp/not.found');
     }
 
     public function testServiceNotFound () {
@@ -81,9 +77,8 @@ class NotificationsPayloadTest extends TestCase {
             ],
         ]);
 
-        $this->assertContains(
-            'Unknown service: InterdimensionalTeleport',
-            $this->tester->getDisplay()
+        $this->assertDisplayContains(
+            'Unknown service: InterdimensionalTeleport'
         );
 
     }

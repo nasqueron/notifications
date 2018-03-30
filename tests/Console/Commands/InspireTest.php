@@ -12,7 +12,7 @@ class InspireTest extends TestCase {
     public function testExecute () {
         // A quote contain a - character and is embedded by PHP_EOL
         $this->tester->execute(['command' => $this->command->getName()]);
-        $this->assertRegexp('/\n.*-.*\n/', $this->tester->getDisplay());
+        $this->assertRegexpInDisplay('/\n.*-.*\n/');
     }
 
 }
