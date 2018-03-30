@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 // Allows to external tool to ping your instalation and know if the site is up.
 Route::get('/status', function() {
-	return "ALIVE";
+    return "ALIVE";
 });
 
 // Allows to external tool to check the current configuration.
