@@ -15,7 +15,7 @@ use DockerHub;
 class DockerHubListener {
 
     ///
-    /// GitHub → Phabricator
+    /// GitHub → Docker Hub
     ///
 
     /**
@@ -43,7 +43,7 @@ class DockerHubListener {
     }
 
     /**
-     * Notifies Phabricator there are new commits to pull.
+     * Notifies Docker Hub to rebuild image.
      *
      * @param GitHubPayloadEvent $event The GitHub payload event
      */
