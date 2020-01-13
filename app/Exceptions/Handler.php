@@ -7,6 +7,8 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Validation\ValidationException;
+use Illuminate\Session\TokenMismatchException;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -27,6 +29,7 @@ class Handler extends ExceptionHandler {
         CommandNotFoundException::class,
         HttpException::class,
         ModelNotFoundException::class,
+        TokenMismatchException::class,
         ValidationException::class,
     ];
 
@@ -46,7 +49,8 @@ class Handler extends ExceptionHandler {
             $this->reportToSentry($e);
         }
 
-        $this->log->error((string)$e);
+        $log = $this->container->make(LoggerInterface::class);
+        $log->error((string)$e);
     }
 
     /**

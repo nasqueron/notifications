@@ -11,7 +11,7 @@
   "type": "project",
   "require": {
     "php": ">=7.1.0",
-    "laravel/framework": "5.2.*",
+    "laravel/framework": "5.3.*",
     "guzzlehttp/guzzle": "^6.2",
     "keruald/dockerhub": "^0.0.3",
     "keruald/github": "^0.2.1",
@@ -27,7 +27,7 @@
     "pdepend/pdepend": "^2.4.1",
     "phploc/phploc": "^3.0.1",
     "phpmd/phpmd" : "@stable",
-    "phpunit/phpunit": "~4.0",
+    "phpunit/phpunit": "~5.4",
     "phpspec/phpspec": "~2.1",
     "sebastian/phpcpd": "^2.0.4",
     "squizlabs/php_codesniffer": "2.*",
