@@ -1,0 +1,27 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:lodash:20180130':
+    - laravel-elixir > gulp-phpspec > lodash:
+        patched: '2020-01-13T00:05:50.972Z'
+    - laravel-elixir > babelify > babel-core > babel-plugin-proto-to-assign > lodash:
+        patched: '2020-01-13T00:05:50.972Z'
+    - laravel-elixir > gulp-babel > babel-core > babel-plugin-proto-to-assign > lodash:
+        patched: '2020-01-13T00:05:50.972Z'
+    - laravel-elixir > vueify > babel > babel-core > babel-plugin-proto-to-assign > lodash:
+        patched: '2020-01-13T00:05:50.972Z'
+  'npm:minimatch:20160620':
+    - gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2020-01-13T00:05:50.972Z'
+    - laravel-elixir > gulp-phpunit > gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2020-01-13T00:05:50.972Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2020-01-13T00:05:50.972Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2020-01-13T00:05:50.972Z'
+    - laravel-elixir > gulp-phpunit > gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2020-01-13T00:05:50.972Z'
+    - laravel-elixir > gulp-phpunit > gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2020-01-13T00:05:50.972Z'
