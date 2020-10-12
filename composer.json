@@ -21,7 +21,7 @@
     "sentry/sentry": "^0.13.0"
   },
   "require-dev": {
-    "phan/phan": "^0.12.3",
+    "phan/phan": "^3.2.2",
     "fzaninotto/faker": "~1.4",
     "mockery/mockery": "0.9.*",
     "pdepend/pdepend": "^2.4.1",
