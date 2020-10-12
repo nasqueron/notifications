@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="name-of-project" default="full-build">
+<project name="notifications" default="full-build">
  <!-- By default, we assume all tools to be on the $PATH -->
  <property name="composer" value="composer"/>
  <property name="pdepend" value="pdepend"/>
