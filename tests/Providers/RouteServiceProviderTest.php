@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Tests\Providers;
 
-class BrokerServiceProviderTest extends TestCase {
+class RouteServiceProviderTest extends TestCase {
 
     public function testType () {
         $this->assertServiceInstanceOf(
