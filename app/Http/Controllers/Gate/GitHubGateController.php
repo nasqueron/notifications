@@ -5,10 +5,10 @@ namespace Nasqueron\Notifications\Http\Controllers\Gate;
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 
 use Keruald\GitHub\XHubSignature;
-use Symfony\Component\HttpFoundation\Response;
 
-use Event;
-use Request;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class GitHubGateController extends GateController {
 
@@ -180,7 +180,7 @@ class GitHubGateController extends GateController {
     protected function onPayload () {
         $this->initializeReport();
 
-        Event::fire(new GitHubPayloadEvent(
+        Event::dispatch(new GitHubPayloadEvent(
             $this->door,
             $this->event,
             $this->payload

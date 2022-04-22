@@ -19,7 +19,7 @@ class PhabricatorGroupMappingTest extends TestCase {
      */
     private $story;
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $config = $this->getPhabricatorPayloadAnalyzerConfiguration();

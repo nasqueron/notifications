@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Analyzers\DockerHub;
 
-use Mailgun;
+use Nasqueron\Notifications\Facades\Mailgun;
 
 class BuildFailureEvent extends BaseEvent {
 

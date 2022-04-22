@@ -44,10 +44,8 @@ class NotificationsPayloadTest extends TestCase {
         $this->assertDisplayContains('"type": "PSTE"');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testArgumentsArrayCombine () {
+    public function testArgumentsArrayCombine() {
+        $this->expectException(\InvalidArgumentException::class);
         NotificationsPayload::argumentsArrayCombine(['foo'], []);
     }
 

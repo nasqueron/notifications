@@ -321,7 +321,7 @@ MSG
             return "id";
         }
 
-        if (starts_with($key, "story") && strlen($key) > 5) {
+        if (str_starts_with($key, "story") && strlen($key) > 5) {
             return lcfirst(substr($key, 5));
         }
 

@@ -2,10 +2,8 @@
 
 namespace Nasqueron\Notifications\Tests\Analyzers;
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-
-use Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzerConfiguration;
 use Nasqueron\Notifications\Analyzers\ItemGroupMapping;
+use Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzerConfiguration;
 use Nasqueron\Notifications\Tests\TestCase;
 
 class JenkinsPayloadAnalyzerConfigurationTest extends TestCase {
@@ -20,7 +18,7 @@ class JenkinsPayloadAnalyzerConfigurationTest extends TestCase {
     /**
      * Prepares the test
      */
-     public function setUp () {
+     public function setUp (): void {
         $filename = __DIR__ . '/../../data/JenkinsPayloadAnalyzer/Nasqueron.json';
         $mapper = new \JsonMapper();
         $this->configuration = $mapper->map(

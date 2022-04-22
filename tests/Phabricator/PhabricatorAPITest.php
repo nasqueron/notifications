@@ -20,17 +20,13 @@ class PhabricatorAPITest extends TestCase {
         );
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testForInstanceWhere () {
+        $this->expectException(\RuntimeException::class);
         PhabricatorAPI::forInstance("https://notfound.acme.tld");
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testForProjectWhenProjectDoesNotExist () {
+        $this->expectException(\RuntimeException::class);
         PhabricatorAPI::forProject("NotFound");
     }
 }

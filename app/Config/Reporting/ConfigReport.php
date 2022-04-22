@@ -4,8 +4,8 @@ namespace Nasqueron\Notifications\Config\Reporting;
 
 use Nasqueron\Notifications\Config\Features;
 
-use Config;
-use Services;
+use Nasqueron\Notifications\Facades\Services;
+use Illuminate\Support\Facades\Config;
 
 class ConfigReport {
 

@@ -2,8 +2,6 @@
 
 namespace Nasqueron\Notifications\Tests\Actions;
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-
 use Nasqueron\Notifications\Actions\ActionError;
 use Nasqueron\Notifications\Tests\TestCase;
 
@@ -11,7 +9,7 @@ class ActionErrorTest extends TestCase {
 
     protected $actionError;
 
-    public function setUp () {
+    public function setUp () : void {
         $ex = new \RuntimeException('Lorem ipsum dolor');
         $this->actionError = new ActionError($ex);
     }

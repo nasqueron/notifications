@@ -3,11 +3,8 @@
 namespace Nasqueron\Notifications\Listeners;
 
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
+use Nasqueron\Notifications\Facades\DockerHub;
 use Nasqueron\Notifications\Jobs\TriggerDockerHubBuild;
-
-use Illuminate\Events\Dispatcher;
-
-use DockerHub;
 
 /**
  * Listens to events Docker Hub is interested by.
@@ -23,7 +20,7 @@ class DockerHubListener {
      *
      * @param GitHubPayloadEvent $event The GitHub payload event
      */
-    public function onGitHubPayload (GitHubPayloadEvent $event) : void {
+    public function handle (GitHubPayloadEvent $event) : void {
         if ($this->shouldNotify($event)) {
             $this->notifyNewCommits($event);
         }
@@ -60,22 +57,4 @@ class DockerHubListener {
     private function getRepository (GitHubPayloadEvent $event) : string {
         return $event->payload->repository->full_name;
     }
-
-    ///
-    /// Events listening
-    ///
-
-    /**
-     * Registers the listeners for the subscriber.
-     *
-     * @param Dispatcher $events
-     */
-    public function subscribe (Dispatcher $events) : void {
-        $class = DockerHubListener::class;
-        $events->listen(
-            GitHubPayloadEvent::class,
-            "$class@onGitHubPayload"
-        );
-    }
-
 }

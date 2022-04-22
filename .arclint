@@ -28,8 +28,12 @@
     "phpcs": {
       "type": "phpcs",
       "bin": "vendor/bin/phpcs",
-      "phpcs.standard": "PSR1",
-      "include": "(^app/.*\\.php$)"
+      "phpcs.standard": "phpcs.xml",
+      "include": [
+        "(app/.*\\.php$)",
+        "(config/.*\\.php$)",
+        "(tests/.*\\.php$)"
+      ]
     },
     "spelling": {
       "type": "spelling"

@@ -2,8 +2,6 @@
 
 namespace Nasqueron\Notifications\Tests\Actions;
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-
 use Nasqueron\Notifications\Actions\ActionError;
 use Nasqueron\Notifications\Actions\ActionsReport;
 use Nasqueron\Notifications\Actions\AMQPAction;
@@ -13,7 +11,7 @@ class ActionsReportTest extends TestCase {
 
     protected $report;
 
-    public function setUp () {
+    public function setUp (): void {
         $this->report = new ActionsReport();
     }
 
@@ -47,17 +45,11 @@ class ActionsReportTest extends TestCase {
 
         $this->assertSame(2, count($this->report->actions));
         $this->assertTrue($this->report->containsError());
+        $this->assertIsNumeric($this->report->created);
 
         // Attaches to gate
         $this->report->attachToGate('QuuxGate', 'Quuxians');
         $this->assertSame('QuuxGate', $this->report->gate);
         $this->assertSame('Quuxians', $this->report->door);
-
-        // Test rendering
-        $actualReport = (string)$this->report;
-        $expectedReport = file_get_contents(__DIR__ . '/../data/report.json');
-
-        $score = similar_text($expectedReport, $actualReport);
-        $this->assertGreaterThan(550, $score, 'data/report.json and rendered report differ too much. Try $this->assertEquals($expectedReport, $actualReport) to see a diff.');
     }
 }

@@ -5,11 +5,10 @@ namespace Nasqueron\Notifications\Jobs;
 use Nasqueron\Notifications\Actions\ActionError;
 use Nasqueron\Notifications\Actions\AMQPAction;
 use Nasqueron\Notifications\Events\ReportEvent;
-use Nasqueron\Notifications\Jobs\Job;
+use Nasqueron\Notifications\Facades\Broker;
 
-use Broker;
-use Event;
-use Log;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Log;
 
 class SendMessageToBroker extends Job {
 
@@ -108,6 +107,6 @@ class SendMessageToBroker extends Job {
         if ($this->exception !== null) {
             $actionToReport->attachError(new ActionError($this->exception));
         }
-        Event::fire(new ReportEvent($actionToReport));
+        Event::dispatch(new ReportEvent($actionToReport));
     }
 }

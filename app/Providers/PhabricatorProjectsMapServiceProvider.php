@@ -22,7 +22,7 @@ class PhabricatorProjectsMapServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        $this->app->singleton('phabricator-projectsmap', function () {
+        $this->app->singleton('phabricator-projectsmap', static function () {
             return new ProjectsMapFactory;
         });
     }

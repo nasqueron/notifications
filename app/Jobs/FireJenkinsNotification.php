@@ -2,17 +2,16 @@
 
 namespace Nasqueron\Notifications\Jobs;
 
-use Nasqueron\Notifications\Notifications\JenkinsNotification;
 use Nasqueron\Notifications\Events\JenkinsPayloadEvent;
 use Nasqueron\Notifications\Events\NotificationEvent;
-use Nasqueron\Notifications\Jobs\Job;
+use Nasqueron\Notifications\Notifications\JenkinsNotification;
 
-use Event;
+use Illuminate\Support\Facades\Event;
 
 class FireJenkinsNotification extends Job {
 
     /**
-     * @var JenkinsPayloadEvent;
+     * @var JenkinsPayloadEvent
      */
     private $event;
 
@@ -37,7 +36,7 @@ class FireJenkinsNotification extends Job {
     public function handle() : void {
         $notification = $this->createNotification();
         if ($notification->shouldNotify()) {
-            Event::fire(new NotificationEvent($notification));
+            Event::dispatch(new NotificationEvent($notification));
         }
     }
 

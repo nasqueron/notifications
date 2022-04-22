@@ -9,7 +9,7 @@ class ServicesTest extends TestCase {
 
     private $services;
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $this->services = Services::loadFromJson('credentials.json');

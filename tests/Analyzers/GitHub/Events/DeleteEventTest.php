@@ -5,13 +5,15 @@ namespace Nasqueron\Notifications\Tests\Analyzers\GitHub\Events;
 use Nasqueron\Notifications\Analyzers\GitHub\Events\DeleteEvent;
 use Nasqueron\Notifications\Tests\TestCase;
 
+use InvalidArgumentException;
+
 class DeleteEventTest extends TestCase {
     /**
      * @var DeleteEvent
      */
     private $event;
 
-    public function setUp () {
+    public function setUp (): void {
         $payload = new \stdClass;
         $payload->repository = new \stdClass;
         $payload->repository->full_name = 'baxterthehacker/public-repo';
@@ -31,10 +33,8 @@ class DeleteEventTest extends TestCase {
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testNonExistingRefTypeLinkException () {
+        $this->expectException(InvalidArgumentException::class);
         $this->event->getLink();
     }
 

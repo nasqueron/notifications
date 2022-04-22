@@ -4,10 +4,9 @@ namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
 use Nasqueron\Notifications\Events\JenkinsPayloadEvent;
 
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-use Event;
-use Request;
 
 class JenkinsGateController extends GateController {
 
@@ -75,7 +74,7 @@ class JenkinsGateController extends GateController {
     protected function onPayload () {
         $this->initializeReport();
 
-        Event::fire(new JenkinsPayloadEvent(
+        Event::dispatch(new JenkinsPayloadEvent(
             $this->door,
             $this->payload
         ));

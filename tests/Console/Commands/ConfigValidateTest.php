@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Tests\Console\Commands;
 
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class ConfigValidateTest extends TestCase {
 
@@ -53,7 +53,7 @@ class ConfigValidateTest extends TestCase {
         }
     }
 
-    public function tearDown () {
+    public function tearDown () : void {
         $this->deleteTestFile();
         parent::tearDown();
     }

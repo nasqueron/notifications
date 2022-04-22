@@ -28,7 +28,7 @@ trait WithRepoAndBranch {
             return "";
         }
 
-        if (starts_with($branch, "refs/heads/")) {
+        if (str_starts_with($branch, "refs/heads/")) {
             $branch = substr($branch, 11);
         }
 

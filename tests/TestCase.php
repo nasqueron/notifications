@@ -6,12 +6,11 @@ use Nasqueron\Notifications\Config\Services\Service;
 
 use Illuminate\Contracts\Console\Kernel;
 use Keruald\Broker\BlackholeBroker;
-use Keruald\Broker\Broker;
-
+use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 use Mockery;
 
-class TestCase extends \Illuminate\Foundation\Testing\TestCase
-{
+
+class TestCase extends BaseTestCase {
     /**
      * The base URL to use while testing the application.
      *
@@ -24,8 +23,7 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
      *
      * @return \Illuminate\Foundation\Application
      */
-    public function createApplication()
-    {
+    public function createApplication() {
         $app = require __DIR__.'/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
@@ -45,7 +43,7 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
         // This allows to test a single component and not all the application
         $mock = Mockery::mock('Illuminate\Contracts\Events\Dispatcher');
 
-        $mock->shouldReceive('fire');
+        $mock->shouldReceive('dispatch');
         $mock->shouldReceive('listen');
 
         $this->app->instance('events', $mock);

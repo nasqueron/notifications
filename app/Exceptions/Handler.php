@@ -2,18 +2,17 @@
 
 namespace Nasqueron\Notifications\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Nasqueron\Notifications\Facades\Raven;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Foundation\Validation\ValidationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Session\TokenMismatchException;
+use Illuminate\Support\Facades\Config;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-
-use Config;
-use Raven;
 
 use Exception;
 
@@ -38,9 +37,11 @@ class Handler extends ExceptionHandler {
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param \Exception $e
+     * @param \Exception|\Throwable $e
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function report(Exception $e) : void {
+    public function report(Exception|\Throwable $e) : void {
         if (!$this->shouldReport($e)) {
             return;
         }

@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Config\Services;
 
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class Services {
 

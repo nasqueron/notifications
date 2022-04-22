@@ -2,8 +2,8 @@
 
 namespace Nasqueron\Notifications\Tests\Providers;
 
-use Config;
-use File;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
 
 class ConfigTest extends TestCase {
     /**
@@ -20,7 +20,7 @@ class ConfigTest extends TestCase {
      */
     private $namespace;
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $this->providers = Config::get('app.providers');

@@ -12,7 +12,7 @@ class UnknownEventTest extends TestCase {
      */
     private $event;
 
-    public function setUp () {
+    public function setUp (): void {
         $filename = __DIR__ . "/../../../data/payloads/GitHubEvents/push.json";
         $payload = json_decode(file_get_contents($filename));
         $this->event =  new UnknownEvent("quux", $payload);

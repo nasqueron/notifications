@@ -17,7 +17,7 @@ class ServiceTest extends TestCase {
      */
     private $serviceWithoutInstance;
 
-    public function setUp () {
+    public function setUp (): void {
         $this->serviceWithoutInstance = new Service();
 
         $this->serviceWithInstance = clone $this->serviceWithoutInstance;

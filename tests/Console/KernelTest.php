@@ -4,11 +4,8 @@ namespace Nasqueron\Notifications\Tests\Console;
 
 use Nasqueron\Notifications\Tests\TestCase;
 
-use Nasqueron\Notifications\Console\Kernel;
 use Illuminate\Contracts\Console\Kernel as BaseKernel;
-
-use Artisan;
-use File;
+use Illuminate\Support\Facades\File;
 
 class KernelTest extends TestCase {
     /**
@@ -30,7 +27,7 @@ class KernelTest extends TestCase {
      */
     private $namespace;
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $this->kernel = $this->app->make(BaseKernel::class);
@@ -59,10 +56,8 @@ class KernelTest extends TestCase {
         );
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
-    public function testGetWhenCommandDoesNotExist () {
+    public function testGetWhenCommandDoesNotExist() {
+        $this->expectException(\RuntimeException::class);
         $this->kernel->get('notexisting');
     }
 
@@ -71,10 +66,8 @@ class KernelTest extends TestCase {
         $this->assertInstanceOf($class, $this->kernel->getByClass($class));
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
-    public function testGetByClassWhenCommandDoesNotExist () {
+    public function testGetByClassWhenCommandDoesNotExist() {
+        $this->expectException(\RuntimeException::class);
         $this->kernel->getByClass('notexisting');
     }
 

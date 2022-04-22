@@ -2,10 +2,8 @@
 
 namespace Nasqueron\Notifications\Tests\Facades;
 
+use Nasqueron\Notifications\Facades\DockerHub;
 use Nasqueron\Notifications\Tests\TestCase;
-
-use Config;
-use DockerHub;
 
 use Keruald\DockerHub\Build\TriggerBuildFactory;
 

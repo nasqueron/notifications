@@ -5,6 +5,8 @@ namespace Nasqueron\Notifications\Tests\Analyzers\GitHub\Events;
 use Nasqueron\Notifications\Analyzers\GitHub\Events\Event;
 use Nasqueron\Notifications\Tests\TestCase;
 
+use InvalidArgumentException;
+
 class EventTest extends TestCase {
 
     public function testGetClass () {
@@ -21,10 +23,8 @@ class EventTest extends TestCase {
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testForPayloadWithException () {
+        $this->expectException(InvalidArgumentException::class);
         Event::forPayload('not_existing', new \stdClass);
     }
 

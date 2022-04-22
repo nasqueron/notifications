@@ -32,7 +32,7 @@ class ReportServiceProvider extends ServiceProvider {
     ) {
         $events->listen(
             'Nasqueron\Notifications\Events\ReportEvent',
-            function (ReportEvent $event) use ($report) {
+            static function (ReportEvent $event) use ($report) {
                 $report->addAction($event->action);
             }
         );

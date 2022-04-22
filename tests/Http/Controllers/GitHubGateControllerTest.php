@@ -5,7 +5,7 @@ namespace Nasqueron\Notifications\Tests\Http\Controllers;
 use Nasqueron\Notifications\Tests\TestCase;
 
 class GitHubGateControllerTest extends TestCase {
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $this->disableEvents();

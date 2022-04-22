@@ -3,8 +3,6 @@
 namespace Nasqueron\Notifications\Tests\Console\Commands;
 
 use Nasqueron\Notifications\Config\Features;
-use Nasqueron\Notifications\Config\Services\Service;
-
 use Mockery;
 
 class ConfigShowTest extends TestCase {
@@ -19,7 +17,7 @@ class ConfigShowTest extends TestCase {
      */
     private $servicesMock;
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $this->servicesMock = $this->mockServices();

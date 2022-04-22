@@ -11,7 +11,7 @@ class ProjectsMapFactoryTest extends TestCase {
      */
     private $factory;
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
         $this->factory = $this->app->make('phabricator-projectsmap');
 

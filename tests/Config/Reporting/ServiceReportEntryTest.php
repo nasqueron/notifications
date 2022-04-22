@@ -3,7 +3,6 @@
 namespace Nasqueron\Notifications\Tests\Config\Reporting;
 
 use Nasqueron\Notifications\Config\Reporting\ServiceReportEntry;
-use Nasqueron\Notifications\Config\Services\Service;
 use Nasqueron\Notifications\Tests\TestCase;
 
 class ServiceReportEntryTest extends TestCase {
@@ -13,7 +12,7 @@ class ServiceReportEntryTest extends TestCase {
      */
     private $serviceEntry;
 
-    public function setUp () {
+    public function setUp (): void {
         $service = $this->mockService();
         $this->serviceEntry  = new ServiceReportEntry($service);
     }

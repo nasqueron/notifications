@@ -15,7 +15,7 @@ class NotifyNewCommitsToDiffusionTest extends TestCase {
     /**
      * @dataProvider apiRepositoryReplyProvider
      */
-    public function testHandle ($apiRepositoryReply, int $apiCallCounts) {
+    public function testHandle(?array $apiRepositoryReply, int $apiCallCounts) {
         $this->mockPhabricatorAPI()
             ->shouldReceive('getForProject->call')
             ->andReturn(
@@ -32,9 +32,11 @@ class NotifyNewCommitsToDiffusionTest extends TestCase {
         $job->handle();
     }
 
-    public function testJobWhenThereIsNoPhabricatorInstanceForTheProject () {
+    public function testJobWhenThereIsNoPhabricatorInstanceForTheProject () : void {
         $job = $this->mockJob("not-existing-project");
         $job->handle();
+
+        $this->markTestIncomplete();
     }
 
     ///

@@ -12,7 +12,7 @@ class PullRequestEventTest extends TestCase {
      */
     private $payload;
 
-    public function setUp () {
+    public function setUp (): void {
         $filename = __DIR__ . "/../../../data/payloads/GitHubEvents/pull_request.json";
         $this->payload = json_decode(file_get_contents($filename));
 

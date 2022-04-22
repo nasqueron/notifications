@@ -22,7 +22,7 @@ class FeaturesTest extends TestCase {
         $this->assertFalse(Features::isEnabled('Quux'));
 
         // Count it
-        $this->assertContains('Quux', Features::getAll());
+        $this->assertArrayHasKey('Quux', Features::getAll());
         $this->assertContains('Quux', Features::getAvailable());
         $this->assertNotContains('Quux', Features::getEnabled());
     }

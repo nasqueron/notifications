@@ -6,9 +6,7 @@ use Nasqueron\Notifications\Events\NotificationEvent;
 use Nasqueron\Notifications\Jobs\SendMessageToBroker;
 use Nasqueron\Notifications\Notifications\Notification;
 
-use Illuminate\Events\Dispatcher;
-
-use Config;
+use Illuminate\Support\Facades\Config;
 
 class AMQPEventListener {
 
@@ -21,7 +19,7 @@ class AMQPEventListener {
      *
      * @param NotificationEvent $event
      */
-    public function onNotification(NotificationEvent $event) : void {
+    public function handle (NotificationEvent $event) : void {
         $this->sendNotification($event->notification);
     }
 
@@ -51,22 +49,4 @@ class AMQPEventListener {
         $job = new SendMessageToBroker($target, $routingKey, $message);
         $job->handle();
     }
-
-    ///
-    /// Events listening
-    ///
-
-    /**
-     * Registers the listeners for the subscriber.
-     *
-     * @param Dispatcher $events
-     */
-    public function subscribe (Dispatcher $events) : void {
-        $class = AMQPEventListener::class;
-        $events->listen(
-            NotificationEvent::class,
-            "$class@onNotification"
-        );
-    }
-
 }

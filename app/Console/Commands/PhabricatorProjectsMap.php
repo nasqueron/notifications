@@ -4,8 +4,8 @@ namespace Nasqueron\Notifications\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use ProjectsMap;
-use Services;
+use Nasqueron\Notifications\Facades\ProjectsMap;
+use Nasqueron\Notifications\Facades\Services;
 
 class PhabricatorProjectsMap extends Command {
     /**

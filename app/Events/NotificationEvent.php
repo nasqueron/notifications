@@ -2,7 +2,6 @@
 
 namespace Nasqueron\Notifications\Events;
 
-use Nasqueron\Notifications\Events\Event;
 use Nasqueron\Notifications\Notifications\Notification;
 
 use Illuminate\Queue\SerializesModels;

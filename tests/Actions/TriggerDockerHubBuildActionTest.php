@@ -2,8 +2,6 @@
 
 namespace Nasqueron\Notifications\Tests\Actions;
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-
 use Nasqueron\Notifications\Actions\TriggerDockerHubBuildAction;
 use Nasqueron\Notifications\Tests\TestCase;
 
@@ -11,7 +9,7 @@ class TriggerDockerHubBuildActionTest extends TestCase {
 
     protected $action;
 
-    public function setUp () {
+    public function setUp () : void {
         $this->action = new TriggerDockerHubBuildAction(
             'acme/foo'
         );

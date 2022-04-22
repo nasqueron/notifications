@@ -5,11 +5,10 @@ namespace Nasqueron\Notifications\Jobs;
 use Nasqueron\Notifications\Actions\ActionError;
 use Nasqueron\Notifications\Actions\TriggerDockerHubBuildAction;
 use Nasqueron\Notifications\Events\ReportEvent;
-
-use DockerHub;
-use Event;
+use Nasqueron\Notifications\Facades\DockerHub;
 
 use Exception;
+use Illuminate\Support\Facades\Event;
 
 /**
  * This class allows to trigger a new Docker Hub build.
@@ -80,7 +79,7 @@ class TriggerDockerHubBuild extends Job {
      */
     private function sendReport () : void {
         $event = new ReportEvent($this->actionToReport);
-        Event::fire($event);
+        Event::dispatch($event);
     }
 
 }

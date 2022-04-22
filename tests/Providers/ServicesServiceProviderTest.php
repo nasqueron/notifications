@@ -4,7 +4,7 @@ namespace Nasqueron\Notifications\Tests\Providers;
 
 use Nasqueron\Notifications\Providers\ServicesServiceProvider;
 
-use Config;
+use Illuminate\Support\Facades\Config;
 
 class ServicesServiceProviderTest extends TestCase {
 

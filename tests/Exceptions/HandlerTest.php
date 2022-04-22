@@ -2,12 +2,11 @@
 
 namespace Nasqueron\Notifications\Tests\Exceptions;
 
-use Illuminate\Auth\Access\AuthorizationException;
 use Nasqueron\Notifications\Exceptions\Handler;
 use Nasqueron\Notifications\Tests\TestCase;
 
-use App;
-use Config;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Config;
 use Mockery;
 
 class HandlerTest extends TestCase {
@@ -22,7 +21,7 @@ class HandlerTest extends TestCase {
      */
     private $ravenClientMock;
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $this->handler = new Handler($this->app);

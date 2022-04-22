@@ -2,9 +2,8 @@
 
 namespace Nasqueron\Notifications\Facades;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Facade;
-
-use Config;
 
 /**
  * @see \Raven_Client

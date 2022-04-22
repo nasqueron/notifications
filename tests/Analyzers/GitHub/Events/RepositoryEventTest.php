@@ -12,7 +12,7 @@ class RepositoryEventTest extends TestCase {
      */
     private $payload;
 
-    public function setUp () {
+    public function setUp (): void {
         $filename = __DIR__ . "/../../../data/payloads/GitHubEvents/repository.json";
         $this->payload = json_decode(file_get_contents($filename));
 
@@ -24,7 +24,7 @@ class RepositoryEventTest extends TestCase {
         $payload->repository->fork = true;
         $event = new RepositoryEvent($payload);
 
-        $this->assertContains("fork", $event->getDescription());
+        $this->assertStringContainsString("fork", $event->getDescription());
     }
 
     public function testWhenRepositoryContainsDescription () {
@@ -32,7 +32,7 @@ class RepositoryEventTest extends TestCase {
         $payload->repository->description = "Lorem ipsum dolor";
         $event = new RepositoryEvent($payload);
 
-        $this->assertContains("Lorem ipsum dolor", $event->getDescription());
+        $this->assertStringContainsString("Lorem ipsum dolor", $event->getDescription());
     }
 
     public function testWhenRepositoryIsForkedAndContainsDescription () {
@@ -41,8 +41,8 @@ class RepositoryEventTest extends TestCase {
         $payload->repository->description = "Lorem ipsum dolor";
         $event = new RepositoryEvent($payload);
 
-        $this->assertContains("fork", $event->getDescription());
-        $this->assertContains("Lorem ipsum dolor", $event->getDescription());
+        $this->assertStringContainsString("fork", $event->getDescription());
+        $this->assertStringContainsString("Lorem ipsum dolor", $event->getDescription());
     }
 
     /**

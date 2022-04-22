@@ -2,13 +2,10 @@
 
 namespace Nasqueron\Notifications\Tests\Console\Commands;
 
-use Nasqueron\Notifications\Config\Services\Service;
 use Nasqueron\Notifications\Tests\TestCase as BaseTestCase;
 
 use Illuminate\Contracts\Console\Kernel;
 use Symfony\Component\Console\Tester\CommandTester;
-
-use Mockery;
 
 class TestCase extends BaseTestCase {
 
@@ -26,7 +23,7 @@ class TestCase extends BaseTestCase {
      */
     protected $tester;
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $kernel = $this->app->make(Kernel::class);
@@ -39,14 +36,14 @@ class TestCase extends BaseTestCase {
     ///
 
     public function assertDisplayContains(string $expectedNeedle) {
-        $this->assertContains(
+        $this->assertStringContainsString(
             $expectedNeedle,
             $this->tester->getDisplay()
         );
     }
 
     public function assertRegexpInDisplay (string $pattern) {
-        $this->assertRegexp($pattern, $this->tester->getDisplay());
+        $this->assertMatchesRegularExpression($pattern, $this->tester->getDisplay());
     }
 
 }

@@ -2,7 +2,6 @@
 
 namespace Nasqueron\Notifications\Events;
 
-use Nasqueron\Notifications\Events\Event;
 use Illuminate\Queue\SerializesModels;
 
 class GitHubPayloadEvent extends Event {

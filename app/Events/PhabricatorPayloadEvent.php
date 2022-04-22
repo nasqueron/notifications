@@ -2,8 +2,8 @@
 
 namespace Nasqueron\Notifications\Events;
 
-use Nasqueron\Notifications\Events\Event;
 use Nasqueron\Notifications\Phabricator\PhabricatorStory;
+
 use Illuminate\Queue\SerializesModels;
 
 class PhabricatorPayloadEvent extends Event {

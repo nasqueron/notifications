@@ -10,7 +10,7 @@ class ProjectsMapFactory {
      * @param string $instanceName The Phabricator instance name
      * @return ProjectsMap
      */
-    public function load ($instanceName) {
+    public function load (string $instanceName) {
         return ProjectsMap::load($instanceName);
     }
 
@@ -20,7 +20,7 @@ class ProjectsMapFactory {
      * @param string $instanceName The Phabricator instance name
      * @return ProjectsMap
      */
-    public function fetch ($instanceName) {
+    public function fetch (string $instanceName) {
         return ProjectsMap::fetch($instanceName);
     }
 

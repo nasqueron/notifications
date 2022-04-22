@@ -12,7 +12,7 @@ class PhabricatorAPIExceptionTest extends TestCase {
      */
     private $exception;
 
-    public function setUp () {
+    public function setUp (): void {
         $this->exception = new PhabricatorAPIException(
             100,
             "Lorem ipsum dolor"

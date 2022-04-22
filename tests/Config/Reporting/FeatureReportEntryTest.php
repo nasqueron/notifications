@@ -17,7 +17,7 @@ class FeatureReportEntryTest extends TestCase {
      */
     private $disabledFeatureEntry;
 
-    public function setUp () {
+    public function setUp (): void {
         $this->enabledFeatureEntry  = new FeatureReportEntry("foo", true);
         $this->disabledFeatureEntry = new FeatureReportEntry("bar", false);
     }

@@ -3,6 +3,7 @@
 namespace Nasqueron\Notifications\Listeners;
 
 use Nasqueron\Notifications\Events\DockerHubPayloadEvent;
+use Nasqueron\Notifications\Events\Event;
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 use Nasqueron\Notifications\Events\JenkinsPayloadEvent;
 use Nasqueron\Notifications\Events\PhabricatorPayloadEvent;
@@ -10,6 +11,8 @@ use Nasqueron\Notifications\Jobs\FireDockerHubNotification;
 use Nasqueron\Notifications\Jobs\FireGitHubNotification;
 use Nasqueron\Notifications\Jobs\FireJenkinsNotification;
 use Nasqueron\Notifications\Jobs\FirePhabricatorNotification;
+
+use InvalidArgumentException;
 
 class NotificationListener {
 
@@ -64,33 +67,22 @@ class NotificationListener {
     }
 
     ///
-    /// Events listening
+    /// Events sorter
     ///
 
-    /**
-     * Register the listeners for the subscriber.
-     *
-     * @param \Illuminate\Events\Dispatcher $events
-     */
-    public function subscribe (\Illuminate\Events\Dispatcher $events) : void {
-        $class = 'Nasqueron\Notifications\Listeners\NotificationListener';
-        $events->listen(
-            'Nasqueron\Notifications\Events\DockerHubPayloadEvent',
-            "$class@onDockerHubPayload"
-        );
-        $events->listen(
-            'Nasqueron\Notifications\Events\GitHubPayloadEvent',
-            "$class@onGitHubPayload"
-        );
-        $events->listen(
-            'Nasqueron\Notifications\Events\JenkinsPayloadEvent',
-            "$class@onJenkinsPayload"
-        );
-        $events->listen(
-            'Nasqueron\Notifications\Events\PhabricatorPayloadEvent',
-            "$class@onPhabricatorPayload"
-        );
+    private static function getEventHandlerMethod (string $eventClasss) : string {
+        $parts = explode('\\', $eventClasss);
+        $className = end($parts);
 
+        if (!str_ends_with($className, "Event")) {
+            throw new InvalidArgumentException("Events classes must be ended by 'Event'");
+        }
+
+        return "on" . substr($className, 0, strlen($className)-5);
     }
 
+    public function handle (Event $event) : void {
+        $callable = [$this, self::getEventHandlerMethod($event::class)];
+        $callable($event);
+    }
 }

@@ -30,7 +30,7 @@ class GitHubPayloadAnalyzerTest extends TestCase {
     /**
      * Prepares the tests
      */
-     public function setUp () {
+     public function setUp (): void {
         parent::setUp();
 
         $this->unknownEventAnalyzer = new GitHubPayloadAnalyzer(
@@ -64,14 +64,8 @@ class GitHubPayloadAnalyzerTest extends TestCase {
         );
      }
 
-    ///
-    /// Test constructor
-    ///
-
-    /**
-     * @expectedException TypeError
-     */
-    public function testConstructorThrowsAnExceptionWhenPayloadIsInvalid () {
+    public function testConstructorThrowsAnExceptionWhenPayloadIsInvalid() {
+        $this->expectException(\TypeError::class);
         new GitHubPayloadAnalyzer(
             "Acme",
             "push",
@@ -131,7 +125,7 @@ class GitHubPayloadAnalyzerTest extends TestCase {
     ///
 
     public function testDescriptionContainsTypeWhenEventTypeIsUnknown () {
-        $this->assertContains(
+        $this->assertStringContainsString(
             "quux",
             $this->unknownEventAnalyzer->getDescription()
         );

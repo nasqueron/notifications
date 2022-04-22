@@ -2,11 +2,12 @@
 
 namespace Nasqueron\Notifications\Providers;
 
+use Keruald\DockerHub\Build\TriggerBuildFactory;
+
+use GuzzleHttp\Client;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
-use GuzzleHttp\Client;
-use Keruald\DockerHub\Build\TriggerBuildFactory;
 
 class DockerHubServiceProvider extends ServiceProvider {
     /**

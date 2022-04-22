@@ -4,8 +4,8 @@ namespace Nasqueron\Notifications\Phabricator;
 
 use Nasqueron\Notifications\Contracts\APIClient as APIClient;
 
-use App;
-use Cache;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 
 class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
 

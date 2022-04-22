@@ -4,10 +4,9 @@ namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
 use Nasqueron\Notifications\Events\DockerHubPayloadEvent;
 
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-use Event;
-use Request;
 
 class DockerHubGateController extends GateController {
 
@@ -75,7 +74,7 @@ class DockerHubGateController extends GateController {
     protected function onPayload () : void {
         $this->initializeReport();
 
-        Event::fire(new DockerHubPayloadEvent(
+        Event::dispatch(new DockerHubPayloadEvent(
             $this->door,
             $this->payload
         ));

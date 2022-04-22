@@ -3,8 +3,7 @@
 namespace Nasqueron\Notifications\Phabricator;
 
 use Nasqueron\Notifications\Contracts\APIClient;
-
-use Services;
+use Nasqueron\Notifications\Facades\Services;
 
 class PhabricatorAPI implements APIClient {
 

@@ -12,7 +12,7 @@ class PushEventTest extends TestCase {
      */
     private $payloads;
 
-    public function setUp () {
+    public function setUp (): void {
         $payloadsToPrepare = [
             '0' => 'GitHubPushForceZeroPayload.json',
             '1' => 'GitHubEvents/push.json',
@@ -84,7 +84,7 @@ class PushEventTest extends TestCase {
             "dereckson forcely updated docker-nginx-php-fpm (branch novolume)",
             $event->getDescription()
         );
-        $this->assertContains("compare", $event->getLink());
+        $this->assertStringContainsString("compare", $event->getLink());
     }
 
     public function testOnGitPushWithSeveralCommits () {
@@ -94,6 +94,6 @@ class PushEventTest extends TestCase {
             "dereckson pushed 2 commits to notifications",
             $event->getDescription()
         );
-        $this->assertContains("compare", $event->getLink());
+        $this->assertStringContainsString("compare", $event->getLink());
     }
 }

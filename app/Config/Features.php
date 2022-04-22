@@ -2,7 +2,7 @@
 
 namespace Nasqueron\Notifications\Config;
 
-use Config;
+use Illuminate\Support\Facades\Config;
 
 /**
  * The features class offers a sugar syntax to check if a feature is enabled

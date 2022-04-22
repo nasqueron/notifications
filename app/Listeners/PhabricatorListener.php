@@ -5,8 +5,6 @@ namespace Nasqueron\Notifications\Listeners;
 use Nasqueron\Notifications\Events\GitHubPayloadEvent;
 use Nasqueron\Notifications\Jobs\NotifyNewCommitsToDiffusion;
 
-use Illuminate\Events\Dispatcher;
-
 /**
  * Listens to events Phabricator is interested by.
  */
@@ -21,7 +19,7 @@ class PhabricatorListener {
      *
      * @param GitHubPayloadEvent $event The GitHub payload event
      */
-    public function onGitHubPayload (GitHubPayloadEvent $event) : void {
+    public function handle (GitHubPayloadEvent $event) : void {
         if ($event->event === 'push') {
             $this->notifyNewCommits($event);
         }
@@ -38,22 +36,5 @@ class PhabricatorListener {
             $event->payload->repository->clone_url
         );
         $job->handle();
-    }
-
-    ///
-    /// Events listening
-    ///
-
-    /**
-     * Registers the listeners for the subscriber.
-     *
-     * @param Dispatcher $events
-     */
-    public function subscribe (Dispatcher $events) : void {
-        $class = PhabricatorListener::class;
-        $events->listen(
-            GitHubPayloadEvent::class,
-            "$class@onGitHubPayload"
-        );
     }
 }

@@ -15,7 +15,7 @@ class PullRequestEvent extends Event {
      * @param string $action The action to check
      * @return bool true if the action is valid; otherwise, false
      */
-    protected static function isValidAction ($action) {
+    protected static function isValidAction(string $action) {
         $actions = [
             'assigned', 'unassigned',
             'labeled', 'unlabeled',

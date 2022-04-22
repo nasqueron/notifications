@@ -4,8 +4,7 @@ namespace Nasqueron\Notifications\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\FilesystemAdapter;
-
-use App;
+use Illuminate\Support\Facades\App;
 
 class ConfigValidate extends Command {
 

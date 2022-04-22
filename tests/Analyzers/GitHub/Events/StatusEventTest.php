@@ -12,7 +12,7 @@ class StatusEventTest extends TestCase {
      */
     private $payload;
 
-    public function setUp () {
+    public function setUp (): void {
         $filename = __DIR__ . "/../../../data/payloads/GitHubEvents/status.json";
         $this->payload = json_decode(file_get_contents($filename));
 

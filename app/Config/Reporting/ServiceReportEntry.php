@@ -4,7 +4,7 @@ namespace Nasqueron\Notifications\Config\Reporting;
 
 use Nasqueron\Notifications\Config\Services\Service;
 
-use ProjectsMap;
+use Nasqueron\Notifications\Facades\ProjectsMap;
 
 final class ServiceReportEntry extends BaseReportEntry {
 

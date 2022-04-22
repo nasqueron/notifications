@@ -200,24 +200,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Events listeners
-    |--------------------------------------------------------------------------
-    |
-    | The events listeners listed here will be automatically loaded on the
-    | request to your application.
-    |
-    */
-
-    'listeners' => [
-        Nasqueron\Notifications\Listeners\AMQPEventListener::class,
-        Nasqueron\Notifications\Listeners\DockerHubListener::class,
-        Nasqueron\Notifications\Listeners\LastPayloadSaver::class,
-        Nasqueron\Notifications\Listeners\NotificationListener::class,
-        Nasqueron\Notifications\Listeners\PhabricatorListener::class,
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Class Aliases
     |--------------------------------------------------------------------------
     |
@@ -246,7 +228,7 @@ return [
         'File'      => Illuminate\Support\Facades\File::class,
         'Gate'      => Illuminate\Support\Facades\Gate::class,
         'Hash'      => Illuminate\Support\Facades\Hash::class,
-        'Input'     => Illuminate\Support\Facades\Input::class,
+        'Input'     => \Illuminate\Support\Facades\Request::class,
         'Inspiring' => Illuminate\Foundation\Inspiring::class,
         'Lang'      => Illuminate\Support\Facades\Lang::class,
         'Log'       => Illuminate\Support\Facades\Log::class,

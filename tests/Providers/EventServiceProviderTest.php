@@ -2,8 +2,9 @@
 
 namespace Nasqueron\Notifications\Tests\Providers;
 
-use Config;
-use File;
+use Nasqueron\Notifications\Providers\EventServiceProvider;
+
+use Illuminate\Support\Facades\File;
 
 class EventServiceProviderTest extends TestCase {
 
@@ -28,12 +29,23 @@ class EventServiceProviderTest extends TestCase {
             $subscribe[] = $class;
         }
 
-        $this->assertEquals(
-            $subscribe, Config::get('app.listeners'),
+        $this->assertEqualsCanonicalizing(
+            $subscribe, $this->getRegisteredListeners(),
             'The files in the app/Listeners folder and the array of classes ' .
-            'defined in config/app.php at listeners key diverge.',
-            0.0, 10, true // delta, maxDepth, canonicalize
+            'defined in config/app.php at listeners key diverge.'
         );
     }
 
+    private function getRegisteredListeners () : array {
+        $provider = $this->app->getProvider(EventServiceProvider::class);
+        $eventsMap = $provider->listens();
+        $listeners = [];
+
+        foreach ($eventsMap as $foundListeners) {
+            foreach ($foundListeners as $listener){
+                $listeners[] = $listener;
+            }
+        }
+        return array_unique($listeners);
+    }
 }

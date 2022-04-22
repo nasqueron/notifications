@@ -2,11 +2,11 @@
 
 namespace Nasqueron\Notifications\Providers;
 
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Support\ServiceProvider;
+use Keruald\Mailgun\MailgunMessageFactory;
 
 use GuzzleHttp\Client;
-use Keruald\Mailgun\MailgunMessageFactory;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\ServiceProvider;
 
 class MailgunServiceProvider extends ServiceProvider {
     /**

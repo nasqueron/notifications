@@ -4,16 +4,15 @@ namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
 use Nasqueron\Notifications\Config\Features;
 use Nasqueron\Notifications\Config\Services\Service;
+use Nasqueron\Notifications\Facades\Services;
+use Nasqueron\Notifications\Facades\Report;
 use Nasqueron\Notifications\Http\Controllers\Controller;
 
-use Symfony\Component\HttpFoundation\Response as BaseResponse;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
 use Illuminate\View\View;
-
-use App;
-use Log;
-use Report;
-use Response;
-use Services;
+use Symfony\Component\HttpFoundation\Response as BaseResponse;
 
 /**
  * Represents a controller handling an entry-point for API payloads

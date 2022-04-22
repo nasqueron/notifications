@@ -10,6 +10,6 @@ interface APIFactory {
      * @param string $endPoint The API end point
      * @return APIClient
      */
-    public function get ($endPoint);
+    public function get (string $endPoint);
 
 }

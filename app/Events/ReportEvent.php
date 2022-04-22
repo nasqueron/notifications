@@ -3,7 +3,7 @@
 namespace Nasqueron\Notifications\Events;
 
 use Nasqueron\Notifications\Actions\Action;
-use Nasqueron\Notifications\Events\Event;
+
 use Illuminate\Queue\SerializesModels;
 
 class ReportEvent extends Event {

@@ -5,13 +5,12 @@ namespace Nasqueron\Notifications\Jobs;
 use Nasqueron\Notifications\Actions\ActionError;
 use Nasqueron\Notifications\Actions\NotifyNewCommitsAction;
 use Nasqueron\Notifications\Events\ReportEvent;
+use Nasqueron\Notifications\Facades\PhabricatorAPI;
 use Nasqueron\Notifications\Phabricator\PhabricatorAPI as API;
 use Nasqueron\Notifications\Phabricator\PhabricatorAPIException;
 
-use Event;
-use Log;
-use PhabricatorAPI;
-
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Log;
 use RuntimeException;
 
 /**
@@ -107,7 +106,7 @@ class NotifyNewCommitsToDiffusion extends Job {
      */
     private function sendReport () : void {
         $event = new ReportEvent($this->actionToReport);
-        Event::fire($event);
+        Event::dispatch($event);
     }
 
 

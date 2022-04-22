@@ -2,10 +2,8 @@
 
 namespace Nasqueron\Notifications\Tests\Facades;
 
+use Nasqueron\Notifications\Facades\Mailgun;
 use Nasqueron\Notifications\Tests\TestCase;
-
-use Config;
-use Mailgun;
 
 use Keruald\Mailgun\MailgunMessageFactory;
 

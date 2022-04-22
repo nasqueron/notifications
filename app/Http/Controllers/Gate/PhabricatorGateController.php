@@ -4,10 +4,9 @@ namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
 use Nasqueron\Notifications\Events\PhabricatorPayloadEvent;
 
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-use Event;
-use Request;
 
 class PhabricatorGateController extends GateController {
 
@@ -65,7 +64,7 @@ class PhabricatorGateController extends GateController {
     protected function onPayload () : void {
         $this->initializeReport();
 
-        Event::fire(new PhabricatorPayloadEvent(
+        Event::dispatch(new PhabricatorPayloadEvent(
             $this->door,
             $this->payload
         ));

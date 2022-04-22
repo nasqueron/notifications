@@ -3,7 +3,6 @@
 namespace Nasqueron\Notifications\Tests\Analyzers;
 
 use Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzer;
-use Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzerConfiguration;
 use Nasqueron\Notifications\Tests\TestCase;
 
 class JenkinsPayloadAnalyzerTest extends TestCase {
@@ -23,7 +22,7 @@ class JenkinsPayloadAnalyzerTest extends TestCase {
     /**
      * Prepares the test
      */
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $filename = __DIR__ . '/../../data/payloads/JenkinsToIgnorePayload.json';
@@ -52,7 +51,7 @@ class JenkinsPayloadAnalyzerTest extends TestCase {
     /**
      * @dataProvider payloadStatusProvider
      */
-    public function testShouldNotifyByStatus ($status, $shouldNotify) {
+    public function testShouldNotifyByStatus(string $status, bool $shouldNotify) {
         $this->payload->build->status = $status;
         $this->assertSame($shouldNotify, $this->analyzer->shouldNotify());
     }

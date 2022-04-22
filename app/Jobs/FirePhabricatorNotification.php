@@ -2,17 +2,16 @@
 
 namespace Nasqueron\Notifications\Jobs;
 
-use Nasqueron\Notifications\Notifications\PhabricatorNotification;
-use Nasqueron\Notifications\Events\PhabricatorPayloadEvent;
 use Nasqueron\Notifications\Events\NotificationEvent;
-use Nasqueron\Notifications\Jobs\Job;
+use Nasqueron\Notifications\Events\PhabricatorPayloadEvent;
+use Nasqueron\Notifications\Notifications\PhabricatorNotification;
 
-use Event;
+use Illuminate\Support\Facades\Event;
 
 class FirePhabricatorNotification extends Job {
 
     /**
-     * @var PhabricatorPayloadEvent;
+     * @var PhabricatorPayloadEvent
      */
     private $event;
 
@@ -34,7 +33,7 @@ class FirePhabricatorNotification extends Job {
      */
     public function handle() : void {
         $notification = $this->createNotification();
-        Event::fire(new NotificationEvent($notification));
+        Event::dispatch(new NotificationEvent($notification));
     }
 
     protected function createNotification() : PhabricatorNotification {

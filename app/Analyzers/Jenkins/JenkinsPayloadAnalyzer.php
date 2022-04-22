@@ -31,7 +31,7 @@ class JenkinsPayloadAnalyzer extends BasePayloadAnalyzer {
     /**
      * Tries to get build status.
      *
-     * @param out string $status
+     * @param out string &$status
      * @return bool indicates if the build status is defined in the payload
      */
     private function tryGetBuildStatus (string &$status) : bool {

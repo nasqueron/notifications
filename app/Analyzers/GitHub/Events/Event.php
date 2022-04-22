@@ -33,8 +33,12 @@ class Event {
      * @param string $eventName The event name (e.g. commit_comment)
      * @return string The event class name (e.g. CommitCommentEvent)
      */
-    public static function getClass ($eventName) {
-        return __NAMESPACE__ . '\\' . studly_case($eventName) . 'Event';
+    public static function getClass (string $eventName) {
+        return __NAMESPACE__ . '\\' . self::toCamelCase($eventName) . 'Event';
+    }
+
+    private static function toCamelCase (string $string) : string {
+        return str_replace(" ", "", ucwords(str_replace("_", " ", $string)));
     }
 
     /**
@@ -43,7 +47,7 @@ class Event {
      * @param string $eventName The event name (e.g. commit_comment)
      * @return Event
      */
-    public static function forPayload ($eventName, $payload) {
+    public static function forPayload (string $eventName, $payload) {
         $class = self::getClass($eventName);
         if (!class_exists($class)) {
             throw new \InvalidArgumentException(
@@ -60,11 +64,15 @@ class Event {
     /**
      * Cuts a text
      *
-     * @param string $text The text to cut
-     * @param int $strLen The amount of characters to allow [optional]
+     * @param string $text   The text to cut
+     * @param int    $strLen The amount of characters to allow [optional]
      * @param string $symbol The symbol to append to a cut text [optional]
      */
-    public static function cut ($text, $strLen = 114, $symbol = '…') {
+    public static function cut (
+        string $text,
+        int    $strLen = 114,
+        string $symbol = '…'
+    ) {
         $len = strlen($text);
         if ($len <= $strLen) {
             return $text;

@@ -6,7 +6,8 @@ use Nasqueron\Notifications\Contracts\APIClient;
 use Nasqueron\Notifications\Phabricator\ProjectsMap;
 use Nasqueron\Notifications\Tests\TestCase;
 
-use Mockery;
+use ErrorException;
+use Exception;
 
 class ProjectsMapTest extends TestCase {
 
@@ -15,7 +16,7 @@ class ProjectsMapTest extends TestCase {
      */
     private $map;
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         //
@@ -59,10 +60,8 @@ class ProjectsMapTest extends TestCase {
         );
     }
 
-    /**
-     * @expectedException ErrorException
-     */
     public function testOffsetGetWhenItDoesNotExist () {
+        $this->expectException(ErrorException::class);
         $this->map->offsetGet("non-existing-key");
     }
 
@@ -184,18 +183,14 @@ class ProjectsMapTest extends TestCase {
         });
     }
 
-    /**
-     * @expectedException Exception
-     */
     public function testFetchFromAPIWithoutReply () {
+        $this->expectException(Exception::class);
         $mock = $this->mockPhabricatorAPIWithReply(false);
         ProjectsMap::fetch("http://phabricator.acme.tld", $mock);
     }
 
-    /**
-     * @expectedException Exception
-     */
     public function testFetchFromAPIInvalidReply () {
+        $this->expectException(Exception::class);
         $mock = $this->mockPhabricatorAPIWithReply(new \stdClass);
         ProjectsMap::fetch("http://phabricator.acme.tld", $mock);
     }

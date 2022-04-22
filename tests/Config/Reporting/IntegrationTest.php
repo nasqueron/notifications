@@ -6,7 +6,7 @@ use Nasqueron\Notifications\Tests\TestCase;
 
 class IntegrationTest extends TestCase {
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $this->mockServices()

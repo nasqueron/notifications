@@ -19,7 +19,7 @@ class PhabricatorPayloadAnalyzerTest extends TestCase {
      */
     private $story;
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $this->story = $this->getStory();
@@ -86,10 +86,8 @@ class PhabricatorPayloadAnalyzerTest extends TestCase {
         );
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
-    public function testGetItemThrowsBadMethodCallException () {
+    public function testGetItemThrowsBadMethodCallException() {
+        $this->expectException(\BadMethodCallException::class);
         $this->analyzer->getItemName();
     }
 

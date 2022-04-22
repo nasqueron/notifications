@@ -26,7 +26,7 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
     /**
      * The payload analyzer event
      *
-     * @var \Nasqueron\Notifications\Analyzers\GitHub\Events\Event;
+     * @var \Nasqueron\Notifications\Analyzers\GitHub\Events\Event
      */
     private $analyzerEvent;
 

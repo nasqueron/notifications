@@ -5,12 +5,10 @@ namespace Nasqueron\Notifications\Http\Controllers\Gate;
 use Nasqueron\Notifications\Events\NotificationEvent;
 use Nasqueron\Notifications\Notifications\Notification;
 
-use Symfony\Component\HttpFoundation\Response;
-
-use Event;
-use Request;
-
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Request;
 use InvalidArgumentException;
+use Symfony\Component\HttpFoundation\Response;
 
 class NotificationGateController extends GateController {
 
@@ -88,10 +86,10 @@ class NotificationGateController extends GateController {
         }
 
         $mapper = new \JsonMapper();
-        return (Notification)($mapper->map(
+        return $mapper->map(
             $payload,
             new Notification
-        ));
+        );
     }
 
     private function normalizePayload () : void {
@@ -133,7 +131,7 @@ class NotificationGateController extends GateController {
     protected function onPayload () {
         $this->initializeReport();
 
-        Event::fire(new NotificationEvent($this->payload));
+        Event::dispatch(new NotificationEvent($this->payload));
     }
 
 }

@@ -3,9 +3,9 @@
 namespace Nasqueron\Notifications\Tests\Facades;
 
 use Nasqueron\Notifications\Tests\TestCase;
+use Nasqueron\Notifications\Facades\Raven;
 
-use Config;
-use Raven;
+use Illuminate\Support\Facades\Config;
 
 class RavenTest extends TestCase {
 

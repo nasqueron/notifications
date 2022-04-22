@@ -2,17 +2,16 @@
 
 namespace Nasqueron\Notifications\Jobs;
 
-use Nasqueron\Notifications\Notifications\DockerHubNotification;
 use Nasqueron\Notifications\Events\DockerHubPayloadEvent;
 use Nasqueron\Notifications\Events\NotificationEvent;
-use Nasqueron\Notifications\Jobs\Job;
+use Nasqueron\Notifications\Notifications\DockerHubNotification;
 
-use Event;
+use Illuminate\Support\Facades\Event;
 
 class FireDockerHubNotification extends Job {
 
     /**
-     * @var DockerHubPayloadEvent;
+     * @var DockerHubPayloadEvent
      */
     private $event;
 
@@ -34,7 +33,7 @@ class FireDockerHubNotification extends Job {
      */
     public function handle() : void {
         $notification = $this->createNotification();
-        Event::fire(new NotificationEvent($notification));
+        Event::dispatch(new NotificationEvent($notification));
     }
 
     protected function createNotification() : DockerHubNotification {

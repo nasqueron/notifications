@@ -3,7 +3,6 @@
 namespace Nasqueron\Notifications\Tests\Analyzers\Phabricator;
 
 use Nasqueron\Notifications\Analyzers\Phabricator\PhabricatorPayloadAnalyzerConfiguration;
-use Nasqueron\Notifications\Phabricator\PhabricatorStory;
 
 /**
  * Helper methods to construct needed objects

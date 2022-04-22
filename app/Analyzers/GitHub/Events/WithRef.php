@@ -19,7 +19,7 @@ trait WithRef {
      * @param string $type The ref type to check
      * @return bool true if the ref type id valid; otherwise, false
      */
-    protected static function isValidRefType ($type) {
+    protected static function isValidRefType (string $type) {
         $types = ['branch', 'tag'];
         return in_array($type, $types);
     }
@@ -30,7 +30,7 @@ trait WithRef {
      * @param string $type The reference type
      * @return string the part of the URL for this reference type (e.g. /tree/)
      */
-    protected function getLinkRefSegment ($type) {
+    protected function getLinkRefSegment (string $type) {
         $segments = $this->getLinkRefSegments();
 
         if (!array_key_exists($type, $segments)) {

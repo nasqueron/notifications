@@ -2,10 +2,9 @@
 
 namespace Nasqueron\Notifications\Analyzers;
 
-use Config;
-use Storage;
-
 use BadMethodCallException;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
 
 abstract class BasePayloadAnalyzer {
 
@@ -36,7 +35,7 @@ abstract class BasePayloadAnalyzer {
 
     /**
      * The configuration for the payload analyzer
-     * @var PayloadAnalyzerConfiguration;
+     * @var PayloadAnalyzerConfiguration
      */
     protected $configuration;
 
@@ -80,7 +79,7 @@ abstract class BasePayloadAnalyzer {
 
         $filename = $dir . '/' . $this->project . '.json';
 
-        if (!Storage::has($filename)) {
+        if (!Storage::exists($filename)) {
             return $dir . '/' . static::CONFIG_DEFAULT_FILE;
         }
 

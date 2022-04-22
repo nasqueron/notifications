@@ -2,7 +2,6 @@
 
 namespace Nasqueron\Notifications\Tests\Console\Commands;
 
-use Nasqueron\Notifications\Config\Services\Service;
 use Nasqueron\Notifications\Console\Commands\PhabricatorProjectsMap;
 
 class PhabricatorProjectsMapTest extends TestCase {
@@ -12,7 +11,7 @@ class PhabricatorProjectsMapTest extends TestCase {
      */
     protected $class = PhabricatorProjectsMap::class;
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $service = $this->mockService('Phabricator');

@@ -2,6 +2,8 @@
 
 namespace Nasqueron\Notifications\Analyzers;
 
+use Illuminate\Support\Str;
+
 /**
  * Map items (repositories, projects, items, etc.) names to groups
  */
@@ -42,7 +44,7 @@ class ItemGroupMapping {
         string $pattern,
         string $item
     ) : bool {
-        return str_is($pattern, $item);
+        return Str::is($pattern, $item);
     }
 
     /**

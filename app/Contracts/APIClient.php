@@ -10,7 +10,7 @@ interface APIClient {
      * @param string $url The API end point URL
      * @return void
      */
-    public function setEndPoint ($url);
+    public function setEndPoint (string $url);
 
     /**
      * Calls an API method
@@ -19,6 +19,6 @@ interface APIClient {
      * @param array $arguments The arguments to use
      * @return mixed The API result
      */
-    public function call ($method, $arguments = []);
+    public function call (string $method, array $arguments = []);
 
 }

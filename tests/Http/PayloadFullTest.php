@@ -7,7 +7,7 @@ use Nasqueron\Notifications\Config\Features;
 
 class PayloadFullTest extends TestCase {
 
-    public function setUp () {
+    public function setUp (): void {
         parent::setUp();
 
         $this->disableBroker();

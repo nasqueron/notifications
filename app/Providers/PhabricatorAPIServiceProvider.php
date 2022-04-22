@@ -22,7 +22,7 @@ class PhabricatorAPIServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        $this->app->singleton('phabricator-api', function () {
+        $this->app->singleton('phabricator-api', static function () {
             return new PhabricatorAPIFactory;
         });
     }

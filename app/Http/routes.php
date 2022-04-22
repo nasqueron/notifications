@@ -3,6 +3,10 @@
 use Nasqueron\Notifications\Config\Features;
 use Nasqueron\Notifications\Config\Reporting\ConfigReport;
 
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
