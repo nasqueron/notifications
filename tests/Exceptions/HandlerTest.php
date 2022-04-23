@@ -25,7 +25,7 @@ class HandlerTest extends TestCase {
     public function setUp () {
         parent::setUp();
 
-        $this->handler = new Handler(app());
+        $this->handler = new Handler($this->app);
 
         $this->mockRavenClient();
     }
