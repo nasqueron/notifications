@@ -27,6 +27,8 @@ return [
         'CreateEvent' => 'New :type on :repository: :ref',
         'CreateEventUnknown' => 'Unknown create reference: :type :ref',
 
+        'DefaultBranchEvent' => ":repository default branch is now ':new' instead of ':old'.",
+
         'DeleteEvent' => 'Removed :type on :repository: :ref',
         'DeleteEventUnknown' => 'Unknown delete reference: :type :ref',
 

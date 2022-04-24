@@ -48,13 +48,25 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
     ) {
         parent::__construct($project, $payload);
 
-        $this->event = $event;
+        $this->event = self::getEvent($event, $payload);
 
         try {
             $this->analyzerEvent = Event::forPayload($event, $payload);
         } catch (\InvalidArgumentException $ex) {
             $this->analyzerEvent = new UnknownEvent($event);
         }
+    }
+
+    private static function getEvent (string $event, \stdClass $payload) : string {
+        // Some payload uses a specialized event class.
+        if (
+            $event == "repository" && $payload->action == "edited" &&
+            property_exists($payload->changes, "default_branch")
+        ) {
+            return "default_branch";
+        }
+
+        return $event;
     }
 
     ///
