@@ -14,7 +14,7 @@ abstract class BaseEvent {
      *
      * @param \stdClass $payload The payload to analyze
      */
-    public function __construct ($payload) {
+    public function __construct (\stdClass $payload) {
         $this->payload = $payload;
     }
 

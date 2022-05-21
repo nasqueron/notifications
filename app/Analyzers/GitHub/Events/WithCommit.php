@@ -12,7 +12,6 @@ trait WithCommit {
 
     /**
      * Gets the title of the head commit
-     *
      * @return string
      */
     private function getHeadCommitTitle () {
@@ -25,7 +24,7 @@ trait WithCommit {
      * @param string $message The commit message
      * @return string The commit title
      */
-    public static function getCommitTitle ($message) {
+    public static function getCommitTitle (string $message) {
         // Discards extra lines
         $pos = strpos($message, "\n");
         if ($pos > 0) {

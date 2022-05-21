@@ -41,10 +41,10 @@ class DockerHubPayloadEvent extends Event {
     /**
      * Creates a new event instance.
      *
-     * @param string $door
+     * @param string    $door
      * @param \stdClass $payload
      */
-    public function __construct($door, $payload) {
+    public function __construct(string $door, \stdClass $payload) {
         $this->door = $door;
         $this->payload = $payload;
         $this->event = $this->getEvent();

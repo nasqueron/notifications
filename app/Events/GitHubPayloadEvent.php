@@ -28,11 +28,11 @@ class GitHubPayloadEvent extends Event {
     /**
      * Creates a new event instance.
      *
-     * @param string $door
-     * @param string $event
+     * @param string    $door
+     * @param string    $event
      * @param \stdClass $payload
      */
-    public function __construct($door, $event, $payload) {
+    public function __construct(string $door, string $event, \stdClass $payload) {
         $this->door = $door;
         $this->event = $event;
         $this->payload = $payload;

@@ -21,9 +21,9 @@ class JenkinsNotification extends Notification {
      * Initializes a new instance of the JenkinsNotification class.
      *
      * @param string $project The project this message is for
-     * @param mixed $payload The message fired by Jenkins notification plugin
+     * @param mixed  $payload The message fired by Jenkins notification plugin
      */
-    public function __construct ($project, $payload) {
+    public function __construct (string $project, mixed $payload) {
         // Straightforward properties
         $this->service = "Jenkins";
         $this->project = $project;

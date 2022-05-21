@@ -94,7 +94,7 @@ class Services {
     public function findServiceByProperty (
         string $gate,
         string $property,
-        $value
+        mixed $value
     ) : ?Service {
         foreach ($this->services as $service) {
             if ($service->gate === $gate && $service->$property === $value) {

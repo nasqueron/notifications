@@ -15,7 +15,7 @@ class RepositoryEvent extends Event {
      * @param string $action The action to check
      * @return bool true if the action is valid; otherwise, false
      */
-    protected static function isValidAction ($action) {
+    protected static function isValidAction (string $action) {
         $actions = ['created', 'deleted', 'publicized', 'privatized'];
         return in_array($action, $actions);
     }

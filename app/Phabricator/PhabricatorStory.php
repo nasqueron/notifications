@@ -76,7 +76,7 @@ class PhabricatorStory {
      *
      * @param string $instanceName The Phabricator instance name
      */
-    public function __construct ($instanceName) {
+    public function __construct (string $instanceName) {
         $this->instanceName = $instanceName;
     }
 
@@ -188,7 +188,7 @@ MSG
      * @param string $method The API method to call (e.g. differential.query)
      * @return string The repository PHID or "" if not found
      */
-    public function getRepositoryPHID ($method) {
+    public function getRepositoryPHID (string $method) {
         $objectPHID = $this->data['objectPHID'];
 
         $api = PhabricatorAPI::forProject($this->instanceName);
@@ -216,11 +216,11 @@ MSG
     /**
      * Gets the projects for a specific item
      *
-     * @param string $method The API method to call (e.g. differential.query)
+     * @param string $method     The API method to call (e.g. differential.query)
      * @param string $objectPHID The object PHID to pass as method parameter
      * @return string[] The list of project PHIDs
      */
-    public function getItemProjectsPHIDs ($method, $objectPHID) {
+    public function getItemProjectsPHIDs (string $method, string $objectPHID) {
         if (!$objectPHID) {
             return [];
         }
@@ -316,7 +316,7 @@ MSG
      * @param string $key The field of the API reply
      * @return string The property's name
      */
-    public static function mapPhabricatorFeedKey ($key) {
+    public static function mapPhabricatorFeedKey (string $key) {
         if ($key == "storyID") {
             return "id";
         }

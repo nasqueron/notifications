@@ -11,7 +11,7 @@ class BuildFailureEvent extends BaseEvent {
      *
      * @param \stdClass $payload The payload to analyze
      */
-    public function __construct ($payload) {
+    public function __construct (\stdClass $payload) {
         parent::__construct($payload);
         $this->payload = $this->getMailGunPayload();
     }

@@ -54,7 +54,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      *
      * @param string $instanceName The Phabricator instance name
      */
-    public function __construct ($instanceName) {
+    public function __construct (string $instanceName) {
         $this->instanceName = $instanceName;
     }
 
@@ -81,7 +81,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @param mixed $offset The offset
      * @return bool
      */
-    public function offsetExists ($offset) {
+    public function offsetExists (mixed $offset) {
         return array_key_exists($offset, $this->map);
     }
 
@@ -91,7 +91,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @param mixed $offset The offset.
      * @return mixed The value
      */
-    public function offsetGet ($offset) {
+    public function offsetGet (mixed $offset) {
         return $this->map[$offset];
     }
 
@@ -101,7 +101,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @param mixed $offset The offset
      * @param mixed $value The value to assign
      */
-    public function offsetSet ($offset, $value) {
+    public function offsetSet (mixed $offset, mixed $value) {
         $this->map[$offset] = $value;
     }
 
@@ -110,7 +110,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      *
      * @param mixed $offset The offset where to remove the value
      */
-    public function offsetUnset ($offset) {
+    public function offsetUnset (mixed $offset) {
         unset($this->map[$offset]);
     }
 
@@ -124,7 +124,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @param string $phabricatorInstanceName The Phabricator instance name
      * @return ProjectsMap
      */
-    public static function load ($phabricatorInstanceName) {
+    public static function load (string $phabricatorInstanceName) {
         $instance = new self($phabricatorInstanceName);
 
         if ($instance->isCached()) {
@@ -257,7 +257,7 @@ MSG
      * @param string $projectPHID the PHID of the project to query the name
      * @return string The name of the poject, or an empty string if not found
      */
-    public function getProjectName ($projectPHID) {
+    public function getProjectName (string $projectPHID) {
         if ($this->offsetExists($projectPHID)) {
             return $this->offsetGet($projectPHID);
         }

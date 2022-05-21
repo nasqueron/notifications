@@ -21,7 +21,7 @@ class LastPayloadSaver {
      *
      * @param mixed $payload The payload to save
      */
-    public static function savePayload ($payload) : void {
+    public static function savePayload (mixed $payload) : void {
         $filename = storage_path('logs/payload.json');
         $content  = json_encode($payload);
         file_put_contents($filename, $content);

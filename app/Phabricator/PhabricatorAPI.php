@@ -35,7 +35,7 @@ class PhabricatorAPI implements APIClient {
      * @param string $endPoint The Phabricator main URL, without trailing slash
      * @param string $apiToken The token generated at /settings/panel/apitokens/
      */
-    public function __construct ($endPoint, $apiToken) {
+    public function __construct (string $endPoint, string $apiToken) {
         $this->endPoint = $endPoint;
         $this->apiToken = $apiToken;
     }
@@ -79,18 +79,19 @@ class PhabricatorAPI implements APIClient {
      *
      * @param string $url The API end point URL
      */
-    public function setEndPoint ($url) {
+    public function setEndPoint (string $url) {
         $this->endPoint = $url;
     }
 
     /**
      * Calls a Conduit API method
      *
-     * @param string $method The method to call (e.g. repository.create)
-     * @param array $arguments The arguments to use
+     * @param string $method    The method to call (e.g. repository.create)
+     * @param array  $arguments The arguments to use
+     *
      * @return mixed The API result
      */
-    public function call ($method, $arguments = []) {
+    public function call (string $method, array $arguments = []) {
         $url = $this->endPoint . '/api/' . $method;
         $arguments['api.token'] = $this->apiToken;
 
@@ -116,7 +117,7 @@ class PhabricatorAPI implements APIClient {
      * @param iterable $reply
      * @return mixed
      */
-    public static function getFirstResult ($reply) {
+    public static function getFirstResult (iterable $reply) {
         if (is_object($reply) && property_exists($reply, 'data')) {
             $reply = $reply->data;
         }
