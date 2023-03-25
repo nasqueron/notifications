@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response as BaseResponse;
 /**
  * Represents a controller handling an entry-point for API payloads
  */
-class GateController extends Controller {
+abstract class GateController extends Controller {
 
     ///
     /// Private members
@@ -82,6 +82,8 @@ class GateController extends Controller {
     ///
     /// Credentials
     ///
+
+    abstract public function getServiceName ();
 
     /**
      * Gets service credentials for this gate and door
