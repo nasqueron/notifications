@@ -15,15 +15,13 @@ class RepositoryEvent extends Event {
      * @param string $action The action to check
      * @return bool true if the action is valid; otherwise, false
      */
-    protected static function isValidAction (string $action) {
+    protected static function isValidAction (string $action) : bool {
         $actions = ['created', 'deleted', 'publicized', 'privatized'];
         return in_array($action, $actions);
     }
 
     /**
      * Gets description for the payload
-     *
-     * @return string
      */
     public function getDescription () : string {
         $action = $this->payload->action;
@@ -57,8 +55,6 @@ class RepositoryEvent extends Event {
 
     /**
      * Gets link for the payload
-     *
-     * @return string
      */
     public function getLink () : string {
         return $this->payload->repository->html_url;

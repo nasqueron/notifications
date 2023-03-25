@@ -24,8 +24,6 @@ class PhabricatorGroupMapping extends ItemGroupMapping {
 
     /**
      * Determines if the specified story belong to this mapping
-     *
-     * @return bool
      */
     public function doesStoryBelong (PhabricatorStory $story) : bool {
         foreach ($this->words as $word) {

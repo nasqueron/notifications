@@ -11,8 +11,6 @@ class DockerHub extends Facade {
 
     /**
      * Gets the registered name of the component.
-     *
-     * @return string
      */
     protected static function getFacadeAccessor() : string {
         return 'dockerhub';

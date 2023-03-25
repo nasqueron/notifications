@@ -82,8 +82,6 @@ final class ServiceReportEntry extends BaseReportEntry {
      * Determines if the service matches the following issue to report:
      *   - service is Phabricator
      *   - instance doesn't have the projects' name/PHID map in cache
-     *
-     * @return bool
      */
     protected function isPhabricatorServiceWithNotCachedProjectsMap () : bool {
         if ($this->service->gate !== 'Phabricator') {

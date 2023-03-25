@@ -18,17 +18,12 @@ class BuildFailureEvent extends BaseEvent {
 
     /**
      * Gets a MailGun message.
-     *
-     * @return \stdClass
      */
-    private function getMailGunPayload () {
+    private function getMailGunPayload () : \stdClass {
         return Mailgun::fetchMessageFromPayload($this->payload);
     }
 
-    /**
-     * @return string
-     */
-    private function getMailBody () {
+    private function getMailBody () : string {
         $bodyProperty = 'body-plain';
         return $this->payload->$bodyProperty;
     }
@@ -39,17 +34,15 @@ class BuildFailureEvent extends BaseEvent {
      * @param $string Regular expression
      * @return string
      */
-    private function extractFromBody ($regex) {
+    private function extractFromBody ($regex) : string {
         preg_match($regex, $this->getMailBody(), $matches);
         return $matches[1];
     }
 
     /**
      * Gets text from payload.
-     *
-     * @return string
      */
-    public function getText() {
+    public function getText() : string {
         $repo = $this->extractFromBody("@\"(.*?\/.*?)\"@");
 
         return "Image build by Docker Hub registry failure for $repo";
@@ -57,10 +50,8 @@ class BuildFailureEvent extends BaseEvent {
 
     /**
      * Gets link from payload.
-     *
-     * @return string
      */
-    public function getLink() {
+    public function getLink() : string {
         return $this->extractFromBody("@(https\:\/\/hub.docker.com\/r.*)@");
     }
 

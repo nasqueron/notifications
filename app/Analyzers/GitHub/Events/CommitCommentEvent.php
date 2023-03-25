@@ -11,8 +11,6 @@ class CommitCommentEvent extends Event {
 
     /**
      * Gets description for the payload
-     *
-     * @return string
      */
     public function getDescription () : string {
         $comment = $this->payload->comment;
@@ -29,8 +27,6 @@ class CommitCommentEvent extends Event {
 
     /**
      * Gets link for the payload
-     *
-     * @return string
      */
     public function getLink () : string {
         return $this->payload->comment->html_url;

@@ -15,7 +15,7 @@ class PullRequestEvent extends Event {
      * @param string $action The action to check
      * @return bool true if the action is valid; otherwise, false
      */
-    protected static function isValidAction(string $action) {
+    protected static function isValidAction(string $action) : bool {
         $actions = [
             'assigned', 'unassigned',
             'labeled', 'unlabeled',
@@ -27,8 +27,6 @@ class PullRequestEvent extends Event {
 
     /**
      * Gets description for the payload.
-     *
-     * @return string
      */
     public function getDescription () : string {
         $action = $this->payload->action;
@@ -48,10 +46,8 @@ class PullRequestEvent extends Event {
 
     /**
      * Gets the parameters to pass to the localisation message
-     *
-     * @return array
      */
-    private function getLocalisationParameters () {
+    private function getLocalisationParameters () : array {
         $parameters = [
             'author'  => $this->payload->sender->login,
             'number'  => $this->payload->number,
@@ -68,7 +64,7 @@ class PullRequestEvent extends Event {
     /**
      * @return string The last assignee username, or "" if there is no assignee.
      */
-    private function getLastAssignee() {
+    private function getLastAssignee() : string {
         $assignees = $this->payload->pull_request->assignees;
 
         if (count($assignees) === 0) {
@@ -81,8 +77,6 @@ class PullRequestEvent extends Event {
 
     /**
      * Gets link for the payload.
-     *
-     * @return string
      */
     public function getLink () : string {
         return $this->payload->pull_request->html_url;

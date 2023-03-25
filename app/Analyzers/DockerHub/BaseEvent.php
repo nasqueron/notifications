@@ -27,22 +27,18 @@ abstract class BaseEvent {
      *
      * This method allows analyzer to edit the payload.
      */
-    public function getPayload () {
+    public function getPayload () : \stdClass {
         return $this->payload;
     }
 
     /**
      * Gets notification text for this event.
-     *
-     * @return string
      */
-    abstract public function getText();
+    abstract public function getText() : string;
 
     /**
      * Gets notification link related to this event.
-     *
-     * @return string
      */
-    abstract public function getLink();
+    abstract public function getLink() : string;
 
 }

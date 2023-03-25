@@ -33,7 +33,7 @@ class Event {
      * @param string $eventName The event name (e.g. commit_comment)
      * @return string The event class name (e.g. CommitCommentEvent)
      */
-    public static function getClass (string $eventName) {
+    public static function getClass (string $eventName) : string {
         return __NAMESPACE__ . '\\' . self::toCamelCase($eventName) . 'Event';
     }
 
@@ -45,9 +45,8 @@ class Event {
      * Gets an instance of the event class, from the
      *
      * @param string $eventName The event name (e.g. commit_comment)
-     * @return Event
      */
-    public static function forPayload (string $eventName, $payload) {
+    public static function forPayload (string $eventName, $payload) : Event {
         $class = self::getClass($eventName);
         if (!class_exists($class)) {
             throw new \InvalidArgumentException(
@@ -72,7 +71,7 @@ class Event {
         string $text,
         int    $strLen = 114,
         string $symbol = '…'
-    ) {
+    ) : string {
         $len = strlen($text);
         if ($len <= $strLen) {
             return $text;

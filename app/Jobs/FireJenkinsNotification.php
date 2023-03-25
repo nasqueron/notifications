@@ -30,8 +30,6 @@ class FireJenkinsNotification extends Job {
 
     /**
      * Executes the job.
-     *
-     * @return void
      */
     public function handle() : void {
         $notification = $this->createNotification();

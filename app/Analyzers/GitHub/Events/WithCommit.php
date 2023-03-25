@@ -12,9 +12,8 @@ trait WithCommit {
 
     /**
      * Gets the title of the head commit
-     * @return string
      */
-    private function getHeadCommitTitle () {
+    private function getHeadCommitTitle () : string {
         return static::getCommitTitle($this->payload->head_commit->message);
     }
 
@@ -24,7 +23,7 @@ trait WithCommit {
      * @param string $message The commit message
      * @return string The commit title
      */
-    public static function getCommitTitle (string $message) {
+    public static function getCommitTitle (string $message) : string {
         // Discards extra lines
         $pos = strpos($message, "\n");
         if ($pos > 0) {
@@ -38,10 +37,8 @@ trait WithCommit {
 
     /**
      * Gets the description text for the head commit.
-     *
-     * @return string
      */
-    private function getHeadCommitDescription () {
+    private function getHeadCommitDescription () : string {
         $commit = $this->payload->head_commit;
         $committer = $commit->committer->username;
         $author = $commit->author->username;

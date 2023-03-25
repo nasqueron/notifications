@@ -64,10 +64,8 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
 
     /**
      * Gets iterator.
-     *
-     * @return \Traversable
      */
-    public function getIterator () {
+    public function getIterator () : \Traversable {
         return new \ArrayIterator($this->map);
     }
 
@@ -81,7 +79,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @param mixed $offset The offset
      * @return bool
      */
-    public function offsetExists (mixed $offset) {
+    public function offsetExists (mixed $offset) : bool {
         return array_key_exists($offset, $this->map);
     }
 
@@ -91,7 +89,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @param mixed $offset The offset.
      * @return mixed The value
      */
-    public function offsetGet (mixed $offset) {
+    public function offsetGet (mixed $offset) : mixed {
         return $this->map[$offset];
     }
 
@@ -124,7 +122,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @param string $phabricatorInstanceName The Phabricator instance name
      * @return ProjectsMap
      */
-    public static function load (string $phabricatorInstanceName) {
+    public static function load (string $phabricatorInstanceName) : ProjectsMap {
         $instance = new self($phabricatorInstanceName);
 
         if ($instance->isCached()) {
@@ -142,7 +140,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     public static function fetch (
         string $phabricatorInstanceName,
         ?APIClient $apiClient = null
-    ) {
+    ) : ProjectsMap {
         $instance = new self($phabricatorInstanceName);
         $instance->setAPIClient($apiClient);
         $instance->fetchFromAPI();
@@ -153,10 +151,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
     /// API
     ///
 
-    /**
-     * @return \Nasqueron\Notifications\Contracts\APIClient
-     */
-    public function getAPIClient () {
+    public function getAPIClient () : APIClient {
         if ($this->apiClient === null) {
             $factory = App::make('phabricator-api');
             $this->apiClient = $factory->getForProject($this->instanceName);
@@ -164,10 +159,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
         return $this->apiClient;
     }
 
-    /**
-     * @param \Nasqueron\Notifications\Contracts\APIClient|null $apiClient
-     */
-    public function setAPIClient (?APIClient $apiClient = null) {
+    public function setAPIClient (?APIClient $apiClient = null) : void {
         $this->apiClient = $apiClient;
     }
 
@@ -212,7 +204,7 @@ MSG
      *
      * @return string The cache key for the current projects map
      */
-    private function getCacheKey () {
+    private function getCacheKey () : string {
         return class_basename(get_class($this))
                . '-'
                . md5($this->instanceName);
@@ -223,7 +215,7 @@ MSG
      *
      * @return bool true if cached; otherwise, false.
      */
-    public function isCached () {
+    public function isCached () : bool {
         return Cache::has($this->getCacheKey());
     }
 
@@ -257,7 +249,7 @@ MSG
      * @param string $projectPHID the PHID of the project to query the name
      * @return string The name of the poject, or an empty string if not found
      */
-    public function getProjectName (string $projectPHID) {
+    public function getProjectName (string $projectPHID) : string {
         if ($this->offsetExists($projectPHID)) {
             return $this->offsetGet($projectPHID);
         }
@@ -273,9 +265,9 @@ MSG
     /**
      * Returns the projects map as an array.
      *
-     * @return array An array, each row containing ['PHID', 'project name']
+     * @return array[] An array, each row containing ['PHID', 'project name']
      */
-    public function toArray () {
+    public function toArray () : array {
         $array = [];
         foreach ($this->map as $phid => $projectName) {
             $array[] = [$phid, $projectName];

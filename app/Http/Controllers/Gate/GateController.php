@@ -67,8 +67,6 @@ class GateController extends Controller {
 
     /**
      * Renders the report
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function renderReport () : BaseResponse {
         if (!Features::isEnabled('ActionsReport')) {

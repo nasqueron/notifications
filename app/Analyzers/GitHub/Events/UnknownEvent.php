@@ -27,8 +27,6 @@ class UnknownEvent extends Event {
 
     /**
      * Gets description for the payload
-     *
-     * @return string
      */
     public function getDescription () : string {
         return "Some $this->eventType happened";
@@ -36,8 +34,6 @@ class UnknownEvent extends Event {
 
     /**
      * Gets link for the payload
-     *
-     * @return string
      */
     public function getLink () : string {
         return "";

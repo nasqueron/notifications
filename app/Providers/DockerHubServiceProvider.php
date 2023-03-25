@@ -12,10 +12,8 @@ use Illuminate\Support\ServiceProvider;
 class DockerHubServiceProvider extends ServiceProvider {
     /**
      * Bootstraps the application services.
-     *
-     * @return void
      */
-    public function boot() {
+    public function boot() : void {
     }
 
     /**
@@ -24,7 +22,7 @@ class DockerHubServiceProvider extends ServiceProvider {
      * @param \Illuminate\Contracts\Foundation\Application $app
      * @return array
      */
-    public static function getTokens (Application $app) {
+    public static function getTokens (Application $app) : array {
         $file = $app->make('config')->get('services.dockerhub.tokens');
         $fs = $app->make('filesystem')->disk('local');
 
@@ -38,10 +36,8 @@ class DockerHubServiceProvider extends ServiceProvider {
 
     /**
      * Registers the application services.
-     *
-     * @return void
      */
-    public function register() {
+    public function register() : void {
         $this->app->singleton('dockerhub', function (Application $app) {
             $tokens = DockerHubServiceProvider::getTokens($app);
             return new TriggerBuildFactory(new Client, $tokens);

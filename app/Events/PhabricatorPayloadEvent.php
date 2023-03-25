@@ -29,10 +29,8 @@ class PhabricatorPayloadEvent extends Event {
 
     /**
      * Gets story from the request
-     *
-     * @return PhabricatorStory
      */
-    protected function getStory () {
+    protected function getStory () : PhabricatorStory {
         return PhabricatorStory::loadFromIterable(
             $this->door,
             $this->payload

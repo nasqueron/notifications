@@ -64,8 +64,6 @@ class ActionsReport {
 
     /**
      * Determines if one of the action has failed.
-     *
-     * @return bool
      */
     public function containsError () : bool {
         foreach ($this->actions as $action) {

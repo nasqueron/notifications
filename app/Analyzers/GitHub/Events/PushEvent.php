@@ -18,7 +18,7 @@ class PushEvent extends Event {
      * @param int $count The count of commits
      * @return string The l10n message key for description
      */
-    private static function getDescriptionMessageKey (int $count) {
+    private static function getDescriptionMessageKey (int $count) : string {
         $key = 'GitHub.EventsDescriptions.PushEvent';
 
         if ($count === 0) {
@@ -30,8 +30,6 @@ class PushEvent extends Event {
 
     /**
      * Gets description for the payload
-     *
-     * @return string
      */
     public function getDescription () : string {
         $n = count($this->payload->commits);
@@ -52,8 +50,6 @@ class PushEvent extends Event {
 
     /**
      * Gets link for the payload
-     *
-     * @return string
      */
     public function getLink () : string {
         $n = count($this->payload->commits);

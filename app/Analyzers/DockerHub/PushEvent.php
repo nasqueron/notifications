@@ -6,10 +6,8 @@ class PushEvent extends BaseEvent {
 
     /**
      * Gets text from payload.
-     *
-     * @return string
      */
-    public function getText() {
+    public function getText() : string {
         $repo = $this->payload->repository->repo_name;
         $who = $this->payload->push_data->pusher;
 
@@ -18,10 +16,8 @@ class PushEvent extends BaseEvent {
 
     /**
      * Gets link from payload.
-     *
-     * @return string
      */
-    public function getLink() {
+    public function getLink() : string {
         return $this->payload->repository->repo_url;
     }
 

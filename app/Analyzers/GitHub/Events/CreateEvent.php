@@ -19,8 +19,6 @@ class CreateEvent extends Event {
 
     /**
      * Gets description for the payload
-     *
-     * @return string
      */
     public function getDescription () : string {
         $repository = $this->payload->repository->full_name;
@@ -62,8 +60,6 @@ class CreateEvent extends Event {
 
     /**
      * Gets link for the payload
-     *
-     * @return string
      */
     public function getLink () : string {
         $type = $this->payload->ref_type;

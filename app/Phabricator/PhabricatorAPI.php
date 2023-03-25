@@ -60,7 +60,7 @@ class PhabricatorAPI implements APIClient {
     /**
      * @throws \RuntimeException when the service isn't in credentials.json
      */
-    public static function forProject ($project) {
+    public static function forProject ($project) : PhabricatorAPI {
         $service = Services::findServiceByDoor('Phabricator', $project);
         if ($service === null) {
             throw new \RuntimeException(
@@ -79,7 +79,7 @@ class PhabricatorAPI implements APIClient {
      *
      * @param string $url The API end point URL
      */
-    public function setEndPoint (string $url) {
+public function setEndPoint (string $url) : void {
         $this->endPoint = $url;
     }
 
@@ -91,7 +91,7 @@ class PhabricatorAPI implements APIClient {
      *
      * @return mixed The API result
      */
-    public function call (string $method, array $arguments = []) {
+    public function call (string $method, array $arguments = []) : mixed {
         $url = $this->endPoint . '/api/' . $method;
         $arguments['api.token'] = $this->apiToken;
 
@@ -113,11 +113,8 @@ class PhabricatorAPI implements APIClient {
 
     /**
      * Gets the first result of an API reply.
-     *
-     * @param iterable $reply
-     * @return mixed
      */
-    public static function getFirstResult (iterable $reply) {
+    public static function getFirstResult (iterable $reply) : mixed {
         if (is_object($reply) && property_exists($reply, 'data')) {
             $reply = $reply->data;
         }
@@ -131,7 +128,7 @@ class PhabricatorAPI implements APIClient {
     /// CURL session
     ///
 
-    protected static function getPostFields ($arguments) {
+    protected static function getPostFields ($arguments) : string {
         $items = [];
         foreach ($arguments as $key => $value) {
             $items[] = urlencode($key) . '=' . urlencode($value);
@@ -139,7 +136,7 @@ class PhabricatorAPI implements APIClient {
         return implode('&', $items);
     }
 
-    protected static function post ($url, $arguments) {
+    protected static function post ($url, $arguments) : bool|string {
         $options = [
             CURLOPT_URL => $url,
             CURLOPT_HEADER => false,

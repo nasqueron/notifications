@@ -49,8 +49,6 @@ class ItemGroupMapping {
 
     /**
      * Determines if the specified item belong to this mapping
-     *
-     * @return bool
      */
     public function doesItemBelong (string $actualItem) : bool {
         foreach ($this->items as $candidateItem) {

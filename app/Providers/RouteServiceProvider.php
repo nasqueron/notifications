@@ -18,10 +18,8 @@ class RouteServiceProvider extends ServiceProvider {
 
     /**
      * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
      */
-    public function boot() {
+    public function boot() : void {
         //
 
         parent::boot();
@@ -33,7 +31,7 @@ class RouteServiceProvider extends ServiceProvider {
      * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    public function map(Router $router) {
+    public function map(Router $router) : void {
         $router->group(['namespace' => $this->namespace], static function ($router) {
             require app_path('Http/routes.php');
         });

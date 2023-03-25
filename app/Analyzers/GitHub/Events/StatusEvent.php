@@ -11,10 +11,8 @@ class StatusEvent extends Event {
 
     /**
      * Gets state localized message
-     *
-     * @return string
      */
-    private function getState () {
+    private function getState () : string {
         $state = $this->payload->state; // pending, success, failure, or error
         $key = 'GitHub.StatusEventState.' . $state;
         return trans($key);
@@ -22,10 +20,8 @@ class StatusEvent extends Event {
 
     /**
      * Gets status result
-     *
-     * @return string
      */
-    private function getStatusResult () {
+    private function getStatusResult () : string {
         $glue = trans('GitHub.Separator');
         $fragments = array_filter([
             $this->payload->context,
@@ -38,8 +34,6 @@ class StatusEvent extends Event {
 
     /**
      * Gets description for the payload
-     *
-     * @return string
      */
     public function getDescription () : string {
         return trans('GitHub.EventsDescriptions.StatusEvent', [
@@ -50,8 +44,6 @@ class StatusEvent extends Event {
 
     /**
      * Gets link for the payload
-     *
-     * @return string
      */
     public function getLink () : string {
         $url = $this->payload->target_url;

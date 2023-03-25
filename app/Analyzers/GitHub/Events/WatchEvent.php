@@ -17,8 +17,6 @@ class WatchEvent extends Event {
 
     /**
      * Gets description for the payload
-     *
-     * @return string
      */
     public function getDescription () : string {
         return trans(
@@ -32,8 +30,6 @@ class WatchEvent extends Event {
 
     /**
      * Gets link for the payload
-     *
-     * @return string
      */
     public function getLink () : string {
         return $this->payload->sender->html_url;

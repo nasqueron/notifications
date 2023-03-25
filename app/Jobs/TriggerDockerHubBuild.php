@@ -46,8 +46,6 @@ class TriggerDockerHubBuild extends Job {
 
     /**
      * Executes the job.
-     *
-     * @return void
      */
     public function handle () : void {
         $this->initializeReport();

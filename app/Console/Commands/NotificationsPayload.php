@@ -132,9 +132,9 @@ TXT;
     /**
      * Formats payload to pass to constructor
      *
-     * @return PhabricatorStory|stdClass A deserialization of the payload
+     * @return PhabricatorStory|\stdClass A deserialization of the payload
      */
-    private function formatPayload() {
+    private function formatPayload() : \stdClass|PhabricatorStory {
         if ($this->service === "Phabricator") {
             $project = $this->constructor['project'];
             return PhabricatorStory::loadFromJson($project, $this->payload);
@@ -171,8 +171,6 @@ MSG
     /**
      * Initializes a new instance of the relevant notification class,
      * with the arguments given in the constructor property.
-     *
-     * @return \Nasqueron\Notifications\Notifications\Notification
      */
     private function getNotification () : Notification {
         $class = $this->getNotificationClass();
@@ -182,8 +180,6 @@ MSG
 
     /**
      * Gets the notification in JSON format.
-     *
-     * @return string
      */
     private function formatNotification () : string {
         return json_encode($this->getNotification(), JSON_PRETTY_PRINT);
@@ -197,9 +193,7 @@ MSG
     }
 
     /**
-     * Gets the notification class for the specified service.
-     *
-     * @return string
+     * Gets the notification class for the specified service
      */
     private function getNotificationClass () : string {
         $namespace = "Nasqueron\Notifications\Notifications\\";
@@ -210,7 +204,7 @@ MSG
      * Gets an array with the parameters to pass to the constructor
      * of the notification class for the specified service.
      *
-     * @return array
+     * @return string[]
      */
     private function getNotificationConstructorParameters () : array {
         $parameters = [];

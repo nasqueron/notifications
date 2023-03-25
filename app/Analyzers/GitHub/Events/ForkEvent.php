@@ -13,8 +13,6 @@ class ForkEvent extends Event {
 
     /**
      * Gets description for the payload
-     *
-     * @return string
      */
     public function getDescription () : string {
         return trans(
@@ -28,8 +26,6 @@ class ForkEvent extends Event {
 
     /**
      * Gets link for the payload
-     *
-     * @return string
      */
     public function getLink () : string {
         return $this->payload->forkee->html_url;

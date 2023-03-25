@@ -10,18 +10,14 @@ class PhabricatorAPIServiceProvider extends ServiceProvider {
 
     /**
      * Bootstraps the application services.
-     *
-     * @return void
      */
-    public function boot() {
+    public function boot() : void {
     }
 
     /**
      * Registers the application services.
-     *
-     * @return void
      */
-    public function register() {
+    public function register() : void {
         $this->app->singleton('phabricator-api', static function () {
             return new PhabricatorAPIFactory;
         });

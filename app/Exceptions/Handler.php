@@ -56,8 +56,6 @@ class Handler extends ExceptionHandler {
 
     /**
      * Determines if the error handler should report to Sentry
-     *
-     * @return bool
      */
     protected function shouldReportToSentry () : bool {
         return Raven::isConfigured() && Config::get('app.env') !== 'testing';

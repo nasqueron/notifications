@@ -177,7 +177,7 @@ class ProjectsMapTest extends TestCase {
 
             public function setEndPoint ($url) : void { }
 
-            public function call ($method, $arguments = []) {
+            public function call ($method, $arguments = []) : mixed {
                 return $this->reply;
             }
         });

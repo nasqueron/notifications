@@ -91,7 +91,7 @@ class PhabricatorStory {
      */
     public static function loadFromIterable (
         string $instanceName, iterable $payload
-    ) {
+    ) : PhabricatorStory {
         $instance = new self($instanceName);
 
         foreach ($payload as $key => $value) {
@@ -105,7 +105,7 @@ class PhabricatorStory {
     public static function loadFromJson (
         $instanceName,
         $payload
-    ) {
+    ) : PhabricatorStory {
         $array = json_decode($payload, true);
 
         if (!is_array($array)) {
@@ -131,7 +131,7 @@ MSG
      *
      * @return string The object type, as a 4 letters string (e.g. 'TASK')
      */
-    public function getObjectType () {
+    public function getObjectType () : string {
         if ($this->hasVoidObjectType()) {
             return 'VOID';
         }
@@ -144,7 +144,7 @@ MSG
      *
      * return string[] The list of project PHIDs
      */
-    public function getProjectsPHIDs () {
+    public function getProjectsPHIDs () : array {
         if (!array_key_exists('objectPHID', $this->data)) {
             return [];
         }
@@ -188,7 +188,7 @@ MSG
      * @param string $method The API method to call (e.g. differential.query)
      * @return string The repository PHID or "" if not found
      */
-    public function getRepositoryPHID (string $method) {
+    public function getRepositoryPHID (string $method) : string {
         $objectPHID = $this->data['objectPHID'];
 
         $api = PhabricatorAPI::forProject($this->instanceName);
@@ -220,7 +220,7 @@ MSG
      * @param string $objectPHID The object PHID to pass as method parameter
      * @return string[] The list of project PHIDs
      */
-    public function getItemProjectsPHIDs (string $method, string $objectPHID) {
+    public function getItemProjectsPHIDs (string $method, string $objectPHID) : array {
         if (!$objectPHID) {
             return [];
         }
@@ -248,7 +248,7 @@ MSG
      protected function getItemProjectsPHIDsThroughApplicationSearch  (
          $method,
          $objectPHID
-     ) {
+     ) : array {
         if (!$objectPHID) {
             return [];
         }
@@ -279,7 +279,7 @@ MSG
      *
      * @return string[] The list of project PHIDs
      */
-    public function getProjects () {
+    public function getProjects () : array {
         if ($this->projects === null) {
             $this->attachProjects();
         }
@@ -290,7 +290,7 @@ MSG
      * Queries the list of the projects associated to the story
      * and attached it to the projects property.
      */
-    public function attachProjects () {
+    public function attachProjects () : void {
         $this->projects = [];
 
         $PHIDs = $this->getProjectsPHIDs();
@@ -316,7 +316,7 @@ MSG
      * @param string $key The field of the API reply
      * @return string The property's name
      */
-    public static function mapPhabricatorFeedKey (string $key) {
+    public static function mapPhabricatorFeedKey (string $key) : string {
         if ($key == "storyID") {
             return "id";
         }

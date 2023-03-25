@@ -11,18 +11,14 @@ use Illuminate\Support\ServiceProvider;
 class MailgunServiceProvider extends ServiceProvider {
     /**
      * Bootstraps the application services.
-     *
-     * @return void
      */
-    public function boot() {
+    public function boot() : void {
     }
 
     /**
      * Registers the application services.
-     *
-     * @return void
      */
-    public function register() {
+    public function register() : void {
         $this->app->singleton('mailgun', function (Application $app) {
             $config = $app->make('config');
             $key = $config->get('services.mailgun.secret');

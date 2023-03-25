@@ -43,9 +43,6 @@ class JenkinsPayloadAnalyzer extends BasePayloadAnalyzer {
         return true;
     }
 
-    /**
-     * @return bool
-     */
     public function shouldNotifyOnlyOnFailure () : bool {
         return in_array(
             $this->getItemName(),
@@ -55,8 +52,6 @@ class JenkinsPayloadAnalyzer extends BasePayloadAnalyzer {
 
     /**
      * Determines if the build status is a failure.
-     *
-     * @return bool
      */
     public function isFailure () : bool {
         $status = "";

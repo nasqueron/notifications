@@ -12,10 +12,8 @@ use Nasqueron\Notifications\Events\ReportEvent;
 class ReportServiceProvider extends ServiceProvider {
     /**
      * Registers the application services.
-     *
-     * @return void
      */
-    public function register() {
+    public function register() : void {
         $this->app->singleton('report', function (Application $app) {
             $report = new ActionsReport();
             static::listenToActionsForReport(
@@ -29,7 +27,7 @@ class ReportServiceProvider extends ServiceProvider {
     public static function listenToActionsForReport (
         ActionsReport $report,
         Dispatcher $events
-    ) {
+    ) : void {
         $events->listen(
             'Nasqueron\Notifications\Events\ReportEvent',
             static function (ReportEvent $event) use ($report) {

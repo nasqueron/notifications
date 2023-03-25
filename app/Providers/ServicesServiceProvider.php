@@ -10,10 +10,8 @@ use Nasqueron\Notifications\Config\Services\Services;
 class ServicesServiceProvider extends ServiceProvider {
     /**
      * Registers the application services.
-     *
-     * @return void
      */
-    public function register() {
+    public function register() : void {
         $this->app->singleton('services', function (Application $app) {
             $path = config('services.gate.credentials');
             if (strlen($path) > 0 && $app->make('filesystem')->has($path)) {

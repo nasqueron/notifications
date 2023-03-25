@@ -59,8 +59,6 @@ class DockerHubNotification extends Notification {
 
     /**
      * Gets analyzer class name for the current event.
-     *
-     * @return string
      */
     private function getAnalyzerClassName () : string {
         return "Nasqueron\Notifications\Analyzers\DockerHub\\"
@@ -70,8 +68,6 @@ class DockerHubNotification extends Notification {
 
     /**
      * Gets analyzer for the current event.
-     *
-     * @return \Nasqueron\Notifications\Analyzers\DockerHub\BaseEvent
      */
     private function getAnalyzer () : BaseEvent {
         $class = $this->getAnalyzerClassName();

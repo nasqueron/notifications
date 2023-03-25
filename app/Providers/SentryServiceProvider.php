@@ -9,18 +9,14 @@ class SentryServiceProvider extends ServiceProvider {
 
     /**
      * Bootstraps the application services.
-     *
-     * @return void
      */
-    public function boot() {
+    public function boot() : void {
     }
 
     /**
      * Registers the application services.
-     *
-     * @return void
      */
-    public function register() {
+    public function register() : void {
         $this->app->singleton('raven', function (Application $app) {
             $config = $app->make('config');
             $dsn = $config->get('services.sentry.dsn');

@@ -75,8 +75,6 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
 
     /**
      * Gets the name of the item, ie here of the name of the repository.
-     *
-     * @var string
      */
     public function getItemName () : string {
         if ($this->isAdministrativeEvent()) {
@@ -90,9 +88,6 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
     /// Qualification of the payload
     ///
 
-    /**
-     * @return bool
-     */
     public function isAdministrativeEvent () : bool {
         $administrativeEvents = [
             'membership',    // Member added to team
@@ -109,8 +104,6 @@ class GitHubPayloadAnalyzer extends BasePayloadAnalyzer {
 
     /**
      * Gets a short textual description of the event.
-     *
-     * @return string
      */
     public function getDescription () : string {
         return $this->analyzerEvent->getDescription();

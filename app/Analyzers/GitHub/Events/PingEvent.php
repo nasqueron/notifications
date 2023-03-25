@@ -11,8 +11,6 @@ class PingEvent extends Event {
 
     /**
      * Gets description for the payload
-     *
-     * @return string
      */
     public function getDescription () : string {
         return trans(
@@ -26,8 +24,6 @@ class PingEvent extends Event {
 
     /**
      * Gets link for the payload
-     *
-     * @return string
      */
     public function getLink () : string {
         return '';

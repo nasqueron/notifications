@@ -33,8 +33,6 @@ class PhabricatorNotification extends Notification {
 
     /**
      * Gets analyzer
-     *
-     * @return \Nasqueron\Notifications\Analyzers\Phabricator\PhabricatorPayloadAnalyzer
      */
     private function getAnalyzer () : PhabricatorPayloadAnalyzer {
         if ($this->analyzer === null) {
@@ -57,8 +55,6 @@ class PhabricatorNotification extends Notification {
 
     /**
      * Gets the notification URL. Intended to be a widget or icon link.
-     *
-     * @return string
      */
     public function getLink () : string {
         return "";

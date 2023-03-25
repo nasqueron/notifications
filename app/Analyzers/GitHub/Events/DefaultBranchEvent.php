@@ -11,8 +11,6 @@ class DefaultBranchEvent extends Event {
 
     /**
      * Gets description for the payload
-     *
-     * @return string
      */
     public function getDescription () : string {
         $repository = $this->payload->repository->full_name;
@@ -31,8 +29,6 @@ class DefaultBranchEvent extends Event {
 
     /**
      * Gets link for the payload
-     *
-     * @return string
      */
     public function getLink () : string {
         return $this->payload->repository->html_url;

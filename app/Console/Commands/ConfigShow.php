@@ -34,7 +34,7 @@ class ConfigShow extends Command {
     /**
      * Gets the services (defined in credentials.json) as table rows.
      *
-     * @return array
+     * @return string[][]
      */
     protected function getServicesTableRows () : array {
         $rows = [];
@@ -49,7 +49,7 @@ class ConfigShow extends Command {
     /**
      * Gets features as table rows
      *
-     * @return array
+     * @return string[][]
      */
     protected function getFeaturesTableRows () : array {
         $rows = [];

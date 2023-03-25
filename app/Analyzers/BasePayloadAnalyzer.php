@@ -67,8 +67,6 @@ abstract class BasePayloadAnalyzer {
 
     /**
      * Gets the full path to the configuration file.
-     *
-     * @return string
      */
     public function getConfigurationFileName () : string {
         $dir = Config::get(
@@ -87,9 +85,7 @@ abstract class BasePayloadAnalyzer {
     }
 
     /**
-     * Gets full qualified class name for configuration.
-     *
-     * @return string
+     * Gets full qualified class name for configuration
      */
     private function getCandidateConfigurationClassName() : string {
         return 'Nasqueron\Notifications\Analyzers\\' . static::SERVICE_NAME //ns
@@ -146,8 +142,6 @@ MSG
     /**
      * Determines if the event isn't related to a specific item,
      * but to the general service.
-     *
-     * @return bool
      */
     public function isAdministrativeEvent () : bool {
         return false;

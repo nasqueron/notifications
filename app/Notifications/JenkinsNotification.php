@@ -38,8 +38,6 @@ class JenkinsNotification extends Notification {
 
     /**
      * Gets the notification type.
-     *
-     * @return string
      */
     public function getType () : string {
         $build = $this->rawContent->build;
@@ -57,8 +55,6 @@ class JenkinsNotification extends Notification {
     /**
      * Gets the notification text. Intended to convey a short message
      * (thing Twitter or IRC).
-     *
-     * @return string
      */
     public function getText () : string {
         $name = $this->rawContent->name;
@@ -78,8 +74,6 @@ class JenkinsNotification extends Notification {
 
     /**
      * Gets analyzer
-     *
-     * @return \Nasqueron\Notifications\Analyzers\Jenkins\JenkinsPayloadAnalyzer
      */
     private function getAnalyzer () : JenkinsPayloadAnalyzer {
         if ($this->analyzer === null) {
@@ -93,8 +87,6 @@ class JenkinsNotification extends Notification {
 
     /**
      * Gets the notification group.
-     *
-     * @return string
      */
     public function getGroup () : string {
         return $this->getAnalyzer()->getGroup();

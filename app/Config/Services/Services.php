@@ -36,10 +36,8 @@ class Services {
 
     /**
      * Gets the services found in credentials.json configuration file.
-     *
-     * @return Service[]
      */
-    public function get () {
+    public function get () : array {
         return $this->services;
     }
 

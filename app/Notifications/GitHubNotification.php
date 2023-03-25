@@ -54,8 +54,6 @@ class GitHubNotification extends Notification {
     /**
      * Gets the notification text.
      * Intended to convey a short message (thing Twitter or IRC).
-     *
-     * @return string
      */
     public function getText () : string {
         return $this->getAnalyzer()->getDescription();
@@ -63,8 +61,6 @@ class GitHubNotification extends Notification {
 
     /**
      * Gets the notification URL. Intended to be a widget or icon link.
-     *
-     * @return string
      */
     public function getLink () : string {
         return $this->getAnalyzer()->getLink();

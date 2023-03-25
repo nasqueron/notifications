@@ -16,8 +16,6 @@ class DeleteEvent extends Event {
 
     /**
      * Gets description for the payload
-     *
-     * @return string
      */
     public function getDescription () : string {
         $repository = $this->payload->repository->full_name;
@@ -46,11 +44,9 @@ class DeleteEvent extends Event {
 
     /**
      * Gets link segments for the type
-     *
-     * @return Array
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
-    private function getLinkRefSegments () {
+    private function getLinkRefSegments () : array {
         return [
             'tag' => '/tags',
             'branch' => '/branches',
@@ -59,8 +55,6 @@ class DeleteEvent extends Event {
 
     /**
      * Gets link for the payload
-     *
-     * @return string
      */
     public function getLink () : string {
         $type = $this->payload->ref_type;
