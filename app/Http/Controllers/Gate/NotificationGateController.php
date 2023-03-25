@@ -71,7 +71,7 @@ class NotificationGateController extends GateController {
         $this->payload = $this->getNotification();
     }
 
-    protected function getServiceName () : string {
+    public function getServiceName () : string {
         return (string)$this->payload->service;
     }
 
