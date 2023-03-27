@@ -29,4 +29,18 @@ class PhabricatorAPITest extends TestCase {
         $this->expectException(\RuntimeException::class);
         PhabricatorAPI::forProject("NotFound");
     }
+
+    public function testGetFirstResultForObject () {
+        $result = new \stdClass;
+        $result->data = ["first", "second", "third"];
+
+        $this->assertEquals("first", PhabricatorAPI::getFirstResult($result));
+    }
+
+    public function testGetFirstResultForIterable () {
+        $result = ["first", "second", "third"];
+
+        $this->assertEquals("first", PhabricatorAPI::getFirstResult($result));
+    }
+
 }

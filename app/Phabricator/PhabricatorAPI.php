@@ -114,7 +114,7 @@ public function setEndPoint (string $url) : void {
     /**
      * Gets the first result of an API reply.
      */
-    public static function getFirstResult (iterable $reply) : mixed {
+    public static function getFirstResult (iterable|\stdClass $reply) : mixed {
         if (is_object($reply) && property_exists($reply, 'data')) {
             $reply = $reply->data;
         }
