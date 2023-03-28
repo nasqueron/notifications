@@ -35,10 +35,6 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'sentry' => [
-        'dsn' => env('SENTRY_DSN'),
-    ],
-
     'dockerhub' => [
         'tokens' => env('DOCKERHUB_TOKENS', 'DockerHubTokens.json')
     ],

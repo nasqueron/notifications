@@ -193,7 +193,6 @@ return [
         Nasqueron\Notifications\Providers\PhabricatorProjectsMapServiceProvider::class,
         Nasqueron\Notifications\Providers\ReportServiceProvider::class,
         Nasqueron\Notifications\Providers\RouteServiceProvider::class,
-        Nasqueron\Notifications\Providers\SentryServiceProvider::class,
         Nasqueron\Notifications\Providers\ServicesServiceProvider::class
 
     ],
@@ -255,7 +254,6 @@ return [
         'Mailgun'   => Nasqueron\Notifications\Facades\Mailgun::class,
         'PhabricatorAPI' => Nasqueron\Notifications\Facades\PhabricatorAPI::class,
         'ProjectsMap' => Nasqueron\Notifications\Facades\ProjectsMap::class,
-        'Raven'     => Nasqueron\Notifications\Facades\Raven::class,
         'Report'    => Nasqueron\Notifications\Facades\Report::class,
         'Services'  => Nasqueron\Notifications\Facades\Services::class,
 

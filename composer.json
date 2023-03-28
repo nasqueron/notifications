@@ -18,7 +18,7 @@
     "keruald/broker": "^0.5.0",
     "keruald/mailgun": "^0.1.0",
     "netresearch/jsonmapper": "^1.1.1",
-    "sentry/sentry": "^0.13.0"
+    "sentry/sentry-laravel": "^3.2"
   },
   "require-dev": {
     "laravel/browser-kit-testing": "^v6.3.0",

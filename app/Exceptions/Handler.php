@@ -2,8 +2,6 @@
 
 namespace Nasqueron\Notifications\Exceptions;
 
-use Nasqueron\Notifications\Facades\Raven;
-
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -58,7 +56,7 @@ class Handler extends ExceptionHandler {
      * Determines if the error handler should report to Sentry
      */
     protected function shouldReportToSentry () : bool {
-        return Raven::isConfigured() && Config::get('app.env') !== 'testing';
+        return app()->bound('sentry') && Config::get('app.env') !== 'testing';
     }
 
     /**
@@ -67,7 +65,7 @@ class Handler extends ExceptionHandler {
      * @param Exception $e The exception to report
      */
     protected function reportToSentry (Exception $e) : void {
-        Raven::captureException($e);
+        app('sentry')->captureException($e);
     }
 
 }
