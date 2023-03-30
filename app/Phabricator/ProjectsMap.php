@@ -99,7 +99,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      * @param mixed $offset The offset
      * @param mixed $value The value to assign
      */
-    public function offsetSet (mixed $offset, mixed $value) {
+    public function offsetSet (mixed $offset, mixed $value) : void {
         $this->map[$offset] = $value;
     }
 
@@ -108,7 +108,7 @@ class ProjectsMap implements \IteratorAggregate, \ArrayAccess {
      *
      * @param mixed $offset The offset where to remove the value
      */
-    public function offsetUnset (mixed $offset) {
+    public function offsetUnset (mixed $offset) : void {
         unset($this->map[$offset]);
     }
 
