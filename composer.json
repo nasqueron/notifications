@@ -17,6 +17,7 @@
     "keruald/github": "^0.2.1",
     "keruald/broker": "^0.5.0",
     "keruald/mailgun": "^0.1.0",
+    "keruald/omnitools": "^0.8.0",
     "netresearch/jsonmapper": "^1.1.1",
     "sentry/sentry-laravel": "^3.2"
   },

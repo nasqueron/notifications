@@ -2,6 +2,8 @@
 
 namespace Nasqueron\Notifications\Actions;
 
+use Keruald\OmniTools\Collections\HashMap;
+
 class ActionsReport {
     /**
      * List of actions
@@ -78,6 +80,13 @@ class ActionsReport {
     ///
     /// Output
     ///
+
+    /**
+     * Gets an array representation of the current instance
+     */
+    public function toArray() : array {
+        return HashMap::from($this)->toArray();
+    }
 
     /**
      * Gets a JSON string representation of the current instance

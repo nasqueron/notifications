@@ -2,6 +2,7 @@
 
 namespace Nasqueron\Notifications\Http\Controllers\Gate;
 
+use Nasqueron\Notifications\Actions\ActionsReport;
 use Nasqueron\Notifications\Config\Features;
 use Nasqueron\Notifications\Config\Services\Service;
 use Nasqueron\Notifications\Facades\Services;
@@ -75,8 +76,19 @@ abstract class GateController extends Controller {
 
         $report = App::make('report');
         $statusCode = $report->containsError() ? 503 : 200;
+
+        $this->logResponse($report, $statusCode);
+
         return Response::json($report)
             ->setStatusCode($statusCode);
+    }
+
+    /**
+     * Logs the action reports sent as response by the controller
+     */
+    protected function logResponse (ActionsReport $report, int $statusCode) : void {
+        Log::info("[Gate] Actions report.", $report->toArray());
+        Log::info("[Gate] Response is HTTP $statusCode");
     }
 
     ///
