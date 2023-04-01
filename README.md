@@ -74,7 +74,10 @@ Composer will give you the list of extensions you need:
 
   - bcmath (required by the broker library)
   - curl (required by Laravel)
+  - fileinfo (required by Laravel)
+  - intl (required by us)
   - mbstring (required by Laravel)
+  - sockets (required by the broker library)
 
 As a developer, you also need:
 
