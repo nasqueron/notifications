@@ -36,7 +36,7 @@ class NotifyNewCommitsToDiffusionTest extends TestCase {
         $job = $this->mockJob("not-existing-project");
         $job->handle();
 
-        $this->markTestIncomplete();
+        $this->expectNotToPerformAssertions();
     }
 
     ///
